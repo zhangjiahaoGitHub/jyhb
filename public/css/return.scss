@@ -1,0 +1,2734 @@
+@charset "utf-8";
+$ue-width: 50;
+$blue: #3f7ade; // 渐变蓝
+$wblue: #44aaf2; // 渐变蓝
+$fblue: #5a98cf; // 字体蓝
+$rblue: #438bf9; // 圆体蓝
+$blue21x: #2161E7;
+$blue21: #2161E725;
+$bgC: #F4F6F8;
+$gary: #999;
+$orange: #FF6601;
+$orangeFf: #FF9D2F;
+$orangeF4: #F4B070;
+$yellow: #F8B807;
+$yellowFD: #FDFBEE;
+$gary5: #555555;
+$garye5: #E5E5E5;
+$wgary: #e0e0e0;
+$fgary: #f5f5f5;
+$white: #fff;
+$black: #000; // 字体黑
+$black50: #00000050; // 字体黑
+$black46: #464954;
+$black22: #222222;
+$red: #de4848; // 字体红
+$red13: #ff0000;
+$purple: #5729E3; // 字体紫
+$pink: #fa9b9b;
+$purplePick: #EEE9FC;
+$purple50: #5729E350;
+$purple10: #5729E310;
+$green: #59C35B;
+$god:#c19c6f;
+$lan: #42b1d2;
+$themeColor:#42CA7A;
+// 字体大小
+$one: 0.36rem;
+$two: 0.48rem;
+$three: 0.56rem;
+$four: 0.6rem;
+$five: 0.64rem;
+$six: 0.68rem;
+$seven: 0.76rem;
+$eight: 0.84rem;
+$nine: 1.2rem;
+$big: 2rem;
+
+@function px2rem($px) {
+    @return #{$px/$ue-width}rem;
+}
+.el-message{
+    min-width: px2rem(500);
+    max-width: px2rem(600);
+}
+.el-message-box{
+    min-width: px2rem(500);
+    max-width: px2rem(600);
+}
+.el-calendar-table .el-calendar-day{
+    height: px2rem(75);
+    padding:0
+}
+.el-checkbox__inner{
+    width: px2rem(28);
+    height: px2rem(28);
+    border-radius: 50%;
+}
+.el-checkbox__inner::after{
+   width: px2rem(6);
+   height: px2rem(16);
+   left: px2rem(8);
+}
+.el-checkbox__input.is-checked .el-checkbox__inner{
+    background: $themeColor;
+    border-color: $themeColor
+}
+.el-checkbox__input.is-focus .el-checkbox__inner{
+    border-color: $themeColor
+}
+.el-calendar-day p{
+    height: calc(100% - 0.4rem);
+    padding: px2rem(10)
+}
+.leftRouter{
+    height:px2rem(85);
+    line-height: px2rem(85);
+    width: 100%;
+    text-align: center;
+    position: relative;
+    font-size:px2rem(30);
+    background: #fff;
+    // z-index: 99999;
+}
+.leftArrow{
+    width: px2rem(18);
+    vertical-align: middle;
+    position: absolute;
+    left:px2rem(40);
+    top:0;
+    bottom:0;
+    margin:auto
+}
+.leftMess{
+    width: px2rem(35);
+    height: px2rem(35);
+    vertical-align: middle;
+    position: absolute;
+    left:px2rem(30);
+    top:0;
+    bottom:0;
+    margin:auto
+}
+.rightService{
+    width: px2rem(45);
+    vertical-align: middle;
+    position: absolute;
+    right:px2rem(30);
+    text-align: right;
+    top:0;
+    bottom:0;
+    margin:auto;
+}
+.rightInfo{
+    width: px2rem(45);
+    vertical-align: middle;
+    position: absolute;
+    right:px2rem(120);
+    text-align: right;
+    top:0;
+    bottom:0;
+    margin:auto;
+}
+.leftTitle{
+    width: px2rem(150);
+    vertical-align: middle;
+    position: absolute;
+    left:px2rem(30);
+    text-align: left;
+    top:0;
+    bottom:0;
+    margin:auto;
+    font-size: $three
+}
+.retreat{
+    width: px2rem(150);
+    vertical-align: middle;
+    position: absolute;
+    right:px2rem(30);
+    text-align: right;
+    top:0;
+    bottom:0;
+    margin:auto;
+    font-size: $three
+}
+.leftwihteRouter{
+    background: $themeColor;
+    color: $white;
+}
+.head{
+    text-align: center;
+    
+}
+.head img{
+    width: 100%
+}
+.minHeight{
+    min-height: px2rem(1300);
+}
+.loginInput{
+    display: flex;
+    align-items: center;
+    width: px2rem(630);
+    margin:0 auto px2rem(50) auto;
+}
+.inputCard{
+    flex: 1 1 0 !important;
+    padding-left: px2rem(5);
+    background: $fgary;
+}
+.loginInput>div{
+    flex: 0.12 0.12 0;
+    text-align: center;
+    border-right: 1px solid $wgary
+}
+.loginInput img{
+    width: px2rem(40);
+    vertical-align: middle;
+}
+.loginInput input{
+    flex: 0.88 0.88 0;
+    padding: px2rem(18) 0;
+    border-bottom:1px solid $wgary;
+    padding-left: px2rem(15)
+}
+.loginIx{
+    display: flex;
+    align-items: center;
+    width: px2rem(630);
+    border: none;
+    padding: 0;
+    margin:0 auto px2rem(30) auto;
+}
+.loginIx input{
+    border-radius: px2rem(25) !important;
+    border: 2px solid $wgary !important;
+    padding: px2rem(18) px2rem(10)
+}
+.smsInput{
+    flex: 0.62 0.62 0 !important;
+    width: 100%;
+}
+.smsCode{
+    flex: 0.42 0.42 0 !important;
+    border-right: none !important;
+}
+.loginInput input::placeholder{
+    color: $gary;
+}
+.allFlex{
+    display: flex;
+    align-items: center;
+}
+.widthFlex{
+    width: px2rem(630);
+    margin: 0 auto;
+}
+.half{
+    flex: 1 1 0;
+}
+.textRight{
+    text-align: right;
+}
+.blue{
+    background: $themeColor;
+}
+.blueColor{
+    color: $wblue !important;
+}
+.textPadding{
+    position: relative;
+    padding-right: px2rem(30)
+}
+.green{
+    background: $green;
+}
+.loginTo div{
+    width: px2rem(630);
+    display: inline-block;
+    margin: px2rem(30) auto;
+    height: px2rem(80);
+    line-height: px2rem(80);
+    color: $white;
+    font-size: $four;
+    border-radius: px2rem(12);
+}
+.loginTo>p{
+    width: px2rem(630);
+    display: inline-block;
+    font-size: $four;
+    text-align: left;
+    border-radius: px2rem(12);
+}
+.maginAuto{
+    margin: 0 auto;
+    width: px2rem(630);
+}
+.wxLogo{
+    width: px2rem(45);
+    vertical-align: middle;
+    padding-right:px2rem(10)
+}
+.lineWidth{
+    width: px2rem(175);
+    height: 1px;
+    background: $gary;
+}
+.textLogin{
+    width: px2rem(280);
+    text-align: center;
+}
+.smsMargin{
+    padding-top: px2rem(50)
+}
+.smsBorder{
+    padding: px2rem(15) px2rem(32);
+    border: 1px solid $wgary;
+    background: $themeColor;
+    border-radius: px2rem(35);
+    color: $white;
+}
+.loginTo{
+    text-align: center;
+}
+.textCenter{
+    text-align: center;
+}
+.lan{
+    color: $wblue;
+}
+.homeBanner{
+    position:fixed;
+    padding-top:px2rem(10);
+    width:100%;
+    bottom:0;
+    border-top:1px solid $wgary;
+    font-size:$two;
+    background: $white;
+}
+.homeBanner img{
+    width: px2rem(45);
+    height:px2rem(45);
+}
+.homeBanner li{
+    flex:1 1 0;
+    text-align:center
+}
+.horn{
+    width: px2rem(35);
+    height: px2rem(35);
+    padding-right: px2rem(20);
+}
+.titleLegend{
+    width: px2rem(620);
+    vertical-align: middle;
+}
+.prompt{
+    width: 100%;
+    height: px2rem(30);
+    padding:px2rem(8);
+    overflow: hidden;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+.prompt ul{
+    display: inline-block;
+}
+.prompt li{
+    padding-right: px2rem(50)
+}
+.titleLegend .prompt{
+    background: none;
+}
+.homeTopm{
+    padding: px2rem(40) 0 px2rem(20) 0;
+    margin-bottom: px2rem(20);
+    color: $white
+}
+.homeTopm img{
+    width: px2rem(60);
+}
+.hundred{
+    min-height: calc(100vh - 1.7rem);
+    background: $fgary;
+}
+.hundredW{
+    min-height: 100vh;
+    background: $fgary;
+}
+.homeLogo{
+    height: px2rem(250);
+    background: $white;
+    padding:px2rem(20) px2rem(20);
+    position: relative;
+    text-align: center;
+}
+.imgBanner{
+    width: 100%;
+    height: px2rem(325);
+}
+.bottomBlock{
+    height: px2rem(50);
+}
+.el-carousel__indicators--horizontal{
+    display: none;
+}
+.homeList{
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: px2rem(20);
+    background: $white;
+    padding-bottom: px2rem(30)
+}
+.homeList > div{
+    width: 25%;
+}
+.homeNone{
+    padding: 0;
+    height: px2rem(325) !important;
+}
+.saleLogo{
+    width: px2rem(40);
+    height: px2rem(40);
+    vertical-align: sub;
+}
+.imageUrl{
+    width: px2rem(80);
+    max-height: px2rem(110);
+}
+.imageOne{
+    width: px2rem(60);
+    height: px2rem(60);
+    padding-top: px2rem(30);
+}
+.homeList p{
+    padding-top: px2rem(10)
+}
+.homeTutorial{
+    margin-top: px2rem(20);
+    padding:px2rem(30) px2rem(20) 0 px2rem(20);
+    background: $white;
+}
+.homeTut{
+    padding: px2rem(30) 0 0 0;
+    background: $fgary;
+}
+.paddLeft{
+    padding-left: px2rem(20);
+}
+.tutorial{
+    font-size: $four;
+    padding-left: px2rem(15);
+    border-left: px2rem(10) solid $red13
+}
+.homeTutorial>img{
+    width: 100%;
+    height: px2rem(210);
+}
+.tutorialImg{
+    padding: px2rem(30) 0;
+    font-size: 0;
+    text-align: center;
+}
+.bottomLong{
+    height: px2rem(130);
+}
+.surrender{
+    font-size: 0;
+    padding: px2rem(30) px2rem(30) 0 px2rem(30);
+}
+.surrender img{
+    width: 100%;
+    height: px2rem(235);
+}
+.swiper-slide {
+    width: px2rem(600);
+}
+.VIP{
+    width: px2rem(600);
+    height: px2rem(260);
+}
+.vipImg{
+    background: $black;
+    font-size: 0;
+    padding-top: px2rem(15);
+}
+.backRouter{
+    background: $black;
+}
+.interests{
+    font-size: $three;
+    text-align: center;
+    padding-top: px2rem(40);
+    font-weight: bold;
+}
+.gary{
+    color: $gary
+}
+.garyColor{
+    background: $fgary !important;
+}
+.wgaryColor{
+    background: $wgary !important;
+}
+.vipContent{
+    color: $gary;
+    text-align: center;
+    padding: px2rem(50) px2rem(20) px2rem(30)
+}
+.vipContent span{
+    color: $wblue;
+}
+.payMoney{
+    font-size: $nine;
+    color: $themeColor;
+    text-align: center;
+    padding: px2rem(50) 0;
+    font-weight: bold;
+}
+.payMoney span{
+    font-size: $two
+}
+.paySelect{
+    background: $white;
+    padding: px2rem(25) px2rem(25);
+    border-bottom: 1px solid $fgary
+}
+.paySelect img{
+    width: px2rem(70);
+}
+.payName{
+    padding-left: px2rem(20);
+    width: 74%;
+}
+.payName p:first-child{
+    font-weight: bold;
+    font-size: $three;
+}
+.payName p:last-child{
+    color: $gary;
+}
+.el-radio__inner{
+    width: px2rem(30);
+    height: px2rem(30);
+}
+.el-radio__inner::after{
+    width: px2rem(8);
+    height: px2rem(8);
+}
+.el-radio__label{
+    display: none;
+}
+.longMargin{
+    margin-top: px2rem(50)
+}
+.share{
+    background: linear-gradient(to right, #1351E0, #336BEC);
+    border-radius: px2rem(10);
+    padding:px2rem(35) px2rem(25);
+    color: $white;
+}
+.sharePadd{
+    padding: px2rem(30);
+    border-bottom: px2rem(20) solid $fgary
+}
+.noMarp{
+    margin-top: 0;
+    padding: 0 0.6rem 0 0.6rem;
+}
+.noMarp img{
+    height: px2rem(270);
+}
+.shareTitle{
+    font-size: $five;
+    padding-bottom: px2rem(8)
+}
+.regInput input{
+    flex: 1 1 0;
+    background: $fgary;
+}
+.regInput .smsInput{
+    flex: 0.58 0.58 0 !important;
+    width: 100%
+}
+.myTitle{
+    background: url('../../src/assets/my.png') no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+}
+.headTitle{
+    width: 92%;
+    margin: auto;
+    padding: px2rem(40) 0 px2rem(50) 0;
+    color: $white;
+    align-items: center;
+    position: relative;
+}
+.headUpload .el-upload--picture-card{
+    width: px2rem(100);
+    height: px2rem(100);
+    line-height: px2rem(100);
+    border-radius: 50%;
+    font-size: 0;
+    border: 0;
+    background-color: none;
+    margin-right: px2rem(30)
+}
+.headTitle img{
+    width: px2rem(100);
+    height: px2rem(100);
+    border-radius: 50%;
+}
+.myName{
+    font-size: $six;
+    padding-bottom: px2rem(10);
+}
+.myBorder{
+    margin: 0 auto;
+    width: 92%;
+    border:1px solid $purple10;
+    box-shadow: 0 0 px2rem(40) $purple50;
+    padding: px2rem(40) 0;
+    margin-bottom: px2rem(30)
+}
+.myMoney{
+    font-size: $four;
+    color: $themeColor;
+}
+.myMargin{
+    margin-top: px2rem(-75);
+    position: relative;
+    z-index: 99;
+    background: $white;
+    border-radius: px2rem(10);
+}
+.immargin{
+    margin-top: 0
+}
+.levelName{
+    font-size: $two;
+    background: $bgC;
+    color: $orangeFf;
+    padding:px2rem(8) 0 px2rem(6) 0;
+    width: px2rem(150);
+    display: inline-block;
+    border-radius: px2rem(40);
+    text-align: center;
+    vertical-align: middle;
+}
+.nameWidth{
+    width: px2rem(300);
+}
+.levelWidth{
+    width: calc(100% - 8.6rem);
+    text-align: right;
+}
+.halfSix{
+    flex: 0.6 0.6 0;
+    text-align: center;
+}
+.halfSix div:first-child{
+    border-right: 1px solid $wgary
+}
+.halfFour{
+    flex: 0.4 0.4 0;
+    text-align: center;
+
+}
+.moneyCaption{
+    font-size: $two;
+}
+.look{
+    width: px2rem(40);
+    height: px2rem(36);
+    vertical-align: middle;
+}
+.levelColor{
+    background: $blue;
+    color: $white;
+    margin-left: px2rem(35);
+}
+.centerSelect{
+    padding:0 px2rem(30);
+}
+.centerSelect>div{
+    padding: px2rem(35) px2rem(25);
+    border-bottom: 1px solid $wgary;
+    font-size: $five;
+    background: $white;
+    position: relative;
+}
+.myImage{
+    width: px2rem(60);
+    height: px2rem(60);
+    margin-right: px2rem(20);
+}
+.white{
+    background: $white;
+}
+.rightPost{
+    position: absolute;
+    right: px2rem(42);
+    top: 0;
+    bottom: 0;
+    height: px2rem(20);
+    line-height: px2rem(20);
+    margin: auto;
+    font-size: $one;
+}
+.rightNext{
+    position: absolute;
+    right: px2rem(15);
+    top: 0;
+    bottom: 0;
+    width: px2rem(15);
+    height: px2rem(30);
+    margin: auto
+}
+.withNext{
+    width: px2rem(15);
+    height: px2rem(30);
+    padding-left: px2rem(30);
+}
+.verifiedImage{
+    width: px2rem(600);
+    height: px2rem(350);
+    margin: px2rem(30) auto;
+}
+.verifiedImage .el-upload--picture-card{
+    width: px2rem(600);
+    height: px2rem(350);
+    line-height: 100%;
+}
+.verifiedImage .el-upload-list--picture-card .el-upload-list__item{
+    width: px2rem(600);
+    height: px2rem(350);
+    line-height: 100%;
+    margin: 0 px2rem(40) px2rem(30) 0;
+}
+.iDcard{
+    width: 100%;
+    height: 100%;
+}
+.verifiedName{
+    text-align: center;
+}
+.verifiedContent{
+    width: 94%;
+    border-radius: px2rem(10);
+    margin:px2rem(40) auto 0 auto;
+}
+.setInput{
+    align-items: center;
+    padding: 0 px2rem(30);
+    background: $fgary;
+    margin-bottom: px2rem(40)
+}
+.setTextInput{
+    padding: px2rem(30);
+    background: $white;
+    border-bottom: 1px solid $fgary;
+}
+.setName{
+    flex: 0.25 0.25 0;
+    font-size: $three;
+    font-weight: bold;
+}
+.setPayLogo{
+    flex: 0.15 0.15 0;
+}
+.setEntryLong{
+    flex:0.75 0.75 0;
+    height: px2rem(80);
+    font-size: $three;
+    background: $fgary;
+}
+.transferConfirm{
+    width: 94%;
+    padding:px2rem(20) 0;
+    text-align: center;
+    font-size: $four;
+    margin: 0 auto px2rem(20) auto;
+    background: $themeColor;
+    color: $white;
+    font-weight: bold;
+}
+.realTitle{
+    padding:px2rem(10) 3%;
+    margin-top:px2rem(40);
+    background: $blue21;
+    color: $gary;
+}
+.teamBack{
+    background: $white;
+    padding: px2rem(20) 0;
+    position: relative;
+}
+.teamBack>div{
+    background: url('../../src/assets/my/teamBack.png');
+    background-repeat: no-repeat;
+    background-size: 100% px2rem(310);
+    color: $white;
+    width: px2rem(650);
+    height: px2rem(270);
+    margin: auto;
+    padding: px2rem(40) px2rem(30) 0 px2rem(30)
+}
+.teamNum{
+    padding-top: px2rem(10);
+    font-size: $nine;
+    color: $white;
+    letter-spacing: px2rem(5);
+}
+.pushNum{
+    padding:0 px2rem(30);
+    background: $white;
+}
+.teamFlex{
+    background: $white;
+    padding: px2rem(30) px2rem(20);
+    margin-bottom: px2rem(20)
+}
+.teamBold{
+    font-weight: bold;
+}
+.teamBold span{
+    font-size: $six;
+}
+.teamRight{
+    justify-content:flex-end
+}
+.teamNext{
+    width:px2rem(15);
+    height: px2rem(30);
+    vertical-align: middle;
+}
+.teamNew{
+    width: px2rem(150);
+    text-align: center;
+    font-size: $six;
+    font-weight: bold;
+}
+.teamMy{
+    width: px2rem(150);
+}
+.border{
+    border: none !important
+}
+.borderBottom{
+    border-bottom: 1px solid $fgary;
+}
+.rightColor{
+    text-align: right;
+    color: $gary;
+}
+.rightColor span{
+    padding-right: px2rem(20)
+}
+.teamMargin{
+    margin-top: px2rem(20)
+}
+.borderRight{
+    border-right: 1px solid $wgary;
+}
+.paddingTeam{
+    padding-left: px2rem(20)
+}
+.bankList{
+    align-items: center;
+    padding: px2rem(25) 0;
+    border-bottom: 1px solid $fgary;
+    text-align: center;
+    background: $white
+}
+.bankLtitle{
+    font-weight: bold;
+}
+.peopleTitle{
+    background: $white;
+    text-align: center;
+    padding: px2rem(15) 0;
+}
+.peopleInput{
+    background: url('../../src/assets/search.png') $fgary px2rem(30) center no-repeat;
+    background-size:px2rem(30) px2rem(30);
+    width: calc(94% - 1.6rem);
+    padding-left: px2rem(80);
+    margin: px2rem(20) auto 0 auto;
+    height: px2rem(70);
+    border-radius: px2rem(40);
+}
+.borderMagin{
+    border-top: px2rem(20) solid $fgary
+}
+.callPhone{
+    width: px2rem(40);
+    height: px2rem(40)
+}
+.walletBlue{
+    background: $themeColor;
+    padding:px2rem(60) px2rem(30)
+}
+.littleMargin{
+    margin-top: px2rem(-45);
+    padding: px2rem(25) 0;
+    text-align: center;
+    color: $themeColor;
+    font-size: $four;
+    font-weight: bold;
+}
+.marginLeft{
+    margin-left: px2rem(30)
+}
+.marginTop{
+    margin-top: px2rem(15);
+}
+.fontWeight{
+    font-weight: bold;
+    font-size: $six
+}
+.paddProfit{
+    padding: px2rem(30) px2rem(20);
+    background: $white;
+}
+.smallWeight{
+    font-weight: bold;
+}
+.todayTop{
+    padding-top: px2rem(8)
+}
+.todayTop img{
+    margin-left: px2rem(10)
+}
+.paddProfit{
+    border-bottom: 1px solid $fgary
+}
+.cumPadding{
+    padding: px2rem(25) px2rem(30) px2rem(25) px2rem(30);
+    justify-content: space-between;
+}
+.cumPadding li{
+    padding: px2rem(30);
+    background: $white;
+    text-align: center;
+    width: calc(48% - 1.2rem);
+}
+.textWeight{
+    font-weight: bold;
+    font-size: $five;
+    padding-top: px2rem(10)
+}
+.cumNopadd{
+    margin-top: 0;
+}
+.reatInput{
+    background: url('../../src/assets/my/money.png') 0 center no-repeat;
+    background-size:px2rem(20) px2rem(22);
+    padding-left: px2rem(60);
+    line-height: px2rem(80);
+    height: px2rem(80);
+    border-radius: px2rem(3);
+    border-bottom: 1px solid $fgary
+}
+.retreatRemarks{
+    margin: 0 auto;
+    padding-bottom: px2rem(15);
+    width: 94%;
+    font-size:$one;
+    color: $gary;
+    border-bottom: 1px solid $fgary
+}
+.timeBack{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+.stopBack{
+    background: $black50;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+.timeDack{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+}
+.is-selected {
+    color: $themeColor;
+}
+.black{
+    color: $black;
+}
+.changeInput{
+    margin-bottom: px2rem(30);
+    border: none
+}
+.changeDiv{
+    flex: 0.28 0.28 0 !important;
+    border-right: none !important;
+    color: $gary !important
+}
+.changeInput input{
+    flex: 0.72 0.72 0;
+}
+.selectEle{
+    flex: 0.72 0.72 0 !important;
+    border-right:none !important
+}
+.selectEle .el-input__inner{
+    border: none;
+    line-height: 100%;
+    height: 100%;
+}
+.selectEle .el-input__icon{
+    line-height: 100%;
+}
+.selectEle .el-select .el-input .el-select__caret{
+    font-size: $six
+}
+.peopleFlex{
+    align-items: center;
+    text-align: center;
+    background: $white;
+    color: #999;
+}
+.peopleFlex li{
+    font-size:$four;
+    flex: 1 1 0;
+}
+.peopleFlex span{
+    padding:px2rem(20) px2rem(4);
+    display: inline-block;
+    border-bottom:1.5px solid #00000000
+}
+.peopleCheck{
+    border-bottom:1.5px solid $themeColor !important;
+    color: $themeColor;
+}
+.dayMouth{
+    justify-content: center;
+    margin: px2rem(50) 0;
+}
+.dayMouth li{
+    padding:px2rem(12) px2rem(40);
+    background: $white;
+    border: 1px solid $themeColor;
+}
+.blueBack{
+    background: $themeColor !important;
+    color: $white;
+}
+.business{
+    padding: 0 px2rem(30);
+    text-align: center;
+    margin-bottom: px2rem(20)
+}
+.business div{
+    background: $white;
+}
+.busTitle{
+    padding: px2rem(20) 0;
+    color: $gary;
+}
+.busMoney{
+    padding:px2rem(10) 0 px2rem(20) 0;
+    font-size: $six;
+    font-weight: bold;
+}
+.customerBorder{
+    padding: px2rem(50) 0 px2rem(30) 0;
+    text-align: center;
+    width: 94%;
+    background: $white;
+    margin: px2rem(20) auto 0 auto;
+    border-radius: px2rem(10);
+}
+.customerContent{
+    padding:px2rem(40) px2rem(30) 0 px2rem(30);
+    color: $gary;
+}
+.customerPhone img{
+    width: px2rem(60);
+    height: px2rem(60);
+}
+.phoneTitle{
+    font-size: $three;
+}
+.phoneTitle span{
+    position: relative;
+}
+.callCus{
+    width: px2rem(60);
+    height: px2rem(60);
+    vertical-align: middle;
+    padding-left: px2rem(15);
+}
+.tellPhone{
+    padding-top: px2rem(30);
+    font-size: $five;
+    border-top: 1px solid $fgary;
+    font-weight: bold;
+}
+.truePhone{
+    color: $themeColor
+}
+.workTime{
+    color: $gary;
+    padding: px2rem(20);
+}
+.setRightLong{
+    flex: 0.75 0.75 0;
+    font-size: $two;
+    padding: px2rem(25) 0;
+    font-weight: 400;
+}
+.setColor{
+    color: $purple;
+    font-size: $three;
+    text-align: right;
+    font-weight: bold;
+}
+.wihitSet{
+    margin-top: px2rem(20);
+    padding: px2rem(20) px2rem(30);
+    background: white;
+    position: relative;
+}
+.wihitSet img{
+    right: px2rem(30);
+}
+.textLeft{
+    text-align: left;
+    padding: 0
+}
+.bankRight{
+    padding-right: px2rem(10);
+    vertical-align: middle
+}
+.collection{
+    padding: px2rem(30) 3% px2rem(10) 3%;
+    background: $white;
+    color: $gary;
+}
+.collectionInput{
+    background: url('../../src/assets/my/money.png') $white left center no-repeat;
+    background-size:px2rem(30) px2rem(34);
+    padding-left: px2rem(50);
+    line-height: px2rem(80);
+    border-bottom: 1px solid $fgary;
+    font-size: $eight;
+    font-weight: bold;
+    margin-top: 0
+}
+.whiteBack{
+    background: $white;
+}
+.collectionRemarks{
+    padding:0 3%;
+    border-bottom: none
+}
+.collectionTop{
+    padding: px2rem(30) 0 px2rem(40) 0;
+}
+.collectionPadd{
+    margin-bottom: px2rem(20)
+}
+.checkColor{
+    color:$themeColor
+}
+.bankLogo{
+    width: px2rem(50);
+    height: px2rem(50);
+    vertical-align: middle;
+    margin-right: px2rem(15);
+}
+.bankgroud:nth-child(4n-3){
+    background: linear-gradient(to right, #EE392E, #FF5626);
+}
+.bankgroud:nth-child(4n-2){
+    background: linear-gradient(to right, #1351E0, #336BEC);
+}
+.bankgroud:nth-child(4n-1){
+    background: linear-gradient(to right, #F4A93D, #F7BB48);
+}
+.bankgroud:nth-child(4n){
+    background: linear-gradient(to right, #4513e0, #3339ec);
+}
+.bankgroud{
+    width: calc(94% - 1.2rem);
+    margin: px2rem(20) auto 0 auto;
+    padding: px2rem(30) px2rem(30) 0 px2rem(30);
+    color: $white;
+    border-radius: px2rem(15);
+    position: relative;
+}
+.choose{
+    padding: px2rem(25) 0 px2rem(20) 0;
+    justify-content: space-between;
+}
+.garyChoose{
+    color: #ffffff90;
+    letter-spacing: px2rem(5);
+    font-size: $eight;
+    vertical-align: middle;
+}
+.whiteColor{
+    color: $white !important;
+}
+.smallFont{
+    font-size: $one
+}
+.immediately{
+    width: px2rem(180);
+    height: px2rem(55);
+}
+.aisleBack{
+    margin: px2rem(20) auto 0 auto;
+    padding: px2rem(30) px2rem(30) 0 px2rem(30);
+    background: $white;
+}
+.aisleJust{
+    justify-content: space-between;
+    padding-bottom: px2rem(20);
+    border-bottom:1px solid $fgary;
+}
+.weightFont{
+    font-weight: bold;
+}
+.bankLeft{
+    margin-right: px2rem(30);
+    vertical-align: middle;
+}
+.aisleContent{
+    padding: px2rem(30) 0 px2rem(30) px2rem(30)
+}
+.aisleBlue{
+    font-size: $six;
+    color: $themeColor;
+}
+.aisleNext{
+    background: $themeColor;
+    color: $white;
+    padding:px2rem(15) px2rem(40);
+    border-radius: px2rem(40);
+}
+.imgMax{
+    width: 100%;
+}
+.imgMin{
+    width: px2rem(600) !important;
+    height: px2rem(200) !important;
+}
+.imageTwo{
+    width: px2rem(90) !important;
+    height: px2rem(160) !important;
+    margin-top:px2rem(30)
+}
+.noLfetborder{
+    border-left: none;
+    margin-top: px2rem(15)
+}
+.copy{
+    padding: px2rem(10) px2rem(40);
+    border-radius: px2rem(50);
+    border: 1px solid $gary;
+    display: inline-block;
+    margin-bottom: px2rem(30)
+}
+.aisleDescription{
+    flex: 0.2 0.2 0;
+    padding-left: px2rem(30);
+}
+.imgShare{
+    width: 33.3333%;
+    text-align: center;
+    margin-top: px2rem(20);
+}
+.imgShare img{
+    width: px2rem(220);
+    height: px2rem(340);
+}
+.widthMax{
+    width: 100%;
+    height: calc(100vh - 1.7rem);
+    font-size: 0;
+}
+.widthMax img{
+    width: 100%;
+    height: px2rem(1245)
+}
+.codeAbst{
+    position: absolute;
+    top: px2rem(14);
+    right: 4%;
+    width: px2rem(200) !important;
+    height: px2rem(200) !important;
+    z-index: 999;
+}
+.aisleRemarks{
+    flex: 0.8 0.8 0;
+    word-break:break-all
+}
+.iframeWH{
+    width: 100%;
+    max-width: 100%;
+    min-height: calc(100vh - 1.7rem);
+    height:  calc(100vh - 1.7rem);
+    display: -webkit-box;
+    display: -o-box;
+    display: -moz-box;
+    overflow-x: scroll;
+    white-space: nowrap
+}
+.showpages{
+    width: 100%;
+    height: 100%
+}
+.repayPadding{
+    padding-left: px2rem(15)
+}
+.repayFont{
+    font-size: $one;
+}
+.repayLogo{
+    width: px2rem(30);
+    height: px2rem(30);
+    vertical-align: middle;
+}
+.borderTop{
+    border-top: 1px solid #ffffff90
+}
+.overflow{
+    height: px2rem(75);
+    overflow: hidden;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.repayMax i{
+    font-size: $nine;
+    color: $themeColor;
+    background: $white;
+    padding: px2rem(20);
+    position: fixed;
+    border-radius: 50%;
+    right: px2rem(50);
+    bottom: px2rem(90);
+    z-index: 999;
+    box-shadow: px2rem(2) px2rem(5) px2rem(5) $wgary;
+}
+.repayMax img{
+    width: 100%;
+    height: px2rem(340);
+}
+.minHalf{
+    flex: 0.7 0.7 0;
+}
+.swiper-wrapper{
+    transform: translate3d(px2rem(70), 0px, 0px);
+}
+.noPadding{
+    padding: 0;
+    width: 92%;
+}
+.noPb{
+    padding-bottom: 0 !important;
+}
+.planBack{
+    padding: px2rem(30) px2rem(30);
+    border-top-left-radius: px2rem(12);
+    border-top-right-radius: px2rem(12);
+    background: $blue;
+}
+.planBackx{
+    background: $white;
+    padding: px2rem(20) px2rem(30);
+    box-shadow: 0 0 px2rem(5) #ffffff30;
+    margin-bottom: px2rem(30);
+    border-bottom-left-radius: px2rem(12);
+    border-bottom-right-radius: px2rem(12);
+}
+.planBackx p{
+    color: $black;
+}
+.leftRight{
+    border-left: 1px solid #00000030;
+    border-right: 1px solid #00000030
+}
+.leftwRight{
+    border-left: 1px solid #ffffff50;
+    border-right: 1px solid #ffffff50
+}
+.leftRaduis{
+    width: px2rem(30);
+    height: px2rem(30);
+    background: $fgary;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    left: px2rem(-15);
+    top:px2rem(-15);
+}
+.rightRaduis{
+    width: px2rem(30);
+    height: px2rem(30);
+    background: $fgary;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    right: px2rem(-15);
+    top:px2rem(-15);
+}
+.planContent{
+    padding: px2rem(30);
+    background: $white;
+    width: calc(92% - 1.2rem);
+    margin:0 auto;
+    border-bottom-left-radius: px2rem(8);
+    border-bottom-right-radius: px2rem(8);
+}
+.noMargin{
+    margin-bottom: 0 !important
+}
+.noMartop{
+    margin-top: 0 !important;
+}
+.makePadding{
+    padding: px2rem(30) px2rem(20)
+}
+.grayBack{
+    background: $fgary !important;
+}
+.eeeBack{
+    background: #8e8e8e !important
+}
+.minMake{
+    font-size: $three
+}
+.makeSelect{
+    width: 100%;
+    background: $fgary;
+}
+.makeSelect input{
+    background: $fgary;
+    padding: px2rem(20) 0 px2rem(20) px2rem(20);
+    width: calc(100% - 0.4rem);
+}
+.noMake{
+    padding: 0
+}
+.noMake li{
+    width: calc(48% - 1.3rem);
+}
+.makeMax input{
+    text-align: center;
+    border: 0;
+    padding: px2rem(15) px2rem(40) px2rem(15) 0 !important;
+    background: $themeColor;
+    color: $white;
+    line-height: 100%;
+    height: 100%;
+}
+.makeMax .el-input__icon{
+    line-height: 100%;
+    display: none;
+}
+.makeMax input::placeholder{
+    color: $white;
+}
+.el-cascader-menu{
+    min-width: px2rem(200);
+    width: px2rem(200);
+}
+.el-cascader-node{
+    padding:0;
+    text-align: center;
+}
+.el-cascader-menu__wrap{
+    height: px2rem(300);
+}
+.el-cascader-node__label{
+    padding: 0;
+}
+.el-cascader-menu:last-child .el-cascader-node{
+    padding-right: 0;
+}
+.el-cascader-node__postfix{
+    display: none;
+}
+.el-cascader-menu__list{
+    padding: 0;
+}
+.makeWidth{
+    flex: 0.28 0.28 0;
+}
+.makeMax{
+    flex: 0.72 0.72 0;
+}
+.el-cascader{
+    line-height: 100%;
+    background: $fgary;
+}
+.el-cascader input{
+    padding: px2rem(20) 0
+}
+.block {
+    margin-top: px2rem(30)
+}
+.makeTo{
+    margin-top: px2rem(40);
+}
+.makeTo div{
+    background: $themeColor;
+}
+.justifyBetween{
+    justify-content: space-between;
+}
+.inviteCode{
+    width: px2rem(100);
+    height: px2rem(100);
+    padding-left: px2rem(70);
+}
+.newpadd{
+    padding: px2rem(20) px2rem(10);
+    background: $white;
+}
+.justifyCenter{
+    justify-content: center;
+}
+.flexPadding{
+    padding-top: px2rem(25);
+}
+.borderMake{
+    border-bottom: 1px solid $fgary;
+    padding-bottom: px2rem(12);
+}
+.submitPlan{
+    width: 47%;
+    padding: px2rem(20) 0;
+    text-align: center;
+    background: $themeColor;
+    color: $white;
+    border-radius: px2rem(5);
+}
+.paddRight{
+    padding-right: px2rem(35);
+}
+.planMargin{
+    margin-top: px2rem(60);
+}
+.exhaustiveBack{
+    background: linear-gradient(to right, #EE392E, #FF5626);
+}
+.widthExhaustive{
+    width: calc(100% - 1.2rem);
+    height: 1px;
+    background: #ffffff50;
+    margin: 0 auto;
+}
+.exhaustiveContent{
+    margin-top: px2rem(25);
+    border-radius: px2rem(5);
+}
+.redColor{
+    color: $red13 !important;
+}
+.redBack{
+    background: $themeColor !important;
+}
+.examine{
+    padding: px2rem(15) px2rem(40);
+    background: $blue21x;
+    color: $white;
+    border-radius: px2rem(5);
+}
+.widthParticular{
+    width: 100%;
+    margin-top: px2rem(30);
+    background: $fgary;
+}
+.particularTop{
+    padding-bottom: 0
+}
+.rightBorder{
+    border-right: 1px solid $fgary;
+}
+.partStatus{
+    padding: px2rem(5) px2rem(22) px2rem(3) px2rem(22);
+    border-radius: px2rem(30);
+    background: #FD8032;
+    color: $white;
+    vertical-align: middle;
+    margin-right: px2rem(20)
+}
+.partFont{
+    font-size: $three;
+    font-weight: bold;
+}
+.partBlue{
+    background: $blue21x;
+}
+.partHeight{
+    min-height: px2rem(160);
+    border-bottom: 1px solid $fgary
+}
+.partHeight:last-child{
+    border-bottom: none
+}
+.partSubmit{
+    padding:0 px2rem(30)
+}
+.partSubmit .submitPlan{
+    padding: px2rem(30) 0
+}
+.matterWidth{
+    width: px2rem(160);
+}
+.matterSubmit{
+    padding: px2rem(10) px2rem(40);
+    border-radius: px2rem(5);
+    background: $themeColor;
+    color: $white;
+}
+.putong{
+    width: 100%;
+    min-height: px2rem(415);
+    margin-top: px2rem(50)
+}
+.blueHun{
+    background: $blue21x;
+}
+.codeBack{
+    width: px2rem(600);
+    height: px2rem(900);
+    margin: px2rem(50) auto;
+    background: url('../../src/assets/code.png') no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+}
+.codeLogo{
+    width: px2rem(60);
+    height: px2rem(60);
+    vertical-align: middle;
+    margin-right: px2rem(30);
+}
+.codeTitle{
+    text-align: center;
+    font-size: $six;
+    font-weight: bold;
+    padding-top: px2rem(30)
+}
+.codeImg{
+    width: px2rem(400) !important;
+    height: px2rem(400) !important;
+    margin: px2rem(30) auto 0 auto;
+}
+.codePo{
+    position: absolute;
+    bottom: px2rem(40);
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+.messdia .el-dialog__body{
+    max-height: px2rem(200) !important;
+    overflow: scroll;
+    font-size: $two;
+}
+.messdia .el-dialog__title{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    font-size: $four;
+    line-height: px2rem(50);
+}
+.messdia .el-button{
+    padding: px2rem(20) px2rem(30);
+}
+.popupTitle{
+    text-align: center;
+    padding-bottom: px2rem(35);
+    font-weight: bold;
+}
+.popupContent{
+    text-align: center;
+    color: $gary;
+}
+.popup .el-button{
+    padding:px2rem(20) 0;
+    width: px2rem(230);
+    text-align: center;
+}
+.popup .el-button--primary{
+    background: $orangeF4;
+    border-color: $orangeF4
+}
+.garyMake{
+    background: $gary !important;
+}
+.preHeight{
+    padding-bottom: px2rem(20);
+    border-bottom: 1px solid $fgary
+}
+.preHeight:last-child{
+    border-bottom: none
+}
+.prePadding{
+    padding-top: px2rem(20);
+    border-top: 1px solid #ffffff65;
+    margin-top: 0.4rem;
+}
+.el-cascader-node__prefix{
+    display: none;
+}
+.noAll{
+    padding: 0
+}
+.indexDom .el-input__inner{
+    border: none;
+    padding: 0;
+    height:100%;
+    line-height: 100%;
+    &::placeholder{
+        color: #606266;
+    }
+}
+.indexDom .el-input__suffix{
+    display: none;
+}
+.companyDom .el-input__inner{
+    border: none;
+    padding: 0;
+    height:100%;
+    line-height: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.companyDom .el-input__suffix{
+    display: none;
+}
+.marginMatter{
+    margin: px2rem(30) auto;
+}
+.widthMatter{
+    width: px2rem(675);
+}
+.matterCentent{
+    width: px2rem(300) !important;
+    padding: px2rem(18) 0 px2rem(18) px2rem(15);
+    background: #f5f5f5;
+}
+.matterCentent::placeholder{
+    color: $gary;
+}
+.matterAuto{
+    margin: 0 auto;
+}
+.partMin{
+    min-height: px2rem(90);
+}
+.messPadding{
+    padding: px2rem(30) 0 0 0;
+    border-bottom: none;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+.messAll{
+    padding: px2rem(30);
+}
+.wrap{
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.teamWidxx{
+    width: 50%;
+}
+.box-bordert {
+    border-top: px2rem(1) solid #eee;
+}
+.intermediarybox {
+    margin: px2rem(20) px2rem(30);
+}
+.imgbox {
+    width: 100%;
+    padding: px2rem(10) 0;
+}
+.imgbox img {
+    width: 100%;
+}
+.realname {
+    min-height: calc(100vh - 1.7rem);
+    background-color: #F4F6F8;
+    .clear-mar {
+        margin-bottom: 0 !important;
+    }
+    .card-count {
+        height: px2rem(56);
+        line-height: px2rem(56);
+        margin-bottom: px2rem(20);
+        color:rgba(165,167,168,1);
+        background: rgba(33,97,231,0.1);
+        .zong {
+            margin-left: px2rem(40);
+            padding-right: px2rem(20);
+        }
+        .sheng {
+            padding-left: px2rem(20);
+            border-left: px2rem(1) solid rgba(165,167,168,1);
+        }
+    }
+    .addposition {
+        background: url(../../src/assets/makeplanadd.png) no-repeat;
+        background-size: 100%;
+        width: 100%;
+        height: px2rem(108);
+        font-size: px2rem(36);
+        line-height: px2rem(108);
+        text-align: center;
+        font-weight: bold;
+        color: #fff;
+        position: fixed;
+        bottom: 0;
+    }
+}
+.realname .demo-input-suffix {
+    margin-top: px2rem(20);
+}
+.realname .el-input {
+ width: 90%;
+ left: 50%;
+ transform: translateX(-50%);
+ border: 0;
+}
+.realname .el-input__inner {
+    border-radius: px2rem(15);
+    height: px2rem(70);
+    line-height: px2rem(70);
+}
+.realname .el-input__icon {
+    line-height: px2rem(60);
+}
+.reallist{
+    margin-top:px2rem(20);
+}
+.realindex {
+    position: relative;
+    padding: px2rem(10) px2rem(20);
+    color: $blue;
+    background-color: #fff;
+    margin-bottom: px2rem(15);
+    border-radius: px2rem(10);
+}
+.realButton{
+    padding: px2rem(12) px2rem(16);
+    color: $white;
+    background: $themeColor;
+    border-radius: px2rem(10);
+    margin-right: px2rem(15);
+}
+.seria {
+    padding-right: px2rem(36);
+}
+.realWq{
+    width: px2rem(115);
+    padding-left: px2rem(20);
+}
+.realBorder{
+    padding: px2rem(12) 0;
+    width: px2rem(150);
+    border-radius: px2rem(8);
+    background: $themeColor;
+    color: $white;
+    text-align: center;
+}
+.reallist-r {
+    position: absolute;
+    right: px2rem(20);
+}
+.min-height {
+    min-height: calc(100vh - 1.7rem);
+    background-color: #f5f7fa;
+}
+.adduser-mar-top {
+    margin-top: px2rem(70);
+}
+.makeplan-addcard {
+    display: inline-block;
+    text-align: center;
+    font-size: px2rem(20);
+    background-color: #fff;
+    height: px2rem(45);
+    line-height: px2rem(45);
+    width: px2rem(140);
+    border-radius: px2rem(28);
+    float: right;
+    margin-top: px2rem(15);
+    margin-right: px2rem(20);
+    color: black;
+    border: px2rem(1) solid #2E271C;
+}
+.makeplan-bg {
+    background-color: $themeColor;
+    color: #fff;
+    border: px2rem(1) solid $themeColor;
+}
+.realname .clear-mar-bottom {
+    margin-bottom: 0;
+}
+.checkplan {
+    margin-top: px2rem(20);
+    .el-tabs__nav-wrap {
+        background-color: #fff;
+    }
+}
+.checkplan-bg {
+    background-color: #F4F6F8;
+}
+.checklist:nth-child(4n-3) .checklist-top{
+    background: linear-gradient(to right, #1351E0, #336BEC);
+}
+.checklist:nth-child(4n-2) .checklist-top{
+    background: linear-gradient(to right, #EE392E, #FF5626 );
+}
+.checklist:nth-child(4n-1) .checklist-top{
+    background: linear-gradient(to right, #F4A93D, #F7BB48);
+}
+.checklist:nth-child(4n) .checklist-top{
+    background: linear-gradient(to right, #4513e0, #3339ec);
+}
+.checklist {
+    margin: 0 px2rem(30);
+    width: px2rem(690);
+    border-radius: px2rem(5);
+    overflow: hidden;
+    margin-bottom: px2rem(30);
+    background-color: #fff;
+    .checklist-top {
+        background-color: $themeColor;
+        padding: px2rem(30);
+        padding-bottom: 0;
+        .head-title {
+            position: relative;
+            padding-bottom: px2rem(15);
+            border-bottom: px2rem(1) solid rgba(245,245,245,0.3);
+            height: px2rem(60);
+            line-height: px2rem(60);
+            font-size: px2rem(30);
+            font-weight: bold;
+            color: #fff;
+            .mar-left{
+                display: inline-block;
+                height: px2rem(26);
+                line-height: px2rem(26);
+                margin-left: px2rem(15);
+                padding-left: px2rem(15);
+                border-left: px2rem(4) solid #fff;
+            }
+            .mar-right {
+                position: absolute;
+                right: px2rem(30);
+            }
+        }
+        .center-title {
+            display: flex;
+            justify-content: space-between;
+            color:rgba(255,255,255,0.6);
+            padding: px2rem(30) 0;
+        }
+        .bottom-title {
+            display: flex;
+            justify-content: space-between;
+            color:rgba(255,255,255,0.6);
+            padding-bottom: px2rem(15);
+        }
+    }
+    .checklist-bottom {
+        display: flex;
+        padding-top: px2rem(10);
+        .price-bottom {
+            flex: 1;
+            text-align: center;
+            .price-t {
+                color:rgba(153,153,153,1);
+            }
+            .price-c {
+                color: #333333;
+            }
+        }
+    }
+}
+.addpositionpay {
+    min-height: calc(100vh - 1.7rem);
+    background-color: #F4F6F8;
+    padding-top: px2rem(1);
+    .pay-moneybox{
+        width: 100%;
+        color: #333333;
+        font-weight: bold;
+        background-color: #fff;
+        padding: 0 px2rem(35);
+        box-sizing: border-box;
+        margin-top: px2rem(20);
+        .paycount {
+            height: px2rem(106);
+            line-height: px2rem(106);
+            display: flex;
+            justify-content: space-between;
+            border-bottom: px2rem(1) solid #F4F6F8;
+            input {
+                text-align: right;
+            }
+            .selsct-pay {
+                padding-top: px2rem(25);
+                display: flex;
+                .pay-type {
+                    width: px2rem(64);
+                    height: px2rem(64);
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                .pay-name {
+                    margin-left: px2rem(30);
+                    .pay-method {
+                        height: px2rem(32);
+                        line-height: px2rem(30);
+                    }
+                    .method_content {
+                        height: px2rem(32);
+                        line-height: px2rem(36);
+                        font-weight: 400;
+                        color: #999999;
+                    }
+                }
+            }
+            .select-type {
+                margin-top: px2rem(40);
+                .select-img {
+                    width: px2rem(32);
+                    height: px2rem(32);
+                    border-radius: px2rem(16);
+                    background-color: #fff;
+                    border: px2rem(1) solid #A5A5A8;
+                }
+                .select-imgd {
+                    width: px2rem(33);
+                    height: px2rem(33);
+                    border-radius: px2rem(17);
+                    background: url(../../src/assets/select.png) no-repeat;
+                    background-size: 100% 100%;
+                }
+            }
+        }
+    }
+    .next-btn {
+        width: px2rem(690);
+        height: px2rem(94);
+        background: linear-gradient(-45deg,rgba(33,97,231,1),rgba(50,111,238,1));
+        border-radius: 4px;
+        font-size: px2rem(32);
+        font-weight: bold;
+        color: #fff;
+        line-height: px2rem(94);
+        text-align: center;
+        margin: 0 auto;
+        margin-top: px2rem(60);
+    }
+}
+.flex-height {
+    height: px2rem(1100);
+}
+.loading {
+    text-align: center;
+    margin-bottom: px2rem(100);
+}
+.shareBack{
+    // background: url('../../src/assets/share/banner.png') no-repeat;
+    // background-size: 100% 100%;
+    background-color: #f5f5fb;
+    height: px2rem(1240);
+}
+.vipImga{
+    font-size: 0;
+    padding-bottom: px2rem(30)
+}
+.shareBan{
+    width: px2rem(500) !important;
+    height: px2rem(880) !important;
+    padding: px2rem(100) 0
+}
+.rebBack{
+    background: $themeColor;
+}
+.newTitle{
+    padding: px2rem(20) px2rem(30) px2rem(20) px2rem(30);
+    margin-bottom: px2rem(20)
+}
+.threeList> div{
+    width: 33.3333%;
+}
+.homeBanner{
+    position:fixed;
+    padding-top:px2rem(10);
+    width:100%;
+    bottom:0;
+    border-top:1px solid $wgary;
+    font-size:$two;
+    background: $white;
+}
+.homeBanner li{
+    flex:1 1 0;
+    text-align:center
+}
+.shareBottom{
+    position: absolute;
+    bottom: px2rem(135);
+    width: 100%;
+    left: 0;
+}
+.shareBig{
+    padding-top: px2rem(30);
+    text-align: center;
+}
+.shareBig img{
+    height: calc(100vh - 8rem);
+    max-height: px2rem(850);
+    max-width: px2rem(500);
+}
+.gallery-thumbs .swiper-slide {
+    opacity: 0.6;
+}
+.gallery-thumbs .swiper-slide-active {
+    opacity: 1;
+}
+.balanceMaxHight{
+    width: 100%;
+    min-height: 100vh;
+    background: $fgary;
+}
+.shareList{
+    text-align: center;
+}
+.shareLogo{
+    width: px2rem(120);;
+    height: px2rem(190);
+    margin:0 auto
+}
+.prjectWdith{
+    width: 100%;
+    text-align: center;
+}
+.loginTexc{
+    width: px2rem(615);
+    padding-left: px2rem(5);
+    margin:0 auto;
+    font-weight: bold;
+}
+.logoBig{
+    font-size: $nine;
+    width: px2rem(630);
+    margin: 0 auto px2rem(75) auto;
+}
+.tagLogo{
+    width: px2rem(40);
+    height: px2rem(40);
+    padding-right: px2rem(15);
+    vertical-align: middle;
+}
+.noTop{
+    padding-top: 0;
+}
+.upgrade{
+    width: px2rem(720);
+    height: px2rem(200);
+    margin:0 auto;
+    background: url('../../src/assets/member/vipup.png') no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+}
+.paddingWhite{
+    padding: px2rem(25) 0 0 0;
+}
+.garadeRight{
+    position: absolute;
+    right: 0;
+    width: px2rem(155);
+    line-height: px2rem(50);
+    height: px2rem(50);
+    text-align: center;
+    top: 0;
+    color: $black;
+}
+.upgrade{
+    color: $white;
+}
+.upgrade > div:first-child {
+    padding-left: px2rem(200);
+}
+.upgrade > div:last-child {
+    text-align: right;
+    padding-right: px2rem(50);
+}
+.gradeTitle{
+    font-weight: bold;
+    padding-bottom: px2rem(5);
+}
+.gradePadding{
+    margin: px2rem(50) auto;
+}
+.marginMoney{
+    text-align: center;
+    padding-top: px2rem(50);
+    font-size: $nine;
+    color: $orange;
+}
+.memberLogo{
+    text-align: center;
+    padding: px2rem(30) 0 px2rem(25) 0;
+}
+.memberLogo img{
+    width: px2rem(300);
+    height: px2rem(60);
+    margin-top: px2rem(15);
+}
+.dayYes{
+    text-align: center;
+    color: $white;
+}
+.dayYes p:last-child{
+    font-size: $eight;
+    line-height: 100%;
+    padding: px2rem(20) 0 px2rem(30) 0;
+}
+.dayYell{
+    text-align: center;
+    padding: px2rem(20) 0;
+    border-bottom: px2rem(20) solid $fgary
+}
+.dayYell p:last-child{
+    font-size: $six;
+    line-height: 100%;
+    padding: px2rem(20) 0 0;
+    color: $orangeFf;
+}
+.orangeFf{
+    background: $orangeFf;
+}
+.blackYx {
+    text-align: center;
+}
+.blackYx>div{
+    padding: px2rem(20) 0;
+    border-bottom: 1px solid $fgary;
+}
+.blackYx>div:nth-child(3n-1){
+    width: calc(33.3333% - 2px);
+    border-left: 1px solid $fgary;
+    border-right: 1px solid $fgary;
+}
+.teamLine{
+    padding: px2rem(10) px2rem(20);
+    border-bottom: 1px solid $fgary
+}
+.rePadd{
+    padding-top: px2rem(20);
+    color: $black;
+}
+.paddingBottom{
+    padding-bottom: px2rem(15)
+}
+.withLogo{
+    width: px2rem(70);
+    height: px2rem(50);
+    vertical-align: middle;
+    padding-right: px2rem(30);
+}
+.relative{
+    position: relative;
+}
+.withPadding{
+    width: px2rem(160);
+}
+.teamCenter{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: px2rem(450);
+    font-size: $seven;
+    justify-content: center;
+    height: px2rem(100);
+    line-height: px2rem(100);
+}
+.bigTeam{
+    font-size: $nine;
+    display: inline-block;
+    width: px2rem(180);
+    text-align: center;
+}
+.proxy{
+    padding: 0 px2rem(20);
+    color: $white;
+}
+.proxy > div:first-child{
+    background: url('../../src/assets/my/proxy.png') no-repeat;
+    background-size: 100% 100%;
+    width: px2rem(345);
+    height: px2rem(150);
+}
+.proxy > div:last-child{
+    background: url('../../src/assets/my/promote.png') no-repeat;
+    background-size: 100% 100%;
+    width: px2rem(345);
+    height: px2rem(150);
+}
+.proxy p:first-child{
+    padding: px2rem(63) 0 0 px2rem(150)  
+}
+.proxy p:last-child{
+    padding: 0 0 0 px2rem(150)
+}
+.strcont{
+    padding:px2rem(25) px2rem(20);
+}
+.strcont> div{
+    width: px2rem(305);
+    padding: px2rem(20);
+    background: $white;
+    border-radius: px2rem(15);
+}
+.contPadd{
+    padding: px2rem(20) px2rem(15);
+    border-bottom: px2rem(5) solid $white;
+    display: inline-block;
+}
+.buleBottom{
+    border-bottom: px2rem(5) solid $themeColor;
+}
+.contXp{
+    padding-bottom: px2rem(12);
+}
+.contRed{
+    border-bottom: px2rem(5) solid $themeColor;
+    color: $themeColor;
+}
+.fixed{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #00000050
+}
+// .picksele{
+//     position: absolute;
+//     top: 20%;
+//     left: 0;
+//     right: 0;
+//     margin: auto;
+// }
+.mouthSelect{
+    padding: 10px 20px;
+}
+.memberUp .el-drawer__header{
+    margin-bottom: 12px
+}
+.memberUp .el-drawer__body{
+    overflow-y: auto;
+}
+.serveLogo{
+    width: px2rem(70);
+    height: px2rem(70);
+}
+.teamPeople{
+    color: $white;
+    font-size: $eight;
+}
+.eightWeight{
+    font-weight: bold;
+    font-size: $nine;
+}
+.detailXc{
+    padding: px2rem(50) 0 px2rem(15) 0;
+    border-bottom: 1px solid $white
+}
+.el-button--primary {
+    color: #FFF;
+    background-color: $themeColor !important;
+    border-color: $themeColor !important;
+}
+.dateInput{
+    width: 100% !important;
+}
+.dateInput input{
+    width: 100%;
+    padding: px2rem(18) px2rem(12)  px2rem(18) px2rem(80) !important;
+    line-height: 100% !important;
+    background: $fgary !important;
+    border: none !important;
+    font-size: 12px;
+}
+.partGreen{
+    background: #009944;
+}
+.cardground{
+    background: linear-gradient(to right, #7687f5, #a699fe) !important;
+    background-size: 100% 100% !important;
+}
+.cardSelect{
+    background: $themeColor;
+    padding: px2rem(10) px2rem(20)  px2rem(10) px2rem(20);
+}
+.retBor{
+    border: 1px solid $wgary;
+    padding: px2rem(20);
+    width: calc(94% - 0.8rem);
+    border-radius: px2rem(20);
+    margin: px2rem(30) auto;
+    font-size: $three;
+}
+.cardSche{
+    background: $white;
+}
+.cardSche span{
+    display: inline-block;
+    padding: px2rem(25) px2rem(20);
+    border-bottom:px2rem(5) solid $white;
+}
+.checkCard{
+    border-bottom:px2rem(5) solid $themeColor !important;
+    color: $themeColor;
+}
+.el-tabs__item{
+    padding:0 px2rem(0);
+}
+.wright{
+    width: px2rem(25) !important;
+    height: px2rem(35) !important;
+    vertical-align: middle;
+    margin-left: px2rem(10);
+}
+.cardTop{
+    padding-top: px2rem(90);
+    font-size: $eight;
+}
+.newbanben {
+    display: flex;
+    justify-content: space-between;
+    height: px2rem(94);
+    line-height: px2rem(94);
+    background-color: #fff;
+    border-top: px2rem(1) solid #fbfbfb;
+    border-bottom: px2rem(1) solid #fbfbfb;
+    padding: 0 px2rem(30);
+    margin-top: px2rem(20);
+    color: #333333;
+    font-size: px2rem(28);
+    font-weight: bold;
+    .banben {
+        color: #999999;
+        font-weight: 400;
+        font-size: px2rem(26);
+    }
+}
+.no-martop {
+    margin-top: 0;
+}
+.repleni{
+    color: $themeColor;
+    padding-left: px2rem(15);
+}
+.repleni i{
+    font-size: $four;
+    padding-left: px2rem(10);
+}
+.yellow{
+    color: $yellow;
+}
+.redRep{
+    background: $themeColor;
+    color: $white;
+    display: inline-block;
+    padding: px2rem(5) px2rem(20) px2rem(2) px2rem(20);
+    border-radius: px2rem(10);
+}
+.garyRep{
+    background: $gary;
+    color: $white;
+    display: inline-block;
+    padding: px2rem(5) px2rem(20) px2rem(2) px2rem(20);
+    border-radius: px2rem(10);
+}
+.credBorder{
+    padding: px2rem(20);
+}
+.credInput input{
+    width: calc(100% - 0.4rem);
+    height: px2rem(80);
+    padding-left: px2rem(20);
+    margin-bottom: px2rem(30);
+    border-radius: px2rem(5);
+}
+.fiveFont{
+    font-size: $five;
+}
+.credCom{
+    width: 100%;
+    padding: px2rem(15) 0;
+    background: $themeColor;
+    color: $white;
+    font-size: $five;
+    margin: px2rem(40) 0;
+    border-radius: px2rem(5);
+}
+.credMess{
+    font-size: $four;
+}
+.credp{
+    line-height: px2rem(45)
+}
+.paddcred{
+    padding: 0 px2rem(20);
+}
+.nocredt{
+    border-radius: 0;
+    margin-top: 0;
+    font-size: $four;
+    width: calc(100% - 0.6rem);
+    padding-left: px2rem(30);
+}
+.timePadding{
+    padding: px2rem(40) 0;
+}
+.checkInput{
+    margin-bottom: px2rem(30);
+    display: flex;
+    justify-content: center;
+}
+.checkInput .el-input{
+    height: px2rem(75) !important;
+    line-height: px2rem(75) !important;
+}
+.checkInput .el-input__icon{
+    line-height: 100%;
+}
+.checkInput input{
+    width: px2rem(280) !important;
+    height: px2rem(75) !important;
+}
+.checkInput .el-input__suffix input+{
+    right: 25px !important;
+}
+.checkInput .el-select input{
+    width: px2rem(200) !important;
+    padding: 0 0 0 px2rem(20);
+    border: none;
+    background: $fgary;
+}
+.upimg{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999999;
+}
+.upBig{
+    font-size: $eight;
+}
+.systemnotice-systemnotice{
+    padding: px2rem(30) px2rem(30);
+}
+.systemnotice-systemnotice .time {
+    padding-bottom: px2rem(15);
+}
+.notic-content{
+    word-break:break-all
+}
+.notice-box .title{
+    font-weight: bold;
+    font-size: $six;
+    padding-bottom: px2rem(10);
+}
+.nolr{
+    padding-left: 0;
+    padding-right: 0;
+}
+.lr{
+    padding-left: px2rem(30);
+    padding-right: px2rem(30);
+}
+.pt{
+    padding-bottom: px2rem(20);
+}
+.paddTop{
+    padding-top: px2rem(35);
+}
+.online{
+    width: px2rem(80) !important;
+    height: px2rem(80) !important;
+}
+.elip{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+.fontPadd{
+    margin-bottom: px2rem(10);
+    font-size: $four;
+    padding-right: px2rem(15);
+}
+.godColor{
+    color: $god;
+}
+.lan{
+    color: $lan;
+}
+.companyPadd{
+    padding:px2rem(20) px2rem(30);
+}
+.companyPadd li{
+    padding: px2rem(12) px2rem(50);
+    background: $white;
+    text-align: center;
+    border-radius: px2rem(10);
+}
+.bg-gray {
+    height: px2rem(70);
+    line-height: px2rem(70);
+    margin: px2rem(20) px2rem(20);
+    padding: 0 px2rem(40);
+    font-size: px2rem(30);
+}
+.bg-gray span {
+    display: inline-block;
+    width: px2rem(180);
+}
+.bg-gray input {
+    background-color: $white;
+    height: px2rem(70);
+    line-height: px2rem(70);
+    padding-left: px2rem(50);
+    width: px2rem(350);
+}
+.immadd{
+    padding: px2rem(25) px2rem(150);
+    color: $white;
+    background: $themeColor;
+    border-radius: px2rem(20);
+}
+.immPos{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.immWmax{
+    padding: px2rem(25) 0;
+    width: 100%;
+    color: $white;
+    text-align: center;
+    background: $themeColor;
+    border-radius: px2rem(20);
+}
+.immPadd{
+    padding: px2rem(10) px2rem(25);
+}
+.medium{
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: px2rem(100) px2rem(50) px2rem(20) px2rem(50);
+}
+.medium li{
+    width: px2rem(250);
+    height: px2rem(250);
+    text-align: center;
+    line-height: px2rem(250);
+    background: $white;
+    font-size: $nine;
+    border: 1px solid $black;
+}
+.checkMed{
+    background: $themeColor !important;
+    border: 1px solid $themeColor !important;
+    color: $white;
+}
+.medMarg{
+    margin-bottom: px2rem(100);
+}
+.medMoney{
+    font-size: $seven;
+    padding: px2rem(30) 0 px2rem(50) 0;
+}
+.widthCheck{
+    width: px2rem(120);
+    padding-left: px2rem(30);
+}
+.openImage{
+    width: 100%;
+    height: px2rem(300);
+}
+.openPadd{
+    padding: px2rem(50);
+}
+.openBorder{
+    border: 1px solid $black;
+    margin-top: px2rem(15);
+    padding: px2rem(20);
+}
+.openMar{
+    margin-top: px2rem(40);
+}
+.home-newImg{
+    position: absolute;
+    top: px2rem(20);
+    right: px2rem(120);
+    width: px2rem(45);
+}
+.garyImp{
+    color: $gary !important;
+}
+.whiteBimo{
+    background: $white !important;
+    color: $black !important;
+}
+.tbexha{
+    padding: px2rem(35) 0;
+}
+.exhuaPadd{
+    padding-left: px2rem(85);
+}
+.prssMax{
+    width: px2rem(320);
+    margin-right: px2rem(20);
+}
+.prssMax .el-progress-bar__outer{
+    border-radius: unset;
+}
+.prssMax .el-progress-bar__inner{
+    border-radius: unset;
+}
+.partExp{
+    padding-bottom: px2rem(20);
+}
+.borpaLine{
+    border-left: 2px solid $themeColor;
+    padding-left: px2rem(12);
+}
+.greenColor{
+    color: $green;
+}
