@@ -53,7 +53,7 @@ export default {
     this.version = this.$stact.state.version
     this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
     if (process.env.NODE_ENV === 'production') {
-      this.actionsUrl=`http://yunlingshenghuo.llyzf.cn:6442/lly-posp-proxy/images.app?0=0700&3=790029&42=${JSON.parse(this.$stact.state.token)[0].merchantNo}&59=${this.$stact.state.version}&64=${this.$md5('0700'+'790029'+JSON.parse(this.$stact.state.token)[0].merchantNo+this.$stact.state.version+'21E4ACD4CD5D4619B063F40C5A454F7D')}`
+      this.actionsUrl=`http://jyhbban.llyzf.cn/lly-posp-proxy/images.app?0=0700&3=790029&42=${JSON.parse(this.$stact.state.token)[0].merchantNo}&59=${this.$stact.state.version}&64=${this.$md5('0700'+'790029'+JSON.parse(this.$stact.state.token)[0].merchantNo+this.$stact.state.version+'21E4ACD4CD5D4619B063F40C5A454F7D')}`
     }else{
       this.actionsUrl=`/apis/images.app?0=0700&3=790029&42=${JSON.parse(this.$stact.state.token)[0].merchantNo}&59=${this.$stact.state.version}&64=${this.$md5('0700'+'790029'+JSON.parse(this.$stact.state.token)[0].merchantNo+this.$stact.state.version+'21E4ACD4CD5D4619B063F40C5A454F7D')}`
     }

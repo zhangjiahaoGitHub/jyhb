@@ -41,7 +41,7 @@ router.beforeEach((to, from, next) => {
   next()
 }) // 判断是否是开发模式
 
-const root = process.env.NODE_ENV === 'production' ? 'http://yunlingshenghuo.llyzf.cn:6442/lly-posp-proxy/' : '/apis'
+const root = process.env.NODE_ENV === 'production' ? 'http://jyhbban.llyzf.cn/lly-posp-proxy/' : '/apis'
 axios.defaults.withCredentials = true // 存cookie的方法 该项目用不到
 let axiosInstance = axios.create({
   baseURL: root,

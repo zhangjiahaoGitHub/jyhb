@@ -159,7 +159,7 @@ export default {
           }
           parmas = vm.$mdata.mdGet(parmas)
           vm.fullscreenLoading = true
-          const root = process.env.NODE_ENV === 'production' ? 'http://yunlingshenghuo.llyzf.cn:6442/lly-posp-proxy/' : '/apis'
+          const root = process.env.NODE_ENV === 'production' ? 'http://jyhbban.llyzf.cn/lly-posp-proxy/' : '/apis'
           vm.$http.post(`/uploadImage.app`, parmas)
             .then(res => {
               vm.fullscreenLoading = false

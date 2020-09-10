@@ -48,7 +48,7 @@ export default {
       // this.$refs.qrCodeUrl.forEach((item,index) => {
         let item = this.$refs.qrCodeUrl
         var qrcode = new QRCode(item, {
-          text: `http://yunlingshenghuo.llyzf.cn:6442/lly-posp-proxy/toAPPRegister.app?phone=${vm.phone}&product=YLSH`,
+          text: `http://jyhbban.llyzf.cn/lly-posp-proxy/toAPPRegister.app?phone=${vm.phone}&product=YLSH`,
           width: 84,
           height: 84,
           colorDark: '#000000',

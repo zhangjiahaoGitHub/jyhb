@@ -134,7 +134,7 @@ export default {
         vm.fullscreenLoading = true
         var param = new FormData()
         param.append('10', file)
-        const root = process.env.NODE_ENV === 'production' ? 'http://yunlingshenghuo.llyzf.cn:6442/lly-posp-proxy/' : '/apis'
+        const root = process.env.NODE_ENV === 'production' ? 'http://jyhbban.llyzf.cn/lly-posp-proxy/' : '/apis'
         axios.post(root + `/uploadImage.app${url}`, param)
           .then(res => {
             vm.fullscreenLoading = false

@@ -16,8 +16,7 @@ module.exports = {
         // open: false, //配置自动启动浏览器
         proxy: {
             '/apis': {
-                // target: 'http://192.168.88.227:8080/ntyjf-posp-proxy/',
-                target: 'http://yunlingshenghuo.llyzf.cn:6442/lly-posp-proxy/',
+                target: 'http://jyhbban.llyzf.cn/lly-posp-proxy/',
                 ws: true,
                 changeOrigin: true,
                 pathRewrite: {

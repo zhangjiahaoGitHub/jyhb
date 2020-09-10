@@ -50,7 +50,7 @@ export default {
       let qrcode = new QRcode('qrcode', {
         width: 150,
         height: 150, // 高度
-        text: 'http://yunlingshenghuo.llyzf.cn:6442/lly-posp-proxy/payView.app?m=' + vm.code // 二维码内容
+        text: 'http://jyhbban.llyzf.cn/lly-posp-proxy/payView.app?m=' + vm.code // 二维码内容
       })
       vm.$nextTick(() => {
         document.querySelector('.codeImg').src = document.querySelector('#qrcode canvas').toDataURL('image/png')

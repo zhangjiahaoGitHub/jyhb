@@ -35,7 +35,7 @@ export default {
       let qrcode = new QRcode('qrcode', {
         width: 200,
         height: 200, // 高度
-        text: `http://yunlingshenghuo.llyzf.cn:6442/lly-posp-proxy/toRegisterPage.app?phone=${vm.phone}&product=CFY`, // 二维码内容
+        text: `http://jyhbban.llyzf.cn/lly-posp-proxy/toRegisterPage.app?phone=${vm.phone}&product=CFY`, // 二维码内容
         correctLevel: QRcode.CorrectLevel.L
       })
       vm.$nextTick(() => {

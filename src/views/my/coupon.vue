@@ -81,7 +81,7 @@ export default {
       this.popShow = true
       let mbDiv = document.querySelector('#couponQrCode')
       var qrcode = new QRCode(mbDiv, {
-        text: `http://yunlingshenghuo.llyzf.cn:6442/lly-posp-proxy/toRegisterPage.app?phone=${JSON.parse(this.$stact.state.token)[0].phone}&product=CFY&couponsId=${item.id}`,
+        text: `http://jyhbban.llyzf.cn/lly-posp-proxy/toRegisterPage.app?phone=${JSON.parse(this.$stact.state.token)[0].phone}&product=CFY&couponsId=${item.id}`,
         width: 100,
         height: 100,
         colorDark: '#000000',
