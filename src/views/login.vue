@@ -1,5 +1,5 @@
 <template>
-  <div class="minHeight hundredW login-layout">
+  <div class="hundredW login-layout">
     <div class="pageTitle">
       登录
       <span @click="()=>{this.$router.push({name:'registered'})}">注册</span>

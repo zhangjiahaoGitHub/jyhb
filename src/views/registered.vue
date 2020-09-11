@@ -1,38 +1,36 @@
 <template>
-  <div class='smsMargin registered-layout'>
+  <div class='hundredW registered-layout'>
+    <div class="pageTitle">
+      注册
+      <span @click="()=>{this.$router.push({name:'login'})}">登录</span>
+    </div>
+    <img src="../assets/loginLogo.png" alt srcset />
     <ul>
       <li>
-        <input v-model='phone' type="number" placeholder="请输入手机号">
+        <img src="../assets/registerLogin/phoneIcon.png" alt />
+        <input v-model='phone' type="number" placeholder="请输入您的手机号">
       </li>
       <li>
-        <input v-model='code' type="text" placeholder="请输入短信验证码">
+        <img src="../assets/registerLogin/codeIcon.png" alt />
+        <input v-model="code" type="text" placeholder="请输入您的验证码" />
         <span @click="time <= 0 ? getCode() : ''">{{text}}</span>
       </li>
-      <li v-if="checkedOne">
-        <img @click="()=>{this.checkedOne = false}" src="../assets/registerLogin/hideEye.png" alt="">
-        <input v-model='password' type="password" placeholder="请输入8-16位数字+字母组合密码">
-      </li>
-      <li v-else>
-        <img @click="()=>{this.checkedOne = true}" src="../assets/registerLogin/openEye.png" alt="">
-        <input v-model='password' type="text" placeholder="请输入8-16位数字+字母组合密码">
-      </li>
-      <li v-if="checkedTwo">
-        <img @click="()=>{this.checkedTwo = false}" src="../assets/registerLogin/hideEye.png" alt="">
-        <input v-model='newPassword' type="password" placeholder="请再次输入密码">
-      </li>
-      <li v-else>
-        <img @click="()=>{this.checkedTwo = true}" src="../assets/registerLogin/openEye.png" alt="">
-        <input v-model='newPassword' type="text" placeholder="请再次输入密码">
+      <li>
+        <img src="../assets/registerLogin/passwordIcon.png" alt />
+        <input v-model='password' type="password" placeholder="请输入您的密码">
       </li>
       <li>
-        <input v-model='invite' type="number" placeholder="请输入推荐人手机号(必选)">
+        <img src="../assets/registerLogin/passwordIcon.png" alt />
+        <input v-model='newPassword' type="password" placeholder="请再次输入您的密码">
+      </li>
+      <li>
+        <img src="../assets/registerLogin/userIcon.png" alt />
+        <input v-model='invite' type="number" placeholder="请输入推荐人手机号(选填)">
       </li>
     </ul>
     <div class="btnDiv">
       <div @click="registered()">注册</div>
     </div>
-    <p @click="toIframe">注册即默认同意《用户注册协议》</p>
-    <div class='bottomLong'></div>
   </div>
 </template>
 <script>
@@ -52,7 +50,6 @@ export default {
       checkedOne: true,
       checkedTwo: true,
       fullscreenLoading: false,
-      topTure: 0
     }
   },
   created () {
@@ -63,7 +60,6 @@ export default {
     } else {
       this.invite = ''
     }
-    this.isTop()
   },
   watch: {
     $route(to, from) {
@@ -83,25 +79,6 @@ export default {
     this.$inputLen.inputJs()
   },
   methods: {
-    isTop () {
-      let vm = this
-      let parmas = {
-        '0': '0700',
-        '3': '190917',
-        '44': vm.agentNo,
-        '59': vm.version
-      }
-      let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
-      vm.$http.get(`request.app${url}`)
-        .then(res => {
-          if (res.data[39] === '00') {
-            vm.topTure = res.data[57]
-          }
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    },
     getCode () { // 获取验证码
       let vm = this
       if (this.phone.match(/^[ ]*$/)) {
@@ -227,9 +204,9 @@ export default {
         })
         return
       }
-      if (this.password.length < 8 || vm.password.length > 16) {
+      if (this.password.length < 6 || vm.password.length > 14) {
         this.$message({
-          message: '密码长度限制为8-16位',
+          message: '密码长度限制为6-14位',
           center: true,
           offset: 30,
           duration: 2500,
@@ -237,19 +214,6 @@ export default {
         })
         return
       }
-      console.log(this.password);
-      
-      if (!(/^(?![^a-zA-Z]+$)(?!\D+$)/).test(vm.password)) {
-        this.$message({
-          message: '密码需由数字+字母组成',
-          center: true,
-          offset: 30,
-          duration: 2500,
-          type: 'warning'
-        })
-        return
-      }
-      
       if (this.newPassword.match(/^[ ]*$/)) {
         this.$message({
           message: '确认新密码必须填写',
@@ -270,25 +234,17 @@ export default {
         })
         return
       }
-      if (this.invite.match(/^[ ]*$/)) {
-        this.$message({
-          message: '邀请人手机号码必须填写',
-          center: true,
-          offset: 30,
-          duration: 2000,
-          type: 'warning'
-        })
-        return
-      }
-      if (!(/^1[1-9]\d{9}$/.test(this.invite)) && this.invite) {
-        this.$message({
-          message: '邀请人手机号码有误，请重填',
-          center: true,
-          offset: 30,
-          duration: 2000,
-          type: 'warning'
-        })
-        return
+      if (this.invite) {
+        if (!(/^1[1-9]\d{9}$/.test(this.invite))) {
+          this.$message({
+            message: '邀请人手机号码有误，请重填',
+            center: true,
+            offset: 30,
+            duration: 2000,
+            type: 'warning'
+          })
+          return
+        }
       }
       let parmas = {
         '0': '0700',

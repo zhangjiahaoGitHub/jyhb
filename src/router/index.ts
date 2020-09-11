@@ -17,7 +17,6 @@ const routes = [
     name: 'registered',
     meta: {
       title: '注册',
-      bgBlue: true,
       keepAlive: true,
     },
     component: () => import('../views/registered.vue')
@@ -27,7 +26,6 @@ const routes = [
     name: 'forget',
     meta: {
       title: '忘记密码',
-      bgBlue: true,
     },
     component: () => import('../views/forget.vue')
   },

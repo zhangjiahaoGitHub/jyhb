@@ -41,7 +41,7 @@ $big: 2rem;
         }
     }
     >img{
-        width: 36%;
+        width: 30%;
         display: block;
         margin: px2rem(40) auto;
     }
@@ -86,6 +86,7 @@ $big: 2rem;
                 span{
                     position: absolute;
                     right: px2rem(10);
+                    color: $themeColor;
                 }
             }
             >p{
@@ -112,6 +113,68 @@ $big: 2rem;
             span{
                 color: $themeColor;
             }
+        }
+    }
+}
+.registered-layout{
+    background: url(../../src/assets/registerLogin/loginBg.png) no-repeat;
+    background-size: 100% 100%;
+    .pageTitle{
+        text-align: center;
+        padding: px2rem(30);
+        font-size: $five;
+        font-weight: bold;
+        position: relative;
+        border-bottom: 1px solid #F9F9F9;
+        span{
+            font-weight: normal;
+            position: absolute;
+            right: px2rem(20);
+            font-size: $three;
+        }
+        .el-icon-arrow-left{
+            font-weight: normal;
+            position: absolute;
+            left: px2rem(20);
+            font-size: $seven;
+        }
+    }
+    >img{
+        width: 30%;
+        display: block;
+        margin: px2rem(40) auto;
+    }
+    ul{
+        padding: 0 px2rem(40);
+        li{
+            display: flex;
+            position: relative;
+            align-items: center;
+            padding: px2rem(40) px2rem(30);
+            border-bottom: 1px solid #EDEDED;
+            input{
+                font-size: $four;
+                width: 100%;
+            }
+            img{
+                width: px2rem(40);
+                padding-right: px2rem(20);
+            }
+            span{
+                position: absolute;
+                right: px2rem(10);
+                color: $themeColor;
+            }
+        }
+    }
+    .btnDiv{
+        padding: px2rem(30) px2rem(40);
+        div{
+            color: #fff;
+            background: $themeColor;
+            padding: px2rem(20);
+            border-radius: px2rem(16);
+            text-align: center;
         }
     }
 }

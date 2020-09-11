@@ -1,6 +1,33 @@
 <template>
-  <div class='smsMargin registered-layout'>
+  <div class='hundredW registered-layout'>
+    <div class="pageTitle">
+      <i @click="$router.back()" class="el-icon-arrow-left"></i>
+      忘记密码
+    </div>
+    <img src="../assets/loginLogo.png" alt srcset />
     <ul>
+      <li>
+        <img src="../assets/registerLogin/userIcon.png" alt />
+        <input v-model='phone' type="number" placeholder="请输入您的手机号">
+      </li>
+      <li>
+        <img src="../assets/registerLogin/codeIcon.png" alt />
+        <input v-model="code" type="text" placeholder="请输入您的验证码" />
+        <span @click="time <= 0 ? getCode() : ''">{{text}}</span>
+      </li>
+      <li>
+        <img src="../assets/registerLogin/passwordIcon.png" alt />
+        <input v-model='password' type="password" placeholder="请输入您的密码">
+      </li>
+      <li>
+        <img src="../assets/registerLogin/passwordIcon.png" alt />
+        <input v-model='confirmPassword' type="password" placeholder="请再次输入您的密码">
+      </li>
+    </ul>
+    <div class="btnDiv">
+      <div @click="forget()">确定</div>
+    </div>
+    <!-- <ul>
       <li>
         <input v-model='phone' type="number" placeholder="请输入手机号">
       </li>
@@ -27,7 +54,7 @@
     </ul>
     <div class="btnDiv">
       <div @click='forget()'>修改密码</div>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
@@ -157,19 +184,9 @@ export default {
         })
         return
       }
-      if (this.password.length < 8 || vm.password.length > 16) {
+      if (this.password.length < 6 || vm.password.length > 14) {
         this.$message({
-          message: '密码长度限制为8-16位,由数字+字母组成',
-          center: true,
-          offset: 30,
-          duration: 2500,
-          type: 'warning'
-        })
-        return
-      }
-      if (!(/^(?![^a-zA-Z]+$)(?!\D+$)/).test(vm.password)) {
-        this.$message({
-          message: '密码需由数字+字母组成',
+          message: '密码长度限制为6-14位,由数字+字母组成',
           center: true,
           offset: 30,
           duration: 2500,
