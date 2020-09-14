@@ -1,45 +1,84 @@
 <template>
   <div class='hundred upgrade-layout' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock='fullscreenLoading'>
-    <ul>
-      <li v-for="item in itemArr" :key="item.id">
-        <img @click="popShow(item)" :src="item.url" alt="">
-      </li>
-    </ul>
-    <el-drawer
-      title="我是标题"
-      :visible.sync="drawer"
-      :direction="direction"
-      :with-header="false">
-      <i @click="drawer=false" class="el-icon-close"></i>
-      <div class="titleDiv">
-        <p>需支付</p>
-        <span>{{money}}</span>
+    <div class="headDiv">
+      <div>
+        <p>{{levelObj[level]}}</p>
+        <p>升级享受更多权益</p>
       </div>
-      <p>选择支付方式</p>
-      <ul>
-        <li @click="radio='w'">
-          <div>
-            <img src="../../assets/member/wx.png" alt="">
-            <div>
-              <p>微信支付</p>
-              <p>最快捷的支付方式</p>
-            </div>
-          </div>
-          <el-radio v-model="radio" label="w"></el-radio>
+    </div>
+    <div class="navDiv">
+      <p class="titleP">会员等级</p>
+      <ol>
+        <li @click="lookItem(index+1)" v-for="(item,index) in itemArr" :key="index">
+          <img class="bgImg" :src="item.image" alt="">
+          <img v-if="needToLevel == index+1" class="dwImg" src="../../assets/member/choseIcon.png" alt="">
         </li>
-        <li @click="radio='z'">
+      </ol>
+    </div>
+    <p>升级条件：{{itemObj[16]}}</p>
+    <div class="footDiv">
+      <p class="titleP">会员特权</p>
+      <ul>
+        <li>
+          <img src="../../assets/member/znhk.png" alt="" srcset="">
           <div>
-            <img src="../../assets/member/zfb.png" alt="">
-            <div>
-              <p>支付宝支付</p>
-              <p>最快捷的支付方式</p>
-            </div>
+            <span>智能还款</span>
+            <p>费率低至{{itemObj[11]}}%</p>
           </div>
-          <el-radio v-model="radio" label="z"></el-radio>
+        </li>
+        <li class="noRight">
+          <img src="../../assets/member/hdsy.png" alt="" srcset="">
+          <div>
+            <span>活动收益</span>
+            <p>费率低至{{itemObj[12]}}%</p>
+          </div>
+        </li>
+        <li>
+          <img src="../../assets/member/kjsk.png" alt="" srcset="">
+          <div>
+            <span>快捷收款</span>
+            <p>费率低至{{itemObj[10]}}%</p>
+          </div>
+        </li>
+        <li class="noRight">
+          <img src="../../assets/member/tjjl.png" alt="" srcset="">
+          <div>
+            <span>推荐奖励</span>
+            <p>费率低至{{itemObj[13]}}%</p>
+          </div>
+        </li>
+        <li class="noBottom">
+          <img src="../../assets/member/bksq.png" alt="" srcset="">
+          <div>
+            <span>办卡申请</span>
+            <p>费率低至{{itemObj[17]}}%</p>
+          </div>
+        </li>
+        <li class="noBottom noRight">
+          <img :src="itemObj[14]=='1' ? require('../../assets/member/kkqx.png'):require('../../assets/member/wkkqy.png')" alt="">
+          <div>
+            <span>{{itemObj[14]=='1' ? '':'无'}}空卡权限</span>
+            <p>活动使用权限</p>
+          </div>
         </li>
       </ul>
-      <div @click="pay" class="btnDiv">立即升级</div>
-    </el-drawer>
+    </div>
+    <div class="btnDiv">
+      <span>{{itemObj[15] || '自动升级'}}</span>
+      <img @click="itemObj[15] ? popShow=true: ''" :src="itemObj[15] ? require('../../assets/member/ljkt.png'):require('../../assets/member/ljkth.png')" alt="">
+    </div>
+    <div @click="popShow=false" v-if="popShow" class="popDiv">
+      <ul @click.stop="">
+        <li>
+          <img src="../../assets/member/zfb.png" alt="">
+          支付宝支付
+        </li>
+        <li>
+          <img src="../../assets/member/wx.png" alt="">
+          微信支付
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 <script>
@@ -47,44 +86,40 @@ export default {
   data () {
     return {
       direction: 'btt',
-      drawer: false,
+      popShow: false,
       fullscreenLoading: false,
-      level: 0,
-      needToLevel: 0,
+      level: 1,
+      needToLevel: 1,
       itemArr: [],
       radio: 'z',
       levelObj: {
-        '1': '体验用户',
-        '2': '白银用户',
-        '3': '黄金用户',
-        '4': '铂金用户',
-        '5': '城市合伙人',
-        '6': '运营中心',
+        '1': '普通用户',
+        '2': '经济人',
+        '3': '城市服务商',
+        '4': '城市运营商',
+        '5': '高级合伙人',
+        '6': '达标团队长',
+        '7': '一星团队长',
+        '8': '二星团队长',
+        '9': '三星团队长',
       },
       money: 0,
+      level: 1,
+      itemObj: {},
     }
   },
   created () {
     this.version = this.$stact.state.version
     this.agentNo = this.$stact.state.agentNo
     this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
+    this.needToLevel = this.$route.query.level
     this.getList()
+    this.getData(this.needToLevel)
   },
   methods: {
-    popShow(item){
-      if (this.level >= item.level) {
-        this.$message({
-          message: '您已经升过该等级',
-          center: true,
-          offset: 30,
-          duration: 2500,
-          type: 'success'
-        })
-        return
-      }
-      this.money = item.upgradeAmt
-      this.needToLevel = item.level
-      this.drawer = true
+    lookItem(level){
+      this.needToLevel = level
+      this.getData(this.needToLevel)
     },
     // 支付
     pay () {
@@ -133,7 +168,7 @@ export default {
       let vm = this
       let parmas = {
         '0': '0700',
-        '3': '390003',
+        '3': '190124',
         '42': vm.merchantNo,
         '59': vm.version
       }
@@ -144,10 +179,31 @@ export default {
           vm.fullscreenLoading = false
           if (res.data[39] === '00') {
             console.log(res.data);
-            this.level = res.data[33]
-            this.itemArr = JSON.parse(res.data[57])
+            this.$set(this,'itemArr',JSON.parse(res.data[10]))
             console.log(this.itemArr);
-            
+          }
+        })
+        .catch(err => {
+          vm.fullscreenLoading = false
+          console.log(err)
+        })
+    },
+    getData (level) {
+      let vm = this
+      let parmas = {
+        '0': '0700',
+        '3': '190126',
+        '43': level,
+        '59': vm.version
+      }
+      let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
+      vm.fullscreenLoading = true
+      vm.$http.get(`request.app${url}`)
+        .then(res => {
+          vm.fullscreenLoading = false
+          if (res.data[39] === '00') {
+            console.log(res.data);
+            this.$set(this,'itemObj',res.data)
           }
         })
         .catch(err => {

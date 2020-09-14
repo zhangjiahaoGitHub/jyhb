@@ -25,7 +25,7 @@
             <span>我的权益</span>
             <p>{{levelObj[level]}}</p>
           </div>
-          <p>立即升级</p>
+          <p @click="$router.push({name:'upgrade',query:{level:1}})">立即升级</p>
         </div>
       </div>
       <div class="itemDiv">
@@ -158,96 +158,6 @@ export default {
     this.message()
   },
   methods: {
-    beforeAvatarUpload(file) {
-      
-    },
-    async handleChange (file, fileList) {
-      console.log(fileList)
-      if (fileList.length > 0) {
-        this.fullscreenLoading = true
-        this.fileList = fileList
-        // this.imageUrl = fileList[fileList.length - 1].imageUrl
-        console.log(fileList[fileList.length - 1])
-        await this.chageBase(fileList[fileList.length - 1])
-      }
-    },
-    async handleChangeMax (file, fileList) {
-      vm.$message({
-        message: '上传图片次数过多，请勿重复',
-        center: true,
-        offset: 30,
-        duration: 2500,
-        type: 'success'
-      })
-    },
-    none () {
-      console.log(1)
-    },
-    compressImg(width, height, img) {
-        var canvas = document.createElement('canvas'), c = canvas.getContext('2d');
-        canvas.width = width;
-        canvas.height = height;
-        c.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, width, height);
-        return canvas.toDataURL('image/png');
-    },
-    chageBase (fileList) {
-      let vm = this
-      let file = fileList.raw
-      console.log(file)
-      // 将文件以Data URL形式读入页面
-      let reader = new FileReader()
-      this.imgUrlBase64 = reader.readAsDataURL(file)
-      reader.onload = function () {
-        var img = new Image();
-        img.src = reader.result;
-        img.onload = function () {
-          var w = this.width,
-          h = this.height,
-          scale = w / h;
-          //压缩图片
-          var b64 = vm.compressImg(200, 200 / scale, img);
-          let b64Img = b64.split(',')[1]
-          let parmas = {
-            '0': '0700',
-            '3': '190949',
-            // '9': '10P',
-            '40': b64Img,
-            '42': vm.merchantNo,
-            '59': vm.version
-          }
-          parmas = vm.$mdata.mdGet(parmas)
-          vm.fullscreenLoading = true
-          const root = process.env.NODE_ENV === 'production' ? 'http://jyhbban.llyzf.cn/lly-posp-proxy/' : '/apis'
-          vm.$http.post(`/uploadImage.app`, parmas)
-            .then(res => {
-              vm.fullscreenLoading = false
-              this.fileList = []
-              if (res.data[39] === '00') {
-                vm.$message({
-                  message: '上传成功',
-                  center: true,
-                  offset: 30,
-                  duration: 2500,
-                  type: 'success'
-                })
-                vm.imageUrl = res.data[57]
-              } else {
-                vm.$message({
-                  message: res.data[39],
-                  center: true,
-                  offset: 30,
-                  duration: 2500,
-                  type: 'success'
-                })
-              }
-            })
-            .catch(err => {
-              console.log(err)
-              vm.fullscreenLoading = false
-            })
-        }
-      }
-    },
     toHtmlIframe () {
       this.$router.push({ name: 'htmlIframe', query: { html: this.htmlIframe, title: '用户协议' } })
     },

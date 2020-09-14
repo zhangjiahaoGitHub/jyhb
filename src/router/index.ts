@@ -62,8 +62,8 @@ const routes = [
     path: '/upgrade',
     name: 'upgrade',
     meta: {
-      title: '会员升级',
-      bgBlue: true
+      title: '会员中心',
+      bgLeft: true
     },
     component: () => import('../views/member/upgrade.vue')
   },

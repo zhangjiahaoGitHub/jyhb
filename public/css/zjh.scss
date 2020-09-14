@@ -216,7 +216,6 @@ $big: 2rem;
             margin-right: px2rem(40);
             width: px2rem(160);
             border-radius: 50%;
-            background: #fff;
         }
         div{
             display: flex;
@@ -378,6 +377,163 @@ $big: 2rem;
                 }
                 span{
                     color: #aaa;
+                }
+            }
+        }
+    }
+}
+.upgrade-layout{
+    padding-bottom: px2rem(100);
+    .headDiv{
+        background: $themeColor;
+        padding: px2rem(40) px2rem(20);
+        padding-bottom: 0;
+        div{
+            background: url(../../src/assets/member/bg1.png) no-repeat;
+            background-size: 100% 100%;
+            padding: px2rem(30) px2rem(40) px2rem(20) px2rem(40);
+            p{
+                &:first-child{
+                    color: $themeColor;
+                    font-size: $six;
+                    margin-bottom: px2rem(10);
+                }
+                &:last-child{
+                    color: $themeColor;
+                    font-size: $four;
+                }
+            }
+        }
+    }
+    .titleP{
+        margin-left: px2rem(20);
+        padding-left: px2rem(20);
+        border-left: 4px solid $themeColor;
+        font-size: $five;
+    }
+    .navDiv{
+        background: url(../../src/assets/member/bg2.png) no-repeat;
+        background-size: 100% 100%;
+        padding: px2rem(100) 0 px2rem(20) 0;
+        ol{
+            margin-top: px2rem(30);
+            overflow: auto;
+            display: flex;
+            li{
+                margin-left: px2rem(20);
+                position: relative;
+                .bgImg{
+                    border: 4px solid $themeColor;
+                    border-radius: px2rem(10);
+                    width: px2rem(260);
+                    box-sizing: border-box;
+                }
+                .dwImg{
+                    position: absolute;
+                    top: 4px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: px2rem(60);
+                }
+            }
+        }
+    }
+    >p{
+        margin: px2rem(20) 0;
+        background: #fff;
+        color: #868686;
+        padding: px2rem(20);
+        font-size: $four;
+    }
+    .footDiv{
+        background: #fff;
+        padding: px2rem(20);
+        ul{
+            display: flex;
+            flex-wrap: wrap;
+            .noBottom{
+                border-bottom: none;
+            }
+            .noRight{
+                border-right: none;
+            }
+            li{
+                width: 50%;
+                display: flex;
+                align-items: flex-start;
+                padding: px2rem(20);
+                box-sizing: border-box;
+                border-right: 1px solid #f7f7f7;
+                border-bottom: 1px solid #f7f7f7;
+                img{
+                    width: px2rem(60);
+                    margin-right: px2rem(40);
+                }
+                div{
+                    span{
+                        font-size: $five;
+                    }
+                    p{
+                        color: #777;
+                        margin-top: px2rem(10);
+                    }
+                }
+            }
+        }
+    }
+    .btnDiv{
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #fff;
+        span{
+            margin-left: px2rem(40);
+            font-size: $four;
+            color: $themeColor;
+        }
+        img{
+            height: px2rem(90);
+        }
+    }
+    .popDiv{
+        position: fixed;
+        background: rgba($color: #000000, $alpha: 0.4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        z-index: 201;
+        ul{
+            background: #fff;
+            width: 80%;
+            padding: px2rem(60);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            li{
+                display: flex;
+                align-items: center;
+                width: px2rem(240);
+                padding: px2rem(16);
+                border-radius: px2rem(10);
+                &:first-child{
+                    margin-bottom: px2rem(20);
+                    border: 1px solid #0095E0;
+                }
+                &:last-child{
+                    border: 1px solid $themeColor;
+                }
+                img{
+                    margin-right: px2rem(10);
+                    width: px2rem(50);
                 }
             }
         }
