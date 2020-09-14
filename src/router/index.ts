@@ -175,8 +175,8 @@ const routes = [
     name: 'my',
     meta: {
       title: '我的',
-      my: true,
-      navShow: true
+      bgTitle: true,
+      navShow: true,
     },
     component: () => import('../views/my/my.vue')
   },

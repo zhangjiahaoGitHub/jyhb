@@ -27,7 +27,6 @@ export default new Vuex.Store({
       1: '升级银卡',
       2: '升级金卡'
     },
-    userList: [],
     moneyLimit: {},
     openId: '',
     phone: false,

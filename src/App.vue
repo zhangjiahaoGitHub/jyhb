@@ -1,111 +1,15 @@
 <template>
   <div id="app">
-      <div v-if="$route.meta.left" class="leftRouter">
-        <img src="./assets/blackArrow.png"  class="leftArrow" @click="goTop()"/>
-        {{$route.meta.title}}
-        <router-link :to="{name: 'withdlist'}" v-if="$route.meta.withdraw" tag="span" class='retreat'>提现明细</router-link>
-      </div>
-      <div v-if="$route.meta.haveTitle" class="leftRouter bgBlue">
-        <span v-if="$route.meta.home" class="leftTitle" @click="$router.push({name:'signIn'})">签到</span>
-        {{$route.meta.title}}
-        <span v-if="$route.meta.home" class="retreat" @click="$router.push({name:'customer'})">客服</span>
-      </div>
-      <div v-if="$route.meta.bgBlue" class="leftRouter bgBlue">
-        <span v-if="$route.meta.integraldetails" class="retreat" @click="$router.push({name:'incomedetails'})">积分记录</span>
-        <span v-if="$route.meta.withdraw" class="retreat" @click="$router.push({name:'withdrawRecord'})">提现记录</span>
-        <img src="./assets/leftArrow.png"  class="leftArrow" @click="goTop()"/>
-        {{$route.meta.title}}
-        <router-link :to="{name: 'creditlist'}" v-if="$route.meta.credit" tag="span" class='retreat'>查询记录</router-link>
-        <router-link :to="{name: 'addcard'}" v-if="$route.meta.select" tag="span" class='retreat'>添加信用卡</router-link>
-        <router-link :to="{name: 'home'}" v-if="$route.meta.preview" tag="span" class='retreat'>首页</router-link>
-        <router-link :to="{name: 'addPlan'}" v-if="$route.meta.oneCardDh" tag="span" class='retreat'>添加计划</router-link>
-      </div>
-      <div v-if="$route.meta.backLeft" class="leftRouter backRouter">
-        <img src="./assets/blackArrow.png"  class="leftArrow" @click="goTop()"/>
+      <div v-if="$route.meta.bgLeft" class="pageTitle">
         {{$route.meta.title}}
       </div>
-      <div v-if="$route.meta.regLeft" class="leftRouter">
-        {{$route.meta.title}}
-        <router-link :to="{name: 'registered'}" tag="span" class='retreat'>注册</router-link>
-      </div>
-      <div v-if="$route.meta.aisleLeft" class="leftRouter leftwihteRouter">
-        <img src="./assets/blackArrow.png"  class="leftArrow" @click="goTop()"/>
-        {{$route.meta.title}}
-        <!--<router-link :to="{name: 'registered'}" tag="span" class='retreat gary'>支持银行</router-link> -->
-      </div>
-      <!-- <div v-if="$route.meta.home" class="leftRouter leftwihteRouter">
-        {{$route.meta.title}}
-        <router-link :to="{name: 'customer'}" tag='a' >
-          <img src="./assets/service.png"  class="rightService"/>
-        </router-link>
-      </div> -->
-      <div v-if="$route.meta.whiteLeft" class="leftRouter leftwihteRouter">
-        <img src="./assets/blackArrow.png"  class="leftArrow" @click="goTop()"/>
+      <div v-else-if="$route.meta.left" class="pageTitle">
         {{$route.meta.title}}
       </div>
-      <!-- 空卡还款开始 -->
-      <div v-if="$route.meta.emptyrepayment" class="leftRouter leftwihteRouter">
-        <img src="./assets/blackArrow.png"  class="leftArrow" @click="goTop()"/>
-        {{$route.meta.title}}
-        <router-link :to="{name: 'addcard'}" tag="span" class='retreat gary'>添加信用卡</router-link>
-      </div>
-      <!-- 空卡还款结束 -->
-      <!-- 中介代还开始 -->
-      <div v-if="$route.meta.intermediaryagency" class="leftRouter leftwihteRouter">
-        <img src="./assets/blackArrow.png"  class="leftArrow" @click="goTop()"/>
+      <div v-else-if="$route.meta.bgTitle" class="pageTitle">
         {{$route.meta.title}}
       </div>
-      <!-- 中介代还开始 -->
-      <!-- 实名认证开始 -->
-      <div v-if="$route.meta.realname" class="leftRouter leftwihteRouter">
-        <img src="./assets/blackArrow.png"  class="leftArrow" @click="goTop()"/>
-        {{$route.meta.title}}
-        <router-link :to="{name: 'adduser'}" tag="span" class='retreat '>添加用户</router-link>
-      </div>
-      <!-- 实名认证结束 -->
-      <!-- 制定计划开始 -->
-      <div v-if="$route.meta.makeplan" class="leftRouter leftwihteRouter">
-        <img src="./assets/blackArrow.png"  class="leftArrow" @click="goTop()"/>
-        {{$route.meta.title}}
-        <router-link :to="{name: 'makeplan'}" tag="span" class='retreat gary'></router-link>
-      </div>
-      <!-- 制定计划结束 -->
-      <!-- 制定计划开始 -->
-      <div v-if="$route.meta.checkplan" class="leftRouter leftwihteRouter">
-        <img src="./assets/blackArrow.png"  class="leftArrow" @click="goTop()"/>
-        {{$route.meta.title}}
-        <router-link :to="{name: 'checkplan'}" tag="span" class='retreat gary'></router-link>
-      </div>
-      <!-- 制定计划结束 -->
-      <!-- 增加卡位开始 -->
-      <div v-if="$route.meta.addposition" class="leftRouter leftwihteRouter">
-        <img src="./assets/blackArrow.png"  class="leftArrow" @click="goTop()"/>
-        {{$route.meta.title}}
-      </div>
-      <!-- 增加卡位结束 -->
-      <!-- 增加卡位开始 -->
-      <div v-if="$route.meta.cardadmin" class="leftRouter leftwihteRouter">
-        <img src="./assets/blackArrow.png"  class="leftArrow" @click="goTop()"/>
-        {{$route.meta.title}}
-      </div>
-      <!-- 增加卡位结束 -->
-      <!-- 选择卡片开始 -->
-      <div v-if="$route.meta.selectcard" class="leftRouter leftwihteRouter">
-        <img src="./assets/blackArrow.png"  class="leftArrow" @click="goTop()"/>
-        {{$route.meta.title}}
-      </div>
-      <!-- 选择卡片结束 -->
-      <div v-if="$route.meta.srroll" class="leftRouter leftwihteRouter">
-        <img src="./assets/blackArrow.png"  class="leftArrow" @click="goTop()"/>
-        {{$route.meta.title}}
-      </div>
-      <div v-if="$route.meta.noLeft" class="leftRouter">
-        {{$route.meta.title}}
-      </div>
-      <div v-if="$route.meta.nowihteLeft" class="leftRouter leftwihteRouter">
-        {{$route.meta.title}}
-      </div>
-      <div v-if="$route.meta.noblackLeft" class="leftRouter leftBlackRouter">
+      <div v-else-if="$route.meta.title" class="pageTitle">
         {{$route.meta.title}}
       </div>
       <keep-alive>
@@ -124,7 +28,11 @@
       </router-link>
       <router-link tag="li" :to="{name:'invite'}">
         <img class="appLogo" :src="routeData=='invite'?require('./assets/label/csk.png'):require('./assets/label/sk.png')" />
-        <p :class="routeData=='invite'?'checkColor':''">推广</p>
+        <p :class="routeData=='invite'?'checkColor':''">分享</p>
+      </router-link>
+      <router-link tag="li" :to="{name:'invite'}">
+        <img class="appLogo" :src="routeData=='invite'?require('./assets/label/chb.png'):require('./assets/label/hb.png')" />
+        <p :class="routeData=='invite'?'checkColor':''">伙伴</p>
       </router-link>
       <router-link tag="li" :to="{name:'my'}">
         <img class="appLogo" :src="routeData=='my'?require('./assets/label/cmy.png'):require('./assets/label/my.png')" />

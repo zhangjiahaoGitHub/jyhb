@@ -1,6 +1,75 @@
 <template>
-    <div class='hundred my-layout'>
-      <div class="headBgDiv"><span @click="$router.push({name: 'setting'})">设置</span></div>
+  <div class='hundred my-layout'>
+    <div class="txDiv">
+      <img :src="imageUrl ? imageUrl : require('../../assets/head.png')" alt="">
+      <div>
+        <p>{{userName}}</p>
+        <p>{{phone.substring(0,3)}}****{{phone.substring(phone.length-4,phone.length)}}</p>
+      </div>
+    </div>
+    <ol>
+      <li>
+        <span>{{zhye}}</span>
+        <p>账户余额（元）</p>
+      </li>
+      <div></div>
+      <li>
+        <span>{{xyf}}</span>
+        <p>我的信用分</p>
+      </li>
+    </ol>
+    <div class="planDiv">
+      <div class="hyDiv">
+        <div>
+          <div>
+            <span>我的权益</span>
+            <p>{{levelObj[level]}}</p>
+          </div>
+          <p>立即升级</p>
+        </div>
+      </div>
+      <div class="itemDiv">
+        <p>鲸鹰专区</p>
+        <ul>
+          <li><img src="../../assets/my/smrz.png" alt=""><p>实名认证</p></li>
+          <li><img src="../../assets/my/wdkb.png" alt=""><p>我的卡包</p></li>
+          <li><img src="../../assets/my/wdxyf.png" alt=""><p>我的信用分</p></li>
+          <li><img src="../../assets/my/hkjh.png" alt=""><p>还款计划</p></li>
+          <li><img src="../../assets/my/jyjl.png" alt=""><p>交易记录</p></li>
+          <li><img src="../../assets/my/sqs.png" alt=""><p>授权书</p></li>
+          <li><img src="../../assets/my/syjl.png" alt=""><p>收益记录</p></li>
+          <li><img src="../../assets/my/wdqb.png" alt=""><p>我的钱包</p></li>
+        </ul>
+      </div>
+      <div class="itemDiv">
+        <p>社交专区</p>
+        <ul>
+          <li><img src="../../assets/my/pyq.png" alt=""><p>朋友圈</p></li>
+          <li><img src="../../assets/my/wdtd.png" alt=""><p>我的团队</p></li>
+          <li><img src="../../assets/my/wdkf.png" alt=""><p>我的客服</p></li>
+          <li><img src="../../assets/my/czsp.png" alt=""><p>操作视频</p></li>
+        </ul>
+      </div>
+      <div class="itemDiv">
+        <p>商城专区</p>
+        <ul>
+          <li><img src="../../assets/my/scdd.png" alt=""><p>商城订单</p></li>
+          <li><img src="../../assets/my/shdz.png" alt=""><p>收货地址</p></li>
+          <li><img src="../../assets/my/spsc.png" alt=""><p>商品收藏</p></li>
+          <li><img src="../../assets/my/spjf.png" alt=""><p>商品积分</p></li>
+        </ul>
+      </div>
+      <div class="itemDiv">
+        <p>功能专区</p>
+        <ul>
+          <li><img src="../../assets/my/bzzx.png" alt=""><p>帮助中心</p></li>
+          <li><img src="../../assets/my/szzx.png" alt=""><p>设置中心</p></li>
+          <li><img src="../../assets/my/xxzx.png" alt=""><p>消息中心</p></li>
+          <li><img src="../../assets/my/gywm.png" alt=""><p>关于我们</p></li>
+        </ul>
+      </div>
+    </div>
+      <!-- <div class="headBgDiv"><span @click="$router.push({name: 'setting'})">设置</span></div>
       <div class="contentDiv">
         <div class="headDiv">
           <el-upload
@@ -24,10 +93,6 @@
             <img src="../../assets/my/jymx.png" alt="">
             <p>交易明细 <i class="el-icon-arrow-right"></i></p>
           </li>
-          <!-- <li @click="$router.push({name: 'integraldetails'})">
-            <img src="../../assets/my/wdjf.png" alt="">
-            <p>会员积分兑换 <i class="el-icon-arrow-right"></i></p>
-          </li> -->
           <li @click="toReal">
             <img src="../../assets/my/smrz.png" alt="">
             <p>实名认证 <i class="el-icon-arrow-right"></i></p>
@@ -45,8 +110,8 @@
             <p>我的客服 <i class="el-icon-arrow-right"></i></p>
           </li>
         </ul>
-      </div>
-    </div>
+      </div> -->
+  </div>
 </template>
 <script>
 import axios from 'axios'
@@ -58,31 +123,26 @@ export default {
       version: '',
       agentNo: '',
       levelObj: {
-        '1': '体验用户',
-        '2': '白银用户',
-        '3': '黄金用户',
-        '4': '铂金用户',
-        '5': '钻石用户',
-        '6': '领航者',
+        '1': '普通用户',
+        '2': '经济人',
+        '3': '城市服务商',
+        '4': '城市运营商',
+        '5': '高级合伙人',
+        '6': '达标团队长',
+        '7': '一星团队长',
+        '8': '二星团队长',
+        '9': '三星团队长',
       },
       level: '',
       list: [],
       merchantNo: '',
-      parentPhone: '',
       merchantCnName: '',
-      bankAccount: '',
-      balance: '',
-      coupon: '',
       userName: '',
       phone: '',
-      directQuota: '',
-      incomeYear: '',
-      business: '',
       url: '',
-      sumSwitch: 0,
+      zhye: 0,
+      xyf: 0,
       fullscreenLoading: false,
-      real: 0,
-      team: {},
       freezeStatus: '',
       imageUrl: '',
     }
@@ -90,10 +150,8 @@ export default {
   created () {
     this.version = this.$stact.state.version
     this.agentNo = this.$stact.state.agentNo
-    this.real = this.$stact.state.real
     this.merchantCnName = JSON.parse(this.$stact.state.token)[0].merchantCnName
     this.freezeStatus = JSON.parse(this.$stact.state.token)[0].freezeStatus
-    this.parentPhone = JSON.parse(this.$stact.state.token)[0].parentPhone
     this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
     this.userName = JSON.parse(this.$stact.state.token)[0].merchantEnName
     this.level = JSON.parse(this.$stact.state.token)[0].level
@@ -276,6 +334,8 @@ export default {
             this.phone = JSON.parse(res.data[57])[0].phone
             vm.imageUrl = res.data[48]
             vm.freezeStatus = JSON.parse(this.$stact.state.token)[0].freezeStatus
+            this.zhye = res.data[43]
+            this.xyf = res.data[6]
           }
         })
         .catch(err => {

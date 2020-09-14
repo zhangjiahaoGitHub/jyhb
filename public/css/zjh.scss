@@ -18,11 +18,19 @@ $big: 2rem;
 @function px2rem($px) {
     @return #{$px/$ue-width}rem;
 }
-.bgBlue{
+.pageTitle{
     background: $themeColor;
     color: #fff;
+    height: 1.7rem;
+    font-size: $five;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 200;
 }
-
 .login-layout{
     background: url(../../src/assets/registerLogin/loginBg.png) no-repeat;
     background-size: 100% 100%;
@@ -175,6 +183,109 @@ $big: 2rem;
             padding: px2rem(20);
             border-radius: px2rem(16);
             text-align: center;
+        }
+    }
+}
+.my-layout{
+    .txDiv{
+        display: flex;
+        background: $themeColor;
+        color: #fff;
+        padding: px2rem(30);
+        >img{
+            margin-right: px2rem(40);
+            width: px2rem(160);
+            border-radius: 50%;
+            background: #fff;
+        }
+        div{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            p{
+                &:first-child{
+                    margin-bottom: px2rem(10);
+                }
+            }
+        }
+    }
+    >ol{
+        padding-top: px2rem(20);
+        background: $themeColor;
+        color: #fff;
+        padding-bottom: px2rem(150);
+        display: flex;
+        align-items: center;
+        li{
+            width: 50%;
+            text-align: center;
+            span{
+                font-size: $six;
+            }
+        }
+        >div{
+            height: px2rem(50);
+            width: 1px;
+            background: #fff;
+        }
+    }
+    .planDiv{
+        transform: translateY(px2rem(-80));
+        padding: 0 px2rem(30);
+        padding-bottom: px2rem(100);
+        .hyDiv{
+            margin-bottom: px2rem(30);
+            >div{
+                display: flex;
+                background: url(../../src/assets/my/hyCard.png) no-repeat;
+                background-size: 100% 100%;
+                height: px2rem(190);
+                align-items: center;
+                box-sizing: border-box;
+                padding: px2rem(60);
+                justify-content: space-between;
+                div{
+                    color: $themeColor;
+                    span{
+                        font-size: $six;
+                    }
+                    p{
+                        margin-top: px2rem(20);
+                        font-size: $four;
+                    }
+                }
+                >p{
+                    background: $themeColor;
+                    color: #fff;
+                    padding: px2rem(10) px2rem(20);
+                    border-radius: px2rem(40);
+                }
+            }
+        }
+        .itemDiv{
+            margin-bottom: px2rem(30);
+            background: #fff;
+            >p{
+                font-size: $five;
+                padding: px2rem(20);
+                border-bottom: 1px solid #F6F6F6;
+            }
+            ul{
+                display: flex;
+                flex-wrap: wrap;
+                padding-top: px2rem(20);
+                li{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    width: 25%;
+                    margin-bottom: px2rem(20);
+                    img{
+                        width: px2rem(40);
+                        margin-bottom: px2rem(10);
+                    }
+                }
+            }
         }
     }
 }

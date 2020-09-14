@@ -64,6 +64,7 @@ export default {
       }).then(() => {
         new Promise((resolve, reject) => {
           vm.$stact.dispatch('SetToken', '')
+          // window.localStorage.clear()
           resolve()
         })
           .then(result => {
