@@ -184,8 +184,8 @@ const routes = [
     path: '/personalInfo',
     name: 'personalInfo',
     meta: {
-      title: '个人资料',
-      left: true
+      title: '我的资料',
+      bgLeft: true,
     },
     component: () => import('../views/my/personalInfo.vue')
   },

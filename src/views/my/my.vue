@@ -1,7 +1,7 @@
 <template>
-  <div class='hundred my-layout'>
+  <div class='hundred my-layout' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock="fullscreenLoading">
     <div class="txDiv">
-      <img :src="imageUrl ? imageUrl : require('../../assets/head.png')" alt="">
+      <img @click="$router.push({name:'personalInfo'})" :src="imageUrl ? imageUrl : require('../../assets/head.png')" alt="">
       <div>
         <p>{{userName}}</p>
         <p>{{phone.substring(0,3)}}****{{phone.substring(phone.length-4,phone.length)}}</p>
