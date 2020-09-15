@@ -6,31 +6,56 @@
     </div>
     <ul class="xyCard" v-if="type=='xy'">
       <li @click="toMatter(item)" v-for="item in xyArr" :key="item.ID">
-        <div>
-          <img :src="banks[item.BANK_NAME]?require(`../../assets/bank/${banks[item.BANK_NAME]}.png`):require('../../assets/bank/yl.png')" alt="">
+        <div class="topDiv">
           <div>
-            <p>{{item.short_cn_name}}</p>
-            <span>尾号{{item.BANK_ACCOUNT.substring(item.BANK_ACCOUNT.length-4,item.BANK_ACCOUNT.length)}}</span>
+            <p>
+              <img :src="banks[item.BANK_NAME]?require(`../../assets/bank/${banks[item.BANK_NAME]}.png`):require('../../assets/bank/yl.png')" alt="">
+              {{item.short_cn_name}}({{item.BANK_ACCOUNT.substring(item.BANK_ACCOUNT.length-4,item.BANK_ACCOUNT)}})
+            </p>
+            <span>{{item.BANK_ACCOUNT_NAME.substring(0,1)}}<span v-for="(item,index) in item.BANK_ACCOUNT_NAME.length-1" :key="index">*</span></span>
           </div>
+          <div>
+            <span>{{parseInt(item.day)+1}}</span>
+            <div>
+              <p>天到期<span>{{item.PLAN_AMT>0 ? '已制定计划':'未制定计划'}}</span></p>
+              <span>{{item.repDate}}</span>
+            </div>
+          </div>
+          <ol>
+            <li>
+              <span>{{item.LIMIT_MONEY}}</span>
+              <p>额度</p>
+            </li>
+            <li>
+              <span>{{item.PLAN_AMT}}</span>
+              <p>账单金额</p>
+            </li>
+            <li>
+              <span>{{item.SURPLUS_PAYMENT_MONEY}}</span>
+              <p>剩余应还</p>
+            </li>
+          </ol>
         </div>
-        <i class="el-icon-arrow-right"></i>
+        <div class="bottomDiv">
+          <span @click.stop="delCard(BANK_ACCOUNT)">解绑</span>
+        </div>
       </li>
       <div class="btnDiv">
-        <div @click="()=>{this.$router.push({name:'addcard'})}">添加信用卡</div>
+        <div @click="()=>{this.$router.push({name:'addcard'})}"><i class="el-icon-plus"></i>添加信用卡</div>
       </div>
     </ul>
-    <ul class="xyCard" v-if="type=='cx'">
+    <ul class="cxCard" v-if="type=='cx'">
       <li>
         <div>
           <img :src="banks[bankCode]?require(`../../assets/bank/${banks[bankCode]}.png`):require('../../assets/bank/yl.png')" alt="">
           <div>
             <p>{{bankDetail}}<span> 默认到账卡</span></p>
-            <span>尾号{{bankAccount.substring(bankAccount.length-4,bankAccount.length)}}</span>
+            <span>**** **** **** {{bankAccount.substring(bankAccount.length-4,bankAccount.length)}}</span>
           </div>
         </div>
       </li>
       <div class="btnDiv">
-        <div @click="editCard">修改储蓄卡</div>
+        <div @click="editCard">更换储蓄卡</div>
       </div>
     </ul>
   </div>
@@ -87,6 +112,61 @@ export default {
     this.message()
   },
   methods: {
+    delCard (BANK_ACCOUNT) {
+      let vm = this
+      this.$confirm('解绑信用卡?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        let parmas = {
+          '0': '0700',
+          '3': '190520',
+          '8': BANK_ACCOUNT,
+          '42': vm.merchantNo,
+          '59': vm.version
+        }
+        let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
+        vm.$http.get(`request.app${url}`)
+          .then(res => {
+            if (res.data[39] === '00') {
+              this.$router.back()
+              vm.$message({
+                message: '解绑成功',
+                center: true,
+                offset: 30,
+                duration: 2000,
+                type: 'success'
+              })
+            }else{
+              vm.$message({
+                message: res.data[39],
+                center: true,
+                offset: 30,
+                duration: 2000,
+                type: 'success'
+              })
+            }
+          })
+          .catch(err => {
+            console.log(err)
+            vm.$message.error({
+                message: '解绑失败',
+                center: true,
+                offset: 30,
+                duration: 2000,
+              })
+          })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除',
+          center: true,
+          offset: 30,
+          duration: 2000,
+        });          
+      });
+    },
     toMatter(item) {
       this.$router.push({
         name: 'matter',

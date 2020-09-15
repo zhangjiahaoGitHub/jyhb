@@ -1,14 +1,15 @@
 <template>
-  <div style="box-sizing:border-box;" class='hundred change-layout'>
+  <div class='hundred change-layout'>
+    <div class="infoDiv">
+      <p>持卡人：{{name}}</p>
+      <p>身份证号：{{idCardNumber.substring(0,4)}}********{{idCardNumber.substring(idCardNumber.length-4,idCardNumber.length)}}</p>
+    </div>
     <ul>
       <li>
         <input v-model='bankCard' type="number" placeholder="请输入银行卡卡号">
       </li>
       <li>
         <input v-model='value' type="text" readonly placeholder="自动识别所属银行">
-      </li>
-      <li>
-        <input v-model='name' type="text" placeholder="请输入持卡人姓名" readonly>
       </li>
       <li>
         <input v-model='phone' type="number" placeholder="请输入预留手机号">
@@ -27,6 +28,7 @@ export default {
       bankCard: '',
       name: '',
       phone: '',
+      idCardNumber: '',
       fullscreenLoading: false,
       options: [{
         value: '北京银行',
@@ -112,7 +114,7 @@ export default {
     this.agentNo = this.$stact.state.agentNo
     this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
     this.name = JSON.parse(this.$stact.state.token)[0].merchantCnName
-    // this.phone = JSON.parse(this.$stact.state.token)[0].phone
+    this.idCardNumber = JSON.parse(this.$stact.state.token)[0].idCardNumber
   },
   mounted () {
     sessionStorage.setItem("activeName", "second")
@@ -134,16 +136,6 @@ export default {
       if (this.value.match(/^[ ]*$/)) {
         this.$message({
           message: '请选择所属银行',
-          center: true,
-          offset: 30,
-          duration: 2500,
-          type: 'warning'
-        })
-        return
-      }
-      if (this.name.match(/^[ ]*$/)) {
-        this.$message({
-          message: '姓名必须填写',
           center: true,
           offset: 30,
           duration: 2500,

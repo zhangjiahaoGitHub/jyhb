@@ -32,7 +32,7 @@
         <p>鲸鹰专区</p>
         <ul>
           <li><img src="../../assets/my/smrz.png" alt=""><p>实名认证</p></li>
-          <li><img src="../../assets/my/wdkb.png" alt=""><p>我的卡包</p></li>
+          <li @click="()=>{this.$router.push({name:'cardlist'})}"><img src="../../assets/my/wdkb.png" alt=""><p>我的卡包</p></li>
           <li><img src="../../assets/my/wdxyf.png" alt=""><p>我的信用分</p></li>
           <li><img src="../../assets/my/hkjh.png" alt=""><p>还款计划</p></li>
           <li><img src="../../assets/my/jyjl.png" alt=""><p>交易记录</p></li>

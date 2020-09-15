@@ -3,7 +3,7 @@
     <ul>
       <li>
         <span>姓名</span>
-        <p>*{{name.substring(1,name.length)}}</p>
+        <p>{{name}}</p>
       </li>
       <li>
         <span>卡号</span>
@@ -50,7 +50,7 @@
     </ul>
     <div v-if="promptShow" class="promptDiv">
       <div>
-        <h3>注意事项</h3>
+        <h3>信用卡认证注意事项</h3>
         <div class="contentDiv">
           <p>一.一下卡种暂不支持代还</p>
           <p>1.外汇卡，双币卡</p>
@@ -67,48 +67,6 @@
         </div>
       </div>
     </div>
-    <!-- <p><img :src="banks[bankCode]?require(`../../assets/bank/${banks[bankCode]}.png`):require('../../assets/bank/yl.png')" alt="">{{bankName}} （{{cardNum.substring(0,3)}}****{{cardNum.substring(cardNum.length-4,cardNum.length)}}）</p>
-    <ul>
-      <li>
-        <span>持卡人姓名</span>
-        <input type="text" placeholder="个人信息将严格保密" v-model="name">
-      </li>
-      <li>
-        <span>证件类型</span>
-        <input type="text" placeholder="身份证" disabled>
-      </li>
-      <li>
-        <span>证件号</span>
-        <input type="text" disabled v-model="idCard">
-      </li>
-    </ul>
-    <ul>
-      <li>
-        <span>CVN</span>
-        <input type="text" placeholder="卡背面后3位" v-model="cvn">
-      </li>
-      <li>
-        <span>卡片额度</span>
-        <input type="text" placeholder="输入信用卡额度" v-model="money">
-      </li>
-      <li>
-        <span>账单日</span>
-        <input type="text" placeholder="输入账单日(如：5)" v-model="billDay">
-      </li>
-      <li>
-        <span>还款日</span>
-        <input type="text" placeholder="输入还款日(如：20)" v-model="repDay">
-      </li>
-      <li>
-        <span>有效期</span>
-        <input type="text" placeholder="MM/YY（月/年）" v-model="expiration">
-      </li>
-      <li>
-        <span>预留手机</span>
-        <input type="text" placeholder="请输入银行预留手机号" v-model="phone">
-      </li>
-    </ul>
-    <span>温馨提示：信息已加密，仅用于银行验证</span> -->
     <div class="btnDiv">
       <div @click="confirm">确定</div>
     </div>

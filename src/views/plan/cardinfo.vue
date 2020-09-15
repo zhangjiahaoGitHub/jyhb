@@ -57,53 +57,8 @@
       </li>
     </ol>
     <div class="btnDiv">
-      <div @click="confirm">确认修改</div>
+      <div @click="confirm">提交修改</div>
     </div>
-    <!-- <p><img :src="banks[bankCode]?require(`../../assets/bank/${banks[bankCode]}.png`):require('../../assets/bank/yl.png')" alt="">{{bankName}} （{{cardNum.substring(0,3)}}****{{cardNum.substring(cardNum.length-4,cardNum.length)}}）</p>
-    <ul>
-      <li>
-        <span>持卡人姓名</span>
-        <input type="text" disabled placeholder="个人信息将严格保密" v-model="name">
-      </li>
-      <li>
-        <span>证件类型</span>
-        <input type="text" placeholder="身份证" disabled>
-      </li>
-      <li>
-        <span>证件号</span>
-        <input type="text" disabled v-model="idCard">
-      </li>
-    </ul>
-    <ul>
-      <li>
-        <span>CVN</span>
-        <input type="text" disabled placeholder="卡背面后3位" v-model="cvn">
-      </li>
-      <li>
-        <span>卡片额度</span>
-        <input type="number" placeholder="输入信用卡额度" v-model="money">
-      </li>
-      <li>
-        <span>账单日</span>
-        <input type="number" placeholder="输入账单日(如：5)" v-model="billDay">
-      </li>
-      <li>
-        <span>还款日</span>
-        <input type="number" placeholder="输入还款日(如：20)" v-model="repDay">
-      </li>
-      <li>
-        <span>有效期</span>
-        <input type="text" disabled placeholder="MM/YY输入MMYY" v-model="expiration">
-      </li>
-      <li>
-        <span>预留手机</span>
-        <input type="text" disabled placeholder="请输入银行预留手机号" v-model="phone">
-      </li>
-    </ul>
-    <div class="btnDiv">
-      <div @click="confirm">确认修改</div>
-    </div>
-    <span>温馨提示：信息已加密，仅用于银行验证</span> -->
   </div>
 </template>
 <script>

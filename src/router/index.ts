@@ -422,8 +422,8 @@ const routes = [
     path: '/change',
     name: 'change',
     meta: {
-      title: '修改储蓄卡',
-      bgBlue: true
+      title: '更换储蓄卡',
+      bgLeft: true
     },
     component: () => import('../views/my/change.vue')
   },
@@ -825,7 +825,7 @@ const routes = [
     name: 'matter',
     meta: {
       title: '银行卡详情',
-      bgBlue: true
+      bgLeft: true
     },
     component: () => import('../views/plan/matter.vue')
   },
@@ -834,7 +834,7 @@ const routes = [
     name: 'addcard',
     meta: {
       title: '添加信用卡',
-      bgBlue: true
+      bgLeft: true
     },
     component: () => import('../views/plan/addcard.vue')
   },
@@ -843,7 +843,7 @@ const routes = [
     name: 'cardinfo',
     meta: {
       title: '修改卡信息',
-      bgBlue: true
+      bgLeft: true
     },
     component: () => import('../views/plan/cardinfo.vue')
   },
@@ -991,7 +991,7 @@ const routes = [
     name: 'cardlist',
     meta: {
       title: '银行卡管理',
-      bgBlue: true
+      bgLeft: true
     },
     component: () => import('../views/my/cardlist.vue')
   },
