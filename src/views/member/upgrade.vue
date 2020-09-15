@@ -67,7 +67,7 @@
       <span>{{itemObj[15] || '自动升级'}}</span>
       <img @click="itemObj[15] ? popShow=true: ''" :src="itemObj[15] ? require('../../assets/member/ljkt.png'):require('../../assets/member/ljkth.png')" alt="">
     </div>
-    <div @click="popShow=false" v-if="popShow" class="popDiv">
+    <div @click="popShow=false" v-if="popShow" class="czPopDiv">
       <ul @click.stop="">
         <li>
           <img src="../../assets/member/zfb.png" alt="">

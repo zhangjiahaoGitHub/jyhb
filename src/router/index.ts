@@ -203,7 +203,7 @@ const routes = [
     name: 'real',
     meta: {
       title: '实名认证',
-      bgBlue: true
+      bgTitle: true
     },
     component: () => import('../views/real/real.vue')
   },
@@ -455,6 +455,15 @@ const routes = [
         component: () => import('../views/my/transactionInfo.vue')
       },
     ]
+  },
+  {
+    path: '/creditScore',
+    name: 'creditScore',
+    meta: {
+      title: '我的信用分',
+      bgLeft: true
+    },
+    component: () => import('../views/my/creditScore.vue')
   },
   {
     path: '/activityAward',
