@@ -3,6 +3,7 @@
       <div v-if="$route.meta.bgLeft" class="pageTitle">
         <i @click="goTop" class="el-icon-arrow-left bs"></i>
         {{$route.meta.title}}
+        <span @click="$router.push({name:'czjl'})" class="rightCorner" v-if="$route.meta.sxTx">充值记录</span>
       </div>
       <div v-else-if="$route.meta.left" class="pageTitle">
         <i @click="goTop" class="el-icon-arrow-left hs"></i>

@@ -419,6 +419,25 @@ const routes = [
     component: () => import('../views/my/retreat.vue')
   },
   {
+    path: '/sxTx',
+    name: 'sxTx',
+    meta: {
+      title: '提现',
+      bgLeft: true,
+      sxTx: true,
+    },
+    component: () => import('../views/my/sxTx.vue')
+  },
+  {
+    path: '/czjl',
+    name: 'czjl',
+    meta: {
+      title: '充值记录',
+      bgLeft: true,
+    },
+    component: () => import('../views/my/czjl.vue')
+  },
+  {
     path: '/change',
     name: 'change',
     meta: {
@@ -457,13 +476,13 @@ const routes = [
     ]
   },
   {
-    path: '/creditScore',
-    name: 'creditScore',
+    path: '/emptyCardCredit',
+    name: 'emptyCardCredit',
     meta: {
-      title: '我的信用分',
+      title: '空卡授信',
       bgLeft: true
     },
-    component: () => import('../views/my/creditScore.vue')
+    component: () => import('../views/my/emptyCardCredit.vue')
   },
   {
     path: '/activityAward',
