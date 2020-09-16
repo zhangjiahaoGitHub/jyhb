@@ -629,7 +629,7 @@ const routes = [
     name: 'planInfo',
     meta: {
       title: '计划详情',
-      bgBlue: true,
+      bgLeft: true,
     },
     component: () => import('../views/repayment/planInfo.vue')
   },
@@ -852,8 +852,8 @@ const routes = [
     path: '/particular',
     name: 'particular',
     meta: {
-      title: '详细计划',
-      bgBlue: true
+      title: '计划详情',
+      bgLeft: true
     },
     component: () => import('../views/plan/particular.vue')
   },

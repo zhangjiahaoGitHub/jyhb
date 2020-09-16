@@ -2,11 +2,34 @@
   <div class='hundred hkjh-layout' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock="fullscreenLoading">
     <div v-for="item in listArr" :key="item.ID">
       <div class="cardDiv">
-        <div class="topDiv">
+        <div>
           <p><img :src="banks[item.BANK_NAME] ? require(`../../assets/bank/${banks[item.BANK_NAME]}.png`):require(`../../assets/bank/yl.png`)" alt="">{{item.short_cn_name}}</p>
           <span>{{item.BANK_ACCOUNT.substring(0,4)}} **** **** {{item.BANK_ACCOUNT.substring(item.BANK_ACCOUNT.length-4,item.BANK_ACCOUNT.length)}}</span>
         </div>
+        <ol>
+          <li>
+            <p>额度</p>
+            <span>{{item.LIMIT_MONEY}}</span>
+          </li>
+          <li>
+            <p>账单日</p>
+            <span>{{item.BILL_DAY}}</span>
+          </li>
+          <li>
+            <p>还款日</p>
+            <span>{{item.REPAYMENT_DAY}}</span>
+          </li>
+        </ol>
       </div>
+      <ul>
+        <li>创建时间：{{$moment(item.CREATE_TIME.time).format('YYYY-MM-DD HH:mm')}} <span>进度：{{item.progress}}</span></li>
+        <li>通道名称：{{item.acqName}}</li>
+        <li>计划周期：{{$moment(item.START_TIME.time).format('YYYY-MM-DD')}}至{{$moment(item.END_TIME.time).format('YYYY-MM-DD')}}</li>
+        <li>本期应还：￥{{item.PLAN_AMT}}</li>
+        <li>本期已还：￥{{item.RETURN_MONEY}}</li>
+        <li>订单状态：￥{{planState[item.STATUS]}}</li>
+      </ul>
+      <div @click="toPlanInfo(item)" class="btnDiv"><div>计划详情</div></div>
     </div>
   </div>
 </template>
@@ -17,6 +40,13 @@ export default {
       version: '',
       agentNo: '',
       merchantNo: '',
+      planState: {
+        '10A': '未执行',
+        '10B': '执行中',
+        '10C': '失败',
+        '10D': '暂停',
+        '10E': '已完成'
+      },
       banks: {
         313003: 'bj',
         303: 'gd',
@@ -47,6 +77,14 @@ export default {
     this.list()
   },
   methods: {
+    toPlanInfo(item){
+      this.$router.push({
+        name: 'particular',
+        query: {
+          item: JSON.stringify(item)
+        }
+      })
+    },
     list () {
       let vm = this
       let parmas = {

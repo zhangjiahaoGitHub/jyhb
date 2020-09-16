@@ -1651,5 +1651,229 @@ $big: 2rem;
     }
 }
 .hkjh-layout{
-    
+    >div{
+        margin-bottom: px2rem(40);
+        .cardDiv{
+            background: $themeColor;
+            padding: px2rem(40);
+            >div{
+                border-radius: px2rem(10);
+                background: #f8f8f8;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: px2rem(16) px2rem(40);
+                color: #868686;
+                p{
+                    font-size: $six;
+                    display: flex;
+                    align-items: center;
+                    img{
+                        width: px2rem(60);
+                        margin-right: px2rem(20);
+                    }
+                }
+                span{
+                    font-size: $four;
+                }
+            }
+            ol{
+                background: #fff;
+                border-radius: px2rem(10);
+                display: flex;
+                border-top: 1px solid #F2F5F9;
+                li{
+                    text-align: center;
+                    padding: px2rem(10) 0;
+                    width: 33.333%;
+                    p{
+                        color: #b2b2b2;
+                    }
+                }
+            }
+        }
+        ul{
+            background: #fff;
+            padding: px2rem(20);
+            font-size: $four;
+            color: #818181;
+            border-bottom: 1px solid #f6f6f6;
+            li{
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: px2rem(20);
+                span{
+                    color: $promptColor;
+                }
+                &:last-child{
+                    margin-bottom: 0;
+                }
+            }
+        }
+        .btnDiv{
+            padding: px2rem(20);
+            background: #fff;
+            div{
+                padding: px2rem(20);
+                border-radius: px2rem(10);
+                background: $themeColor;
+                color: #fff;
+                text-align: center;
+            }
+        }
+    }
+}
+.planInfo-layout{
+    padding: px2rem(20);
+    .cardDiv{
+        background: #fff;
+        border-radius: px2rem(10);
+        padding: px2rem(30) 0 px2rem(30) px2rem(30);
+        color: #8C8C8C;
+        >div{
+            display: flex;
+            justify-content: space-between;
+            &:first-child{
+                align-items: center;
+                font-size: $five;
+                padding-right: px2rem(30);
+                p{
+                    display: flex;
+                    align-items: center;
+                    img{
+                        width: px2rem(60);
+                        margin-right: px2rem(20);
+                    }
+                }
+            }
+            &:last-child{
+                align-items: flex-end;
+                margin-left: px2rem(18);
+                p{
+                    img{
+                        width: px2rem(20);
+                        margin-right: px2rem(20);
+                    }
+                }
+                >span{
+                    background: $themeColor;
+                    color: #fff;
+                    border-radius: px2rem(40) 0 0 px2rem(40);
+                    padding: px2rem(4) px2rem(16);
+                }
+            }
+        }
+    }
+    >ul{
+        overflow: auto;
+        height: 22rem;
+        >li{
+            background: #fff;
+            margin-bottom: px2rem(20);
+            border-radius: px2rem(10);
+            .moneyStateDiv{
+                display: flex;
+                flex-wrap: wrap;
+                padding: px2rem(30);
+                p{
+                    width: 50%;
+                    border-left: 2px solid $themeColor;
+                    box-sizing: border-box;
+                    margin-bottom: px2rem(20);
+                    color: #818181;
+                    padding-left: px2rem(10);
+                    span{
+                        color: #8ED0A1;
+                    }
+                }
+            }
+            .aisleDiv{
+                color: #909090;
+                margin: 0 px2rem(15);
+                border-top: 1px solid #f6f6f6;
+                border-bottom: 1px solid #f6f6f6;
+                padding: px2rem(10) 0;
+                p{
+                    padding: 0 px2rem(15);
+                    display: flex;
+                    flex-wrap: wrap;
+                    margin-bottom: px2rem(20);
+                    &:last-child{
+                        margin-bottom: 0;
+                    }
+                    span{
+                        width: 50%;
+                    }
+                }
+            }
+            .levelP{
+                color: #909090;
+                padding: px2rem(10) px2rem(30);
+                span{
+                    color: $promptColor;
+                }
+            }
+            .upDownBtn{
+                background: $themeColor;
+                color: #fff;
+                padding: px2rem(20);
+                text-align: center;
+                margin-top: px2rem(20);
+            }
+            ol{
+                padding: 0 px2rem(30);
+                li{
+                    padding: px2rem(20) 0;
+                    border-top: 1px solid #f6f6f6;
+                    border-bottom: 1px solid #f6f6f6;
+                    color: #898989;
+                    >div{
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        span{
+                            color: #fff;
+                            border-radius: px2rem(10);
+                            padding: px2rem(4) px2rem(14);
+                            margin-right: px2rem(4);
+                        }
+                        .hkSpan{
+                            background: $themeColor;
+                        }
+                        .xfSpan{
+                            background: #FD8032;
+                        }
+                        .el-icon-circle-check{
+                            color: #8ED0A1;
+                        }
+                        .el-icon-circle-close{
+                            color: $promptColor;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .btnDiv{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        box-sizing: border-box;
+        padding: px2rem(20);
+        div{
+            padding: px2rem(20);
+            border-radius: px2rem(10);
+            text-align: center;
+        }
+        .run{
+            color: #fff;
+            background: $themeColor;
+        }
+        .stop{
+            color: #fff;
+            background: #EAE7E7;
+
+        }
+    }
 }
