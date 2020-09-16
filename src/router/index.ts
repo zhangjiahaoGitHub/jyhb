@@ -33,7 +33,7 @@ const routes = [
     path: '/home',
     name: 'home',
     meta: {
-      title: '首页',
+      // title: '首页',
       haveTitle: true,
       home: true,
       navShow: true

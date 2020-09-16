@@ -1,6 +1,6 @@
 <template>
-  <div class='home-layout'>
-    <div class="headDiv">
+  <div class='home-layout home-style-p'>
+    <!-- <div class="headDiv">
       <ul>
         <li @click="()=>{this.$router.push({ name: 'selectcard', query: { aisle: 'YK' } })}">
           <img src="../assets/home/znhk.png" alt="">
@@ -66,13 +66,7 @@
           <img src="../assets/my/phb.png" alt="">
           <p>龙虎榜</p>
         </li>
-        <!-- <li @click="$router.push({name: 'credit'})"> -->
-        <!-- <li @click="zwkf">
-          <img src="../assets/home/kcp.png" alt="">
-          <p>卡测评</p>
-        </li> -->
         <li @click="zwkf">
-        <!-- <li @click="dkbk('JF')"> -->
           <img src="../assets/home/jfdh.png" alt="">
           <p>信用卡积分</p>
         </li>
@@ -94,6 +88,151 @@
     </ol>
     <div @click="imgPop=false" v-if="imgPop" class="imgPopDiv">
       <img @click.stop="" :src="popImg" alt="">
+    </div> -->
+    <div class="top-home-top">
+      <div class="legt-title-add">
+        <div class="head-img-photo">
+          <img src="" alt="">
+        </div>
+        <div class="name-adress">
+          <div>王众</div>
+          <div class="adress-icon"><img src="../assets/home/dizhiicon.png" alt=""> 上海市</div>
+        </div>
+      </div>
+      <div class="legt-title-add">
+        <span class="real-box"><img src="../assets/home/home-real.png" alt=""> 已实名</span>
+        <img class="message-icon" src="../assets/home/message.png" alt="">
+      </div>
+    </div>
+    <div class="return-three">
+      <div class="return-box">
+        <div class="return-img">
+          <img src="../assets/home/zn-return.png" alt="">
+        </div>
+        <div>智能还款</div>
+      </div>
+      <div class="return-box">
+        <div class="return-img">
+          <img src="../assets/home/yj-return.png" alt="">
+        </div>
+        <div>一键还款</div>
+      </div>
+      <div class="return-box">
+        <div class="return-img">
+          <img src="../assets/home/hb-return.png" alt="">
+        </div>
+        <div>花呗收款</div>
+      </div>
+    </div>
+    
+    <div class="notece-laba">
+      <img class="img-laba" src="../assets/gonggao-laba.png" alt="">
+      <div class="closetext" @click.stop="newsDetail">
+        <div class="inner-shadow" ref="box">
+          <span>暂时还诶有，写死的</span>
+          <!-- <span v-if="hasread == 0" class="hongyuanyuan"></span> -->
+        </div>
+      </div>
+      <!-- <i class="el-icon-arrow-right"></i> -->
+    </div>
+    <div class="swiper">
+      <swiper :options="swiperOptiontwo" ref="mySwiper" v-if="bannerList.length" >
+        <swiper-slide v-for="item in bannerList" :key="item.id" class="swiper-slide">
+          <img :src="item.singleNo" class='imgBanner' @click.stop="toimgurl(item.orderPaymentId,item.id)" />
+        </swiper-slide>
+        <!-- 这是之后下方的小圆点 -->
+        <div class="swiper-pagination" slot="pagination"></div>
+      </swiper>
+    </div>
+    <div class="swiper">
+      <swiper :options="swiperOption" ref="mySwiper" v-if="bannerList.length" >
+        <swiper-slide class="swiper-slide">
+          <div class="icon-tager-box">
+            <div class="icon-img-box">
+              <div class="icon-img-img">
+                <img src="../assets/home/zjdh.png" alt="">
+              </div>
+              <div>中介代还</div>
+            </div>
+            <div class="icon-img-box">
+              <div class="icon-img-img">
+                <img src="../assets/home/ysf.png" alt="">
+              </div>
+              <div>云闪付</div>
+            </div>
+            <div class="icon-img-box">
+              <div class="icon-img-img">
+                <img src="../assets/home/xyksq.png" alt="">
+              </div>
+              <div>信用卡申请</div>
+            </div>
+            <div class="icon-img-box">
+              <div class="icon-img-img">
+                <img src="../assets/home/dksq.png" alt="">
+              </div>
+              <div>贷款申请</div>
+            </div>
+            <div class="icon-img-box mar-top-img">
+              <div class="icon-img-img">
+                <img src="../assets/home/zdcx.png" alt="">
+              </div>
+              <div>账单查询</div>
+            </div>
+            <div class="icon-img-box mar-top-img">
+              <div class="icon-img-img">
+                <img src="../assets/home/bd.png" alt="">
+              </div>
+              <div>保单</div>
+            </div>
+            <div class="icon-img-box mar-top-img">
+              <div class="icon-img-img">
+                <img src="../assets/home/jfdh.png" alt="">
+              </div>
+              <div>积分兑换</div>
+            </div>
+            <div class="icon-img-box mar-top-img">
+              <div class="icon-img-img">
+                <img src="../assets/home/jfsc.png" alt="">
+              </div>
+              <div>积分商城</div>
+            </div>
+          </div>
+        </swiper-slide>
+        <swiper-slide class="swiper-slide">
+          <div class="icon-tager-box">
+            <div class="icon-img-box">
+              <div class="icon-img-img">
+                <img src="../assets/home/frd.png" alt="">
+              </div>
+              <div>分润贷</div>
+            </div>
+            <div class="icon-img-box">
+              <div class="icon-img-img">
+                <img src="../assets/home/pyp.png" alt="">
+              </div>
+              <div>碰一碰</div>
+            </div>
+            <div class="icon-img-box">
+              <div class="icon-img-img">
+                <img src="../assets/home/dsjcx.png" alt="">
+              </div>
+              <div>大数据查询</div>
+            </div>
+            <div class="icon-img-box">
+              <div class="icon-img-img">
+                <img src="../assets/home/kcp.png" alt="">
+              </div>
+              <div>卡测评</div>
+            </div>
+          </div>
+        </swiper-slide>
+        <!-- 这是之后下方的小圆点 -->
+        <div class="swiper-pagination" slot="pagination"></div>
+      </swiper>
+    </div>
+    <div class="shouyi-zhangdan">收益账单</div>
+    <div class="echats-box-mes">
+      <div id="myChart" :style="{width: '300px', height: '300px'}"></div>
     </div>
     <div class='bottomLong'></div>
   </div>
@@ -103,27 +242,45 @@
 export default {
   data () {
     return {
-      swiperOption: {
-        slidesPerView: '1',
-        spaceBetween: 0,//slide之间的距离（单位px）。
-        centeredSlides: true,//设定为true时，活动块会居中，而不是默认状态下的居左。
-        loop : true,//复制多份循环(这里就是让轮播看起来是循环的，去掉这个就恢复了默认的swiper轮播)
-        observer:true,//修改swiper自己或子元素时，自动初始化swiper
-        observeParents:true,//修改swiper的父元素时，自动初始化swiper
-        autoplay: {
-          delay: 3000,
-          stopOnLastSlide: false,
-          disableOnInteraction: true,
+      swiperOption:{
+        slidesPerView: 1,
+        spaceBetween: 0,
+        centeredSlides: false,
+        slidesPerGroup: 1,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
         },
         pagination: {
-          el: '.swiper-pagination',
+          el : '.swiper-pagination',
           clickable: true
         },
-        on: {
-          slideChangeTransitionEnd: function() {
-            // document.querySelector('#qrcodeImg').src=document.querySelector('.swiper-slide-active img').src
-          }
-        }
+//         autoplay: {
+//           stopOnLastSlide:false, // 这是让轮播图自动轮播
+// 　　　　　 /* 触摸滑动后是否继续轮播 */
+// 　　　　　 disableOnInteraction: false
+//         },
+        // loop: false, // 就是决定是不是无缝轮播 true是无缝轮播 false不是
+      },
+      swiperOptiontwo:{
+        slidesPerView: 1,
+        spaceBetween: 0,
+        centeredSlides: false,
+        slidesPerGroup: 1,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        },
+        // pagination: {
+        //   el : '.swiper-pagination',
+        //   clickable: true
+        // },
+        autoplay: {
+          stopOnLastSlide:true, // 这是让轮播图自动轮播
+　　　　　 /* 触摸滑动后是否继续轮播 */
+　　　　　 disableOnInteraction: false
+        },
+        loop: true, // 就是决定是不是无缝轮播 true是无缝轮播 false不是
       },
       agentNo: '',
       version: '',
@@ -144,7 +301,9 @@ export default {
       readNo: [],
       readNow: {},
       key: 0,
-      now: 0
+      now: 0,
+      setint: null, //消息计时器
+      msg: 'Welcome to Your Vue.js App'
     }
   },
   components: {
@@ -172,8 +331,38 @@ export default {
     this.message()
   },
   mounted () {
+    let that = this;
+      let target = this.$refs.box; 
+      let initLeft = 0;
+      this.setint = setInterval(function(){
+          initLeft ++
+          if(initLeft >= target.offsetWidth ){
+              initLeft = 0
+          }
+          target.style = 'transform: translateX(-'+ initLeft +'px)'             
+      },32)
+      // this.qrcode()
+      this.drawLine()
   },
   methods: {
+    drawLine(){
+        // 基于准备好的dom，初始化echarts实例
+        let myChart = this.$echarts.init(document.getElementById('myChart'))
+        // 绘制图表
+        myChart.setOption({
+            title: { text: '在Vue中使用echarts' },
+            tooltip: {},
+            xAxis: {
+                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20]
+            }]
+        });
+    },
     kkhk(){
       if (this.level<2) {
         this.$message({
@@ -383,6 +572,11 @@ export default {
   beforeDestroy () { // 摧毁新闻公告的定时器 避免持续报错
     let vm = this
     clearInterval(window.dsq)
+  },
+  destroyed() {
+    if (this.setint) {
+      clearInterval(this.setint)
+    }
   },
 }
 </script>

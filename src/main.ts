@@ -8,6 +8,7 @@ import mdata from '../public/js/md5'
 import inputData from '../public/js/input'
 import utils from '../public/js/utils'
 import moment from 'moment'
+import echarts from 'echarts'
 const VueAwesomeSwiper = require('vue-awesome-swiper')
 
 const md5 = require('md5')
@@ -18,12 +19,15 @@ require('element-ui/lib/theme-chalk/index.css')
 require('swiper/dist/css/swiper.css')
 require('../public/css/return.scss')
 require('../public/css/zjh.scss')
+require('../public/css/phj.scss')
 require('../public/css/zy.css')
 
 Vue.use(ElementUI)
 Vue.use(VueAwesomeSwiper)
+Vue.use(echarts)
 // Vue.use(VueJsonp)
 
+Vue.prototype.$echarts = echarts 
 Vue.prototype.$moment = moment // 时间转换js
 Vue.prototype.$md5 = md5 // 加密js
 Vue.prototype.$mdata = mdata // 手写加密方式
