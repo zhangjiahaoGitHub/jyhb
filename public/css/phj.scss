@@ -68,7 +68,6 @@ $big: 2rem;
         height: px2rem(66);
         border-radius: px2rem(33);
         overflow: hidden;
-        background-color: $themeColor;
         margin-right: px2rem(15);
         img {
           width: 100%;
@@ -271,6 +270,9 @@ $big: 2rem;
       .mar-right-fr {
         margin-right: px2rem(20);
       }
+    }
+    #myChart {
+      padding-top: px2rem(20);
     }
   }
   .shop-jy-list {

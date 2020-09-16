@@ -92,7 +92,7 @@
     <div class="top-home-top">
       <div class="legt-title-add">
         <div class="head-img-photo">
-          <img src="" alt="">
+          <img :src="peopleimg" alt="" error="../assets/home/logo.png">
         </div>
         <div class="name-adress">
           <div>王众</div>
@@ -334,7 +334,8 @@ export default {
       now: 0,
       setint: null, //消息计时器
       msg: 'Welcome to Your Vue.js App',
-      arrseven: [] //近七天时间存储
+      arrseven: [], //近七天时间存储
+      peopleimg: ''
     }
   },
   components: {
@@ -460,6 +461,8 @@ export default {
                 },
             }]
         });
+      //建议加上以下这一行代码，不加的效果图如下（当浏览器窗口缩小的时候）。超过了div的界限（红色边框）
+      window.addEventListener('resize',function() {myChart.resize()})
     },
     //计算近七天的时间
     setseven() {
@@ -495,6 +498,11 @@ export default {
       day = d.getDate() - 1;
       let s = (mon < 10 ? ('0' + mon) : mon) + "-" + (day < 10 ? ('0' + day) : day);
       return s;
+    },
+    toimgurl(url,id) {
+      if(url) {
+        this.$router.push({ name: 'ifarme', query: { url: url, title: '详情' } })
+      }
     },
     kkhk(){
       if (this.level<2) {
@@ -581,6 +589,7 @@ export default {
       vm.$http.get(`request.app${url}`)
         .then(res => {
           if (res.data[39] === '00') {
+            vm.peopleimg = res.data[48]
             vm.fullscreenLoading = false
             vm.$stact.dispatch('SetToken', res.data[57]) // 存token
           }
