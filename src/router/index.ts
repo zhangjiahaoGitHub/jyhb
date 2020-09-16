@@ -438,6 +438,15 @@ const routes = [
     component: () => import('../views/my/czjl.vue')
   },
   {
+    path: '/hkjh',
+    name: 'hkjh',
+    meta: {
+      title: '查看计划',
+      bgLeft: true,
+    },
+    component: () => import('../views/my/hkjh.vue')
+  },
+  {
     path: '/change',
     name: 'change',
     meta: {
