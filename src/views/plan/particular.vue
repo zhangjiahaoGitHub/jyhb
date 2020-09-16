@@ -24,7 +24,7 @@
                 </div>
                 <div class='borpaLine half'>
                 <span class='gary'>
-                    已还金额：
+                  ￥已还金额：
                 </span>
                 {{itemList.payed}}
                 </div>
@@ -40,7 +40,7 @@
                 <span class='gary'>
                   当前进度：
                 </span>
-                <span  class='blueColor'>{{itemList.progress}}</span>
+                <span  class='greenColor'>{{itemList.progress}}</span>
                 </div>
             </li>
             <li class='widthExhaustive widthParticular'></li>
@@ -135,8 +135,8 @@
     </div>
     <div class='partSubmit'>
         <div class='allFlex justifyBetween planMargin'>
+            <div class='submitPlan' @click="itemList.STATUS === '10E' || stop(itemList.STATUS)">{{itemList.STATUS !== '10D' ? itemList.STATUS === '10E'? '完成计划' : '停止计划': '开启计划'}}</div>
             <div class='submitPlan' @click='de(itemList.STATUS)'>删除</div>
-            <div class='submitPlan' @click="itemList.STATUS === '10E' || stop(itemList.STATUS)">{{itemList.STATUS !== '10D' ? itemList.STATUS === '10E'? '完成计划' : '暂停计划': '开启计划'}}</div>
         </div>
     </div>
     <div class='bottomLong' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock='fullscreenLoading'></div>
@@ -164,12 +164,15 @@ export default {
       intermediary: 0,
       mervip: '',
       levelObj: {
-        '1': '体验用户',
-        '2': '白银用户',
-        '3': '黄金用户',
-        '4': '铂金用户',
-        '5': '城市合伙人',
-        '6': '运营中心',
+        '1': '普通用户',
+        '2': '经济人',
+        '3': '城市服务商',
+        '4': '城市运营商',
+        '5': '高级合伙人',
+        '6': '达标团队长',
+        '7': '一星团队长',
+        '8': '二星团队长',
+        '9': '三星团队长',
       },
       banks: {
         313003: 'bj',
@@ -199,6 +202,8 @@ export default {
     this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
     if (this.$route.query.cardList) {
       this.cardList = JSON.parse(this.$route.query.cardList)
+    }else{
+      this.cardList = JSON.parse(this.$route.query.item)
     }
     console.log(this.cardList);
     this.itemList = JSON.parse(this.$route.query.item)

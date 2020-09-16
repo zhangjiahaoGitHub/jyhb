@@ -1560,7 +1560,7 @@ $big: 2rem;
 .partStatus{
     padding: px2rem(5) px2rem(22) px2rem(3) px2rem(22);
     border-radius: px2rem(30);
-    background: #FD8032;
+    background: #FD8031;
     color: $white;
     vertical-align: middle;
     margin-right: px2rem(20)
@@ -1570,7 +1570,7 @@ $big: 2rem;
     font-weight: bold;
 }
 .partBlue{
-    background: $blue21x;
+    background: #00A2E9;
 }
 .partHeight{
     min-height: px2rem(160);
@@ -1581,9 +1581,6 @@ $big: 2rem;
 }
 .partSubmit{
     padding:0 px2rem(30)
-}
-.partSubmit .submitPlan{
-    padding: px2rem(30) 0
 }
 .matterWidth{
     width: px2rem(160);
