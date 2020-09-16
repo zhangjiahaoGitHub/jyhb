@@ -24,7 +24,6 @@ require('../public/css/zy.css')
 
 Vue.use(ElementUI)
 Vue.use(VueAwesomeSwiper)
-Vue.use(echarts)
 // Vue.use(VueJsonp)
 
 Vue.prototype.$echarts = echarts 
