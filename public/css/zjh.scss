@@ -2045,3 +2045,79 @@ $big: 2rem;
         margin-top: px2rem(40);
     }
 }
+.inComeList-layout{
+    .headDiv{
+        background: $themeColor;
+        height: px2rem(240);
+        >div{
+            padding: px2rem(20);
+            transform: translateY(20%);
+            >div{
+                background: #fff;
+                border-radius: px2rem(10);
+                ol{
+                    padding: px2rem(20) 0;
+                    display: flex;
+                    border-bottom: 1px solid #EBEBEB;
+                    li{
+                        width: 20%;
+                        text-align: center;
+                        img{
+                            height: px2rem(40);
+                        }
+                        .aP{
+                            color: $themeColor;
+                        }
+                    }
+                }
+                >div{
+                    display: flex;
+                    align-items: center;
+                    input{
+                        text-align: center;
+                        border: none;
+                    }
+                    .el-date-editor{
+                        width: px2rem(200);
+                        input{
+                            padding-right: px2rem(20);
+                        }
+                        .el-input__suffix{
+                            display: none;
+                        }
+                    }
+                    .el-select{
+                        width: px2rem(160);
+                        input{
+                            padding-left: px2rem(20);
+                        }
+                    }
+                    >p{
+                        margin-left: px2rem(10);
+                        span{
+                            color: red;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ul{
+        overflow: auto;
+        height: 18.9rem;
+        margin-top: px2rem(60);
+        padding: 0 px2rem(20);
+        li{
+            background: #fff;
+            padding: px2rem(30) px2rem(20);
+            border-radius: px2rem(10);
+            margin-bottom: px2rem(20);
+            align-items: flex-end;
+            display: flex;
+            justify-content: space-between;
+        }
+        >p{
+            text-align: center;
+        }
+    }
+}

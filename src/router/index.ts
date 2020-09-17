@@ -483,6 +483,15 @@ const routes = [
     component: () => import('../views/my/sqs.vue'),
   },
   {
+    path: '/inComeList',
+    name: 'inComeList',
+    meta: {
+      title: '收益中心',
+      bgLeft: true
+    },
+    component: () => import('../views/my/inComeList.vue'),
+  },
+  {
     path: '/emptyCardCredit',
     name: 'emptyCardCredit',
     meta: {
