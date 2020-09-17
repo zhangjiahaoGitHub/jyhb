@@ -92,7 +92,7 @@
     <div class="top-home-top">
       <div class="legt-title-add">
         <div class="head-img-photo">
-          <img src="" alt="">
+          <img :src="peopleimg" alt="" error="../assets/home/logo.png">
         </div>
         <div class="name-adress">
           <div>王众</div>
@@ -145,7 +145,7 @@
       </swiper>
     </div>
     <div class="swiper">
-      <swiper :options="swiperOption" ref="mySwiper" v-if="bannerList.length" >
+      <swiper :options="swiperOption" ref="mySwiper">
         <swiper-slide class="swiper-slide">
           <div class="icon-tager-box">
             <div class="icon-img-box">
@@ -232,7 +232,37 @@
     </div>
     <div class="shouyi-zhangdan">收益账单</div>
     <div class="echats-box-mes">
-      <div id="myChart" :style="{width: '300px', height: '300px'}"></div>
+      <div class="echarts-type-select">
+        <span class="bottom-bor">近七日</span>
+        <span>本月</span>
+      </div>
+      <div class="setting-rata">
+        <div class="fr-jh">
+          <div class="fr-jh mar-right-fr"><span class="yuandian-lv"></span>分润：0.00</div>
+          <div class="fr-jh"><span class="yuandian-lan"></span>激活：0.00</div>
+        </div>
+        <div>今日交易额：0.00</div>
+      </div>
+      <div id="myChart" :style="{width: '100%', height: '100%'}"></div>
+    </div>
+    <div class="shouyi-zhangdan">鲸鹰商城</div>
+    <div class="shop-jy-list">
+      <div class="list-li">
+        <div class="img-list">
+          <img src="../assets/home/shopimg.png" alt="">
+        </div>
+        <div class="title-con">蒙娜丽莎侧专电</div>
+      </div>
+      <div class="list-li">
+        <div class="img-list">
+          <img src="../assets/home/shopimg.png" alt="">
+        </div>
+        <div class="title-con">蒙娜丽莎侧专电</div>
+      </div>
+    </div>
+    <div class="shouyi-zhangdan">活动专区</div>
+    <div class="hszq-img">
+      <img src="../assets/home/hdzq-img.png" alt="">
     </div>
     <div class='bottomLong'></div>
   </div>
@@ -303,7 +333,9 @@ export default {
       key: 0,
       now: 0,
       setint: null, //消息计时器
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      arrseven: [], //近七天时间存储
+      peopleimg: ''
     }
   },
   components: {
@@ -329,6 +361,8 @@ export default {
     this.banner()
     this.text()
     this.message()
+    //计算近七天的时间
+    this.setseven()
   },
   mounted () {
     let that = this;
@@ -345,23 +379,130 @@ export default {
       this.drawLine()
   },
   methods: {
+    //echarts图
     drawLine(){
+      let vm = this
         // 基于准备好的dom，初始化echarts实例
         let myChart = this.$echarts.init(document.getElementById('myChart'))
         // 绘制图表
         myChart.setOption({
-            title: { text: '在Vue中使用echarts' },
-            tooltip: {},
             xAxis: {
-                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+                type: 'category',
+                data: vm.arrseven,
+                boundaryGap: false,
+                axisTick: {
+                  alignWithLabel: true,
+                  show: true,
+                  interval: '0',
+                  length: '7',
+                },
+                axisLine: {
+                  show: true,
+                  onZero: true
+                },
             },
-            yAxis: {},
+            yAxis: [{
+              type: 'value',
+              data: ['0', '0.2', '0.4', '0.6', '0.8', '1.0'],
+              axisLine: {
+                show: false,
+                onZero: true
+              },
+              axisTick: {
+                show: false,
+                alignWithLabel: true,
+              },
+              min: 0,
+              max: 1.0,
+              splitNumber: 6,
+              interval: 0.2,
+            },
+            {
+              type: 'value',
+              data: ['0', '0.2', '0.4', '0.6', '0.8', '1.0',],
+              axisLine: {
+                show: false,
+                onZero: true
+              },
+              axisTick: {
+                show: false,
+                alignWithLabel: true,
+              },
+              splitLine:{//去除网格线
+                show:false
+              },
+              min: 0,
+              max: 1.0,
+              splitNumber: 6,
+              interval: 0.2
+            }],
             series: [{
-                name: '销量',
-                type: 'bar',
-                data: [5, 20, 36, 10, 10, 20]
+                data: [0, 0.3, 0.2, 0.4, 1, 0.2,0.3],
+                type: 'line',
+                itemStyle: {
+                  normal: {
+                    color: '#07C161', //改变折线点的颜色
+                    lineStyle: {
+                      color: '#07C161' //改变折线颜色
+                    }
+                  }
+                },
+              },
+            {
+                data: [0.2, 0.3, 0.6, 0.2, 0.8, 0.5,0.2],
+                type: 'line',
+                itemStyle: {
+                  normal: {
+                    color: '#078FC1', //改变折线点的颜色
+                    lineStyle: {
+                      color: '#078FC1' //改变折线颜色
+                    }
+                  }
+                },
             }]
         });
+      //建议加上以下这一行代码，不加的效果图如下（当浏览器窗口缩小的时候）。超过了div的界限（红色边框）
+      window.addEventListener('resize',function() {myChart.resize()})
+    },
+    //计算近七天的时间
+    setseven() {
+      let vm = this
+      for(let i = 0; i > -7; i--) {
+        if(i == -6) {
+          vm.arrseven.reverse()
+          vm.arrseven.push('今天')
+        }else {
+          vm.arrseven.push(vm.getBeforeDate(i))
+        }
+      }
+    },
+    //计算近七天的时间
+    getBeforeDate(n) {
+      let i = n
+      console.log(i)//
+      let d = new Date();
+      let year = d.getFullYear();
+      let mon = d.getMonth() + 1;
+      let day = d.getDate();
+      if(day <= i) {
+        if(mon > 1) {
+          mon = mon - 1;
+        } else {
+          year = year - 1;
+          mon = 12;
+        }
+      }
+      d.setDate(d.getDate() + i); //很重要，+n取得是前一天的时间
+      year = d.getFullYear();
+      mon = d.getMonth() + 1;
+      day = d.getDate() - 1;
+      let s = (mon < 10 ? ('0' + mon) : mon) + "-" + (day < 10 ? ('0' + day) : day);
+      return s;
+    },
+    toimgurl(url,id) {
+      if(url) {
+        this.$router.push({ name: 'ifarme', query: { url: url, title: '详情' } })
+      }
     },
     kkhk(){
       if (this.level<2) {
@@ -448,6 +589,7 @@ export default {
       vm.$http.get(`request.app${url}`)
         .then(res => {
           if (res.data[39] === '00') {
+            vm.peopleimg = res.data[48]
             vm.fullscreenLoading = false
             vm.$stact.dispatch('SetToken', res.data[57]) // 存token
           }

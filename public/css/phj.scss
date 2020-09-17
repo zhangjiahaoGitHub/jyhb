@@ -68,7 +68,6 @@ $big: 2rem;
         height: px2rem(66);
         border-radius: px2rem(33);
         overflow: hidden;
-        background-color: $themeColor;
         margin-right: px2rem(15);
         img {
           width: 100%;
@@ -220,7 +219,94 @@ $big: 2rem;
   }
   .echats-box-mes {
     margin: px2rem(20) px2rem(30);
+    margin-top: px2rem(0);
     background-color: #fff;
     border-radius: px2rem(10);
+    height: px2rem(537);
+    padding-bottom: px2rem(100);
+    .echarts-type-select {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 px2rem(180);
+      padding-top: px2rem(10);
+      span {
+        padding: px2rem(20) 0;
+      }
+      .bottom-bor {
+        color: $themeColor;
+        border-bottom: px2rem(4) solid $themeColor;
+      }
+    }
+    .setting-rata {
+      display: flex;
+      align-items: center;
+      padding: 0 px2rem(20);
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      height: 0;
+      top: px2rem(60);
+      .fr-jh {
+        display: flex;
+        align-items: center;
+        .yuandian-lv {
+          display: inline-block;
+          width: px2rem(16);
+          height: px2rem(16);
+          border-radius: 50%;
+          background-color: $themeColor;
+          margin-right: px2rem(10);
+        }
+        .yuandian-lan {
+          display: inline-block;
+          width: px2rem(16);
+          height: px2rem(16);
+          border-radius: 50%;
+          background-color: #078FC1;
+          margin-right: px2rem(10);
+        }
+      }
+      .mar-right-fr {
+        margin-right: px2rem(20);
+      }
+    }
+    #myChart {
+      padding-top: px2rem(20);
+    }
+  }
+  .shop-jy-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 px2rem(30);
+    .list-li {
+      width: 48.5%;
+      border-radius: px2rem(10);
+      padding-bottom: px2rem(10);
+      overflow: hidden;
+      background-color: #fff;
+      .img-list {
+        width: 100%;
+        img {
+          width: 100%;
+          vertical-align: bottom;
+        }
+      }
+      .title-con {
+        padding: px2rem(10);
+        font-size: px2rem(30);
+        color: #000;
+      }
+    }
+  }
+  .hszq-img {
+    margin: 0 px2rem(30);
+    border-radius: px2rem(10);
+    overflow: hidden;
+    img {
+      width: 100%;
+      vertical-align: bottom;
+    }
   }
 }

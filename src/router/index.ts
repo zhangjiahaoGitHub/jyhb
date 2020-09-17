@@ -733,7 +733,8 @@ const routes = [
     name: 'ifarme',
     meta: {
       title: '协议',
-      bgBlue: true
+      bgBlue: true,
+      bgLeft: true
     },
     component: () => import('../views/ifarme.vue')
   },
