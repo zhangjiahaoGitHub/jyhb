@@ -468,21 +468,19 @@ const routes = [
     path: '/transactionRecord',
     name: 'transactionRecord',
     meta: {
-      title: '交易明细',
-      bgBlue: true
+      title: '交易记录',
+      bgLeft: true
     },
     component: () => import('../views/my/transactionRecord.vue'),
-    children: [
-      {
-        path: '/transactionInfo',
-        name: 'transactionInfo',
-        meta: {
-          title: '交易详情',
-          bgBlue: true
-        },
-        component: () => import('../views/my/transactionInfo.vue')
-      },
-    ]
+  },
+  {
+    path: '/sqs',
+    name: 'sqs',
+    meta: {
+      title: '授权证书',
+      bgLeft: true
+    },
+    component: () => import('../views/my/sqs.vue'),
   },
   {
     path: '/emptyCardCredit',
