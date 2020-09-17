@@ -44,7 +44,7 @@
       <div class="itemDiv">
         <p>社交专区</p>
         <ul>
-          <li><img src="../../assets/my/pyq.png" alt=""><p>朋友圈</p></li>
+          <li @click="toCool"><img src="../../assets/my/pyq.png" alt=""><p>朋友圈</p></li>
           <li><img src="../../assets/my/wdtd.png" alt=""><p>我的团队</p></li>
           <li><img src="../../assets/my/wdkf.png" alt=""><p>我的客服</p></li>
           <li><img src="../../assets/my/czsp.png" alt=""><p>操作视频</p></li>
@@ -158,6 +158,14 @@ export default {
     this.message()
   },
   methods: {
+    toCool () {
+      this.$router.push({
+        name: 'cool',
+        query: {
+          tx: this.imageUrl
+        }
+      })
+    },
     toHtmlIframe () {
       this.$router.push({ name: 'htmlIframe', query: { html: this.htmlIframe, title: '用户协议' } })
     },
