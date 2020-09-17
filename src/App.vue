@@ -13,7 +13,7 @@
       <div v-else-if="$route.meta.bgTitle" class="pageTitle">
         {{$route.meta.title}}
       </div>
-      <div v-else-if="$route.meta.title" class="pageTitle">
+      <div v-else-if="$route.meta.title" :class="$route.meta.income ?'tranpant pageTitle' : 'pageTitle'">
         {{$route.meta.title}}
       </div>
       <keep-alive>

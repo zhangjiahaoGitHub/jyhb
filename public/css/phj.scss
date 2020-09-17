@@ -343,3 +343,123 @@ $big: 2rem;
     }
   }
 }
+.income-style {
+  padding-top: 0;
+  .bg-box {
+    padding-top: px2rem(85);
+    background: url(../../src/assets/home//sy-bg.png) bottom center no-repeat;
+    background-size: 100% px2rem(350);
+    height: px2rem(265);
+    text-align: center;
+    color: #fff;
+    .mysy {
+      padding-top: px2rem(20);
+      font-size: px2rem(26);
+    }
+    .jine-mysy {
+      font-size: px2rem(72);
+      padding: px2rem(10) 0;
+    }
+    .benyue-price {
+      font-size: px2rem(26);
+    }
+  }
+  .flex-shouyi-betw {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    background-color: $themeColor;
+    padding: px2rem(20) 0;
+    .flex-box-lr {
+      flex: 0.5;
+      color: #fff;
+      div {
+        font-size: px2rem(26);
+      }
+      .price-t {
+        font-size: px2rem(32);
+        margin-bottom: px2rem(10);
+      }
+    }
+  }
+  .list-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: px2rem(20) 0;
+    background-color: #fff;
+    color: #777777;
+    font-size: px2rem(26);
+    border-bottom: 1px solid #E5E5E5;
+    .hezi-flex {
+      flex: 0.5;
+      text-align: center;
+      position: relative;
+      .price {
+        font-size: px2rem(36);
+        color: #333333;
+        padding-bottom: px2rem(10);
+      }
+      .dingwei-right {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: px2rem(20);
+        font-size: px2rem(36);
+      }
+    }
+    .shu {
+      display: inline-block;
+      height: px2rem(60);
+      background-color: #E5E5E5;
+      width: px2rem(2);
+    }
+  }
+}
+.tranpant {
+  background: transparent !important;
+}
+.incomeList-style {
+  .xuanzhuan {
+    transform: rotate(-90deg);
+    font-size: px2rem(30);
+  }
+  .hezi-box-sy {
+    padding: px2rem(20) px2rem(30);
+    .title-time {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 px2rem(30);
+      font-size: px2rem(30);
+      .price-r {
+        color: $themeColor;
+      }
+    }
+    .detail-box {
+      background-color: #fff;
+      padding: px2rem(30);
+      box-sizing: border-box;
+      margin-top: px2rem(20);
+      .title-top-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: px2rem(30);
+      }
+      .detail-list {
+        background-color: #F5F5F5;
+        padding: px2rem(20) px2rem(30);
+        padding-bottom: px2rem(1);
+        box-sizing: border-box;
+        margin-top: px2rem(20);
+        .list-row {
+          display: flex;
+          justify-content: space-between;
+          font-size: px2rem(26);
+          margin-bottom: px2rem(20);
+        }
+      }
+    }
+  }
+}

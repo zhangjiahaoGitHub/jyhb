@@ -1,21 +1,39 @@
 <template>
-    <div class='hundred incomeList-layout' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock="fullscreenLoading">
-      <div><span>总收益</span><span>￥{{zsy}}</span></div>
-      <ul>
-        <li v-for="(item,index) in listArr" :key="index">
-          <div>
-            <p>{{item.createTime}}</p>
-            <span v-if="type!=5">{{item.merchantCnName}}</span>
+    <div class='hundred incomeList-style' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock="fullscreenLoading">
+      <div v-if="$route.meta.incomeList" class="pageTitle">
+        <i @click="goTop" class="el-icon-arrow-left bs"></i>
+        {{$route.query.title}}({{ryry}})
+        <span class="rightCorner xuanzhuan" @click.stop="changery"><i class="el-icon-sort"></i></span>
+      </div>
+      <div v-if="$route.query.type == '1'">
+        <div class="hezi-box-sy">
+          <div class="title-time">
+            <div>2019/06收益</div>
+            <div class="price-r">6.44</div>
           </div>
-          <div>
-            <p style="color:#333;">{{item.moneyType}}</p>
-            <span v-if="type!=8 && item.money">交易金额:{{item.money}}</span>
+          <div class="detail-box">
+            <div class="title-top-bottom" @click.stop="openshow(1)">
+              <div>收益明细</div>
+              <i class="el-icon-arrow-down" v-show="openindex != 1"></i>
+              <i class="el-icon-arrow-up" v-show="openindex == 1"></i>
+            </div>
+            <div class="detail-list" v-show="openindex == 1">
+              <div class="list-row">
+                <div>余额代还</div>
+                <div>0.56</div>
+              </div>
+              <div class="list-row">
+                <div>余额代还</div>
+                <div>0.56</div>
+              </div>
+              <div class="list-row">
+                <div>余额代还</div>
+                <div>0.56</div>
+              </div>
+            </div>
           </div>
-          <span>+{{item.trxAmt}}</span>
-        </li>
-        <p v-if="loading">加载中...</p>
-        <p v-if="noMore">没有更多了</p>
-      </ul>
+        </div>
+      </div>
     </div>
 </template>
 <script>
@@ -23,25 +41,13 @@
 export default {
   data () {
     return {
-      fullscreenLoading: false,
       version: '',
       merchantNo: '',
       agentNo: '',
-      count: 30,
-      loading: false,
       fullscreenLoading: false,
-      listArr: [],
-      pageCount: 1,
-      zsy: 0,
-      type: 0,
-    }
-  },
-  computed: {
-    noMore () {
-      return this.count < 20
-    },
-    disabled () {
-      return this.loading || this.noMore
+      openindex: 0,
+      cahngeflag: false,
+      ryry: ''
     }
   },
   created () {
@@ -49,12 +55,30 @@ export default {
     this.agentNo = this.$stact.state.agentNo
     this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
     this.type = this.$route.query.type
-    this.list()
+    // this.list()
+    this.changery()
   },
   methods: {
-    load () {
-      this.loading = true
-      this.list()
+    goTop() {
+      this.$router.go(-1)
+    },
+    openshow(index) {
+      if(this.openindex == index) {
+        this.openindex = -1
+      }else {
+        this.openindex = index
+      }
+    },
+    changery() {
+      let vm = this
+      this.cahngeflag = !this.cahngeflag
+      if(vm.$route.query.type == '1') {
+        if(vm.cahngeflag) {
+          vm.ryry = '日'
+        }else {
+          vm.ryry = '月'
+        }
+      }
     },
     list () {
       let vm = this
@@ -73,14 +97,6 @@ export default {
           this.loading=false
           vm.fullscreenLoading = false
           if (res.data[39] === '00') {
-            this.zsy = res.data[44]
-            vm.count = JSON.parse(res.data[57]).length
-            let dataArr = JSON.parse(res.data[57])
-            dataArr.forEach(item => {
-              this.listArr.push(item)
-            });
-            console.log(this.listArr);
-            this.pageCount++
           }else{
             vm.$message({
               message: res.data[39],

@@ -1,60 +1,81 @@
 <template>
-    <div class='hundred income-layout' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock="fullscreenLoading">
-      <div>
-        <div>
-          <p>可提现收益</p>
-          <span>￥{{ktxsy}}</span>
-        </div>
-        <span @click="$router.push({name: 'withdraw',query: {ktx: ktxsy}})">立即提现</span>
+    <div class='hundred income-style' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock="fullscreenLoading">
+      <div class="bg-box">
+        <div class="mysy">我的今日收益(元)</div>
+        <div class="jine-mysy">68800003.00</div>
+        <div class="benyue-price" @click.stop="toincomeList('1','收益额')">本月总收益(元)：300.00 <i class="el-icon-arrow-right"></i></div>
       </div>
-      <ol>
-        <li>
-          <span>{{jrsy}}</span>
-          <p>今日收益</p>
-        </li>
-        <li>
-          <span>{{bysy}}</span>
-          <p>本月收益</p>
-        </li>
-        <li>
-          <span>{{sysy}}</span>
-          <p>上月收益</p>
-        </li>
-      </ol>
-      <ul>
-        <li @click="$router.push({name: 'incomeList',query:{ title: '全部类型', type: '1'}})">
-          <img src="../../assets/income/qblx.png" alt="">
-          <p>全部类型</p>
-        </li>
-        <li @click="$router.push({name: 'incomeList',query:{ title: '养卡分润', type: '2'}})">
-          <img src="../../assets/income/ykfr.png" alt="">
-          <p>养卡分润</p>
-        </li>
-        <li @click="$router.push({name: 'incomeList',query:{ title: '空卡分润', type: '3'}})">
-          <img src="../../assets/income/kkfr.png" alt="">
-          <p>空卡分润</p>
-        </li>
-        <li @click="$router.push({name: 'incomeList',query:{ title: '刷卡分润', type: '4'}})">
-          <img src="../../assets/income/skfr.png" alt="">
-          <p>刷卡分润</p>
-        </li>
-        <li @click="$router.push({name: 'incomeList',query:{ title: '花呗分润', type: '5'}})">
-          <img src="../../assets/income/hbfr.png" alt="">
-          <p>花呗分润</p>
-        </li>
-        <li @click="$router.push({name: 'incomeList',query:{ title: '升级返佣', type: '6'}})">
-          <img src="../../assets/income/sjfy.png" alt="">
-          <p>升级返佣</p>
-        </li>
-        <li @click="$router.push({name: 'incomeList',query:{ title: '网申返佣', type: '7'}})">
-          <img src="../../assets/income/wsfy.png" alt="">
-          <p>网申返佣</p>
-        </li>
-        <li @click="$router.push({name: 'incomeList',query:{ title: '激活奖', type: '8'}})">
-          <img src="../../assets/income/jhj.png" alt="">
-          <p>激活奖</p>
-        </li>
-      </ul>
+      <div class="flex-shouyi-betw" @click.stop="toincomeList('2','激活返佣')">
+        <div class="flex-box-lr">
+          <div class="price-t">68800.00</div>
+          <div>总交易分润(元)</div>
+        </div>
+        <div class="flex-box-lr">
+          <div class="price-t">68800.00</div>
+          <div>总活动返佣(元)</div>
+        </div>
+      </div>
+      <div class="list-row">
+        <div class="hezi-flex">
+          <div class="price">2.0</div>
+          <div>今日激活返佣(元)</div>
+        </div>
+        <span class="shu"></span>
+        <div class="hezi-flex">
+          <div class="price">2.0</div>
+          <div>本月激活返佣(元)</div>
+          <i class="el-icon-arrow-right dingwei-right"></i>
+        </div>
+      </div>
+      <div class="list-row">
+        <div class="hezi-flex">
+          <div class="price">2.0</div>
+          <div>今日激活(人)</div>
+        </div>
+        <span class="shu"></span>
+        <div class="hezi-flex">
+          <div class="price">2.0</div>
+          <div>本月激活(人)</div>
+          <i class="el-icon-arrow-right dingwei-right"></i>
+        </div>
+      </div>
+      <div class="list-row">
+        <div class="hezi-flex">
+          <div class="price">2.0</div>
+          <div>今日实名返佣(元)</div>
+        </div>
+        <span class="shu"></span>
+        <div class="hezi-flex">
+          <div class="price">2.0</div>
+          <div>本月实名返佣(元)</div>
+          <i class="el-icon-arrow-right dingwei-right"></i>
+        </div>
+      </div>
+      <div class="list-row">
+        <div class="hezi-flex">
+          <div class="price">2.0</div>
+          <div>今日实名(人)</div>
+        </div>
+        <span class="shu"></span>
+        <div class="hezi-flex">
+          <div class="price">2.0</div>
+          <div>本月实名(人)</div>
+          <i class="el-icon-arrow-right dingwei-right"></i>
+        </div>
+      </div>
+      <div class="list-row">
+        <div class="hezi-flex">
+          <div class="price">2.0</div>
+          <div>今日交易额(元)</div>
+        </div>
+        <span class="shu"></span>
+        <div class="hezi-flex">
+          <div class="price">2.0</div>
+          <div>本月交易额(元)</div>
+          <i class="el-icon-arrow-right dingwei-right"></i>
+        </div>
+      </div>
+      <div class='bottomLong'></div>
     </div>
 </template>
 <script>
@@ -76,9 +97,12 @@ export default {
     this.version = this.$stact.state.version
     this.agentNo = this.$stact.state.agentNo
     this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
-    this.getData()
+    // this.getData()
   },
   methods: {
+    toincomeList(type,title) {
+      this.$router.push({name: 'incomeList',query: {type: type,title: title}})
+    },
     getData () {
       let vm = this
       let parmas = {
@@ -93,11 +117,7 @@ export default {
         .then(res => {
           vm.fullscreenLoading = false
           if (res.data[39] === '00') {
-            console.log(res.data);
-            this.ktxsy = res.data[43]
-            this.jrsy = res.data[44]
-            this.bysy = res.data[33]
-            this.sysy = res.data[34]
+            
           }
         })
         .catch(err => {

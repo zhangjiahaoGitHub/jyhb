@@ -146,7 +146,7 @@ const routes = [
     name: 'income',
     meta: {
       title: '收益',
-      haveTitle: true,
+      income: true,
       navShow: true
     },
     component: () => import('../views/income/income.vue')
@@ -156,7 +156,7 @@ const routes = [
     name: 'incomeList',
     meta: {
       title: '',
-      bgBlue: true,
+      incomeList: true,
     },
     component: () => import('../views/income/incomeList.vue')
   },
