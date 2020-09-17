@@ -3,10 +3,18 @@
     <ul>
       <li v-for="item in listArr" :key="item.id">
         <div>
-          <p>{{statusArr[item.status]}}</p>
-          <span>{{item.formatTime}}</span>
+          <p>申请提现</p>
+          <p>￥{{item.trxAmt}}</p>
         </div>
-        <span>-{{item.trxAmt}}</span>
+        <div>
+          <p>申请时间</p>
+          <p>{{item.formatTime}}</p>
+        </div>
+        <div>
+          <p>申请状态</p>
+          <span class="cg" v-if="item.status=='10C'">提现成功</span>
+          <span class="sb" v-if="item.status=='10A'">提现失败</span>
+        </div>
       </li>
     </ul>
   </div>

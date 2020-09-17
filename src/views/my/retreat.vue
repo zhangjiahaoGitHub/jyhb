@@ -1,29 +1,18 @@
 <template>
-  <div class='hundred retreat-layout'>
-    <div class="headDiv">
-      <span>{{bankDetail}}</span>
-      <span>尾号{{bankAccount.substring(bankAccount.length-4,bankAccount.length)}}的储蓄卡</span>
-      <span>[到账银行卡]</span>
+  <div class='hundred retreat-layout' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock="fullscreenLoading">
+    <div class="cardDiv">
+      <p>结算卡<img :src="banks[bankCode] ? require(`../../assets/bank/${banks[bankCode]}.png`):require(`../../assets/bank/yl.png`)" alt="">{{bankDetail}}</p>
+      <span>尾号{{bankAccount.substring(bankAccount.length-4,bankAccount.length)}}</span>
     </div>
-    <div class="contentDiv">
-      <span>提现金额</span>
+    <div class="planDiv">
+      <p>提现金额</p>
       <div>
-        <input type="number" placeholder="请输入提现金额" v-model='money' @input='IsMoney()'>
-        <span @click='allGet'>全部提现</span>
+        ￥<input type="number" placeholder="请输入金额" v-model='money' @input='IsMoney()'>
       </div>
-      <p>当前余额：{{team[43]}}</p>
+      <p>账户余额：{{team[43]}}<span @click="money=team[43]">全部提现</span></p>
     </div>
-    <div class="titleDiv">
-      <ul>
-        <li>提现手续费：3.00/笔</li>
-        <li>提现金额：50元</li>
-        <li>单笔额度：5000元</li>
-        <li>提现时间：8:00-22:00</li>
-      </ul>
-    </div>
-    <div class="btnDiv">
-      <div @click='getMoney'>立即提现</div>
-    </div>
+    <p>提现手续费：{{team[25]}}元/笔，{{team[26]}}元起提</p>
+    <div @click="getMoney" class="btnDiv">信用分提现</div>
   </div>
 </template>
 <script>
@@ -65,6 +54,9 @@ export default {
     this.version = this.$stact.state.version
     this.agentNo = this.$stact.state.agentNo
     this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
+    this.bankDetail = JSON.parse(this.$stact.state.token)[0].bankDetail
+    this.bankAccount = JSON.parse(this.$stact.state.token)[0].bankAccount
+    this.bankCode = JSON.parse(this.$stact.state.token)[0].bankCode
     this.message()
   },
   mounted () {
@@ -95,16 +87,18 @@ export default {
         '59': vm.version
       }
       let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
+      this.fullscreenLoading = true
       vm.$http.get(`request.app${url}`)
         .then(res => {
+          this.fullscreenLoading = false
           if (res.data[39] === '00') {
             vm.$stact.dispatch('SetToken', res.data[57]) // 存token
             vm.team = res.data
-            this.bankDetail = JSON.parse(res.data[57])[0].bankDetail
-            this.bankAccount = JSON.parse(res.data[57])[0].bankAccount
+            console.log(this.team);
           }
         })
         .catch(err => {
+          this.fullscreenLoading = false
           console.log(err)
         })
     },
@@ -120,32 +114,12 @@ export default {
         })
         return
       }
-      if (Number(vm.money) < 50) {
-        vm.$message({
-          message: '单笔提现金额需大于50元',
-          center: true,
-          offset: 30,
-          duration: 2500,
-          type: 'warning'
-        })
-        return
-      }
-      if (Number(vm.money) > Number(vm.team[43])) {
-        vm.$message({
-          message: '提现金额超额',
-          center: true,
-          offset: 30,
-          duration: 2500,
-          type: 'warning'
-        })
-        return
-      }
       let parmas = {
         '0': '0700',
         '3': '190888',
         '5': vm.money,
-        '8': '10B',
         '42': vm.merchantNo,
+        '43': '10B',
         '59': vm.version
       }
       let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
@@ -161,7 +135,7 @@ export default {
               duration: 2500,
               type: 'success'
             })
-            vm.$router.push({ name: 'my' })
+            this.$router.back()
           } else {
             vm.$message({
               message: res.data[39],

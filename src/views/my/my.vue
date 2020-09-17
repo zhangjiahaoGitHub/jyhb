@@ -38,7 +38,7 @@
           <li @click="$router.push({name:'transactionRecord'})"><img src="../../assets/my/jyjl.png" alt=""><p>交易记录</p></li>
           <li @click="$router.push({name:'sqs'})"><img src="../../assets/my/sqs.png" alt=""><p>授权书</p></li>
           <li @click="$router.push({name:'inComeList'})"><img src="../../assets/my/syjl.png" alt=""><p>收益记录</p></li>
-          <li><img src="../../assets/my/wdqb.png" alt=""><p>我的钱包</p></li>
+          <li @click="$router.push({name:'retreat'})"><img src="../../assets/my/wdqb.png" alt=""><p>我的钱包</p></li>
         </ul>
       </div>
       <div class="itemDiv">

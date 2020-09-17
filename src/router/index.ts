@@ -412,9 +412,9 @@ const routes = [
     path: '/retreat',
     name: 'retreat',
     meta: {
-      title: '佣金提现',
-      left: true,
-      withdraw: true
+      title: '提现',
+      bgLeft: true,
+      retreat: true,
     },
     component: () => import('../views/my/retreat.vue')
   },
@@ -587,7 +587,7 @@ const routes = [
     name: 'withdrawRecord',
     meta: {
       title: '提现记录',
-      bgBlue: true
+      bgLeft: true
     },
     component: () => import('../views/my/withdrawRecord.vue')
   },
