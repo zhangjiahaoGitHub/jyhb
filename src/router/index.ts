@@ -412,9 +412,9 @@ const routes = [
     path: '/retreat',
     name: 'retreat',
     meta: {
-      title: '佣金提现',
-      left: true,
-      withdraw: true
+      title: '提现',
+      bgLeft: true,
+      retreat: true,
     },
     component: () => import('../views/my/retreat.vue')
   },
@@ -468,21 +468,28 @@ const routes = [
     path: '/transactionRecord',
     name: 'transactionRecord',
     meta: {
-      title: '交易明细',
-      bgBlue: true
+      title: '交易记录',
+      bgLeft: true
     },
     component: () => import('../views/my/transactionRecord.vue'),
-    children: [
-      {
-        path: '/transactionInfo',
-        name: 'transactionInfo',
-        meta: {
-          title: '交易详情',
-          bgBlue: true
-        },
-        component: () => import('../views/my/transactionInfo.vue')
-      },
-    ]
+  },
+  {
+    path: '/sqs',
+    name: 'sqs',
+    meta: {
+      title: '授权证书',
+      bgLeft: true
+    },
+    component: () => import('../views/my/sqs.vue'),
+  },
+  {
+    path: '/inComeList',
+    name: 'inComeList',
+    meta: {
+      title: '收益中心',
+      bgLeft: true
+    },
+    component: () => import('../views/my/inComeList.vue'),
   },
   {
     path: '/emptyCardCredit',
@@ -580,7 +587,7 @@ const routes = [
     name: 'withdrawRecord',
     meta: {
       title: '提现记录',
-      bgBlue: true
+      bgLeft: true
     },
     component: () => import('../views/my/withdrawRecord.vue')
   },

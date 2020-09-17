@@ -94,9 +94,9 @@ export default {
         '59': vm.version
       }
       let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
+      this.fullscreenLoading = true
       vm.$http.get(`request.app${url}`)
         .then(res => {
-          this.loading=false
           vm.fullscreenLoading = false
           if (res.data[39] === '00') {
             this.$set(this,'listArr',JSON.parse(res.data[57]))
@@ -104,6 +104,7 @@ export default {
           }
         })
         .catch(err => {
+          vm.fullscreenLoading = false
           console.log(err)
         })
     },

@@ -1,115 +1,90 @@
 <template>
   <div class='hundred transactionRecord-layout' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock="fullscreenLoading">
-    <div class="headDiv">
-      <p>交易总额(元)</p>
-      <span>{{jyze}}</span>
-      <ol>
-        <li>
-          <p>七日交易总笔数(笔)</p>
-          <span>{{qrbs}}</span>
+    <div class="head"></div>
+    <div class="content">
+      <div class="planDiv">
+        <ol>
+          <li @click="search('WK')">
+            <img :src="type == 'WK' ? require('../../assets/my/jyjl/skjla.png'):require('../../assets/my/jyjl/skjl.png')" alt="">
+            <span :class="type == 'WK' ? 'aSpan':''">刷卡记录</span>
+          </li>
+          <li @click="search('YK')">
+            <img :src="type == 'YK' ? require('../../assets/my/jyjl/ylhka.png'):require('../../assets/my/jyjl/ylhk.png')" alt="">
+            <span :class="type == 'YK' ? 'aSpan':''">预留还款</span>
+          </li>
+          <li @click="search('QYK')">
+            <img :src="type == 'QYK' ? require('../../assets/my/jyjl/kkhka.png'):require('../../assets/my/jyjl/kkhk.png')" alt="">
+            <span :class="type == 'QYK' ? 'aSpan':''">空卡还款</span>
+          </li>
+        </ol>
+        <div>
+          <div>
+            <div>
+              <el-date-picker
+                @change="search()"
+                value-format="yyyy"
+                format="yyyy年"
+                size="mini"
+                v-model="year"
+                type="year"
+                placeholder="">
+              </el-date-picker>
+              <el-select @change="search()" v-model="month" size="mini" placeholder="">
+                <el-option
+                  v-for="item in monthOptions"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+            </div>
+            <p>总金额：<span>{{dataObj.totalMoney}}</span></p>
+          </div>
+          <div>
+            <p>总消费：<span>{{dataObj.totalConsumption}}</span></p>
+            <p>总还款：<span>{{dataObj.totalRepayment}}</span></p>
+          </div>
+        </div>
+      </div>
+      <div v-if="type=='WK'" class="styleOne">
+        <ol>
+          <li>日期</li>
+          <li>交易金额（元）</li>
+          <li>交易状态</li>
+        </ol>
+        <ul
+          v-infinite-scroll="load"
+          infinite-scroll-disabled="disabled"
+          infinite-scroll-distance='20'>
+          <li v-for="(item,index) in listArr" :key="index">
+            <p>{{item.completeTime}}</p>
+            <p>{{item.trxAmt}}</p>
+            <span>{{item.status}}</span>
+          </li>
+          <p v-if="loading">加载中...</p>
+          <p v-if="noMore">没有更多了</p>
+        </ul>
+      </div>
+      <ul 
+        v-else
+        v-infinite-scroll="load"
+        infinite-scroll-disabled="disabled"
+        infinite-scroll-distance='20'>
+        <li v-for="(item,index) in listArr" :key="index">
+          <img :src="banks[item.bankCode]?require(`../../assets/bank/${banks[item.bankCode]}.png`):require('../../assets/bank/yl.png')" alt="">
+          <div>
+            <p>{{item.bankName}}(尾号{{item.bankTailNumber}})</p>
+            <span :class="item.status=='还款' ? 'hk':'xf'">{{item.status}}</span>
+          </div>
+          <div>
+            <p>{{item.completeTime}}</p>
+            <p>金额：{{item.trxAmt}}</p>
+          </div>
         </li>
-        <span></span>
-        <li>
-          <p>七日交易总额(元)</p>
-          <span>{{qrze}}</span>
-        </li>
-      </ol>
+        <p v-if="loading">加载中...</p>
+        <p v-if="noMore">没有更多了</p>
+      </ul>
     </div>
-    <el-tabs :stretch='true' v-model="activeName" @tab-click="handleClick">
-      <el-tab-pane label="代还" name="first">
-        <ul
-        v-infinite-scroll="load1"
-        infinite-scroll-disabled="disabled1"
-        infinite-scroll-distance='20'>
-          <li @click="toTransactionInfo(item)" v-for="item in listArr1" :key="item.id">
-            <p>{{item.completeTimeString}}</p><span>{{item.tradeTypeName}}</span><p>{{item.statusName}}</p><span>{{item.trxAmt}}</span>
-          </li>
-          <p v-if="loading1">加载中...</p>
-          <p v-if="noMore1">没有更多了</p>
-        </ul>
-      </el-tab-pane>
-      <el-tab-pane label="快捷" name="second">
-        <ul
-        v-infinite-scroll="load2"
-        infinite-scroll-disabled="disabled2"
-        infinite-scroll-distance='20'>
-          <li @click="toTransactionInfo(item)" v-for="item in listArr2" :key="item.id">
-            <div>{{item.completeTimeString}} <span>{{item.tradeTypeName}}</span> {{item.statusName}}</div>
-            <span>{{item.trxAmt}}</span>
-          </li>
-          <p v-if="loading1">加载中...</p>
-          <p v-if="noMore1">没有更多了</p>
-        </ul>
-      </el-tab-pane>
-    </el-tabs>
-    <router-view></router-view>
-    <!-- <el-tabs v-model="activeName" @tab-click="handleClick">
-      <el-tab-pane label="个人交易记录" name="first">
-        <div class="headDiv">
-          <p>个人总流水（元）</p>
-          <div>
-            <div>
-              <em></em>
-              <span>刷卡</span>
-              <p>{{sk1}}</p>
-            </div>
-            <div>
-              <span>养卡</span>
-              <p>{{yk1}}</p>
-            </div>
-          </div>
-        </div>
-        <ul
-        v-infinite-scroll="load1"
-        infinite-scroll-disabled="disabled1"
-        infinite-scroll-distance='20'>
-          <li v-for="(item,index) in listArr1" :key="index">
-            <div>
-              <p>{{item.tradeTypeName}}</p>
-              <span>{{item.completeTimeString}}</span>
-            </div>
-            <div>
-              <p>{{item.trxAmt}}</p>
-            </div>
-          </li>
-          <p v-if="loading1">加载中...</p>
-          <p v-if="noMore1">没有更多了</p>
-        </ul>
-      </el-tab-pane>
-      <el-tab-pane label="团队交易记录" name="second" element-loading-background="rgba(0, 0, 0, 0.7)">
-        <div class="headDiv">
-          <p>团队总流水（元）</p>
-          <div>
-            <div>
-              <em></em>
-              <span>刷卡</span>
-              <p>{{sk2}}</p>
-            </div>
-            <div>
-              <span>养卡</span>
-              <p>{{yk2}}</p>
-            </div>
-          </div>
-        </div>
-        <ul
-        v-infinite-scroll="load2"
-        infinite-scroll-disabled="disabled2"
-        infinite-scroll-distance='20'>
-          <li v-for="(item,index) in listArr2" :key="index">
-            <div>
-              <p>{{tradeTypeArr[item.trade_type]}}</p>
-              <span>{{item.MOBILE.substring(0,3)}}****{{item.MOBILE.substring(item.MOBILE.length-4,item.MOBILE.length)}}</span>
-            </div>
-            <div>
-              <p>{{item.TRX_AMT}}</p>
-              <span>{{item.formatTime}}</span>
-            </div>
-          </li>
-          <p v-if="loading2">加载中...</p>
-          <p v-if="noMore2">没有更多了</p>
-        </ul>
-      </el-tab-pane>
-    </el-tabs> -->
   </div>
 </template>
 <script>
@@ -117,150 +92,152 @@ export default {
   data () {
     return {
       fullscreenLoading: false,
-      jyze: '0.00',
-      qrbs: 0,
-      qrze: '0.00',
-      activeName: 'first',
       version: '',
       agentNo: '',
       merchantNo: '',
-      usermerchantNo: '',
-      count1: 20,
-      loading1: false,
-      listArr1: [],
-      pageCount1: 1,
-      count2: 20,
-      loading2: false,
-      listArr2: [],
-      pageCount2: 1
+      count: 20,
+      loading: false,
+      listArr: [],
+      pageCount: 1,
+      banks: {
+        313003: 'bj',
+        303: 'gd',
+        306: 'gf',
+        105: 'js',
+        301: 'jt',
+        305: 'ms',
+        103: 'ny',
+        307: 'pa',
+        309: 'xy',
+        310: 'pf',
+        403: 'yz',
+        308: 'zs',
+        102: 'gs',
+        104: 'zg',
+        302: 'zx',
+        313062: 'sh',
+        304: 'hx'
+      },
+      monthOptions: [
+        {
+          label: '01月',
+          value: '01',
+        },
+        {
+          label: '02月',
+          value: '02',
+        },
+        {
+          label: '03月',
+          value: '03',
+        },
+        {
+          label: '04月',
+          value: '04',
+        },
+        {
+          label: '05月',
+          value: '05',
+        },
+        {
+          label: '06月',
+          value: '06',
+        },
+        {
+          label: '07月',
+          value: '07',
+        },
+        {
+          label: '08月',
+          value: '08',
+        },
+        {
+          label: '09月',
+          value: '09',
+        },
+        {
+          label: '10月',
+          value: '10',
+        },
+        {
+          label: '11月',
+          value: '11',
+        },
+        {
+          label: '12月',
+          value: '12',
+        },
+      ],
+      year: '',
+      month: '01',
+      type: 'WK',
+      dataObj: {}
     }
   },
   computed: {
-    noMore1 () {
-      return this.count1 < 10
+    noMore () {
+      return this.count < 10
     },
-    disabled1 () {
-      return this.loading1 || this.noMore1
-    },
-    noMore2 () {
-      return this.count2 < 10
-    },
-    disabled2 () {
-      return this.loading2 || this.noMore2
+    disabled () {
+      return this.loading || this.noMore
     }
   },
   created () {
     this.version = this.$stact.state.version
     this.agentNo = this.$stact.state.agentNo
     this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
-    this.usermerchantNo = this.$route.query.merchantNo
-    if (this.usermerchantNo) {
-      this.merchantNo = this.usermerchantNo
-    }
+    this.year = this.$moment().format('YYYY')
+    this.month = this.$moment().format('MM')
   },
   methods: {
-    toTransactionInfo(item) {
-      this.$router.push({
-        name: 'transactionInfo',
-        query: {
-          item: JSON.stringify(item)
-        }
-      })
-    },
-    handleClick(tab, event) {
-      console.log(tab, event);
-      if (tab.name == 'second') {
-        this.count2 = 20
-        this.listArr2 = []
-        this.pageCount2 = 1
-        this.load2()
-      }else{
-        this.count1 = 20
-        this.listArr1 = []
-        this.pageCount1 = 1
-        this.load1()
+    search(type){
+      if (type) {
+        this.type=type
       }
+      this.pageCount=1
+      this.listArr=[]
+      this.count=20
+      this.load()
     },
-    load1 () {
-      this.loading1 = true
-      this.personal()
+    load () {
+      this.loading = true
+      this.list()
     },
-    load2 () {
-      this.loading2 = true
-      this.team()
-    },
-    personal () {
+    list () {
       let vm = this
       let parmas = {
         '0': '0700',
         '3': '190978',
-        '8': 'YK',
+        '8': this.type,
         '42': vm.merchantNo,
-        '45': vm.pageCount1,
+        '43': '2',
+        '44': `${this.year}-${this.month}`,
+        // 页码
+        '45': this.pageCount,
         '59': vm.version
       }
       let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
-      this.fullscreenLoading = true
       vm.$http.get(`request.app${url}`)
         .then(res => {
-          this.loading1=false
-          this.fullscreenLoading = false
+          this.loading=false
+          vm.fullscreenLoading = false
           if (res.data[39] === '00') {
-            console.log(res.data);
-            this.jyze = res.data[11]
-            this.qrze = res.data[12]
-            this.qrbs = res.data[13]
-            vm.count1 = JSON.parse(res.data[57]).length
-            let getList = JSON.parse(res.data[57])
+            this.dataObj = JSON.parse(res.data[57])
+            console.log(this.dataObj);
+            vm.count = this.dataObj.orderPaymentList.length
+            let getList = this.dataObj.orderPaymentList
             getList.forEach(item => {
-              this.listArr1.push(item)
+              this.listArr.push(item)
             });
-            console.log(this.listArr1);
+            console.log(this.listArr);
             
-            this.pageCount1++
+            this.pageCount++
           }
         })
         .catch(err => {
-          this.fullscreenLoading = false
           console.log(err)
         })
     },
-    team () {
-      let vm = this
-      let parmas = {
-        '0': '0700',
-        '3': '190978',
-        '8': 'WK',
-        '42': vm.merchantNo,
-        '45': vm.pageCount2,
-        '59': vm.version
-      }
-      let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
-      this.fullscreenLoading = true
-      vm.$http.get(`request.app${url}`)
-        .then(res => {
-          this.fullscreenLoading = false
-          this.loading2=false
-          if (res.data[39] === '00') {
-            console.log(res.data);
-            this.jyze = res.data[11]
-            this.qrze = res.data[12]
-            this.qrbs = res.data[13]
-            vm.count2 = JSON.parse(res.data[57]).length
-            let getList = JSON.parse(res.data[57])
-            getList.forEach(item => {
-              this.listArr2.push(item)
-            });
-            console.log(this.listArr2);
-            
-            this.pageCount2++
-          }
-        })
-        .catch(err => {
-          this.fullscreenLoading = false
-          console.log(err)
-        })
-    }
   }
 }
 </script>

@@ -215,6 +215,7 @@ export default {
   methods: {
     list () {
       let vm = this
+      this.fullscreenLoading = true
       let parmas = {
         '0': '0700',
         '3': '190213',
@@ -224,6 +225,7 @@ export default {
       let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
       vm.$http.get(`request.app${url}`)
         .then(res => {
+          this.fullscreenLoading = false
           if (res.data[39] === '00') {
             this.listMore = JSON.parse(res.data[57])
             this.number = res.data[8]
@@ -231,6 +233,7 @@ export default {
           }
         })
         .catch(err => {
+          this.fullscreenLoading = false
           console.log(err)
         })
     },
