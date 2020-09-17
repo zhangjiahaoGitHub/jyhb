@@ -2208,3 +2208,115 @@ $big: 2rem;
         }
     }
 }
+.cool-layout{
+    .head{
+        position: relative;
+        img{
+            &:first-child{
+                width: 100%;
+                height: px2rem(360);
+            }
+            &:last-child{
+                position: absolute;
+                width: px2rem(180);
+                height: px2rem(180);
+                z-index: 1;
+                bottom: px2rem(-100);
+                right: px2rem(40);
+            }
+        }
+    }
+    ul{
+        overflow: auto;
+        margin-top: px2rem(80);
+        height: 15.9rem;
+        >li{
+            padding: px2rem(40);
+            border-bottom: 1px solid #ededed;
+            >div{
+                display: flex;
+                align-items: flex-start;
+                img{
+                    width: px2rem(100);
+                    height: px2rem(100);
+                    margin-right: px2rem(40);
+                }
+                div{
+                    color: #808080;
+                    display: flex;
+                    flex-direction: column;
+                    p{
+                        margin-bottom: px2rem(20);
+                        font-size: $five;
+                    }
+                    .hideP{
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 3;
+                        -webkit-box-orient: vertical;
+                    }
+                }
+            }
+            >ol{
+                display: flex;
+                flex-wrap: wrap;
+                padding-left: px2rem(120);
+                li{
+                    margin-top: px2rem(20);
+                    width: px2rem(160);
+                    height: px2rem(160);
+                    overflow: hidden;
+                    border-radius: px2rem(10);
+                    margin-left: px2rem(20);
+                    img{
+                        width: 100%;
+                    }
+                }
+            }
+            >p{
+                text-align: right;
+                margin-top: px2rem(40);
+                span{
+                    display: inline-block;
+                    color: #808080;
+                    border: 1px solid #808080;
+                    border-radius: px2rem(10);
+                    padding: px2rem(4) px2rem(10);
+                }
+            }
+        }
+        >p{
+            text-align: center;
+        }
+    }
+    .imgPopDiv{
+        position: fixed;
+        z-index: 201;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background: rgba($color: #000000, $alpha: 1);
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        >div{
+            position: relative;
+            width: px2rem(600);
+            >img{
+                width: 100%;
+            }
+            div{
+                position: absolute;
+                bottom: px2rem(20);
+                right: px2rem(20);
+                img{
+                    width: 84px;
+                    height: 84px;
+                }
+            }
+        }
+    }
+}

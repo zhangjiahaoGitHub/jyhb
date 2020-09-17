@@ -723,8 +723,8 @@ const routes = [
     path: '/cool',
     name: 'cool',
     meta: {
-      title: '酷友圈',
-      bgBlue: true
+      title: '朋友圈',
+      bgLeft: true
     },
     component: () => import('../views/Information/cool.vue')
   },
