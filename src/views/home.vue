@@ -92,16 +92,16 @@
     <div class="top-home-top">
       <div class="legt-title-add">
         <div class="head-img-photo">
-          <img :src="peopleimg" alt="" error="../assets/home/logo.png">
+          <img :src="peopleimg ? peopleimg : require('../assets/head.png')" alt="" error="../assets/home/logo.png">
         </div>
         <div class="name-adress">
-          <div>王众</div>
+          <div>{{userName}}</div>
           <div class="adress-icon"><img src="../assets/home/dizhiicon.png" alt=""> 上海市</div>
         </div>
       </div>
       <div class="legt-title-add">
-        <span class="real-box"><img src="../assets/home/home-real.png" alt=""> 已实名</span>
-        <img class="message-icon" src="../assets/home/message.png" alt="">
+        <span class="real-box"><img src="../assets/home/home-real.png" alt="">{{freezeStatus == '10B' ? '已实名' : '未实名'}}</span>
+        <img class="message-icon" src="../assets/home/message.png" alt="" @click="()=>{this.$router.push({name:'message'})}">
       </div>
     </div>
     <div class="return-three">
@@ -127,9 +127,10 @@
     
     <div class="notece-laba">
       <img class="img-laba" src="../assets/gonggao-laba.png" alt="">
-      <div class="closetext" @click.stop="newsDetail">
+      <div class="closetext" @click="()=>{this.$router.push({name:'message'})}">
         <div class="inner-shadow" ref="box">
-          <span>暂时还诶有，写死的</span>
+          <span v-if="hasRead == 0">{{newsList[0].content}}</span>
+          <span v-else>暂无公告</span>
           <!-- <span v-if="hasread == 0" class="hongyuanyuan"></span> -->
         </div>
       </div>
@@ -238,30 +239,30 @@
       </div>
       <div class="setting-rata">
         <div class="fr-jh">
-          <div class="fr-jh mar-right-fr"><span class="yuandian-lv"></span>分润：0.00</div>
-          <div class="fr-jh"><span class="yuandian-lan"></span>激活：0.00</div>
+          <div class="fr-jh mar-right-fr"><span class="yuandian-lv"></span>分润：{{frallprice}}</div>
+          <div class="fr-jh"><span class="yuandian-lan"></span>激活：{{jhallprice}}</div>
         </div>
-        <div>今日交易额：0.00</div>
+        <div>今日交易额：{{jrallprice}}</div>
       </div>
       <div id="myChart" :style="{width: '100%', height: '100%'}"></div>
     </div>
     <div class="shouyi-zhangdan">鲸鹰商城</div>
     <div class="shop-jy-list">
-      <div class="list-li">
+      <div class="list-li" @click.stop="zwkf">
         <div class="img-list">
           <img src="../assets/home/shopimg.png" alt="">
         </div>
-        <div class="title-con">蒙娜丽莎侧专电</div>
+        <div class="title-con">蒙娜丽莎瓷砖店</div>
       </div>
-      <div class="list-li">
+      <div class="list-li" @click.stop="zwkf">
         <div class="img-list">
           <img src="../assets/home/shopimg.png" alt="">
         </div>
-        <div class="title-con">蒙娜丽莎侧专电</div>
+        <div class="title-con">蒙娜丽莎瓷砖店</div>
       </div>
     </div>
     <div class="shouyi-zhangdan">活动专区</div>
-    <div class="hszq-img">
+    <div class="hszq-img" @click.stop="hdzq">
       <img src="../assets/home/hdzq-img.png" alt="">
     </div>
     <div class='bottomLong'></div>
@@ -335,12 +336,19 @@ export default {
       setint: null, //消息计时器
       msg: 'Welcome to Your Vue.js App',
       arrseven: [], //近七天时间存储
-      peopleimg: ''
+      arrseventwo: [],
+      peopleimg: '',
+      frallprice: '',
+      jhallprice: '',
+      jrallprice: '',
+      frarrseven: [],
+      frarrprice: [],
+      jharrseven: [],
+      jharrprice: [],
+      userName: ''
     }
   },
   components: {
-  },
-  watch: {
   },
   created () {
     this.version = this.$stact.state.version
@@ -349,6 +357,7 @@ export default {
     this.freezeStatus = JSON.parse(this.$stact.state.token)[0].freezeStatus
     this.level = JSON.parse(this.$stact.state.token)[0].level
     this.isIntermediary = JSON.parse(this.$stact.state.token)[0].isIntermediary
+    this.userName = JSON.parse(this.$stact.state.token)[0].merchantCnName
     this.popImg = localStorage.getItem('homePopImg')
     
     if (sessionStorage.getItem('imgPopShow')) {
@@ -363,6 +372,7 @@ export default {
     this.message()
     //计算近七天的时间
     this.setseven()
+    this.getshouyizd()
   },
   mounted () {
     let that = this;
@@ -378,6 +388,14 @@ export default {
       // this.qrcode()
       this.drawLine()
   },
+    watch: {
+    frarrseven (n,o) {
+      if(n.length > 0) {
+        console.log(n);
+        this.drawLine()
+      }
+    }
+  },
   methods: {
     //echarts图
     drawLine(){
@@ -392,7 +410,7 @@ export default {
                 boundaryGap: false,
                 axisTick: {
                   alignWithLabel: true,
-                  show: true,
+                  show: false,
                   interval: '0',
                   length: '7',
                 },
@@ -412,10 +430,10 @@ export default {
                 show: false,
                 alignWithLabel: true,
               },
-              min: 0,
-              max: 1.0,
-              splitNumber: 6,
-              interval: 0.2,
+              // min: 0,
+              // max: 1.0,
+              // splitNumber: 6,
+              // interval: 0.2,
             },
             {
               type: 'value',
@@ -434,10 +452,10 @@ export default {
               min: 0,
               max: 1.0,
               splitNumber: 6,
-              interval: 0.2
+              // interval: 0.2
             }],
             series: [{
-                data: [0, 0.3, 0.2, 0.4, 1, 0.2,0.3],
+                data: vm.frarrprice.length > 0 ? vm.frarrprice : [0,0,0,0,0,0,0],
                 type: 'line',
                 itemStyle: {
                   normal: {
@@ -449,7 +467,7 @@ export default {
                 },
               },
             {
-                data: [0.2, 0.3, 0.6, 0.2, 0.8, 0.5,0.2],
+                data: vm.jharrprice.length > 0 ? vm.jharrprice : [0,0,0,0,0,0,0],
                 type: 'line',
                 itemStyle: {
                   normal: {
@@ -498,6 +516,9 @@ export default {
       day = d.getDate() - 1;
       let s = (mon < 10 ? ('0' + mon) : mon) + "-" + (day < 10 ? ('0' + day) : day);
       return s;
+    },
+    hdzq() {
+      this.$router.push({name: 'hdzq'})
     },
     toimgurl(url,id) {
       if(url) {
@@ -599,6 +620,66 @@ export default {
           console.log(err)
         })
     },
+    getshouyizd () {
+      let vm = this
+      let parmas = {
+        '0': '0700',
+        '3': '690042',
+        '42': vm.merchantNo,
+        '43': '0',
+        '59': vm.version
+      }
+      let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
+      vm.fullscreenLoading = true
+      vm.$http.get(`request.app${url}`)
+        .then(res => {
+          if (res.data[39] === '00') {
+            vm.fullscreenLoading = false
+            //分润总额
+            vm.frallprice = res.data[13]
+            //激活总额
+            vm.jhallprice = res.data[14]
+            //今日交易总额
+            vm.jrallprice = res.data[12]
+            //分润总额列表
+            let frlist = JSON.parse(res.data[10])
+            if(frlist.length > 0) {
+              for(let i in frlist) {
+                vm.frarrseven.push(frlist[i].dateTime)
+                vm.frarrprice.push(frlist[i].sumMoney)
+              }
+            }
+            
+            if(vm.frarrseven.length == 8) {
+              vm.frarrseven.shift()
+              vm.frarrseven.pop()
+              vm.frarrseven.push('今天')
+
+              vm.frarrprice.shift()
+            }
+            //激活列表
+            let jhlist = JSON.parse(res.data[11])
+            if(jhlist.length > 0) {
+              for(let i in jhlist) {
+                vm.jharrseven.push(jhlist[i].dateTime)
+                vm.jharrprice.push(jhlist[i].sumMoney)
+              }
+            }
+            if(vm.jharrseven.length == 8) {
+              vm.jharrseven.shift()
+              vm.jharrseven.pop()
+              vm.jharrseven.push('今天')
+
+              vm.jharrprice.shift()
+            }
+            console.log(vm.jharrseven.length)
+          }
+        })
+        .catch(err => {
+          vm.fullscreenLoading = false
+          console.log(err)
+        })
+    },
     banner () {
       let vm = this
       let parmas = {
@@ -650,17 +731,7 @@ export default {
                 if (item.hasRead==0) {
                   this.hasRead=0
                 }
-              });
-              clearInterval(window.dsq)
-              let newsP=document.querySelector('#newsP')
-              if (newsP) {
-                window.dsq=setInterval(() => {
-                  newsP.style=`left:${newsP.offsetLeft-1}px`
-                  if (newsP.offsetLeft+newsP.offsetWidth==0) {
-                    newsP.style=`left:0px`
-                  }
-                }, 50);
-              }
+              })
             }
           } else {
             

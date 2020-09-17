@@ -968,11 +968,20 @@ const routes = [
     component: () => import('../views/plan/preview.vue')
   },
   {
+    path: '/hdzq',
+    name: 'hdzq',
+    meta: {
+      title: '活动专区',
+      bgLeft: true,
+    },
+    component: () => import('../views/hdzq.vue')
+  },
+  {
     path: '/message',
     name: 'message',
     meta: {
       title: '公告',
-      bgBlue: true
+      bgLeft: true
     },
     component: () => import('../views/Information/message.vue'),
     children: [
@@ -981,7 +990,7 @@ const routes = [
         name: 'messageInfo',
         meta: {
           title: '公告详情',
-          bgBlue: true
+          bgLeft: true
         },
         component: () => import('../views/Information/messageInfo.vue')
       },
