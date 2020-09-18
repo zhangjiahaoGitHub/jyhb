@@ -62,7 +62,7 @@
       <div class="itemDiv">
         <p>功能专区</p>
         <ul>
-          <li><img src="../../assets/my/bzzx.png" alt=""><p>帮助中心</p></li>
+          <li @click="$router.push({name: 'helpCenter'})"><img src="../../assets/my/bzzx.png" alt=""><p>帮助中心</p></li>
           <li><img src="../../assets/my/szzx.png" alt=""><p>设置中心</p></li>
           <li><img src="../../assets/my/xxzx.png" alt=""><p>消息中心</p></li>
           <li><img src="../../assets/my/gywm.png" alt=""><p>关于我们</p></li>
@@ -171,42 +171,6 @@ export default {
     },
     toNewIframe(){
       this.$router.push({ name: 'imgIframe', query: { url: this.syms, title: '收益模式' } })
-    },
-    signIn () {
-      let vm = this
-      let parmas = {
-        '0': '0700',
-        '3': '190942',
-        '42': vm.merchantNo,
-        '59': vm.version
-      }
-      let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
-      vm.fullscreenLoading = true
-      vm.$http.get(`request.app${url}`)
-        .then(res => {
-          this.isSign = true
-          if (res.data[39] == '00') {
-            vm.$message({
-              message: '签到成功',
-              center: true,
-              offset: 30,
-              duration: 2000,
-              type: 'success'
-            })
-          }else{
-            vm.$message({
-              message: res.data[39],
-              center: true,
-              offset: 30,
-              duration: 2000,
-              type: 'success'
-            })
-          }
-        })
-        .catch(err => {
-          vm.fullscreenLoading = false
-          console.log(err)
-        })
     },
     notYetOpen () {
       this.$message({

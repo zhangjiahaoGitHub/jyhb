@@ -537,6 +537,24 @@ const routes = [
     component: () => import('../views/my/czsp.vue')
   },
   {
+    path: '/helpCenter',
+    name: 'helpCenter',
+    meta: {
+      title: '帮助中心',
+      bgLeft: true
+    },
+    component: () => import('../views/my/helpCenter.vue')
+  },
+  {
+    path: '/helpCenterInfo',
+    name: 'helpCenterInfo',
+    meta: {
+      title: '',
+      bgLeft: true
+    },
+    component: () => import('../views/my/helpCenterInfo.vue')
+  },
+  {
     path: '/signIn',
     name: 'signIn',
     meta: {

@@ -2612,3 +2612,56 @@ $big: 2rem;
         }
     }
 }
+.helpCenter-layout{
+    ol{
+        display: flex;
+        background: #fff;
+        li{
+            width: 50%;
+            box-sizing: border-box;
+            padding: px2rem(20);
+            text-align: center;
+            font-size: $four;
+        }
+        .aLi{
+            color: $themeColor;
+            border-bottom: 2px solid $themeColor;
+        }
+    }
+    ul{
+        padding: px2rem(20) px2rem(30);
+        li{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+            padding: px2rem(20);
+            border-radius: px2rem(10);
+            i{
+                color: #c7c7c7;
+            }
+        }
+    }
+}
+.helpCenterInfo-layout{
+    .content{
+        padding: px2rem(20);
+        height: 100%;
+        box-sizing: border-box;
+        >p{
+            background: #fff;
+            border-bottom: 1px solid #ebebeb;
+            padding: px2rem(30) px2rem(20);
+            font-size: $four;
+            border-radius: px2rem(10) px2rem(10) 0 0;
+        }
+        >div{
+            padding: px2rem(10) px2rem(20);
+            background: #fff;
+            border-radius: 0 0 px2rem(10) px2rem(10);
+            img{
+                width: px2rem(460);
+            }
+        }
+    }
+}
