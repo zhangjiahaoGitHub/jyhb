@@ -239,7 +239,7 @@ const routes = [
     name: 'team',
     meta: {
       title: '我的团队',
-      bgBlue: true
+      bgLeft: true
     },
     component: () => import('../views/my/team.vue'),
     children: [
@@ -248,7 +248,7 @@ const routes = [
         name: 'teamItem',
         meta: {
           title: '',
-          bgBlue: true
+          bgLeft: true
         },
         component: () => import('../views/my/teamItem.vue')
       },

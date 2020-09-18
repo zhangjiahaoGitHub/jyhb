@@ -1,95 +1,125 @@
 <template>
     <div class='hundred team-layout' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock='fullscreenLoading'>
-      <div class="headDiv">
-        <div class="firstDiv">
-          <p>我的<span>{{khs}}</span>客户</p>
+      <div class="head">
+        <p @click="activeName=1" :class="activeName==1 ? 'aP':''">我的团队</p>
+        <p @click="activeName=2" :class="activeName==2 ? 'aP':''">我的客户</p>
+      </div>
+      <div class="content">
+        <div>
+          <p><img src="../../assets/my/myTeam/wdtd.png" alt=""></p>
+          <span>客户数量：{{dataObj[19]}}</span>
         </div>
         <ol>
           <li>
-            <div>
-              <p>{{sjtgName}}</p>
-              <p v-if="sjtgPhone.length>10">{{sjtgPhone.substring(0,3)}}****{{sjtgPhone.substring(sjtgPhone.length-4,sjtgPhone.length)}}</p>
-              <p v-else>{{sjtgPhone}}</p>
-            </div>
+            <img src="../../assets/my/myTeam/tjr.png" alt="">
+            <p>{{sjtgName}}</p>
+            <p>{{sjtgPhone.substring(0,3)}}****{{sjtgPhone.substring(sjtgPhone.length-4,sjtgPhone.length)}}</p>
           </li>
           <li>
-            <div>
-              <p>{{sjdlName}}</p>
-              <p>{{sjdlPhone.substring(0,3)}}****{{sjdlPhone.substring(sjdlPhone.length-4,sjdlPhone.length)}}</p>
-            </div>
+            <img src="../../assets/my/myTeam/gfpt.png" alt="">
+            <p>{{sjdlName}}</p>
+            <p>{{sjdlPhone.substring(0,3)}}****{{sjdlPhone.substring(sjdlPhone.length-4,sjdlPhone.length)}}</p>
           </li>
         </ol>
+        <ul>
+          <div v-if="activeName==1">
+            <li @click="$router.push({name: 'teamItem',query: {title: '普通会员',level: 1,}})" v-if="dataObj[31]>0">
+              <div>
+                <p>
+                  <img src="../../assets/my/myTeam/l1.png" alt="">
+                </p>
+                <div>
+                  <p>{{dataObj[31]}}</p>
+                  <span>普通会员</span>
+                </div>
+              </div>
+              <p>今日新增<span>{{dataObj[34]}}</span></p>
+            </li>
+            <li @click="$router.push({name: 'teamItem',query: {title: '经纪人',level: 2,}})" v-if="dataObj[32]>0">
+              <div>
+                <p>
+                  <img src="../../assets/my/myTeam/l2.png" alt="">
+                </p>
+                <div>
+                  <p>{{dataObj[32]}}</p>
+                  <span>经纪人</span>
+                </div>
+              </div>
+              <p>今日新增<span>{{dataObj[35]}}</span></p>
+            </li>
+            <li @click="$router.push({name: 'teamItem',query: {title: '城市服务商',level: 3,}})" v-if="dataObj[33]>0">
+              <div>
+                <p>
+                  <img src="../../assets/my/myTeam/l3.png" alt="">
+                </p>
+                <div>
+                  <p>{{dataObj[33]}}</p>
+                  <span>城市服务商</span>
+                </div>
+              </div>
+            </li>
+            <li @click="$router.push({name: 'teamItem',query: {title: '城市运营商',level: 4,}})" v-if="dataObj[36]>0">
+              <div>
+                <p>
+                  <img src="../../assets/my/myTeam/l4.png" alt="">
+                </p>
+                <div>
+                  <p>{{dataObj[36]}}</p>
+                  <span>城市运营商</span>
+                </div>
+              </div>
+            </li>
+            <li @click="$router.push({name: 'teamItem',query: {title: '高级合伙人',level: 5,}})" v-if="dataObj[37]>0">
+              <div>
+                <p>
+                  <img src="../../assets/my/myTeam/l5.png" alt="">
+                </p>
+                <div>
+                  <p>{{dataObj[37]}}</p>
+                  <span>高级合伙人</span>
+                </div>
+              </div>
+            </li>
+            <li @click="$router.push({name: 'teamItem',query: {title: '经纪人',level: 6,}})" v-if="dataObj[38]>0">
+              <div>
+                <p>
+                  <img src="../../assets/my/myTeam/l6.png" alt="">
+                </p>
+                <div>
+                  <p>{{dataObj[38]}}</p>
+                  <span>达标团队长</span>
+                </div>
+              </div>
+            </li>
+          </div>
+          <div v-else>
+            <li @click="$router.push({name: 'teamItem',query: {title: '直推会员',level: 10,}})" v-if="dataObj[21]>0">
+              <div>
+                <p>
+                  <img src="../../assets/my/myTeam/l10.png" alt="">
+                </p>
+                <div>
+                  <p>{{dataObj[21]}}</p>
+                  <span>直推会员</span>
+                </div>
+              </div>
+              <p>今日新增<span>{{dataObj[22]}}</span></p>
+            </li>
+            <li @click="$router.push({name: 'teamItem',query: {title: '间推会员',level: 11,}})" v-if="dataObj[23]>0">
+              <div>
+                <p>
+                  <img src="../../assets/my/myTeam/l11.png" alt="">
+                </p>
+                <div>
+                  <p>{{dataObj[23]}}</p>
+                  <span>间推会员</span>
+                </div>
+              </div>
+              <p>今日新增<span>{{dataObj[24]}}</span></p>
+            </li>
+          </div>
+        </ul>
       </div>
-      <el-tabs :stretch='true' v-model="activeName" @tab-click="handleClick">
-        <el-tab-pane label="我的团队" name="first">
-          <ul>
-            <li @click="$router.push({name: 'teamItem',query: {title: '体验用户',level: 1,type: '10A',jzt: true}})">
-              <div>
-                <img src="../../assets/my/myTeam/tyyh.png" alt="">
-                体验用户
-              </div>
-              <span>{{tys}}</span>
-              <p>今日新增<em>{{tyxzs}}</em><i class="el-icon-arrow-right"></i></p>
-            </li>
-            <li @click="$router.push({name: 'teamItem',query: {title: '白银用户',level: 2,type: '10A',jzt: true}})">
-              <div>
-                <img src="../../assets/my/myTeam/by.png" alt="">
-                白银用户
-              </div>
-              <span>{{bys}}</span>
-              <p>今日新增<em>{{byxzs}}</em><i class="el-icon-arrow-right"></i></p>
-            </li>
-            <li @click="$router.push({name: 'teamItem',query: {title: '黄金用户',level: 3,type: '10A',jzt: true}})">
-              <div>
-                <img src="../../assets/my/myTeam/hjyh.png" alt="">
-                黄金用户
-              </div>
-              <p>{{hjs}}<i class="el-icon-arrow-right"></i></p>
-            </li>
-            <li @click="$router.push({name: 'teamItem',query: {title: '铂金用户',level: 4,type: '10A',jzt: true}})">
-              <div>
-                <img src="../../assets/my/myTeam/bjyh.png" alt="">
-                铂金用户
-              </div>
-              <p>{{bjs}}<i class="el-icon-arrow-right"></i></p>
-            </li>
-            <li @click="$router.push({name: 'teamItem',query: {title: '城市合伙人',level: 5,type: '10A',jzt: true}})">
-              <div>
-                <img src="../../assets/my/myTeam/cshhr.png" alt="">
-                钻石用户
-              </div>
-              <p>{{cshhrs}}<i class="el-icon-arrow-right"></i></p>
-            </li>
-            <li @click="$router.push({name: 'teamItem',query: {title: '运营中心',level: 6,type: '10A',jzt: true}})">
-              <div>
-                <img src="../../assets/my/myTeam/yyzx.png" alt="">
-                领航者
-              </div>
-              <p>{{yyzxs}}<i class="el-icon-arrow-right"></i></p>
-            </li>
-          </ul>
-        </el-tab-pane>
-        <el-tab-pane label="我的客户" name="second">
-          <ul>
-            <li @click="$router.push({name: 'teamItem',query: {title: '直推会员',level: 1,type: '10B'}})">
-              <div>
-                <img src="../../assets/my/myTeam/zthy.png" alt="">
-                直推会员
-              </div>
-              <span>{{zthys}}</span>
-              <p>今日新增<em class="aEm">{{zthyxzs}}</em><i class="el-icon-arrow-right"></i></p>
-            </li>
-            <li @click="$router.push({name: 'teamItem',query: {title: '间推会员',level: 2,type: '10B'}})">
-              <div>
-                <img src="../../assets/my/myTeam/jthy.png" alt="">
-                间推会员
-              </div>
-              <span>{{jthys}}</span>
-              <p>今日新增<em class="aEm">{{jthyxzs}}</em><i class="el-icon-arrow-right"></i></p>
-            </li>
-          </ul>
-        </el-tab-pane>
-      </el-tabs>
       <router-view></router-view>
     </div>
 </template>
@@ -107,20 +137,8 @@ export default {
       sjtgPhone: '',
       sjdlName: '',
       sjdlPhone: '',
-      khs: 0,
-      tys: 0,
-      tyxzs: 0,
-      bys: 0,
-      byxzs: 0,
-      hjs: 0,
-      bjs: 0,
-      cshhrs: 0,
-      yyzxs: 0,
-      zthys: 0,
-      zthyxzs: 0,
-      jthys: 0,
-      jthyxzs: 0,
-      activeName: 'first',
+      dataObj: {},
+      activeName: '1',
       fullscreenLoading: false,
     }
   },
@@ -159,19 +177,7 @@ export default {
             this.sjtgPhone = res.data[18].split(',')[1]
             this.sjdlName = res.data[25].split(',')[0]
             this.sjdlPhone = res.data[25].split(',')[1]
-            this.khs = res.data[19]
-            this.tys = res.data[31]
-            this.tyxzs = res.data[34]
-            this.bys = res.data[32]
-            this.byxzs = res.data[35]
-            this.hjs = res.data[33]
-            this.bjs = res.data[36]
-            this.cshhrs = res.data[37]
-            this.yyzxs = res.data[38]
-            this.zthys = res.data[21]
-            this.zthyxzs = res.data[22]
-            this.jthys = res.data[23]
-            this.jthyxzs = res.data[24]
+            this.dataObj = res.data
           }
         })
         .catch(err => {

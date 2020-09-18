@@ -45,7 +45,7 @@
         <p>社交专区</p>
         <ul>
           <li @click="toCool"><img src="../../assets/my/pyq.png" alt=""><p>朋友圈</p></li>
-          <li><img src="../../assets/my/wdtd.png" alt=""><p>我的团队</p></li>
+          <li @click="$router.push({name: 'team'})"><img src="../../assets/my/wdtd.png" alt=""><p>我的团队</p></li>
           <li><img src="../../assets/my/wdkf.png" alt=""><p>我的客服</p></li>
           <li><img src="../../assets/my/czsp.png" alt=""><p>操作视频</p></li>
         </ul>
@@ -124,7 +124,7 @@ export default {
       agentNo: '',
       levelObj: {
         '1': '普通用户',
-        '2': '经济人',
+        '2': '经纪人',
         '3': '城市服务商',
         '4': '城市运营商',
         '5': '高级合伙人',
