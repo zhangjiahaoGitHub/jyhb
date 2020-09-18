@@ -577,7 +577,7 @@ const routes = [
     name: 'setting',
     meta: {
       title: '设置',
-      bgBlue: true,
+      bgLeft: true,
     },
     component: () => import('../views/my/setting.vue')
   },
@@ -1117,16 +1117,34 @@ const routes = [
     name: 'changepaw',
     meta: {
       title: '修改密码',
-      bgBlue: true
+      bgLeft: true
     },
     component: () => import('../views/changepaw.vue')
+  },
+  {
+    path: '/zhgl',
+    name: 'zhgl',
+    meta: {
+      title: '账号管理',
+      bgLeft: true
+    },
+    component: () => import('../views/my/zhgl.vue')
+  },
+  {
+    path: '/addZh',
+    name: 'addZh',
+    meta: {
+      title: '添加账号',
+      bgLeft: true
+    },
+    component: () => import('../views/my/addZh.vue')
   },
   {
     path: '/editPhone',
     name: 'editPhone',
     meta: {
       title: '修改手机号',
-      bgBlue: true
+      bgLeft: true
     },
     component: () => import('../views/my/editPhone.vue')
   },

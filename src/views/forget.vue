@@ -27,34 +27,6 @@
     <div class="btnDiv">
       <div @click="forget()">确定</div>
     </div>
-    <!-- <ul>
-      <li>
-        <input v-model='phone' type="number" placeholder="请输入手机号">
-      </li>
-      <li>
-        <input v-model='code' type="text" placeholder="请输入短信验证码">
-        <span @click="time <= 0 ? getCode() : ''">{{text}}</span>
-      </li>
-      <li v-if="checkedOne">
-        <img @click="()=>{this.checkedOne = false}" src="../assets/registerLogin/hideEye.png" alt="">
-        <input v-model='password' type="password" placeholder="请输入8-16位数字+字母组合密码">
-      </li>
-      <li v-else>
-        <img @click="()=>{this.checkedOne = true}" src="../assets/registerLogin/openEye.png" alt="">
-        <input v-model='password' type="text" placeholder="请输入8-16位数字+字母组合密码">
-      </li>
-      <li v-if="checkedTwo">
-        <img @click="()=>{this.checkedTwo = false}" src="../assets/registerLogin/hideEye.png" alt="">
-        <input v-model='confirmPassword' type="password" placeholder="请再次输入密码">
-      </li>
-      <li v-else>
-        <img @click="()=>{this.checkedTwo = true}" src="../assets/registerLogin/openEye.png" alt="">
-        <input v-model='confirmPassword' type="text" placeholder="请再次输入密码">
-      </li>
-    </ul>
-    <div class="btnDiv">
-      <div @click='forget()'>修改密码</div>
-    </div> -->
   </div>
 </template>
 <script>
