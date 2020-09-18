@@ -46,66 +46,6 @@
         <p v-if="loading">加载中...</p>
         <p v-if="noMore">没有更多了</p>
       </ul>
-      <!-- <el-tabs :stretch='true' v-model="activeName" @tab-click="handleClick">
-        <el-tab-pane label="已实名" name="first">
-          <div class="searchDiv">
-            <div>
-              <p>
-                <i class="el-icon-search"></i>
-                <input v-model="phone" type="number" placeholder="请输入手机号">
-              </p>
-              <span @click="searchList">搜索</span>
-            </div>
-          </div>
-          <ul
-          v-infinite-scroll="load"
-          infinite-scroll-disabled="disabled"
-          infinite-scroll-distance='20'>
-            <li v-for="(item,index) in listArr" :key="index">
-              <div>
-                <p>{{item.merchantCnName}}</p>
-                <img v-if="jzt" :src="item.parentPhone==dlrPhone ? require('../../assets/my/myTeam/zt.png'):require('../../assets/my/myTeam/jt.png')" alt="">
-                <img v-else :src="require(`../../assets/my/myTeam/level${item.level}.png`)" alt="">
-                <span v-if="item.parentPhone==dlrPhone">{{item.linkPhone}}</span>
-                <span v-else>{{item.linkPhone.substring(0,3)}}****{{item.linkPhone.substring(item.linkPhone.length-4,item.linkPhone.length)}}</span>
-                <img v-if="item.parentPhone==dlrPhone" @click="call(item.linkPhone)" src="../../assets/my/myTeam/phone.png" alt="">
-              </div>
-              <span>{{item.createTime}}</span>
-            </li>
-            <p v-if="loading">加载中...</p>
-            <p v-if="noMore">没有更多了</p>
-          </ul>
-        </el-tab-pane>
-        <el-tab-pane label="未实名" name="second">
-          <div class="searchDiv">
-            <div>
-              <p>
-                <i class="el-icon-search"></i>
-                <input v-model="phone" type="number" placeholder="请输入手机号">
-              </p>
-              <span @click="searchList">搜索</span>
-            </div>
-          </div>
-          <ul
-          v-infinite-scroll="load"
-          infinite-scroll-disabled="disabled"
-          infinite-scroll-distance='20'>
-            <li v-for="(item,index) in listArr" :key="index">
-              <div>
-                <p>未实名</p>
-                <img v-if="jzt" :src="item.parentPhone==dlrPhone ? require('../../assets/my/myTeam/zt.png'):require('../../assets/my/myTeam/jt.png')" alt="">
-                <img v-else :src="require(`../../assets/my/myTeam/level${item.level}.png`)" alt="">
-                <span v-if="item.parentPhone==dlrPhone">{{item.linkPhone}}</span>
-                <span v-else>{{item.linkPhone.substring(0,3)}}****{{item.linkPhone.substring(item.linkPhone.length-4,item.linkPhone.length)}}</span>
-                <img v-if="item.parentPhone==dlrPhone" @click="call(item.linkPhone)" src="../../assets/my/myTeam/phone.png" alt="">
-              </div>
-              <span>{{item.createTime}}</span>
-            </li>
-            <p v-if="loading">加载中...</p>
-            <p v-if="noMore">没有更多了</p>
-          </ul>
-        </el-tab-pane>
-      </el-tabs> -->
     </div>
 </template>
 <script>

@@ -523,7 +523,7 @@ const routes = [
     name: 'customer',
     meta: {
       title: '客服',
-      bgBlue: true
+      bgLeft: true
     },
     component: () => import('../views/my/customer.vue')
   },

@@ -1,42 +1,31 @@
 <template>
-  <div class='hundred customer-layout'>
-    <div class="one">
-      <img src='../../assets/my/kf1.png' alt="">
-      <p>处理软件操作、还款相关问题</p>
-      <div @click="call(phone1)">立即咨询</div>
+  <div class='hundred customer-layout' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock="fullscreenLoading">
+    <img @click="notYetOpen" src="../../assets/my/kf_zx.png" alt="">
+    <img @click="type=1" src="../../assets/my/kf_rx.png" alt="">
+    <img @click="type=2" src="../../assets/my/kf_wx.png" alt="">
+    <img @click="type=3" src="../../assets/my/kf_wxgzh.png" alt="">
+    <div @click="type=''" v-if="type" class="infoPop">
+      <ul>
+        <div v-if="type==1">
+          <li @click="callService(dataObj[10])">
+            <img src="../../assets/my/kfdh.png" alt="" srcset="">{{dataObj[10]}}
+          </li>
+        </div>
+        <div v-if="type==2">
+          <li @click="copyText(item)" v-for="(item,index) in dataObj[11].split(',')" :key="index">
+            <img :src="require(`../../assets/my/wx${index+1}.png`)" alt="">
+            {{item}}
+          </li>
+        </div>
+        <div @click="copyText(item)" v-if="type==3">
+          <li v-for="(item,index) in dataObj[13].split(',')" :key="index">
+            <img :src="require(`../../assets/my/wx${index+1}.png`)" alt="">
+            {{item}}
+          </li>
+        </div>
+      </ul>
+      <div @click="type=''" class="btnDiv">取消</div>
     </div>
-    <div class="two">
-      <img style="margin-bottom: 0.3rem" src="../../assets/my/kf2.png" alt="">
-      <span>电话客服</span>
-      <p>联系电话：{{phone1}} <img @click="call(phone1)" src="../../assets/my/kf2.png" alt=""></p>
-      <p style="margin-bottom: 0.3rem">联系电话：{{phone2}} <img @click="call(phone2)" src="../../assets/my/kf2.png" alt=""></p>
-      <span>工作时间：09:00-1800</span>
-      <span>(非国家法定假日)</span>
-    </div>
-    <div class="three">
-      <img src="../../assets/my/kf3.png" alt="">
-      <span>微信客服</span>
-      <p>官方微信号：{{wx1}} <span @click="copyText(wx1)">复制</span></p>
-      <p>官方微信号：{{wx2}} <span @click="copyText(wx2)">复制</span></p>
-    </div>
-    <!-- <div class="cardDiv">
-      <h6><span></span>客服电话</h6>
-      <div>
-        <p>{{data.customerPhone1}}<span @click="call(data.customerPhone1)">立即拨打</span></p>
-        <p>{{data.customerPhone2}}<span @click="call(data.customerPhone2)">立即拨打</span></p>
-      </div>
-      <p>{{data.customerPhoneMSG}}</p>
-    </div>
-    <div class="cardDiv">
-      <h6><span></span>微信客服</h6>
-      <div>
-        <p>{{data.customerWX1}}<span @click="copyText(data.customerWX1)">复制</span></p>
-        <p>{{data.customerWX2}}<span @click="copyText(data.customerWX1)">复制</span></p>
-      </div>
-      <p>{{data.customerWXMSG}}</p>
-    </div>
-    <p>在线客服<span>温馨提示：在线客服24小时为您服务</span></p>
-    <p @click="()=>{this.$router.push({name:'server'})}">意见反馈<span>遇到问题或者优化意见可以反馈给我们</span></p> -->
   </div>
 </template>
 <script>
@@ -45,19 +34,71 @@ import copy from 'copy-to-clipboard'
 export default {
   data () {
     return {
-      wx1: '',
-      wx2: '',
-      phone1: '',
-      phone2: '',
+      fullscreenLoading: false,
+      infoPop: false,
+      type: '',
+      dataObj: {},
+      listArr: []
     }
   },
   created () {
-    this.wx1 = localStorage.getItem('wx1')
-    this.wx2 = localStorage.getItem('wx2')
-    this.phone1 = localStorage.getItem('phone1')
-    this.phone2 = localStorage.getItem('phone2')
+      this.message()
   },
   methods: {
+    callService(phone){
+      const h = this.$createElement;
+      this.$msgbox({
+          // title: '提示',
+          message: h('p', null, [
+            h('p', { style: 'text-align: center' },'拨打电话'),
+            h('p', { style: 'text-align: center' }, phone)
+          ]),
+          showCancelButton: true,
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          customClass: 'callPhone',
+          beforeClose: (action, instance, done) => {
+            if (action === 'confirm') {
+              window.location.href= 'tel:'+localStorage.phone
+            } else {
+              done();
+            }
+          }
+        }).then(action => {
+          
+        });
+    },
+    notYetOpen () {
+      this.$message({
+        message: '暂未开放',
+        center: true,
+        offset: 30,
+        duration: 2500,
+        type: 'success'
+      })
+    },
+    message () {
+      this.fullscreenLoading = true
+      let vm = this
+      let parmas = {
+        '0': '0700',
+        '3': '190123',
+        '59': this.$stact.state.version
+      }
+      let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
+      vm.$http.get(`request.app${url}`)
+        .then(res => {
+          this.fullscreenLoading = false
+          if (res.data[39] === '00') {
+            console.log(res.data);
+            this.dataObj = res.data
+          }
+        })
+        .catch(err => {
+          this.fullscreenLoading = false
+          console.log(err)
+        })
+    },
     call(phone){
       window.location.href = `tel://${phone}`
     },

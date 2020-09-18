@@ -46,7 +46,7 @@
         <ul>
           <li @click="toCool"><img src="../../assets/my/pyq.png" alt=""><p>朋友圈</p></li>
           <li @click="$router.push({name: 'team'})"><img src="../../assets/my/wdtd.png" alt=""><p>我的团队</p></li>
-          <li><img src="../../assets/my/wdkf.png" alt=""><p>我的客服</p></li>
+          <li @click="$router.push({name: 'customer'})"><img src="../../assets/my/wdkf.png" alt=""><p>我的客服</p></li>
           <li><img src="../../assets/my/czsp.png" alt=""><p>操作视频</p></li>
         </ul>
       </div>
