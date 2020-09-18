@@ -239,7 +239,7 @@ const routes = [
     name: 'team',
     meta: {
       title: '我的团队',
-      bgBlue: true
+      bgLeft: true
     },
     component: () => import('../views/my/team.vue'),
     children: [
@@ -248,7 +248,7 @@ const routes = [
         name: 'teamItem',
         meta: {
           title: '',
-          bgBlue: true
+          bgLeft: true
         },
         component: () => import('../views/my/teamItem.vue')
       },
@@ -523,9 +523,36 @@ const routes = [
     name: 'customer',
     meta: {
       title: '客服',
-      bgBlue: true
+      bgLeft: true
     },
     component: () => import('../views/my/customer.vue')
+  },
+  {
+    path: '/czsp',
+    name: 'czsp',
+    meta: {
+      title: '操作视频',
+      bgLeft: true
+    },
+    component: () => import('../views/my/czsp.vue')
+  },
+  {
+    path: '/helpCenter',
+    name: 'helpCenter',
+    meta: {
+      title: '帮助中心',
+      bgLeft: true
+    },
+    component: () => import('../views/my/helpCenter.vue')
+  },
+  {
+    path: '/helpCenterInfo',
+    name: 'helpCenterInfo',
+    meta: {
+      title: '',
+      bgLeft: true
+    },
+    component: () => import('../views/my/helpCenterInfo.vue')
   },
   {
     path: '/signIn',

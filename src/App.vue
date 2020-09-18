@@ -99,6 +99,11 @@ export default Vue.extend({
           document.title = vm.$route.query.title
           document.body.title = vm.$route.query.title
       }
+      if (to.name == 'helpCenterInfo') {
+          to.meta.title = vm.$route.query.title
+          document.title = vm.$route.query.title
+          document.body.title = vm.$route.query.title
+      }
       new Promise((resolve, reject) => { // 判断是否登录 用登录后的token里merchantNo做唯一标示
         vm.$stact.state.token.length !== 0 ? vm.merchantNo = JSON.parse(vm.$stact.state.token)[0].merchantNo : console.log('无')
         resolve()
