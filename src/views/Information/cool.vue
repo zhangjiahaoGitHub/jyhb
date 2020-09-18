@@ -91,6 +91,11 @@ export default {
     }
   },
   methods: {
+    convertCanvasToImage(canvas){
+      var image = new Image();
+      image.src = canvas.toDataURL("image/png");
+      return image;
+    },
     lookPic(itemSon){
       this.nowImg = itemSon
       this.popShow = true
