@@ -528,6 +528,15 @@ const routes = [
     component: () => import('../views/my/customer.vue')
   },
   {
+    path: '/czsp',
+    name: 'czsp',
+    meta: {
+      title: '操作视频',
+      bgLeft: true
+    },
+    component: () => import('../views/my/czsp.vue')
+  },
+  {
     path: '/signIn',
     name: 'signIn',
     meta: {
