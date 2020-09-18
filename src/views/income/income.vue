@@ -5,7 +5,7 @@
         <div class="jine-mysy">68800003.00</div>
         <div class="benyue-price" @click.stop="toincomeList('1','收益额')">本月总收益(元)：300.00 <i class="el-icon-arrow-right"></i></div>
       </div>
-      <div class="flex-shouyi-betw" @click.stop="toincomeList('2','激活返佣')">
+      <div class="flex-shouyi-betw">
         <div class="flex-box-lr">
           <div class="price-t">68800.00</div>
           <div>总交易分润(元)</div>
@@ -15,7 +15,7 @@
           <div>总活动返佣(元)</div>
         </div>
       </div>
-      <div class="list-row">
+      <div class="list-row" @click.stop="toincomeList('2','激活返佣')">
         <div class="hezi-flex">
           <div class="price">2.0</div>
           <div>今日激活返佣(元)</div>
@@ -27,7 +27,7 @@
           <i class="el-icon-arrow-right dingwei-right"></i>
         </div>
       </div>
-      <div class="list-row">
+      <div class="list-row" @click.stop="toincomeList('3','激活人数')">
         <div class="hezi-flex">
           <div class="price">2.0</div>
           <div>今日激活(人)</div>
@@ -39,7 +39,7 @@
           <i class="el-icon-arrow-right dingwei-right"></i>
         </div>
       </div>
-      <div class="list-row">
+      <div class="list-row" @click.stop="toincomeList('4','实名返佣')">
         <div class="hezi-flex">
           <div class="price">2.0</div>
           <div>今日实名返佣(元)</div>
@@ -51,7 +51,7 @@
           <i class="el-icon-arrow-right dingwei-right"></i>
         </div>
       </div>
-      <div class="list-row">
+      <div class="list-row" @click.stop="toincomeList('5','实名人数')">
         <div class="hezi-flex">
           <div class="price">2.0</div>
           <div>今日实名(人)</div>
@@ -63,7 +63,7 @@
           <i class="el-icon-arrow-right dingwei-right"></i>
         </div>
       </div>
-      <div class="list-row">
+      <div class="list-row" @click.stop="toincomeList('6','交易额')">
         <div class="hezi-flex">
           <div class="price">2.0</div>
           <div>今日交易额(元)</div>

@@ -436,6 +436,17 @@ $big: 2rem;
         color: $themeColor;
       }
     }
+    .title-time-two {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 px2rem(30);
+      font-size: px2rem(30);
+      padding-right: px2rem(60);
+      div {
+        flex: 0.5;
+        text-align: center;
+      }
+    }
     .detail-box {
       background-color: #fff;
       padding: px2rem(30);
@@ -461,5 +472,60 @@ $big: 2rem;
         }
       }
     }
+  }
+  .two-flex-bet {
+    display: flex;
+    width: 100%;
+    font-size: px2rem(24);
+    color: #666;
+    padding: px2rem(10) 0;
+    justify-content: space-between;
+    div {
+      flex: 0.5;
+      text-align: center;
+    }
+  }
+  .title-two {
+    font-size: px2rem(26);
+    color: #333;
+  }
+  .timte-two-two {
+    padding: 0;
+    font-size: px2rem(28);
+  }
+  .three-box {
+    background-color: #fff;
+    margin: px2rem(20) px2rem(30);
+    border-radius: px2rem(10);
+    .list-row {
+      display: flex;
+      justify-content: space-between;
+      padding: px2rem(20) px2rem(30);
+      border-bottom: 1px solid #F5F5F5;
+      font-size: px2rem(26);
+    }
+  }
+  .detail-list-six {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: px2rem(20);
+    .left-six-box {
+      flex: 0.47;
+      background-color: #F5F5F5;
+      padding: px2rem(20) px2rem(50);
+      padding-bottom: 0;
+      border-radius: px2rem(10);
+      text-align: center;
+      .row-list {
+        margin-bottom: px2rem(20);
+        font-size: px2rem(28);
+      }
+    }
+  }
+  .timte-six-six {
+    padding: 0;
+    // padding-left: px2rem(30);
+    font-size: px2rem(28);
   }
 }

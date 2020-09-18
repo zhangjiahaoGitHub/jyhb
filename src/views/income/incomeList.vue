@@ -34,6 +34,100 @@
           </div>
         </div>
       </div>
+      <div v-if="$route.query.type == '2' || $route.query.type == '4'">
+        <div class="hezi-box-sy">
+          <div class="title-time-two" v-if="$route.query.type == '2'">
+            <div>日期</div>
+            <div>总收益额(元)</div>
+          </div>
+          <div class="title-time-two" v-if="$route.query.type == '4'">
+            <div>日期</div>
+            <div>总返佣额(元)</div>
+          </div>
+          <div class="detail-box">
+            <div class="title-top-bottom" @click.stop="openshow(1)">
+              <div class="two-flex-bet timte-two-two">
+                <div>2020-06-23</div>
+                <div>23656.00</div>
+              </div>
+              <i class="el-icon-arrow-down" v-show="openindex != 1"></i>
+              <i class="el-icon-arrow-up" v-show="openindex == 1"></i>
+            </div>
+            <div class="detail-list" v-show="openindex == 1">
+              <div class="two-flex-bet title-two">
+                <div>关系</div>
+                <div>金额</div>
+              </div>
+              <div class="two-flex-bet">
+                <div>直推</div>
+                <div>0.56</div>
+              </div>
+              <div class="two-flex-bet">
+                <div>间推</div>
+                <div>0.56</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div v-if="$route.query.type == '3' || $route.query.type == '5'">
+        <div class="three-box">
+          <div class="list-row">
+            <div>2020-06-12</div>
+            <div>4人</div>
+          </div>
+          <div class="list-row">
+            <div>2020-06-12</div>
+            <div>4人</div>
+          </div>
+          <div class="list-row">
+            <div>2020-06-12</div>
+            <div>4人</div>
+          </div>
+          <div class="list-row">
+            <div>2020-06-12</div>
+            <div>4人</div>
+          </div>
+        </div>
+      </div>
+      <div v-if="$route.query.type == '6'">
+        <div class="hezi-box-sy">
+          <div class="title-time-two" v-if="$route.query.type == '2'">
+            <div>日期</div>
+            <div>总收益额(元)</div>
+          </div>
+          <div class="title-time-two" v-if="$route.query.type == '4'">
+            <div>日期</div>
+            <div>总返佣额(元)</div>
+          </div>
+          <div class="detail-box">
+            <div class="title-top-bottom" @click.stop="openshow(1)">
+              <div class="two-flex-bet timte-six-six">
+                <div>2020-06-23</div>
+                <div>23656.00</div>
+              </div>
+              <i class="el-icon-arrow-down" v-show="openindex != 1"></i>
+              <i class="el-icon-arrow-up" v-show="openindex == 1"></i>
+            </div>
+            <div class="detail-list-six" v-show="openindex == 1">
+              <div class="left-six-box">
+                <div class="row-list">个人业绩：0.00</div>
+                <div class="row-list">余额代还：0.00</div>
+                <div class="row-list">空卡代还：0.00</div>
+                <div class="row-list">一键收款：0.00</div>
+                <div class="row-list">花呗收款：0.00</div>
+              </div>
+              <div class="left-six-box">
+                <div class="row-list">个人业绩：0.00</div>
+                <div class="row-list">余额代还：0.00</div>
+                <div class="row-list">空卡代还：0.00</div>
+                <div class="row-list">一键收款：0.00</div>
+                <div class="row-list">花呗收款：0.00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 </template>
 <script>
@@ -72,7 +166,7 @@ export default {
     changery() {
       let vm = this
       this.cahngeflag = !this.cahngeflag
-      if(vm.$route.query.type == '1') {
+      if(vm.$route.query.type) {
         if(vm.cahngeflag) {
           vm.ryry = '日'
         }else {
