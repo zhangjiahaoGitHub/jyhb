@@ -78,7 +78,15 @@
           </li>
           <li v-if="aisle=='YK'">
             <span>还款笔数</span>
-            <el-select @change="planItem=[]" size="mini" v-model="hkbs" placeholder="请选择还款笔数">
+            <el-select v-if="jxType=='YJYK'" @change="planItem=[]" size="mini" v-model="hkbs" placeholder="请选择还款笔数">
+              <el-option
+                  v-for="item in YJYK"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+              </el-option>
+            </el-select>
+            <el-select v-else @change="planItem=[]" size="mini" v-model="hkbs" placeholder="请选择还款笔数">
               <el-option
                   v-for="item in hkbsoptions"
                   :key="item.value"
@@ -145,7 +153,7 @@ export default {
     return {
       pickerOptions: {
         disabledDate(time) {
-          let a = time.getTime() < Date.now()
+          let a = time.getTime() < (Date.now() - 86400000)
           return a
           // if (parseInt(me.bank.BILL_DAY)<parseInt(me.bank.REPAYMENT_DAY)) {
           //   let b = parseInt(me.$moment(time).format('DD'))<parseInt(me.bank.BILL_DAY) || parseInt(me.$moment(time).format('DD'))>(parseInt(me.bank.REPAYMENT_DAY)+3)
@@ -177,6 +185,48 @@ export default {
         {
           value: '2',
           label: '2次/日'
+        },
+      ],
+      YJYK: [
+        {
+          value: '1',
+          label: '1次/日'
+        },
+        {
+          value: '2',
+          label: '2次/日'
+        },
+        {
+          value: '3',
+          label: '3次/日'
+        },
+        {
+          value: '4',
+          label: '4次/日'
+        },
+        {
+          value: '5',
+          label: '5次/日'
+        },
+        {
+          value: '6',
+          label: '6次/日'
+        },
+        {
+          value: '7',
+          label: '7次/日'
+        },
+        {
+          value: '8',
+          label: '8次/日'
+        },
+        {
+          value: '9',
+          label: '9次/日'
+        },
+        {
+          value: '10',
+          label: '10次/日'
         },
       ],
       children: [],
@@ -225,6 +275,8 @@ export default {
         9: 0,
         7: 0,
       },
+      // 精细类型区分
+      jxType: '',
     }
   },
   watch: {
@@ -255,7 +307,14 @@ export default {
     this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
     this.bank = JSON.parse(this.$route.query.item)
     console.log(this.bank);
+
+    this.jxType = this.$route.query.aisle
+    
+
     this.aisle = this.$route.query.aisle
+    if (this.aisle=='YJYK') {
+      this.aisle = 'YK'
+    }
     this.list()
     this.city(0)
   },
@@ -597,7 +656,7 @@ export default {
       this.$router.push({ name: 'tiedcard', query: { item: this.$route.query.item, acqcode: item.acqcode } })
     },
     toiframimg (item) {
-      this.$router.push({ name: 'imgIframe', query: { url: item.url, title: item.channelName } })
+      this.$router.push({ name: 'imgIframe', query: { url: `http://120.78.81.147/icon/icon_channel_${item.acqcode}.png`, title: item.channelName } })
     },
   }
 }

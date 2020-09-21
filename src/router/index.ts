@@ -651,7 +651,7 @@ const routes = [
     name: 'aisle',
     meta: {
       title: '制定计划',
-      bgBlue: true,
+      bgLeft: true,
       keepAlive: true
     },
     component: () => import('../views/collection/aisle.vue')
@@ -749,9 +749,8 @@ const routes = [
     path: '/selectcard',
     name: 'selectcard',
     meta: {
-      title: '选择卡片',
-      bgBlue: true,
-      select: true
+      title: '智能还款',
+      bgLeft: true,
     },
     component: () => import('../views/real/selectcard.vue')
   },
@@ -888,7 +887,7 @@ const routes = [
     name: 'submit',
     meta: {
       title: '提交计划',
-      bgBlue: true
+      bgLeft: true
     },
     component: () => import('../views/plan/submit.vue')
   },
@@ -897,7 +896,7 @@ const routes = [
     name: 'exhaustive',
     meta: {
       title: '查看计划',
-      bgBlue: true
+      bgLeft: true
     },
     component: () => import('../views/plan/exhaustive.vue')
   },
@@ -996,7 +995,7 @@ const routes = [
     name: 'tiedcard',
     meta: {
       title: '通道绑卡',
-      bgBlue: true
+      bgLeft: true
     },
     component: () => import('../views/plan/tiedcard.vue')
   },
@@ -1014,7 +1013,7 @@ const routes = [
     name: 'preview',
     meta: {
       title: '预览计划',
-      bgBlue: true,
+      bgLeft: true,
       preview: true,
     },
     component: () => import('../views/plan/preview.vue')
@@ -1200,7 +1199,7 @@ const routes = [
     name: 'imgIframe',
     meta: {
       title: '',
-      bgBlue: true
+      bgLeft: true
     },
     component: () => import('../views/imgIframe.vue')
   },
