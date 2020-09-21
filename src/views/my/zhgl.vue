@@ -91,7 +91,7 @@ export default {
               duration: 2500,
               type: "success",
             });
-            vm.del(index)
+            // vm.del(index)
           }
         })
         .catch((err) => {

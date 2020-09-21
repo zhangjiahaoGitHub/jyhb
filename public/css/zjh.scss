@@ -2875,3 +2875,35 @@ $big: 2rem;
         border-radius: px2rem(10);
     }
 }
+.aboutUs-layout{
+    .imgDiv{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: px2rem(400);
+        img{
+            width: px2rem(150);
+        }
+    }
+    ul{
+        background: #fff;
+        margin-bottom: px2rem(40);
+        font-size: $four;
+        li{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid #ebebeb;
+            padding: px2rem(20);
+            p{
+                display: flex;
+                align-items: center;
+                color: $themeColor;
+                img{
+                    width: px2rem(20);
+                    margin-left: px2rem(10);
+                }
+            }
+        }
+    }
+}

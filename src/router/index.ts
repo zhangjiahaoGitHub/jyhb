@@ -181,6 +181,15 @@ const routes = [
     component: () => import('../views/my/my.vue')
   },
   {
+    path: '/aboutUs',
+    name: 'aboutUs',
+    meta: {
+      title: '关于我们',
+      bgLeft: true,
+    },
+    component: () => import('../views/my/aboutUs.vue')
+  },
+  {
     path: '/personalInfo',
     name: 'personalInfo',
     meta: {
