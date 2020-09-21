@@ -1,6 +1,52 @@
 <template>
-  <div class='hundred'>
-    <div class='blueBack tbexha'>
+  <div class='hundred exhaustive-layout'>
+    <div class="headDiv">
+      <div>
+        <p><img :src="banks[cardList.BANK_NAME]?require(`../../assets/bank/${banks[cardList.BANK_NAME]}.png`):require('../../assets/bank/yl.png')" alt="">{{cardList.short_cn_name}}</p>
+        <span>{{cardList.BANK_ACCOUNT.substring(0, 4)}} **** **** {{cardList.BANK_ACCOUNT.substring(cardList.BANK_ACCOUNT.length-4, cardList.BANK_ACCOUNT.length)}}</span>
+      </div>
+      <ol>
+        <li>
+          <span>额度</span>
+          <p>{{cardList.LIMIT_MONEY}}</p>
+        </li>
+        <li>
+          <span>账单日</span>
+          <p>{{cardList.BILL_DAY}}</p>
+        </li>
+        <li>
+          <span>还款日</span>
+          <p>{{cardList.REPAYMENT_DAY}}</p>
+        </li>
+      </ol>
+    </div>
+    <ul>
+      <li @click="toInfo(item)" v-for='item in listMore' :key='item.ID'>
+        <ol>
+          <li>
+            <p>创建时间：{{$moment(item.CREATE_TIME.time).format('YYYY-MM-DD HH:mm')}}</p>
+            <span>进度：{{item.progress}}</span>
+          </li>
+          <li>
+            <p>通道名称：{{item.ACQ_NAME}}</p>
+          </li>
+          <li>
+            <p>计划周期：{{$moment(item.START_TIME.time).format('YYYY-MM-DD')}}至{{$moment(item.END_TIME.time).format('YYYY-MM-DD')}}</p>
+          </li>
+          <li>
+            <p>本期应还：￥{{item.PLAN_AMT}}</p>
+          </li>
+          <li>
+            <p>本期已还：￥{{item.payed}}</p>
+          </li>
+          <li>
+            <p>订单状态：<span>{{status[item.STATUS]}}</span></p>
+          </li>
+          <div>计划详情</div>
+        </ol>
+      </li>
+    </ul>
+    <!-- <div class='blueBack tbexha'>
       <div class='bankgroud cardground noPadding raduisBottom' style='margin-top: 0'>
           <div class='allFlex planBack whiteBimo'>
                   <div>
@@ -76,8 +122,7 @@
               </div>
           </li>
       </ul>
-    </div>
-    <!-- <div class='bottomLong'></div> -->
+    </div> -->
   </div>
 </template>
 <script>
@@ -111,8 +156,9 @@ export default {
         '10A': '未执行',
         '10B': '执行中',
         '10C': '失败',
-        '10D': '暂停',
-        '10E': '已完成'
+        '10D': '已暂停',
+        '10E': '已完成',
+        '10F': '已退款',
       },
       now: -1,
       listMore: [],
@@ -149,6 +195,7 @@ export default {
           if (res.data[39] === '00') {
             if (res.data[57]) {
               this.listMore = JSON.parse(res.data[57])
+              console.log(this.listMore);
             }
           }
         })

@@ -22,7 +22,7 @@
           </div>
           <div>
             <p :style="tong=='QYK' ? 'visibility:hidden;':''"><span>周转金总额：</span>{{(parseFloat(calcList[40])+parseFloat(calcList[7])+parseFloat(calcList[9])).toFixed(2)}}</p>
-            <p><span>手续费小计：</span>{{calcList[9]}}<i @click="dataPopShow=true" class="el-icon-warning-outline"></i></p>
+            <p><span>手续费小计：</span>{{calcList[17]}}<i @click="dataPopShow=true" class="el-icon-warning-outline"></i></p>
           </div>
         </div>
       </div>
@@ -62,68 +62,21 @@
         </p>
       </li>
     </ul>
-    <!-- <div class='bankgroud noPadding'>
-        <div class='planBack'>
-            <div>
-                订单编号：{{number}}
-            </div>
-            <div class='prePadding'>
-                还款周期：{{searchTime}}至{{endTime}}
-            </div>
-        </div>
-        <div class='leftRaduis'></div>
-        <div class='rightRaduis'></div>
-    </div>
-    <div class='allFlex planContent textCenter'>
-        <div class='half borderRight'>
-            <p class='gary'>预还款金额</P>
-            <p>{{money}}</p>
-        </div>
-        <div class='half'>
-            <p class='gary'>{{tong != 'QYK' ? '周转金总额' : '手续费总额'}}</P>
-            <p>{{tong != 'QYK' ? zhou : shou}}</p>
-        </div>
-    </div> -->
-    <!-- <div class='planContent exhaustiveContent'>
-        <ul class='preHeight' v-for='(item, index) in planItem' :key="index">
-            <li class='allFlex justifyBetween flexPadding'>
-                <div>
-                    <span class='partFont'>日期：{{$moment(item.planTime).format('YYYY-MM-DD')}}</span>
-                </div>
-                <div>
-                    <a class='partStatus' :class="item.type === 'sale' ? '' :'partBlue'">{{item.type === 'sale' ? tong == 'QYK' ?'手续费':'消费' :'还款'}}</a>
-                    <span class='partFont'>{{item.fromMoney}}</span>
-                </div>
-            </li>
-            <li class='allFlex justifyBetween flexPadding' v-if="item.type === 'sale'">
-                <div class='half'>
-                <el-cascader
-                    separator=" - "
-                    class='indexDom'
-                    :placeholder="item.customizecity"
-                    :data-myindex='index'
-                    v-model="cityList[index].value"
-                    :options="cityList[index].city"
-                    @expand-change="handleChange">
-                </el-cascader>
-                </div>
-                <div class='half gary'>
-                  <el-select  class='companyDom' :data-myindex='index' @change='changeno(index)' v-model="company[index].value">
-                    <el-option
-                      v-for="item in company[index].company"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value">
-                    </el-option>
-                  </el-select>
-                </div>
-            </li>
-        </ul>
-    </div> -->
-    <div class='loginTo makeTo'>
-        <div class='blue' @click="(tong == 'YK' || tong=='JYK') ? toYK():toQYK()"  element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock='fullscreenLoading'>
+    <div class='btnDiv'>
+        <div class='blue' @click="zhqr=true"  element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock='fullscreenLoading'>
             提交计划
         </div>
+    </div>
+    <div @click="zhqr=false" v-if="zhqr" class="zhqr">
+      <div>
+        <div>温馨提示</div>
+        <p>我已经确保卡内可用余额大于</p>
+        <span>{{(parseFloat(calcList[40])+parseFloat(calcList[7])+parseFloat(calcList[9])).toFixed(2)}}</span>
+        <div>
+          <p @click.stop="$router.back()">修改计划</p>
+          <p @click.stop="(tong == 'YK' || tong=='JYK') ? toYK():toQYK()">提交计划</p>
+        </div>
+      </div>
     </div>
     <div v-if="dataPopShow" class="aisle-layout">
       <div class="dataPopDiv">
@@ -183,6 +136,7 @@ export default {
       hkbs: '',
       acqcodeObj: {},
       dataPopShow: false,
+      zhqr: false,
       number: '',
       money: 0,
       calcList: 0,
@@ -540,11 +494,11 @@ export default {
         })
         return
       }
-      vm.$confirm('我公司接入人民银行征信系统，网络小额贷款黑名单，支付宝黑名单等多种风控体系。公司将定期将不守信的用户上送各大征信平台。', '提示', {
-        confirmButtonText: '我会守信',
-        cancelButtonText: '我不会守信',
-        type: 'warning'
-      }).then(() => {
+      // vm.$confirm('我公司接入人民银行征信系统，网络小额贷款黑名单，支付宝黑名单等多种风控体系。公司将定期将不守信的用户上送各大征信平台。', '提示', {
+      //   confirmButtonText: '我会守信',
+      //   cancelButtonText: '我不会守信',
+      //   type: 'warning'
+      // }).then(() => {
         let planArr = []
         this.planItem.forEach(item => {
           planArr.push(`{planTime=${item.planTime}, fromCard='${item.fromCard}', toCard='${item.toCard}', fromBindId='${item.fromBindId}', toBindId='${item.toBindId}', fromMoney=${item.fromMoney}, toMoney=${item.toMoney}, payFee=${item.payFee}, status='${item.status}', type='${item.type}', groupNum='${item.groupNum}', customizecity='${item.customizecity}', cityindustry='${item.cityindustry}', cityindustryName='${item.cityindustryName}', acqCode='${item.acqCode}'}`)
@@ -594,75 +548,8 @@ export default {
             vm.fullscreenLoading = false
             console.log(err)
           })
-      }).catch(() => {
-      })
-      // let vm = this
-      // let have = false
-      // document.querySelectorAll('.indexDom').forEach(function (item, index) {
-      //   if (document.querySelectorAll('.indexDom .el-input__inner')[index].value) {
-      //     vm.planItem[item.dataset.myindex].customizecity = document.querySelectorAll('.indexDom .el-input__inner')[index].value.replace(/\s*/g, '')
-      //   }
-      //   if (document.querySelectorAll('.companyDom .el-input__inner')[index].value) {
-      //     vm.planItem[item.dataset.myindex].cityindustryName = document.querySelectorAll('.companyDom .el-input__inner')[index].value
-      //     vm.planItem[item.dataset.myindex].cityindustry = vm.company[index].no
-      //   } else {
-      //     have = true
-      //   }
+      // }).catch(() => {
       // })
-      // if (have) {
-      //   vm.$message({
-      //     message: '请选择商户',
-      //     center: true,
-      //     offset: 30,
-      //     duration: 2500,
-      //     type: 'success'
-      //   })
-      //   return
-      // }
-      // let parmas = {
-      //   '0': '0700',
-      //   '3': '390049',
-      //   '8': vm.money,
-      //   '10': Date.parse(vm.searchTime.replace(/-/g, '/')),
-      //   '11': Date.parse(vm.endTime.replace(/-/g, '/')),
-      //   '12': vm.calcList[9],
-      //   '13': vm.calcList[7],
-      //   '15': vm.$route.query.couponId || '',
-      //   '42': vm.merchantNo,
-      //   '43': vm.$route.query.acqcode,
-      //   '57': JSON.stringify(vm.planItem),
-      //   '59': vm.version
-      // }
-      // vm.$route.query.couponId ? parmas : delete parmas['15']
-      // let url = vm.$mdata.mdGet(parmas)
-      // vm.fullscreenLoading = true
-      // vm.$http.post('request.app', url)
-      //   .then(res => {
-      //     vm.fullscreenLoading = false
-      //     if (res.data[39] === '00') {
-      //       if (this.usermerchantNo) {
-      //         vm.$router.push({ name: 'realname' })
-      //       } else {
-      //         if (vm.$route.query.tong == 'YK') {
-      //           vm.$router.push({ name: 'selectcard',query:{aisle: 'YK'} })
-      //         }else if (vm.$route.query.tong == 'QYK') {
-      //           vm.$router.push({ name: 'selectcard',query:{aisle: 'QYK'} })
-      //         }
-      //       }
-      //     } else {
-      //       vm.$message({
-      //         message: res.data.msg,
-      //         center: true,
-      //         offset: 30,
-      //         duration: 2500,
-      //         type: 'success'
-      //       })
-      //     }
-      //   })
-      //   .catch(err => {
-      //     vm.fullscreenLoading = false
-      //     console.log(err)
-      //   })
     },
     city (type) {
       let vm = this

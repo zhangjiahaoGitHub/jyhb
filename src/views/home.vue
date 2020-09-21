@@ -105,7 +105,7 @@
       </div>
     </div>
     <div class="return-three">
-      <div class="return-box">
+      <div @click="$router.push({name: 'selectcard'})" class="return-box">
         <div class="return-img">
           <img src="../assets/home/zn-return.png" alt="">
         </div>

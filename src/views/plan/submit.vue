@@ -42,7 +42,18 @@
       </div>
     </ul>
     <div class="btnDiv">
-      <div @click="(tong == 'YK' || tong=='JYK') ? toYK():toQYK()">提交计划</div>
+      <div @click="zhqr=true">提交计划</div>
+    </div>
+    <div @click="zhqr=false" v-if="zhqr" class="zhqr">
+      <div>
+        <div>温馨提示</div>
+        <p>我已经确保卡内可用余额大于</p>
+        <span>{{tong=='QYK' ? calcList[17]:(parseFloat(calcList[40])+parseFloat(calcList[7])+parseFloat(calcList[9])).toFixed(2)}}</span>
+        <div>
+          <p @click.stop="$router.back()">修改计划</p>
+          <p @click.stop="(tong == 'YK' || tong=='JYK') ? toYK():toQYK()">提交计划</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -85,6 +96,7 @@ export default {
       money: 0,
       planItem: '',
       fullscreenLoading: false,
+      zhqr: false,
       area: '',
       zhou: 0,
       shou: 0,
@@ -99,6 +111,7 @@ export default {
     this.searchTime = this.$route.query.searchTime
     this.endTime = this.$route.query.endTime
     this.calcList = this.$stact.state.allSb.calcList
+    console.log(this.calcList);
     this.zhou = Math.floor(Number(this.calcList[40]) * 100 + Number(this.calcList[9]) * 100 + Number(this.calcList[7]) * 100) / 100
     this.shou = Math.floor(Number(this.calcList[9]) * 100 + Number(this.calcList[7]) * 100) / 100
     this.hkbs = this.$route.query.hkbs
@@ -232,11 +245,11 @@ export default {
     },
     toQYK () {
       let vm = this
-      vm.$confirm('我公司接入人民银行征信系统，网络小额贷款黑名单，支付宝黑名单等多种风控体系。公司将定期将不守信的用户上送各大征信平台。', '提示', {
-        confirmButtonText: '我会守信',
-        cancelButtonText: '我不会守信',
-        type: 'warning'
-      }).then(() => {
+      // vm.$confirm('我公司接入人民银行征信系统，网络小额贷款黑名单，支付宝黑名单等多种风控体系。公司将定期将不守信的用户上送各大征信平台。', '提示', {
+      //   confirmButtonText: '我会守信',
+      //   cancelButtonText: '我不会守信',
+      //   type: 'warning'
+      // }).then(() => {
         let planArr = []
         this.planItem.forEach(item => {
           planArr.push(`{planTime=${item.planTime}, fromCard='${item.fromCard}', toCard='${item.toCard}', fromBindId='${item.fromBindId}', toBindId='${item.toBindId}', fromMoney=${item.fromMoney}, toMoney=${item.toMoney}, payFee=${item.payFee}, status='${item.status}', type='${item.type}', groupNum='${item.groupNum}', customizecity='${item.customizecity}', cityindustry='${item.cityindustry}', cityindustryName='${item.cityindustryName}', acqCode='${item.acqCode}'}`)
@@ -286,8 +299,8 @@ export default {
             vm.fullscreenLoading = false
             console.log(err)
           })
-      }).catch(() => {
-      })
+      // }).catch(() => {
+      // })
     }
   }
 }

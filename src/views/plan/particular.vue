@@ -63,7 +63,7 @@
                     <span class='gary'>
                         {{itemList.TYPE === '10C' ? '手续费小计:' : '周转金总额:'}}
                     </span>
-                        {{itemList.TYPE === '10C' ? itemList.THAW_TRX : parseInt(itemList.CB_AMT * 100 + itemList.SALE_FREE * 100 + itemList.PAY_FREE * 100) / 100 }}
+                        {{itemList.TYPE === '10C' ? listMore[0].money : parseInt(itemList.CB_AMT * 100 + itemList.SALE_FREE * 100 + itemList.PAY_FREE * 100) / 100 }}
                 </div>
                 <div class='half'>
                     <span class='gary'>
@@ -99,18 +99,10 @@
                 <div>
                   <a v-if="itemList.TYPE == '10C'" class="partStatus" :class=" item.type == 'sale' ? 'partGreen':item.type == 'payment' ? 'partBlue':'partStatus'">{{item.type == 'sale' ? '手续费':item.type == 'payment' ? '消费':'还款'}}</a>
                   <a v-else class="partStatus" :class="item.type == 'sale' ? 'partStatus':'partBlue'">{{item.type == 'sale' ? '消费':'还款'}}</a>
-                     <!-- <a class='partStatus' :class="item.type === 'sale' ? '' : item.type==='payment' ? 'partBlue' :'partRed'">{{item.type === 'sale' ? itemList.TYPE === '10C' ? '手续费':'消费' : item.type==='payment' ? '还款' : '消费'}}</a>
-                     <a class='partStatus' :class="item.type === 'sale' ? '' : item.type==='payment' ? 'partBlue' :'partRed'">{{item.type === 'sale' ? itemList.TYPE === '10C' ? '手续费':'消费' : item.type==='payment' ? '还款' : '消费'}}</a> -->
-                    <span class='partFont'>{{$moment(item.planTime.time).format('YYYY-MM-DD')}}</span>
+                     <span class='partFont'>{{$moment(item.planTime.time).format('YYYY-MM-DD')}}</span>
                 </div>
                 <div>
                     <span class='partFont'>{{item.money}}</span>
-                    <span class='repleni' v-if="item.status === '10C'">
-                      <i class="el-icon-circle-close"></i>
-                    </span>
-                    <span class='repleni yellow' v-if="item.status === '10D'|| item.status === '10A'">
-                      <i class="el-icon-time"></i>
-                    </span>
                     <span class='repleni blueColor' v-if="item.status === '10B' || item.status === '10Y'">
                       <span  @click="item.status === '10Y' ? getrue() : get(item.id)" :class="item.status === '10Y' ? 'garyRep' : 'redRep'" v-if="item.type === 'sale' && listMore[index+1].type === 'sale'&& listMore[index+1].status === '10C'">
                         还款
@@ -118,8 +110,11 @@
                       <i class="el-icon-circle-check"></i>
                     </span>
                 </div>
+                <img v-if="item.status=='10B'" style="width:0.6rem;height:0.6rem" src="../../assets/repay/wc.png" alt="">
+                <img v-else-if="item.status=='10C'" style="width:0.6rem;height:0.6rem" src="../../assets/repay/cw.png" alt="">
+                <img v-else style="width:0.6rem;height:0.6rem" src="../../assets/repay/dd.png" alt="">
             </li>
-            <li class='flexPadding partExp' v-if="!(item.type !== 'sale')">
+            <li class='flexPadding partExp' v-if="item.type == 'sale' || item.type=='pay'">
                 <div>
                     <span class='gary'>
                         地址：{{item.customizeCity}}
@@ -133,7 +128,7 @@
             </li>
         </ul>
     </div>
-    <div class='partSubmit'>
+    <div v-if="itemList.TYPE!='10C'" class='partSubmit'>
         <div class='allFlex justifyBetween planMargin'>
             <div class='submitPlan' @click="itemList.STATUS === '10E' || stop(itemList.STATUS)">{{itemList.STATUS !== '10D' ? itemList.STATUS === '10E'? '完成计划' : '停止计划': '开启计划'}}</div>
             <div class='submitPlan' @click='de(itemList.STATUS)'>删除</div>
@@ -153,10 +148,9 @@ export default {
       number: '',
       status: {
         '10A': '未执行',
-        '10B': '执行中',
+        '10B': '成功',
         '10C': '失败',
-        '10D': '暂停',
-        '10E': '已完成'
+        '10D': '进行中',
       },
       itemList: [],
       listMore: [],
@@ -164,8 +158,8 @@ export default {
       intermediary: 0,
       mervip: '',
       levelObj: {
-        '1': '普通用户',
-        '2': '经济人',
+        '1': '普通会员',
+        '2': '经纪人',
         '3': '城市服务商',
         '4': '城市运营商',
         '5': '高级合伙人',
@@ -227,6 +221,7 @@ export default {
         .then(res => {
           this.fullscreenLoading = false
           if (res.data[39] === '00') {
+            console.log(res.data);
             this.listMore = JSON.parse(res.data[57])
             this.number = res.data[8]
             console.log(this.listMore)
