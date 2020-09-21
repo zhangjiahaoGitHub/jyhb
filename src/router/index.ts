@@ -152,6 +152,15 @@ const routes = [
     component: () => import('../views/income/income.vue')
   },
   {
+    path: '/partnerpage',
+    name: 'partnerpage',
+    meta: {
+      title: '',
+      navShow: true
+    },
+    component: () => import('../views/partnerpage.vue')
+  },
+  {
     path: '/incomeList',
     name: 'incomeList',
     meta: {

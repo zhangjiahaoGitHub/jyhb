@@ -115,7 +115,7 @@
         <div class="return-img">
           <img src="../assets/home/yj-return.png" alt="">
         </div>
-        <div>一键还款</div>
+        <div>一键收款</div>
       </div>
       <div class="return-box">
         <div class="return-img">

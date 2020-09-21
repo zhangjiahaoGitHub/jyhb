@@ -34,9 +34,9 @@
         <img class="appLogo" :src="routeData=='invite'?require('./assets/label/csk.png'):require('./assets/label/sk.png')" />
         <p :class="routeData=='invite'?'checkColor':''">分享</p>
       </router-link>
-      <router-link tag="li" :to="{name:'invite'}">
-        <img class="appLogo" :src="routeData=='invite'?require('./assets/label/chb.png'):require('./assets/label/hb.png')" />
-        <p :class="routeData=='invite'?'checkColor':''">伙伴</p>
+      <router-link tag="li" :to="{name:'partnerpage'}">
+        <img class="appLogo" :src="routeData=='partnerpage'?require('./assets/label/chb.png'):require('./assets/label/hb.png')" />
+        <p :class="routeData=='partnerpage'?'checkColor':''">伙伴</p>
       </router-link>
       <router-link tag="li" :to="{name:'my'}">
         <img class="appLogo" :src="routeData=='my'?require('./assets/label/cmy.png'):require('./assets/label/my.png')" />
