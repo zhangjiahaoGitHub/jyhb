@@ -141,7 +141,9 @@ export default {
       fullscreenLoading: false,
       openindex: 0,
       cahngeflag: false,
-      ryry: ''
+      ryry: '',
+      ryrynum: '0',
+      page: 1
     }
   },
   created () {
@@ -149,7 +151,7 @@ export default {
     this.agentNo = this.$stact.state.agentNo
     this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
     this.type = this.$route.query.type
-    // this.list()
+    this.list()
     this.changery()
   },
   methods: {
@@ -169,8 +171,10 @@ export default {
       if(vm.$route.query.type) {
         if(vm.cahngeflag) {
           vm.ryry = '日'
+          vm.ryrynum = '0'
         }else {
           vm.ryry = '月'
+          vm.ryrynum = '1'
         }
       }
     },
@@ -178,10 +182,10 @@ export default {
       let vm = this
       let parmas = {
         '0': '0700',
-        '3': '690036',
+        '3': '690041',
         '42': vm.merchantNo,
-        '43': vm.pageCount,
-        '45': vm.$route.query.type,
+        '43': vm.page,
+        '45': vm.ryrynum,
         '59': vm.version
       }
       vm.fullscreenLoading = true
