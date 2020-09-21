@@ -1,10 +1,13 @@
 <template>
-  <div class='hundred registered-layout' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock='fullscreenLoading'>
+  <div class='hundred editPhone-layout' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock='fullscreenLoading'>
+    <img src="../../assets/logo.png" alt="">
     <ul>
       <li>
+        <img src="../../assets/my/setting/sj.png" alt="">
         <input v-model='phone' type="number" placeholder="请输入新的手机号">
       </li>
       <li>
+        <img src="../../assets/my/setting/dx.png" alt="">
         <input v-model='code' type="text" placeholder="请输入验证码">
         <span @click="time <= 0 ? getCode() : ''">{{text}}</span>
       </li>
@@ -20,7 +23,7 @@ export default {
   data () {
     return {
       time: 0,
-      text: '发送验证码',
+      text: '获取验证码',
       version: '',
       agentNo: '',
       phone: '',
@@ -102,7 +105,7 @@ export default {
     },
     timer () { // 倒计时中
       if (this.time > 0) {
-        this.text = `${this.time--}S后可重发`
+        this.text = `${this.time--}S`
         setTimeout(this.timer, 1000)
       } else {
         this.text = '重新获取'
@@ -152,10 +155,10 @@ export default {
       }
       let parmas = {
         '0': '0700',
-        '1': vm.phone,
-        '3': '792006',
+        '3': '191930',
+        '5': vm.phone,
+        '6': vm.code,
         '42': JSON.parse(this.$stact.state.token)[0].merchantNo,
-        '52': vm.code,
         '59': vm.version
       }
       let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
@@ -172,14 +175,6 @@ export default {
               type: 'success'
             })
             this.$router.back()
-            // new Promise((resolve, reject) => {
-            //   vm.$stact.dispatch('SetToken', '')
-            //   resolve()
-            // })
-            //   .then(result => {
-            //     vm.$router.push({ name: 'login' })
-            //   })
-            //   .catch(error => console.log(error))
           } else {
             vm.$message({
               message: res.data[39],

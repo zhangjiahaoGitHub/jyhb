@@ -63,9 +63,9 @@
         <p>功能专区</p>
         <ul>
           <li @click="$router.push({name: 'helpCenter'})"><img src="../../assets/my/bzzx.png" alt=""><p>帮助中心</p></li>
-          <li><img src="../../assets/my/szzx.png" alt=""><p>设置中心</p></li>
+          <li @click="$router.push({name: 'setting'})"><img src="../../assets/my/szzx.png" alt=""><p>设置中心</p></li>
           <li><img src="../../assets/my/xxzx.png" alt=""><p>消息中心</p></li>
-          <li><img src="../../assets/my/gywm.png" alt=""><p>关于我们</p></li>
+          <li @click="$router.push({name: 'aboutUs', query:{yhxi,gsjj}})"><img src="../../assets/my/gywm.png" alt=""><p>关于我们</p></li>
         </ul>
       </div>
     </div>
@@ -140,6 +140,8 @@ export default {
       userName: '',
       phone: '',
       url: '',
+      yhxi: '',
+      gsjj: '',
       zhye: 0,
       xyf: 0,
       fullscreenLoading: false,
@@ -218,6 +220,8 @@ export default {
             vm.freezeStatus = JSON.parse(this.$stact.state.token)[0].freezeStatus
             this.zhye = res.data[43]
             this.xyf = res.data[6]
+            this.yhxi = res.data[44]
+            this.gsjj = res.data[45]
           }
         })
         .catch(err => {

@@ -1,42 +1,28 @@
 <template>
   <div class='hundred setting-layout'>
-    <div style='height:1px'></div>
-    <div class="contentDiv">
-      <img src="../../assets/my/setting/logo.png" alt="">
-      <ul>
-        <li @click="$router.push({name: 'server'})">
-          <div>
-            <img src="../../assets/my/setting/fk.png" alt="">
-            我要反馈
-          </div>
-          <i class="el-icon-arrow-right"></i>
-        </li>
-        <li @click="changepaw()">
-          <div>
-            <img src="../../assets/my/setting/edit.png" alt="">
-            修改密码
-          </div>
-          <i class="el-icon-arrow-right"></i>
-        </li>
-        <li @click="$router.push({name: 'editPhone'})">
-          <div>
-            <img src="../../assets/my/setting/edit.png" alt="">
-            修改手机号
-          </div>
-          <i class="el-icon-arrow-right"></i>
-        </li>
-        <li>
-          <div>
-            <img src="../../assets/my/setting/version.png" alt="">
-            版本信息
-          </div>
-          <span>V {{version.substring(7,version.length)}}</span>
-        </li>
-      </ul>
+    <div class="headDiv">
+      <img src="../../assets/logo.png" alt="">
+      <p>鲸鹰伙伴</p>
+      <span>版本号：{{version.substring(7,version.length)}}</span>
     </div>
-    <div class="btnDiv">
-      <div @click='loginOut()'>安全退出</div>
-    </div>
+    <ul>
+      <li @click="$router.push({name: 'editPhone'})">
+        <span>修改手机号</span>
+        <i class="el-icon-arrow-right"></i>
+      </li>
+      <li @click="notYetOpen">
+        <span>收货地址</span>
+        <i class="el-icon-arrow-right"></i>
+      </li>
+      <li @click="changepaw()">
+        <span>修改密码</span>
+        <i class="el-icon-arrow-right"></i>
+      </li>
+    </ul>
+    <ol>
+      <li @click="$router.push({name: 'zhgl'})">账号管理</li>
+      <li @click="loginOut">退出登录</li>
+    </ol>
   </div>
 </template>
 <script>
@@ -46,7 +32,8 @@ export default {
       phone: '',
       version: '',
       agentNo: '',
-      merchant: {}
+      merchant: {},
+      value: true,
     }
   },
   created () {
@@ -55,6 +42,15 @@ export default {
     this.merchant = JSON.parse(this.$stact.state.token).merchant
   },
   methods: {
+    notYetOpen () {
+      this.$message({
+        message: '暂未开放',
+        center: true,
+        offset: 30,
+        duration: 2500,
+        type: 'success'
+      })
+    },
     loginOut () { // 退出 清除token
       let vm = this
       this.$confirm('是否确认退出？', '提示', {

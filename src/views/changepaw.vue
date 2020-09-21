@@ -1,18 +1,30 @@
 <template>
-  <div class='hundred registered-layout' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock='fullscreenLoading'>
+  <div class='hundred changepaw-layout' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock='fullscreenLoading'>
     <ul>
       <li>
-        <input v-model='oldpassword' type="password" placeholder="请输入旧密码">
+        <p>手机号</p>
+        <input v-model='phone' type="number" placeholder="请输入手机号">
       </li>
       <li>
-        <input v-model='password' type="password" placeholder="请输入新的8-16位数字+字母组合密码">
+        <p>验证码</p>
+        <input v-model="code" type="text" placeholder="请输入短信验证码" />
+        <span @click="time <= 0 ? getCode() : ''">{{text}}</span>
       </li>
       <li>
-        <input v-model='confirmPassword' type="password" placeholder="请再次输入新密码">
+        <p>旧密码</p>
+        <input type="password" name="" id="" v-model="oldpassword" placeholder="请输入原始登录密码">
+      </li>
+      <li>
+        <p>新密码</p>
+        <input type="password" name="" id="" v-model="password" placeholder="请输入6至14位新密码">
+      </li>
+      <li>
+        <p>新密码</p>
+        <input type="password" name="" id="" v-model="confirmPassword" placeholder="请再次输入新密码">
       </li>
     </ul>
     <div class="btnDiv">
-      <div @click='forget'>确认修改</div>
+      <div @click='forget'>提交修改</div>
     </div>
   </div>
 </template>
@@ -25,6 +37,7 @@ export default {
       text: '获取验证码',
       version: '',
       agentNo: '',
+      phone: '',
       code: '',
       oldpassword: '',
       password: '',
@@ -66,8 +79,6 @@ export default {
         '0': '0700',
         '1': vm.phone,
         '3': '190919',
-        '5': '1',
-        '44': vm.agentNo,
         '59': vm.version
       }
       let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
@@ -105,7 +116,7 @@ export default {
     },
     timer () { // 倒计时中
       if (this.time > 0) {
-        this.text = `${this.time--}S后可重发`
+        this.text = `${this.time--}S`
         setTimeout(this.timer, 1000)
       } else {
         this.text = '重新获取'
@@ -113,9 +124,9 @@ export default {
     },
     forget () { // 注册
       let vm = this
-      if (this.password.length < 8 || vm.password.length > 16) {
+      if (this.phone.match(/^[ ]*$/)) {
         this.$message({
-          message: '密码长度限制为8-16位,由数字+字母组成',
+          message: '手机号码必须填写',
           center: true,
           offset: 30,
           duration: 2500,
@@ -123,9 +134,49 @@ export default {
         })
         return
       }
-      if (!(/^(?![^a-zA-Z]+$)(?!\D+$)/).test(vm.password)) {
+      if (!(/^1[1-9]\d{9}$/.test(this.phone))) {
         this.$message({
-          message: '密码需由数字+字母组成',
+          message: '手机号码有误，请重填',
+          center: true,
+          offset: 30,
+          duration: 2500,
+          type: 'warning'
+        })
+        return
+      }
+      if (this.code.match(/^[ ]*$/)) {
+        this.$message({
+          message: '验证码必须填写',
+          center: true,
+          offset: 30,
+          duration: 2000,
+          type: 'warning'
+        })
+        return
+      }
+      if (this.code.length !== 6) {
+        this.$message({
+          message: '验证码必须为六位',
+          center: true,
+          offset: 30,
+          duration: 2000,
+          type: 'warning'
+        })
+        return
+      }
+      if (this.oldpassword.match(/^[ ]*$/)) {
+        this.$message({
+          message: '旧密码必须填写',
+          center: true,
+          offset: 30,
+          duration: 2000,
+          type: 'warning'
+        })
+        return
+      }
+      if (this.password.length < 6 || vm.password.length > 14) {
+        this.$message({
+          message: '密码长度限制为6-14位',
           center: true,
           offset: 30,
           duration: 2500,
@@ -157,9 +208,9 @@ export default {
         '0': '0700',
         '1': JSON.parse(this.$stact.state.token)[0].phone,
         '3': '190929',
+        '6': vm.code,
         '8': vm.$md5(vm.oldpassword),
         '9': vm.$md5(vm.password),
-        '10': '1',
         '59': vm.version
       }
       let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))

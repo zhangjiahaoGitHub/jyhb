@@ -253,10 +253,13 @@ export default {
             
             // 多用户
             let userList = JSON.parse(localStorage.getItem('userList')) || []
+            
             userList.push({
               phone: JSON.parse(res.data[42])[0].phone,
               passWord: JSON.parse(res.data[42])[0].passwd,
               merchantNo: JSON.parse(res.data[42])[0].merchantNo,
+              headUrl: JSON.parse(res.data[42])[0].headUrl,
+              merchantCnName: JSON.parse(res.data[42])[0].merchantCnName,
             })
             localStorage.setItem('userList',JSON.stringify(userList))
 
