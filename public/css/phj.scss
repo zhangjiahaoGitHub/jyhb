@@ -494,7 +494,7 @@ $big: 2rem;
     font-size: px2rem(28);
   }
   .three-box {
-    background-color: #fff;
+    // background-color: #fff;
     margin: px2rem(20) px2rem(30);
     border-radius: px2rem(10);
     .list-row {
@@ -502,6 +502,7 @@ $big: 2rem;
       justify-content: space-between;
       padding: px2rem(20) px2rem(30);
       border-bottom: 1px solid #F5F5F5;
+      background-color: #fff;
       font-size: px2rem(26);
     }
   }
@@ -511,9 +512,9 @@ $big: 2rem;
     justify-content: space-between;
     margin-top: px2rem(20);
     .left-six-box {
-      flex: 0.47;
+      flex: 0.49;
       background-color: #F5F5F5;
-      padding: px2rem(20) px2rem(50);
+      padding: px2rem(20) px2rem(0);
       padding-bottom: 0;
       border-radius: px2rem(10);
       text-align: center;
@@ -528,4 +529,9 @@ $big: 2rem;
     // padding-left: px2rem(30);
     font-size: px2rem(28);
   }
+}
+.more-no {
+  color: #666666;
+  padding: px2rem(30);
+  text-align: center;
 }
