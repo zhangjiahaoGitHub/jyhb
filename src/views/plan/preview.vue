@@ -13,8 +13,8 @@
         </div>
       </div>
       <div class="aisleDiv">
-        <p v-if="acqcodeObj.length<1">通道名称：{{acqcodeObj.channelName}}</p>
-        <p v-else>通道名称：{{tdName.join(',')}}</p>
+        <p v-if="acqcodeArr.length<1">{{acqcodeObj.channelName}}</p>
+        <p v-else>{{tdName.join(',')}}</p>
         <div>
           <div>
             <span>{{money}}</span>
@@ -22,7 +22,7 @@
           </div>
           <div>
             <p :style="tong=='QYK' ? 'visibility:hidden;':''"><span>周转金总额：</span>{{(parseFloat(calcList[40])+parseFloat(calcList[7])+parseFloat(calcList[9])).toFixed(2)}}</p>
-            <p><span>手续费小计：</span>{{calcList[17]}}<i @click="dataPopShow=true" class="el-icon-warning-outline"></i></p>
+            <p><span>手续费小计：</span>{{parseFloat(calcList[7])+parseFloat(calcList[9])}}<i @click="dataPopShow=true" class="el-icon-warning-outline"></i></p>
           </div>
         </div>
       </div>
@@ -184,8 +184,8 @@ export default {
     this.tong = this.$route.query.tong
     // arr为多通道YK
     if (this.$route.query.acqcodeObj) {
-      this.acqcodeObj = JSON.parse(this.$route.query.acqcodeObj)
-      // this.merchantList(0,this.children[0],this.children[1])
+      this.$set(this,'acqcodeObj',JSON.parse(this.$route.query.acqcodeObj))
+      console.log(this.acqcodeObj);
     }else{
       this.acqcodeArr = JSON.parse(this.$route.query.acqcodeArr)
       this.acqcodeArr.forEach(item => {

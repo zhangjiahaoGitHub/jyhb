@@ -661,7 +661,7 @@ const routes = [
     name: 'moreAisle',
     meta: {
       title: '制定计划',
-      bgBlue: true,
+      bgLeft: true,
       keepAlive: true
     },
     component: () => import('../views/repayment/moreAisle.vue')
