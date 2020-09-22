@@ -40,89 +40,12 @@
             <p>本期已还：￥{{item.payed}}</p>
           </li>
           <li>
-            <p>订单状态：<span>{{status[item.STATUS]}}</span></p>
+            <p>订单状态：<span :style="!(item.STATUS=='10C' || item.STATUS=='10D' || item.STATUS=='10F') ? 'color: #333;':''">{{status[item.STATUS]}}</span></p>
           </li>
           <div>计划详情</div>
         </ol>
       </li>
     </ul>
-    <!-- <div class='blueBack tbexha'>
-      <div class='bankgroud cardground noPadding raduisBottom' style='margin-top: 0'>
-          <div class='allFlex planBack whiteBimo'>
-                  <div>
-                      <img :src="banks[cardList.BANK_NAME]?require(`../../assets/bank/${banks[cardList.BANK_NAME]}.png`):require('../../assets/bank/yl.png')" class='bankLogo' />
-                      <span class='bankRight'>
-                          {{cardList.short_cn_name}}
-                      </span>
-                  </div>
-                  <div class='textRight'>
-                      <div>
-                        <span class='exhuaPadd repayFont'>{{cardList.BANK_ACCOUNT.substring(0, 4)}} **** **** {{cardList.BANK_ACCOUNT.substring(cardList.BANK_ACCOUNT.length-4, cardList.BANK_ACCOUNT.length)}}</span>
-                      </div>
-                  </div>
-            </div>
-            <div class='allFlex choose border planBackx relative' style='margin-bottom:0'>
-                  <div class='garyChoose smallFont half textCenter'>
-                      <p class='garyImp'>额度</p>
-                      <p>{{cardList.LIMIT_MONEY}}</p>
-                  </div>
-                  <div class='garyChoose smallFont half textCenter'>
-                      <p class='garyImp'>账单日</p>
-                      <p>{{cardList.BILL_DAY}}</p>
-                  </div>
-                  <div class='garyChoose smallFont half textCenter'>
-                      <p class='garyImp'>还款日</p>
-                      <p>{{cardList.REPAYMENT_DAY}}</p>
-                  </div>
-            </div>
-      </div>
-    </div>
-    <div style='height: 18.9rem;overflow: auto;'>
-      <ul style="margin-left:0;margin-right:0;width:100%;box-sizing:border-box;" @click="toInfo(item)" class='planContent exhaustiveContent' v-for='item in listMore' :key='item.ID'>
-          <li class='allFlex justifyBetween flexPadding'>
-              <div>
-              <span class='gary'>
-                  创建时间：
-              </span>
-              {{$moment(item.CREATE_TIME.time).format('YYYY-MM-DD HH:mm:ss')}}
-              </div>
-              <div>
-              <span :class="item.STATUS === '10D' ? 'redColor': ''">{{status[item.STATUS]}}</span>
-              </div>
-          </li>
-          <li class='allFlex justifyBetween flexPadding'>
-              <div>
-              <span class='gary'>
-                  计划周期：
-              </span>
-              {{$moment(item.START_TIME.time).format('YYYY-MM-DD')}}至{{$moment(item.END_TIME.time).format('YYYY-MM-DD')}}
-              </div>
-          </li>
-          <li class='allFlex justifyBetween flexPadding'>
-              <div>
-              <span class='gary'>
-                  本期应还：
-              </span>
-              ￥{{item.PLAN_AMT}}
-              </div>
-              <div>
-              <span class='gary'>
-                  本期已还：
-              </span>
-              ￥{{item.payed}}
-              </div>
-          </li>
-          <li class='allFlex justifyBetween flexPadding'>
-              <div class='allFlex'>
-                  <el-progress class='prssMax' color='#2161E7' :show-text='false' :text-inside="true" :stroke-width="12" :percentage="parseInt((item.payed/item.PLAN_AMT)*100)>100? 100 : parseInt((item.payed/item.PLAN_AMT)*100)"></el-progress>
-                  <span>{{parseInt((item.payed/item.PLAN_AMT)*100)>100? 100 : parseInt((item.payed/item.PLAN_AMT)*100)}}%</span>
-              </div>
-              <div>
-                  <span  class='examine'>计划详情</span>
-              </div>
-          </li>
-      </ul>
-    </div> -->
   </div>
 </template>
 <script>

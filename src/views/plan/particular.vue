@@ -130,7 +130,7 @@
     </div>
     <div v-if="itemList.TYPE!='10C'" class='partSubmit'>
         <div class='allFlex justifyBetween planMargin'>
-            <div class='submitPlan' @click="itemList.STATUS === '10E' || stop(itemList.STATUS)">{{itemList.STATUS !== '10D' ? itemList.STATUS === '10E'? '完成计划' : '停止计划': '开启计划'}}</div>
+            <div :style="itemList.STATUS=='10D' ? 'background: #B0B0B0;':''" class='submitPlan' @click="itemList.STATUS === '10E' || stop(itemList.STATUS)">{{itemList.STATUS !== '10D' ? itemList.STATUS === '10E'? '完成计划' : '停止计划': '启用计划'}}</div>
             <div class='submitPlan' @click='de(itemList.STATUS)'>删除</div>
         </div>
     </div>
@@ -148,9 +148,11 @@ export default {
       number: '',
       status: {
         '10A': '未执行',
-        '10B': '成功',
+        '10B': '执行中',
         '10C': '失败',
-        '10D': '进行中',
+        '10D': '已暂停',
+        '10E': '已完成',
+        '10F': '已退款',
       },
       itemList: [],
       listMore: [],
@@ -303,7 +305,12 @@ export default {
                 offset: 30,
                 duration: 2500
               })
-              vm.$router.go(-1)
+              // vm.$router.go(-1)
+              if (vm.itemList.STATUS === '10D') {
+                this.itemList.STATUS = '10B'
+              }else{
+                this.itemList.STATUS = '10D'
+              }
             } else {
               vm.$message({
                 message: res.data[39],
