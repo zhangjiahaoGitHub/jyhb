@@ -64,7 +64,7 @@
         <ul>
           <li @click="$router.push({name: 'helpCenter'})"><img src="../../assets/my/bzzx.png" alt=""><p>帮助中心</p></li>
           <li @click="$router.push({name: 'setting'})"><img src="../../assets/my/szzx.png" alt=""><p>设置中心</p></li>
-          <li><img src="../../assets/my/xxzx.png" alt=""><p>消息中心</p></li>
+          <li @click="$router.push({name:'message'})"><img src="../../assets/my/xxzx.png" alt=""><p>消息中心</p></li>
           <li @click="$router.push({name: 'aboutUs', query:{yhxi,gsjj}})"><img src="../../assets/my/gywm.png" alt=""><p>关于我们</p></li>
         </ul>
       </div>

@@ -192,10 +192,6 @@ export default Vue.extend({
         this.$router.push({ name: 'collection' })
         return
       }
-      if (this.$route.name === 'message') {
-        this.$router.push({ name: 'home' })
-        return
-      }
       if (this.$route.name === 'notice') {
         this.$router.push({ name: 'home' })
         return

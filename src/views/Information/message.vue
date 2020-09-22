@@ -2,15 +2,11 @@
   <div class='hundred message-layout'>
     <ul>
       <li @click="toMessageInfo(item)" v-for="item in newsList" :key="item.id">
-        <div class="firstDiv">
-          <em v-if="item.hasRead=='0'"></em>
-          <span class="firstSpan">{{item.title}}</span> <span>{{item.effectiveFromTimeStr}}</span>
+        <div>
+          <p>{{item.title}}</p>
+          <p>{{item.effectiveFromTimeStr}}<span v-if="item.hasRead===0"></span></p>
         </div>
         <p>{{item.content}}</p>
-        <div class="lookDiv">
-          <span>查看详情</span>
-          <i class="el-icon-arrow-right"></i>
-        </div>
       </li>
     </ul>
     <router-view></router-view>
