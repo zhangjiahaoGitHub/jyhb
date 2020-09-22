@@ -6,7 +6,7 @@
       <li @click="!type ? login(item,index):''" v-for="(item,index) in userList" :key="item.merchantNo">
         <div>
           <i @click.stop="del(index)" v-if="type" class="el-icon-remove"></i>
-          <img :src="item.headUrl" alt="">
+          <img :src="item.headUrl ? item.headUrl:require('../../assets/head.png')" alt="">
           <div>
             <span>{{item.merchantCnName}}</span>
             <p>{{item.phone}}</p>
@@ -64,6 +64,9 @@ export default {
               duration: 2500,
               type: "success",
             });
+
+            window.sessionStorage.removeItem('xxtc')
+
             localStorage.setItem('kfPhone',res.data[18])
             localStorage.setItem('sjMoney',res.data[21])
 

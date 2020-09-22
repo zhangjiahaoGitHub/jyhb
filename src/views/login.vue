@@ -254,7 +254,18 @@ export default {
             // 多用户
             let userList = JSON.parse(localStorage.getItem('userList')) || []
             
-            userList.push({
+            // 把老的，相同的，以前的账号删除
+            let flag = ''
+            for (let i = 0; i < userList.length; i++) {
+              if (userList[i].phone == vm.phone) {
+                flag = i
+              }
+            }
+            if (flag!=='') {
+              userList.splice(flag,1)
+            }
+
+            userList.unshift({
               phone: JSON.parse(res.data[42])[0].phone,
               passWord: JSON.parse(res.data[42])[0].passwd,
               merchantNo: JSON.parse(res.data[42])[0].merchantNo,
