@@ -1,27 +1,33 @@
 <template>
     <div class='hundred selectChannel-layout' style="overflow-x: hidden;">
-      <div class="top-head-top"></div>
+      <el-popover
+        placement="bottom"
+        title=""
+        width="200"
+        class="aisle-popover"
+        trigger="manual"
+        v-model="visible">
+        <ol>
+          <li @click="toiframimg(item)" v-for="(item,index) in listArr" :key="index">{{item.channelName}}</li>
+        </ol>
+        <i slot="reference" @click="visible = !visible">限额说明</i>
+      </el-popover>
       <ul>
-        <li v-for="(item,index) in listArr" :key="item.ID">
+        <li @click="toNext(item)" v-for="item in listArr" :key="item.ID">
           <div class="headDiv">
             <p><img src="../../assets/bank/yl.png">{{item.channelName}}</p>
-            <span @click="toiframimg (item)">限额说明</span>
+            <span>{{item.remark.split(',')[0]}}<i class="el-icon-arrow-right"></i></span>
           </div>
-          <div class="contentDiv">
-            <div>
-              <span>{{item.rate}}%</span>
-              <div>
-                <p>单笔限额：{{item.limit}}</p>
-                <p>交易时间：{{item.T0date}}</p>
-              </div>
-            </div>
-            <img @click="nowIndex=index" :src="nowIndex!==index ? require('../../assets/wxz.png'):require('../../assets/xz.png')" alt="">
+          <div class="flexDiv">
+            <p>单笔限额：{{item.limit}}</p>
+            <p v-if="item.remark.split(',')[1]">结算：{{item.remark.split(',')[1]}}</p>
+          </div>
+          <div class="flexDiv">
+            <p>交易时间：{{item.T0date}}</p>
+            <span>{{item.rate}}%</span>
           </div>
         </li>
       </ul>
-      <div class="btnDiv">
-        <div @click="toNext">下一步</div>
-      </div>
     </div>
 </template>
 <script>
@@ -51,6 +57,7 @@ export default {
       },
       bank_accountid: '',
       showtabflag: false,
+      visible: false,
       aisle: '',
       hb: true,
       nowIndex: '',
@@ -68,19 +75,7 @@ export default {
     this.getListData()
   },
   methods: {
-    toNext(){
-      if (this.nowIndex==='') {
-        this.$message({
-          message: `请选择通道`,
-          center: true,
-          offset: 30,
-          duration: 2500,
-          type: 'warning'
-        })
-        return
-      }
-      let item = this.listArr[this.nowIndex]
-      
+    toNext(item){
       if (this.aisle=='WK') {
         this.tomakingPlans(item.acqcode,item.rate,item.limit,item.status)
       }else{
@@ -155,22 +150,6 @@ export default {
         }).catch(() => {       
         });
       }
-      // this.cardMore.forEach(item => {
-      //   if (item.kstatus==acqcode) {
-      //     if (item.status=='开通') {
-      //       vm.toHk(acqcode,rate)
-      //     }else{
-      //       this.$confirm('该通道暂未开通，请先进行开通', '提示', {
-      //         confirmButtonText: '确定',
-      //         cancelButtonText: '取消',
-      //         type: 'warning'
-      //       }).then(() => {
-      //         vm.$router.push({ name: 'tiedcard', query: { item: this.$route.query.item, code: item.code, category: item.category } })
-      //       }).catch(() => {       
-      //       });
-      //     }
-      //   }
-      // });
     },
     toHk(acqcode,rate) {
       let vm = this
@@ -206,7 +185,7 @@ export default {
         })
     },
     toiframimg (item) {
-      this.$router.push({ name: 'imgIframe', query: { url: item.url, title: item.channelName } })
+      this.$router.push({ name: 'imgIframe', query: { url: `http://120.78.81.147/icon/icon_channel_${item.acqcode}.png`, title: item.channelName } })
     },
     // 获取列表
     getListData(){

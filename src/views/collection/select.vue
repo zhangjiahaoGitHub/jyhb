@@ -1,26 +1,31 @@
 <template>
-  <div class='hundred choseXycard-layout'>
+  <div class='hundred select-layout'>
     <ul>
       <li @click="toAisle(item)" v-for='item in cardList' :key='item.ID'>
-        <div class="headDiv">
-            <p><img :src="banks[item.BANK_NAME]?require(`../../assets/bank/${banks[item.BANK_NAME]}.png`):require('../../assets/bank/yl.png')" alt="">{{item.short_cn_name}}</p>
-            <span @click.stop="delCard(item.BANK_ACCOUNT)">解绑</span>
+        <div>
+          <p><img :src="banks[item.BANK_NAME]?require(`../../assets/bank/${banks[item.BANK_NAME]}.png`):require('../../assets/bank/yl.png')" alt="">{{item.short_cn_name}}({{item.BANK_ACCOUNT.substring(item.BANK_ACCOUNT.length-4,item.BANK_ACCOUNT.length)}})</p>
+          <p>{{item.BANK_ACCOUNT_NAME.substring(0,1)}}<span v-for="(item,index) in item.BANK_ACCOUNT_NAME.substring(0,1)" :key="index">*</span></p>
         </div>
-        <p>{{item.BANK_ACCOUNT.substring(0,4)}} **** **** {{item.BANK_ACCOUNT.substring(item.BANK_ACCOUNT.length-4, item.BANK_ACCOUNT.length)}}</p>
+        <div>
+          <span>{{item.day}}</span>
+          <div>
+            <p>天到期<span>{{item.plancount<1 ? '未制定计划':'已制定计划'}}</span></p>
+            <span>{{item.repDate}}</span>
+          </div>
+        </div>
         <ol>
           <li>
+            <span>{{item.LIMIT_MONEY}}</span>
             <p>额度</p>
-            <p>{{item.LIMIT_MONEY}}</p>
           </li>
           <li>
-            <p>账单</p>
-            <p>{{item.BILL_DAY}}</p>
+            <span>{{item.PLAN_AMT}}</span>
+            <p>账单金额</p>
           </li>
           <li>
-            <p>还款日</p>
-            <p>{{item.REPAYMENT_DAY}}</p>
+            <span>{{item.SURPLUS_PAYMENT_MONEY}}</span>
+            <p>剩余应还</p>
           </li>
-          <span>立即收款</span>
         </ol>
       </li>
     </ul>

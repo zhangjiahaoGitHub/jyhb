@@ -18,14 +18,14 @@
     <div v-if="currentValue" class="keyboard">
       <ul class="border_top">
         <li>
-          <span @click="chooseNum('1')">
-            1
+          <span @click="chooseNum('7')">
+            7
           </span>
-          <span @click="chooseNum('2')">
-            2
+          <span @click="chooseNum('8')">
+            8
           </span>
-          <span @click="chooseNum('3')">
-            3
+          <span @click="chooseNum('9')">
+            9
           </span>
         </li>
         <li>
@@ -40,14 +40,14 @@
           </span>
         </li>
         <li>
-          <span @click="chooseNum('7')">
-            7
+          <span @click="chooseNum('1')">
+            1
           </span>
-          <span @click="chooseNum('8')">
-            8
+          <span @click="chooseNum('2')">
+            2
           </span>
-          <span @click="chooseNum('9')">
-            9
+          <span @click="chooseNum('3')">
+            3
           </span>
         </li>
         <li>
@@ -63,18 +63,18 @@
         </li>
       </ul>
     </div>
-    <div class="btn-style" @click="toShow">
+    <div class="btn-style" @click="tocollection">
       <img src="../assets/bank/white/yl.png" alt="">
       快捷支付
     </div>
-    <div v-if="popShow" class="popDiv">
+    <!-- <div v-if="popShow" class="popDiv">
       <div>
         <p>请选择收款方式</p>
         <p @click="tocollection()">信用卡</p>
         <p @click="toHb">花呗</p>
         <div @click="popShow=false">取消</div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
@@ -144,6 +144,16 @@ export default {
       this.popShow = true
     },
     tocollection() {
+      if (this.priceall == '' || this.priceall == '0.00') {
+        this.$message({
+          message: '金额不能为空',
+          center: true,
+          offset: 30,
+          duration: 2500,
+          type: 'warning'
+        })
+        return
+      }
       this.$router.push({name: 'select', query: {money: parseInt(this.priceall)}})
     },
     toHb() {

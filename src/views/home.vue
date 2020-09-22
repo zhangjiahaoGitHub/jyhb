@@ -111,7 +111,7 @@
         </div>
         <div>智能还款</div>
       </div>
-      <div class="return-box">
+      <div @click="()=>{this.$router.push({ name: 'collection'})}" class="return-box">
         <div class="return-img">
           <img src="../assets/home/yj-return.png" alt="">
         </div>
