@@ -613,7 +613,7 @@ const routes = [
     name: 'collection',
     meta: {
       title: '收款',
-      bgBlue: true
+      bgLeft: true
     },
     component: () => import('../views/collection.vue')
   },
@@ -622,7 +622,7 @@ const routes = [
     name: 'selectChannel',
     meta: {
       title: '选择通道',
-      bgBlue: true
+      bgLeft: true
     },
     component: () => import('../views/collection/selectChannel.vue')
   },
@@ -650,8 +650,7 @@ const routes = [
     name: 'select',
     meta: {
       title: '快捷收款',
-      bgBlue: true,
-      select: true,
+      bgLeft: true,
     },
     component: () => import('../views/collection/select.vue')
   },
