@@ -78,7 +78,8 @@
             </div>
             <el-radio v-model="radio" label="DTD"></el-radio>
           </li>
-          <li @click="radio='YKD'">
+          <li @click="notYetOpen">
+          <!-- <li @click="radio='YKD'"> -->
             <div>
               <img src="../../assets/repay/ykdh.png" alt="">
               <div>
@@ -226,6 +227,15 @@ export default {
     this.list()
   },
   methods: {
+    notYetOpen () {
+      this.$message({
+        message: '暂未开放',
+        center: true,
+        offset: 30,
+        duration: 2500,
+        type: 'success'
+      })
+    },
     jxhk(){
       if (this.radio=='YK' || this.radio=='YJYK' || this.radio=='JYK') {
         this.selectype()
@@ -359,11 +369,13 @@ export default {
       }
       this.selectHaveAisle()
     },
+    // 一卡多还
     toOneCardDh () {
       let vm = this
       let item = this.nowItem
       vm.$router.push({ name: 'oneCardDh', query: { item: JSON.stringify(item) } })
     },
+    // 多通道
     toMoreAisle () {
       let vm = this
       let item = this.nowItem

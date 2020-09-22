@@ -152,7 +152,7 @@ export default {
     return {
       pickerOptions: {
         disabledDate(time) {
-          let a = time.getTime() < Date.now()
+          let a = time.getTime() < (Date.now() - 86400000)
           return a
           // if (parseInt(me.bank.BILL_DAY)<parseInt(me.bank.REPAYMENT_DAY)) {
           //   let b = parseInt(me.$moment(time).format('DD'))<parseInt(me.bank.BILL_DAY) || parseInt(me.$moment(time).format('DD'))>(parseInt(me.bank.REPAYMENT_DAY)+3)
@@ -184,6 +184,10 @@ export default {
         {
           value: '2',
           label: '2次/日'
+        },
+        {
+          value: '3',
+          label: '3次/日'
         },
       ],
       type: '10B',

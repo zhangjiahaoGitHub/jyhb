@@ -186,6 +186,10 @@ export default {
           value: '2',
           label: '2次/日'
         },
+        {
+          value: '3',
+          label: '3次/日'
+        },
       ],
       YJYK: [
         {
