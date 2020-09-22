@@ -1,5 +1,5 @@
 <template>
-  <div class='home-layout home-style-p'>
+  <div class='home-layout home-style-p' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock="fullscreenLoading">
     <!-- <div class="headDiv">
       <ul>
         <li @click="()=>{this.$router.push({ name: 'selectcard', query: { aisle: 'YK' } })}">
@@ -234,8 +234,8 @@
     <div class="shouyi-zhangdan">收益账单</div>
     <div class="echats-box-mes">
       <div class="echarts-type-select">
-        <span class="bottom-bor">近七日</span>
-        <span>本月</span>
+        <span :class="zhangdanqb == '0' ? 'bottom-bor' : ''" @click.stop="changeqb('0')">近七日</span>
+        <span :class="zhangdanqb == '1' ? 'bottom-bor' : ''" @click.stop="changeqb('1')">本月</span>
       </div>
       <div class="setting-rata">
         <div class="fr-jh">
@@ -313,6 +313,7 @@ export default {
         },
         loop: true, // 就是决定是不是无缝轮播 true是无缝轮播 false不是
       },
+      fullscreenLoading: false,
       agentNo: '',
       version: '',
       hasRead: 1,
@@ -336,7 +337,7 @@ export default {
       setint: null, //消息计时器
       msg: 'Welcome to Your Vue.js App',
       arrseven: [], //近七天时间存储
-      arrseventwo: [],
+      arrsevenguodu: [],
       peopleimg: '',
       frallprice: '',
       jhallprice: '',
@@ -345,7 +346,19 @@ export default {
       frarrprice: [],
       jharrseven: [],
       jharrprice: [],
-      userName: ''
+      morenfr: ['0','0','0','0','0','0','0'],
+      morenjh: ['0','0','0','0','0','0','0'],
+      userName: '',
+      zhangdanqb: '0',//账单，0默认为7日。1为本月
+      yuedata: [],
+      yuemorenfr: [],
+      yuemorenjh: [],
+      yuefrarrseven: [],
+      yuefrarrprice: [],
+      yuejharrseven: [],
+      yuejharrprice: [],
+      isxuanran: 0,
+      maxnum: ''//最大值
     }
   },
   components: {
@@ -390,7 +403,13 @@ export default {
   },
     watch: {
     frarrseven (n,o) {
-      if(n.length > 0) {
+      if(n.length > 0 && this.zhangdanqb == '0') {
+        console.log(n);
+        this.drawLine()
+      }
+    },
+    isxuanran (n,o) {
+      if(n == 1 && this.zhangdanqb == '1') {
         console.log(n);
         this.drawLine()
       }
@@ -406,13 +425,13 @@ export default {
         myChart.setOption({
             xAxis: {
                 type: 'category',
-                data: vm.arrseven,
+                data: vm.zhangdanqb == '0' ? vm.arrseven : vm.yuedata,
                 boundaryGap: false,
                 axisTick: {
                   alignWithLabel: true,
                   show: false,
                   interval: '0',
-                  length: '7',
+                  // length: '7',
                 },
                 axisLine: {
                   show: true,
@@ -430,14 +449,14 @@ export default {
                 show: false,
                 alignWithLabel: true,
               },
-              // min: 0,
-              // max: 1.0,
-              // splitNumber: 6,
+              min: 0,
+              max: vm.maxnum,
+              splitNumber: 6,
               // interval: 0.2,
             },
             {
               type: 'value',
-              data: ['0', '0.2', '0.4', '0.6', '0.8', '1.0',],
+              data: ['0', '0.2', '0.4', '0.6', '0.8', '1.0'],
               axisLine: {
                 show: false,
                 onZero: true
@@ -450,12 +469,12 @@ export default {
                 show:false
               },
               min: 0,
-              max: 1.0,
+              max: vm.maxnum,
               splitNumber: 6,
               // interval: 0.2
             }],
             series: [{
-                data: vm.frarrprice.length > 0 ? vm.frarrprice : [0,0,0,0,0,0,0],
+                data: vm.zhangdanqb == '0' ? vm.morenfr : vm.yuemorenfr,
                 type: 'line',
                 itemStyle: {
                   normal: {
@@ -467,7 +486,7 @@ export default {
                 },
               },
             {
-                data: vm.jharrprice.length > 0 ? vm.jharrprice : [0,0,0,0,0,0,0],
+                data: vm.zhangdanqb == '0' ? vm.morenjh : vm.yuemorenjh,
                 type: 'line',
                 itemStyle: {
                   normal: {
@@ -489,8 +508,15 @@ export default {
         if(i == -6) {
           vm.arrseven.reverse()
           vm.arrseven.push('今天')
+          vm.arrsevenguodu.reverse()
+          let d = new Date()
+          let year = d.getFullYear()
+          let mon = d.getMonth() + 1
+          let day = d.getDate()
+          vm.arrsevenguodu.push((mon < 10 ? ('0' + mon) : mon) + "-" + (day < 10 ? ('0' + day) : day))
         }else {
           vm.arrseven.push(vm.getBeforeDate(i))
+          vm.arrsevenguodu.push(vm.getBeforeDate(i))
         }
       }
     },
@@ -516,6 +542,184 @@ export default {
       day = d.getDate() - 1;
       let s = (mon < 10 ? ('0' + mon) : mon) + "-" + (day < 10 ? ('0' + day) : day);
       return s;
+    },
+    changeqb(num) {
+      let vm = this
+      if(vm.zhangdanqb == num) {
+        return
+      }
+      vm.zhangdanqb = num
+      //计算本月1号到今日的日期
+      vm.yuedata = []
+      vm.yuemorenfr = []
+      vm.yuemorenjh = []
+      let d = new Date()
+      let year = d.getFullYear()
+      let mon = d.getMonth() + 1
+      let day = d.getDate()
+      for(let i = 0; i < day; i++) {
+        vm.yuedata.push((mon < 10 ? ('0' + mon) : mon)+'-'+((i+1) < 10 ? ('0' + (i+1)) : (i+1)))
+        vm.yuemorenfr.push(0)
+        vm.yuemorenjh.push(0)
+      }
+      vm.getshouyizd()
+    },
+    getshouyizd () {
+      let vm = this
+      let parmas = {
+        '0': '0700',
+        '3': '690042',
+        '42': vm.merchantNo,
+        '43': vm.zhangdanqb,//0为7日。1为本月
+        '59': vm.version
+      }
+      let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
+      vm.fullscreenLoading = true
+      vm.$http.get(`request.app${url}`)
+        .then(res => {
+          if (res.data[39] === '00') {
+            vm.fullscreenLoading = false
+            //分润总额
+            vm.frallprice = res.data[13]
+            //激活总额
+            vm.jhallprice = res.data[14]
+            //今日交易总额
+            vm.jrallprice = res.data[12]
+            
+            if(vm.zhangdanqb == '0') { // 七日账单
+              //分润总额列表
+              let frlist = JSON.parse(res.data[10])
+              if(frlist.length > 0) {
+                for(let i in frlist) {
+                  vm.frarrseven.push(frlist[i].dateTime)// 日期数组
+                  vm.frarrprice.push(frlist[i].sumMoney)
+                }
+              }
+              let attendUid = vm.frarrseven
+              let dataattendUid = vm.arrsevenguodu
+              let result = new Array()
+              let cfr = dataattendUid.toString()
+              for (let i = 0; i < attendUid.length; i++) {
+                  if (cfr.indexOf(attendUid[i].toString()) > -1) {
+                      for (let j = 0; j < dataattendUid.length; j++) {
+                          if (attendUid[i] == dataattendUid[j]) {
+                              vm.morenfr[j] = vm.frarrprice[i]
+                              break
+                          }
+                      }
+                  }
+              }
+              console.log(vm.arrsevenguodu)
+              console.log(vm.morenfr)
+
+              //激活列表
+              let jhlist = JSON.parse(res.data[11])
+              if(jhlist.length > 0) {
+                for(let i in jhlist) {
+                  vm.jharrseven.push(jhlist[i].dateTime)
+                  vm.jharrprice.push(jhlist[i].sumMoney)
+                }
+              }
+              let attendUidtwo = vm.jharrseven
+              let dataattendUidtwo = vm.arrsevenguodu
+              let resulttwo = new Array()
+              let cjh = dataattendUidtwo.toString()
+              for (let i = 0; i < attendUidtwo.length; i++) {
+                  if (cjh.indexOf(attendUidtwo[i].toString()) > -1) {
+                      for (let j = 0; j < dataattendUidtwo.length; j++) {
+                          if (attendUidtwo[i] == dataattendUidtwo[j]) {
+                              vm.morenjh[j] = vm.jharrprice[i]
+                              break
+                          }
+                      }
+                  }
+              }
+              //计算最大值
+              let maxnumfr = vm.morenfr.reduce(function(a , b){
+               return b > a ? b : a;
+              })
+              let maxnumjh = vm.morenjh.reduce(function(a , b){
+               return b > a ? b : a;
+              })
+              if(maxnumfr > maxnumjh) {
+                vm.maxnum = maxnumfr
+              }else {
+                vm.maxnum = maxnumjh
+              }
+              vm.maxnum = Math.ceil(vm.maxnum / 9.5) * 10
+              console.log(vm.arrsevenguodu)
+              console.log(vm.morenjh)
+              vm.isxuanran = 0 //监听，让echarts重新渲染
+            }else if(vm.zhangdanqb == '1') {//本月账单
+              //分润总额列表
+              let frlist = JSON.parse(res.data[10])
+              if(frlist.length > 0) {
+                for(let i in frlist) {
+                  vm.yuefrarrseven.push(frlist[i].dateTime)// 日期数组
+                  vm.yuefrarrprice.push(frlist[i].sumMoney)
+                }
+              }
+              let attendUid = vm.yuefrarrseven
+              let dataattendUid = vm.yuedata
+              let result = new Array()
+              let cfr = dataattendUid.toString()
+              for (let i = 0; i < attendUid.length; i++) {
+                  if (cfr.indexOf(attendUid[i].toString()) > -1) {
+                      for (let j = 0; j < dataattendUid.length; j++) {
+                          if (attendUid[i] == dataattendUid[j]) {
+                              vm.yuemorenfr[j] = vm.yuefrarrprice[i]
+                              break
+                          }
+                      }
+                  }
+              }
+              console.log(vm.yuedata)
+              console.log(vm.yuemorenfr)
+
+              //激活列表
+              let jhlist = JSON.parse(res.data[11])
+              if(jhlist.length > 0) {
+                for(let i in jhlist) {
+                  vm.yuejharrseven.push(jhlist[i].dateTime)
+                  vm.yuejharrprice.push(jhlist[i].sumMoney)
+                }
+              }
+              let attendUidtwo = vm.yuejharrseven
+              let dataattendUidtwo = vm.yuedata
+              let resulttwo = new Array()
+              let cjh = dataattendUidtwo.toString()
+              for (let i = 0; i < attendUidtwo.length; i++) {
+                  if (cjh.indexOf(attendUidtwo[i].toString()) > -1) {
+                      for (let j = 0; j < dataattendUidtwo.length; j++) {
+                          if (attendUidtwo[i] == dataattendUidtwo[j]) {
+                              vm.yuemorenjh[j] = vm.yuejharrprice[i]
+                              break
+                          }
+                      }
+                  }
+              }
+              //计算最大值
+              let maxnumfr = vm.yuemorenfr.reduce(function(a , b){
+               return b > a ? b : a;
+              })
+              let maxnumjh = vm.yuemorenjh.reduce(function(a , b){
+               return b > a ? b : a;
+              })
+              if(maxnumfr > maxnumjh) {
+                vm.maxnum = maxnumfr
+              }else {
+                vm.maxnum = maxnumjh
+              }
+              vm.maxnum = Math.ceil(vm.maxnum / 9.5) * 10
+              console.log(vm.yuemorenjh)
+              vm.isxuanran = 1 //监听，让echarts重新渲染
+            }
+          }
+        })
+        .catch(err => {
+          vm.fullscreenLoading = false
+          console.log(err)
+        })
     },
     hdzq() {
       this.$router.push({name: 'hdzq'})
@@ -613,66 +817,6 @@ export default {
             vm.peopleimg = res.data[48]
             vm.fullscreenLoading = false
             vm.$stact.dispatch('SetToken', res.data[57]) // 存token
-          }
-        })
-        .catch(err => {
-          vm.fullscreenLoading = false
-          console.log(err)
-        })
-    },
-    getshouyizd () {
-      let vm = this
-      let parmas = {
-        '0': '0700',
-        '3': '690042',
-        '42': vm.merchantNo,
-        '43': '0',
-        '59': vm.version
-      }
-      let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
-      vm.fullscreenLoading = true
-      vm.$http.get(`request.app${url}`)
-        .then(res => {
-          if (res.data[39] === '00') {
-            vm.fullscreenLoading = false
-            //分润总额
-            vm.frallprice = res.data[13]
-            //激活总额
-            vm.jhallprice = res.data[14]
-            //今日交易总额
-            vm.jrallprice = res.data[12]
-            //分润总额列表
-            let frlist = JSON.parse(res.data[10])
-            if(frlist.length > 0) {
-              for(let i in frlist) {
-                vm.frarrseven.push(frlist[i].dateTime)
-                vm.frarrprice.push(frlist[i].sumMoney)
-              }
-            }
-            
-            if(vm.frarrseven.length == 8) {
-              vm.frarrseven.shift()
-              vm.frarrseven.pop()
-              vm.frarrseven.push('今天')
-
-              vm.frarrprice.shift()
-            }
-            //激活列表
-            let jhlist = JSON.parse(res.data[11])
-            if(jhlist.length > 0) {
-              for(let i in jhlist) {
-                vm.jharrseven.push(jhlist[i].dateTime)
-                vm.jharrprice.push(jhlist[i].sumMoney)
-              }
-            }
-            if(vm.jharrseven.length == 8) {
-              vm.jharrseven.shift()
-              vm.jharrseven.pop()
-              vm.jharrseven.push('今天')
-
-              vm.jharrprice.shift()
-            }
-            console.log(vm.jharrseven.length)
           }
         })
         .catch(err => {

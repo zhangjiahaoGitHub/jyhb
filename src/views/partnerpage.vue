@@ -76,29 +76,32 @@
               <div class="touxiang">
                 <img :src="dierming.HEAD_URL ? dierming.HEAD_URL : require('../assets/logo.png')" alt="">
               </div>
-              <div class="name">{{dierming.MERCHANT_CN_NAME}}</div>
-              <div class="liang">交易量:{{(Number(dierming.sumMoney) / 10000) | numFilter}}万</div>
-              <div class="level-img">
+              <div v-if="Object.keys(dierming).length != 0" class="name">{{dierming.MERCHANT_CN_NAME}}</div>
+              <div v-if="Object.keys(dierming).length != 0" class="liang">交易量:{{(Number(dierming.sumMoney) / 10000) | numFilter}}万</div>
+              <div v-if="Object.keys(dierming).length == 0" class="zanweisahngbang">暂未上榜</div>
+              <div v-if="Object.keys(dierming).length != 0" class="level-img">
                 <img  v-if="dierming.LEVEL" :src="require('../assets/levelimg/'+ levelimg[dierming.LEVEL] +'.png')" alt="">
               </div>
             </div>
             <div class="one-two-three-t">
               <div class="touxiang-diyi">
-                <img :src="diyiming.HEAD_URL ? dierming.HEAD_URL : require('../assets/logo.png')" alt="">
+                <img :src="diyiming.HEAD_URL ? diyiming.HEAD_URL : require('../assets/logo.png')" alt="">
               </div>
-              <div class="name-diyi">{{diyiming.MERCHANT_CN_NAME}}</div>
-              <div class="liang">交易量:{{(Number(diyiming.sumMoney) / 10000) | numFilter}}万</div>
-              <div class="level-img">
+              <div v-if="Object.keys(diyiming).length != 0" class="name-diyi">{{diyiming.MERCHANT_CN_NAME}}</div>
+              <div v-if="Object.keys(diyiming).length != 0" class="liang">交易量:{{(Number(diyiming.sumMoney) / 10000) | numFilter}}万</div>
+              <div v-if="Object.keys(diyiming).length == 0" class="zanweisahngbang">暂未上榜</div>
+              <div v-if="Object.keys(diyiming).length != 0" class="level-img">
                 <img v-if="diyiming.LEVEL" :src="require('../assets/levelimg/'+ levelimg[diyiming.LEVEL] +'.png')" alt="">
               </div>
             </div>
             <div class="one-two-three-s">
               <div class="touxiang">
-                <img :src="disanming.HEAD_URL ? dierming.HEAD_URL : require('../assets/logo.png')" alt="">
+                <img :src="disanming.HEAD_URL ? disanming.HEAD_URL : require('../assets/logo.png')" alt="">
               </div>
-              <div class="name">{{disanming.MERCHANT_CN_NAME}}</div>
-              <div class="liang">交易量:{{(Number(disanming.sumMoney) / 10000) | numFilter}}万</div>
-              <div class="level-img">
+              <div v-if="Object.keys(disanming).length != 0" class="name">{{disanming.MERCHANT_CN_NAME}}</div>
+              <div v-if="Object.keys(disanming).length != 0" class="liang">交易量:{{(Number(disanming.sumMoney) / 10000) | numFilter}}万</div>
+              <div v-if="Object.keys(disanming).length == 0" class="zanweisahngbang">暂未上榜</div>
+              <div v-if="Object.keys(disanming).length != 0" class="level-img">
                 <img v-if="disanming.LEVEL" :src="require('../assets/levelimg/'+ levelimg[disanming.LEVEL] +'.png')" alt="">
               </div>
             </div>
@@ -208,10 +211,19 @@ export default {
         .then(res => {
           vm.fullscreenLoading = false
           if (res.data[39] === '00') {
-            vm.diyiming = JSON.parse(res.data[15])
-            vm.dierming = JSON.parse(res.data[16])
-            vm.disanming = JSON.parse(res.data[17])
-            vm.listpaiming = JSON.parse(res.data[57])
+            if(res.data[15]) {
+              vm.diyiming = JSON.parse(res.data[15])
+            }
+            if(res.data[16]) {
+              vm.dierming = JSON.parse(res.data[16])
+            }
+            if(res.data[17]) {
+              vm.disanming = JSON.parse(res.data[17])
+            }
+            if(res.data[57]) {
+              vm.listpaiming = JSON.parse(res.data[57])
+            }
+            console.log(vm.diyiming.length)
           }
         })
         .catch(err => {
