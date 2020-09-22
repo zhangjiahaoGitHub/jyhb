@@ -152,6 +152,15 @@ const routes = [
     component: () => import('../views/income/income.vue')
   },
   {
+    path: '/billinquiry',
+    name: 'billinquiry',
+    meta: {
+      title: '账单查询',
+      bgLeft: true,
+    },
+    component: () => import('../views/billinquiry.vue')
+  },
+  {
     path: '/partnerpage',
     name: 'partnerpage',
     meta: {

@@ -173,7 +173,7 @@
               </div>
               <div>贷款申请</div>
             </div>
-            <div class="icon-img-box mar-top-img">
+            <div class="icon-img-box mar-top-img" @click.stop="topage('billinquiry')">
               <div class="icon-img-img">
                 <img src="../assets/home/zdcx.png" alt="">
               </div>
@@ -720,6 +720,9 @@ export default {
           vm.fullscreenLoading = false
           console.log(err)
         })
+    },
+    topage(page) {
+      this.$router.push({name: page})
     },
     hdzq() {
       this.$router.push({name: 'hdzq'})
