@@ -161,6 +161,15 @@ const routes = [
     component: () => import('../views/billinquiry.vue')
   },
   {
+    path: '/billinquirydetail',
+    name: 'billinquirydetail',
+    meta: {
+      title: '',
+      bgLeft: true,
+    },
+    component: () => import('../views/billinquirydetail.vue')
+  },
+  {
     path: '/partnerpage',
     name: 'partnerpage',
     meta: {
