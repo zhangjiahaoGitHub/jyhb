@@ -346,6 +346,8 @@ export default {
       if(n == 1 && this.zhangdanqb == '1') {
         console.log(n);
         this.drawLine()
+      }else{
+        this.drawLine()
       }
     }
   },
