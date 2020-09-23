@@ -28,7 +28,7 @@
         </div>
         <div>一键收款</div>
       </div>
-      <div class="return-box">
+      <div class="return-box"  @click.stop="zwkf">
         <div class="return-img">
           <img src="../assets/home/hb-return.png" alt="">
         </div>
@@ -44,6 +44,7 @@
           <span v-else>暂无公告</span>
           <!-- <span v-if="hasread == 0" class="hongyuanyuan"></span> -->
         </div>
+        <div class="gengduo-notic">更多</div>
       </div>
       <!-- <i class="el-icon-arrow-right"></i> -->
     </div>

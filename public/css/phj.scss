@@ -129,6 +129,16 @@ $big: 2rem;
     border-bottom: 1px solid #F5F5F5;
     position: relative;
     background-color: #fff;
+    position: relative;
+    .gengduo-notic {
+      position: absolute;
+      top: px2rem(20);
+      right: px2rem(30);
+      color: #999;
+      background-color: #fff;
+      padding-left: px2rem(10);
+      box-shadow: px2rem(-10) 0px px2rem(5) 0px rgba($color: #fff, $alpha: 0.8);
+    }
     .img-laba {
         width: px2rem(34);
         height: px2rem(34);
@@ -142,7 +152,7 @@ $big: 2rem;
         width: px2rem(625);
     }
     .inner-shadow {
-        padding-left: 101%;
+        padding-left: 100%;
         display: inline-block;
         white-space: nowrap;
         position: relative;
