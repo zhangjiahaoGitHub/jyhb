@@ -128,7 +128,7 @@ const routes = [
     name: 'shareimg',
     meta: {
       title: '分享',
-      bgBlue: true,
+      navShow: true,
     },
     component: () => import('../views/share/shareimg.vue')
   },
