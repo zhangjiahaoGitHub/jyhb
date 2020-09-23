@@ -1,94 +1,5 @@
 <template>
   <div class='home-layout home-style-p' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock="fullscreenLoading">
-    <!-- <div class="headDiv">
-      <ul>
-        <li @click="()=>{this.$router.push({ name: 'selectcard', query: { aisle: 'YK' } })}">
-          <img src="../assets/home/znhk.png" alt="">
-          <p>智能还款</p>
-        </li>
-        <li @click="()=>{this.$router.push({ name: 'collection'})}">
-          <img src="../assets/home/kjsk.png" alt="">
-          <p>快捷刷卡</p>
-        </li>
-        <li @click="kkhk">
-          <img src="../assets/home/kkhk.png" alt="">
-          <p>空卡还款</p>
-        </li>
-        <li @click="()=>{this.$router.push({ name: 'selectcard', query: { aisle: 'JYK' } })}">
-          <img src="../assets/home/jyk.png" alt="">
-          <p>精养卡</p>
-        </li>
-      </ul>
-      <div @click="()=>{this.$router.push({name:'message'})}" class="home-news">
-        <p>
-          <img src="../assets/horn.png"/>
-          <span v-if="hasRead=='0'"></span>
-        </p>
-        <div>
-          <p id="newsP">
-            <span v-for="(item,index) in newsList" :key="index">{{item.content}}</span>
-          </p>
-        </div>
-        <i class="el-icon-arrow-right"></i>
-      </div>
-    </div>
-    <div v-if="bannerList.length" class="swiperDiv">
-      <swiper :options="swiperOption" ref="mySwper">
-        <swiper-slide v-for='(item, index) in bannerList' :key='index'>
-          <img :src="item.singleNo" alt="">
-        </swiper-slide>
-        <div class="swiper-pagination" slot="pagination"></div>
-      </swiper>
-    </div>
-    <div class="threeDiv">
-      <ul>
-        <li @click="()=>{this.$router.push({name:'onlineshop'})}">
-          <img src="../assets/home/wdxyk.png" alt="">
-          <p>雲领商城</p>
-        </li>
-        <li @click="$router.push({name: 'intermediaryagency'})">
-          <img src="../assets/home/zjdh.png" alt="">
-          <p>中介代还</p>
-        </li>
-        <li @click="dkbk('BK')">
-          <img src="../assets/home/xykbl.png" alt="">
-          <p>信用卡办理</p>
-        </li>
-        <li @click="dkbk('DK')">
-          <img src="../assets/home/jrfw.png" alt="">
-          <p>金融服务</p>
-        </li>
-        <li @click="$router.push({name: 'integraldetails'})">
-          <img src="../assets/my/wdjf.png" alt="">
-          <p>会员积分兑换</p>
-        </li>
-        <li @click="$router.push({name: 'dragonlist'})">
-          <img src="../assets/my/phb.png" alt="">
-          <p>龙虎榜</p>
-        </li>
-        <li @click="zwkf">
-          <img src="../assets/home/jfdh.png" alt="">
-          <p>信用卡积分</p>
-        </li>
-        <li @click="$router.push({name: 'upgrade'})">
-          <img src="../assets/home/wysj.png" alt="">
-          <p>我要升级</p>
-        </li>
-      </ul>
-    </div>
-    <ol>
-      <li>
-        <p>商学院</p>
-        <img @click="$router.push({name: 'commerce'})" src="../assets/home/sxy.png" alt="">
-      </li>
-      <li>
-        <p>酷友圈</p>
-        <img @click="$router.push({name: 'cool'})" src="../assets/home/kyq.png" alt="">
-      </li>
-    </ol>
-    <div @click="imgPop=false" v-if="imgPop" class="imgPopDiv">
-      <img @click.stop="" :src="popImg" alt="">
-    </div> -->
     <div class="top-home-top">
       <div class="legt-title-add">
         <div class="head-img-photo">
@@ -96,7 +7,7 @@
         </div>
         <div class="name-adress">
           <div>{{userName}}</div>
-          <div class="adress-icon"><img src="../assets/home/dizhiicon.png" alt=""> 上海市</div>
+          <div class="adress-icon"><img src="../assets/home/dizhiicon.png" alt=""> {{nowcity}}</div>
         </div>
       </div>
       <div class="legt-title-add">
@@ -373,7 +284,8 @@ export default {
       yuejharrseven: [],
       yuejharrprice: [],
       isxuanran: 0,
-      maxnum: ''//最大值
+      maxnum: '',//最大值
+      nowcity: '定位中...'
     }
   },
   components: {
@@ -401,6 +313,7 @@ export default {
     //计算近七天的时间
     this.setseven()
     this.getshouyizd()
+    this.getLocation()
   },
   mounted () {
     let that = this;
@@ -943,6 +856,64 @@ export default {
         return
       }
       this.$router.push({ name: rou })
+    },
+    // 获取当前位置
+    getLocation () {
+      let vm = this
+      const self = this;
+      AMap.plugin('AMap.Geolocation', function () {
+        var geolocation = new AMap.Geolocation({
+          // 是否使用高精度定位，默认：true
+          enableHighAccuracy: true,
+          // 设置定位超时时间，默认：无穷大
+          timeout: 10000
+        })
+ 
+        geolocation.getCurrentPosition()
+        AMap.event.addListener(geolocation, 'complete', onComplete)
+        AMap.event.addListener(geolocation, 'error', onError)
+ 
+        function onComplete (data) {
+          // data是具体的定位信息
+          console.log('定位成功信息：', data.addressComponent.city)
+          self.city = data.addressComponent.city
+          vm.nowcity = data.addressComponent.city
+        }
+ 
+        function onError (data) {
+          // 定位出错
+          console.log('定位失败错误：', data)
+          // 调用IP定位
+          self.getLngLatLocation();
+        }
+      });
+    },
+    // 通过IP获取当前位置
+    getLngLatLocation () {
+      AMap.plugin('AMap.CitySearch', function () {
+        var citySearch = new AMap.CitySearch();
+        citySearch.getLocalCity(function (status, result) {
+          if (status === 'complete' && result.info === 'OK') {
+            // 查询成功，result即为当前所在城市信息
+            console.log('通过ip获取当前城市：', result);
+            // 逆向地理编码
+            AMap.plugin('AMap.Geocoder', function () {
+              var geocoder = new AMap.Geocoder({
+                // city 指定进行编码查询的城市，支持传入城市名、adcode 和 citycode
+                city: result.adcode
+              });
+ 
+              var lnglat = result.rectangle.split(';')[0].split(',');
+              geocoder.getAddress(lnglat, function (status, data) {
+                if (status === 'complete' && data.info === 'OK') {
+                  // result为对应的地理位置详细信息
+                  console.log(data);
+                }
+              });
+            });
+          }
+        });
+      });
     }
   },
   beforeDestroy () { // 摧毁新闻公告的定时器 避免持续报错

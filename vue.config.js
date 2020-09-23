@@ -8,6 +8,11 @@ module.exports = {
     lintOnSave: false,
     indexPath:'index.html',
     publicPath:process.env.NODE_ENV === 'production'? './': '/',
+    configureWebpack: {
+      externals: {
+        AMap: "AMap",
+      },
+    },
     // pages:{ type:Object,Default:undfind } 
     devServer: {
         // port: 8080, // 端口号
