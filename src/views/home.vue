@@ -60,25 +60,25 @@
       <swiper :options="swiperOption" ref="mySwiper">
         <swiper-slide class="swiper-slide">
           <div class="icon-tager-box">
-            <div class="icon-img-box">
+            <div class="icon-img-box" @click.stop="zwkf">
               <div class="icon-img-img">
                 <img src="../assets/home/zjdh.png" alt="">
               </div>
               <div>中介代还</div>
             </div>
-            <div class="icon-img-box">
+            <div class="icon-img-box" @click.stop="zwkf">
               <div class="icon-img-img">
                 <img src="../assets/home/ysf.png" alt="">
               </div>
               <div>云闪付</div>
             </div>
-            <div class="icon-img-box">
+            <div class="icon-img-box" @click.stop="zwkf">
               <div class="icon-img-img">
                 <img src="../assets/home/xyksq.png" alt="">
               </div>
               <div>信用卡申请</div>
             </div>
-            <div class="icon-img-box">
+            <div class="icon-img-box" @click.stop="zwkf">
               <div class="icon-img-img">
                 <img src="../assets/home/dksq.png" alt="">
               </div>
@@ -90,19 +90,19 @@
               </div>
               <div>账单查询</div>
             </div>
-            <div class="icon-img-box mar-top-img">
+            <div class="icon-img-box mar-top-img" @click.stop="toIframe(baodan,'保单')">
               <div class="icon-img-img">
                 <img src="../assets/home/bd.png" alt="">
               </div>
               <div>保单</div>
             </div>
-            <div class="icon-img-box mar-top-img">
+            <div class="icon-img-box mar-top-img" @click.stop="zwkf">
               <div class="icon-img-img">
                 <img src="../assets/home/jfdh.png" alt="">
               </div>
               <div>积分兑换</div>
             </div>
-            <div class="icon-img-box mar-top-img">
+            <div class="icon-img-box mar-top-img" @click.stop="zwkf">
               <div class="icon-img-img">
                 <img src="../assets/home/jfsc.png" alt="">
               </div>
@@ -113,24 +113,24 @@
         <swiper-slide class="swiper-slide">
           <div class="icon-tager-box">
             <div class="icon-img-box">
-              <div class="icon-img-img">
+              <div class="icon-img-img" @click.stop="zwkf">
                 <img src="../assets/home/frd.png" alt="">
               </div>
               <div>分润贷</div>
             </div>
-            <div class="icon-img-box">
+            <div class="icon-img-box" @click.stop="zwkf">
               <div class="icon-img-img">
                 <img src="../assets/home/pyp.png" alt="">
               </div>
               <div>碰一碰</div>
             </div>
-            <div class="icon-img-box">
+            <div class="icon-img-box" @click.stop="zwkf">
               <div class="icon-img-img">
                 <img src="../assets/home/dsjcx.png" alt="">
               </div>
               <div>大数据查询</div>
             </div>
-            <div class="icon-img-box">
+            <div class="icon-img-box" @click.stop="zwkf">
               <div class="icon-img-img">
                 <img src="../assets/home/kcp.png" alt="">
               </div>
@@ -192,6 +192,9 @@
         </div>
       </div>
     </div>
+    <router-link tag="div" :to="{name: 'customer'}" class="kefu-dingwei">
+      <img src="../assets/home/kefu.png" alt="">
+    </router-link>
   </div>
 </template>
 <script>
@@ -285,7 +288,8 @@ export default {
       yuejharrprice: [],
       isxuanran: 0,
       maxnum: '',//最大值
-      nowcity: '定位中...'
+      nowcity: '定位中...',
+      baodan: ''
     }
   },
   components: {
@@ -299,6 +303,7 @@ export default {
     this.isIntermediary = JSON.parse(this.$stact.state.token)[0].isIntermediary
     this.userName = JSON.parse(this.$stact.state.token)[0].merchantCnName
     this.popImg = localStorage.getItem('homePopImg')
+    this.baodan = localStorage.getItem('baodan')
     
     if (sessionStorage.getItem('xxtc') || sessionStorage.getItem('xxtc')=='false') {
       
@@ -657,7 +662,7 @@ export default {
     },
     toimgurl(url,id) {
       if(url) {
-        this.$router.push({ name: 'ifarme', query: { url: url, title: '详情' } })
+        this.$router.push({ name: 'imgIframe', query: { url: url, title: '详情' } })
       }
     },
     kkhk(){
