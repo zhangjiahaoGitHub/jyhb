@@ -4322,3 +4322,10 @@ $big: 2rem;
         }
     }
 }
+.gdan{
+    color: $promptColor;
+    padding: px2rem(20);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

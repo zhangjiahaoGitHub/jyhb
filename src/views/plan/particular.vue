@@ -94,7 +94,7 @@
         </div>
     </div>
     <div class='planContent exhaustiveContent'>
-        <ul class='partHeight' :class="item.type === 'sale' ? '' : 'partMin'" v-for='(item, index) in listMore' :key='item.id'>
+        <ul v-if="index<5 || gdan" class='partHeight' :class="item.type === 'sale' ? '' : 'partMin'" v-for='(item, index) in listMore' :key='item.id'>
             <li class='allFlex justifyBetween flexPadding'>
                 <div>
                   <a v-if="itemList.TYPE == '10C'" class="partStatus" :class=" item.type == 'sale' ? 'partGreen':item.type == 'payment' ? 'partBlue':'partStatus'">{{item.type == 'sale' ? '手续费':item.type == 'payment' ? '消费':'还款'}}</a>
@@ -127,6 +127,7 @@
                 </div>
             </li>
         </ul>
+        <div @click="gdan=!gdan" class="gdan"><i :class="gdan ? 'el-icon-top':'el-icon-bottom'"></i>{{gdan ? '收起更多':'查看更多'}}</div>
     </div>
     <div v-if="itemList.TYPE!='10C'" class='partSubmit'>
         <div class='allFlex justifyBetween planMargin'>
@@ -145,6 +146,7 @@ export default {
       agentNo: '',
       merchantNo: '',
       cardList: [],
+      gdan: false,
       number: '',
       status: {
         '10A': '未执行',
