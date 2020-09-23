@@ -68,78 +68,13 @@ const routes = [
     component: () => import('../views/member/upgrade.vue')
   },
   {
-    path: '/dragonlist',
-    name: 'dragonlist',
-    meta: {
-      title: '龙虎榜',
-      bgBlue: true
-    },
-    component: () => import('../views/dragonlist.vue')
-  },
-  {
-    path: '/pay',
-    name: 'pay',
-    meta: {
-      title: '会员升级',
-      left: true
-    },
-    component: () => import('../views/member/pay.vue')
-  },
-  {
-    path: '/paycopy',
-    name: 'paycopy',
-    meta: {
-      title: '支付',
-      left: true
-    },
-    component: () => import('../views/member/paycopy.vue')
-  },
-  {
-    path: '/share',
-    name: 'share',
-    meta: {
-      title: '邀请分享',
-      left: true
-    },
-    component: () => import('../views/share/share.vue')
-  },
-  {
-    path: '/invite',
-    name: 'invite',
-    meta: {
-      title: '推广',
-      haveTitle: true,
-      navShow: true
-    },
-    component: () => import('../views/share/invite.vue')
-  },
-  {
-    path: '/faceToface',
-    name: 'faceToface',
-    meta: {
-      title: '面对面注册',
-      bgBlue: true,
-      keepAlive: true,
-    },
-    component: () => import('../views/share/registered.vue')
-  },
-  {
     path: '/shareimg',
     name: 'shareimg',
     meta: {
       title: '分享',
-      bgBlue: true,
+      navShow: true,
     },
     component: () => import('../views/share/shareimg.vue')
-  },
-  {
-    path: '/reg',
-    name: 'reg',
-    meta: {
-      title: '面对面注册',
-      left: true,
-    },
-    component: () => import('../views/share/reg.vue')
   },
   {
     path: '/income',
@@ -186,16 +121,6 @@ const routes = [
       incomeList: true,
     },
     component: () => import('../views/income/incomeList.vue')
-  },
-  {
-    path: '/microMarketing',
-    name: 'microMarketing',
-    meta: {
-      title: '微营销',
-      noLeft: true,
-      navShow: true
-    },
-    component: () => import('../views/Information/microMarketing.vue')
   },
   {
     path: '/my',
@@ -253,24 +178,6 @@ const routes = [
     component: () => import('../views/real/medium.vue')
   },
   {
-    path: '/deposit',
-    name: 'deposit',
-    meta: {
-      title: '实名认证',
-      left: true
-    },
-    component: () => import('../views/real/deposit.vue')
-  },
-  {
-    path: '/leaderBoard',
-    name: 'leaderBoard',
-    meta: {
-      title: '排行榜',
-      bgBlue: true
-    },
-    component: () => import('../views/my/leaderBoard.vue')
-  },
-  {
     path: '/team',
     name: 'team',
     meta: {
@@ -289,115 +196,6 @@ const routes = [
         component: () => import('../views/my/teamItem.vue')
       },
     ]
-  },
-  {
-    path: '/loopList',
-    name: 'loopList',
-    meta: {
-      title: '朋友圈数据',
-      left: true
-    },
-    component: () => import('../views/my/loopList.vue')
-  },
-  {
-    path: '/integraldetails',
-    name: 'integraldetails',
-    meta: {
-      title: '我的积分',
-      bgBlue: true,
-      integraldetails: true,
-    },
-    component: () => import('../views/my/integraldetails.vue')
-  },
-  {
-    path: '/integralList',
-    name: 'integralList',
-    meta: {
-      title: '积分明细',
-      left: true
-    },
-    component: () => import('../views/my/integralList.vue')
-  },
-  {
-    path: '/deductionRecords',
-    name: 'deductionRecords',
-    meta: {
-      title: '扣费记录',
-      left: true
-    },
-    component: () => import('../views/my/deductionRecords.vue')
-  },
-  {
-    path: '/kfjl',
-    name: 'kfjl',
-    meta: {
-      title: '扣费记录',
-      left: true
-    },
-    component: () => import('../views/my/kfjl.vue')
-  },
-  {
-    path: '/marginDeposit',
-    name: 'marginDeposit',
-    meta: {
-      title: '保证金充值',
-      left: true
-    },
-    component: () => import('../views/my/marginDeposit.vue')
-  },
-  {
-    path: '/marginDepositZj',
-    name: 'marginDepositZj',
-    meta: {
-      title: '保证金充值',
-      left: true
-    },
-    component: () => import('../views/my/marginDepositZj.vue')
-  },
-  {
-    path: '/incomedetails',
-    name: 'incomedetails',
-    meta: {
-      title: '积分记录',
-      bgBlue: true
-    },
-    component: () => import('../views/my/incomedetails.vue')
-  },
-  {
-    path: '/straight',
-    name: 'straight',
-    meta: {
-      title: '我的直推',
-      left: true
-    },
-    component: () => import('../views/my/straight.vue')
-  },
-  {
-    path: '/between',
-    name: 'between',
-    meta: {
-      title: '我的间推',
-      left: true
-    },
-    component: () => import('../views/my/between.vue')
-  },
-  {
-    path: '/unnamed',
-    name: 'unnamed',
-    meta: {
-      title: '未实名用户',
-      left: true
-    },
-    component: () => import('../views/my/unnamed.vue')
-  },
-  {
-    path: '/wallet',
-    name: 'wallet',
-    meta: {
-      title: '我的钱包',
-      bgBlue: true
-    },
-    component: () => import('../views/my/wallet.vue')
   },
   {
     path: '/renew',

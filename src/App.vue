@@ -13,7 +13,7 @@
       <div v-else-if="$route.meta.bgTitle" class="pageTitle">
         {{$route.meta.title}}
       </div>
-      <div v-else-if="$route.meta.title" :class="$route.meta.income ?'tranpant pageTitle' : 'pageTitle'">
+      <div v-else-if="$route.meta.title" :class="$route.meta.income ?'tranpant pageTitle' : 'pageTitle hs'">
         {{$route.meta.title}}
       </div>
       <keep-alive>
@@ -30,9 +30,9 @@
         <img class="appLogo" :src="routeData=='income'?require('./assets/label/chk.png'):require('./assets/label/hk.png')" />
         <p :class="routeData=='income'?'checkColor':''">收益</p>
       </router-link>
-      <router-link tag="li" :to="{name:'invite'}">
-        <img class="appLogo" :src="routeData=='invite'?require('./assets/label/csk.png'):require('./assets/label/sk.png')" />
-        <p :class="routeData=='invite'?'checkColor':''">分享</p>
+      <router-link tag="li" :to="{name:'shareimg'}">
+        <img class="appLogo" :src="routeData=='shareimg'?require('./assets/label/csk.png'):require('./assets/label/sk.png')" />
+        <p :class="routeData=='shareimg'?'checkColor':''">分享</p>
       </router-link>
       <router-link tag="li" :to="{name:'partnerpage'}">
         <img class="appLogo" :src="routeData=='partnerpage'?require('./assets/label/chb.png'):require('./assets/label/hb.png')" />
