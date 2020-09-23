@@ -74,7 +74,7 @@ export default {
         '0': '0700',
         '3': '390006',
         '42': this.merchantNo,
-        '43': '30A',
+        '43': '40A',
         '59': vm.version
       }
       let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
