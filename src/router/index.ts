@@ -198,51 +198,6 @@ const routes = [
     ]
   },
   {
-    path: '/renew',
-    name: 'renew',
-    meta: {
-      title: '绑定信息',
-      left: true
-    },
-    component: () => import('../views/real/renew.vue')
-  },
-  {
-    path: '/today',
-    name: 'today',
-    meta: {
-      title: '今日收入',
-      left: true
-    },
-    component: () => import('../views/my/today.vue')
-  },
-  {
-    path: '/mouth',
-    name: 'mouth',
-    meta: {
-      title: '当月收益',
-      left: true
-    },
-    component: () => import('../views/my/mouth.vue')
-  },
-  {
-    path: '/details',
-    name: 'details',
-    meta: {
-      title: '详情',
-      left: true
-    },
-    component: () => import('../views/my/details.vue')
-  },
-  {
-    path: '/cumulative',
-    name: 'cumulative',
-    meta: {
-      title: '详情',
-      left: true
-    },
-    component: () => import('../views/my/cumulative.vue')
-  },
-  {
     path: '/retreat',
     name: 'retreat',
     meta: {
@@ -290,15 +245,6 @@ const routes = [
     component: () => import('../views/my/change.vue')
   },
   {
-    path: '/coupon',
-    name: 'coupon',
-    meta: {
-      title: '优惠券',
-      left: true
-    },
-    component: () => import('../views/my/coupon.vue')
-  },
-  {
     path: '/transactionRecord',
     name: 'transactionRecord',
     meta: {
@@ -333,24 +279,6 @@ const routes = [
       bgLeft: true
     },
     component: () => import('../views/my/emptyCardCredit.vue')
-  },
-  {
-    path: '/activityAward',
-    name: 'activityAward',
-    meta: {
-      title: '活动奖励',
-      left: true
-    },
-    component: () => import('../views/my/activityAward.vue')
-  },
-  {
-    path: '/activityAwardInfo',
-    name: 'activityAwardInfo',
-    meta: {
-      title: '活动奖励',
-      left: true
-    },
-    component: () => import('../views/my/activityAwardInfo.vue')
   },
   {
     path: '/customer',
@@ -389,24 +317,6 @@ const routes = [
     component: () => import('../views/my/helpCenterInfo.vue')
   },
   {
-    path: '/signIn',
-    name: 'signIn',
-    meta: {
-      title: '签到',
-      bgBlue: true
-    },
-    component: () => import('../views/signIn.vue')
-  },
-  {
-    path: '/server',
-    name: 'server',
-    meta: {
-      title: '我要反馈',
-      bgBlue: true
-    },
-    component: () => import('../views/my/server.vue')
-  },
-  {
     path: '/setting',
     name: 'setting',
     meta: {
@@ -432,16 +342,6 @@ const routes = [
       bgLeft: true
     },
     component: () => import('../views/collection/selectChannel.vue')
-  },
-  {
-    path: '/withdraw',
-    name: 'withdraw',
-    meta: {
-      title: '提现',
-      withdraw: true,
-      bgBlue: true
-    },
-    component: () => import('../views/my/withdraw.vue')
   },
   {
     path: '/withdrawRecord',
@@ -542,16 +442,6 @@ const routes = [
     component: () => import('../views/repayment/oneMoreLookPlan.vue')
   },
   {
-    path: '/JYKAisle',
-    name: 'JYKAisle',
-    meta: {
-      title: '制定计划',
-      bgBlue: true,
-      keepAlive: true
-    },
-    component: () => import('../views/repayment/JYKAisle.vue')
-  },
-  {
     path: '/cardadmin',
     name: 'cardadmin',
     meta: {
@@ -570,15 +460,6 @@ const routes = [
     component: () => import('../views/real/selectcard.vue')
   },
   {
-    path: '/commerce',
-    name: 'commerce',
-    meta: {
-      title: '商学院',
-      bgBlue: true
-    },
-    component: () => import('../views/Information/commerce.vue')
-  },
-  {
     path: '/cool',
     name: 'cool',
     meta: {
@@ -586,15 +467,6 @@ const routes = [
       bgLeft: true
     },
     component: () => import('../views/Information/cool.vue')
-  },
-  {
-    path: '/lookImg',
-    name: 'lookImg',
-    meta: {
-      title: '查看图片',
-      left: true
-    },
-    component: () => import('../views/Information/lookImg.vue')
   },
   {
     path: '/ifarme',
@@ -607,24 +479,6 @@ const routes = [
     component: () => import('../views/ifarme.vue')
   },
   {
-    path: '/repayment',
-    name: 'repayment',
-    meta: {
-      title: '智能代还',
-      left: true
-    },
-    component: () => import('../views/repayment.vue')
-  },
-  {
-    path: '/useCoupon',
-    name: 'useCoupon',
-    meta: {
-      title: '优惠券',
-      left: true
-    },
-    component: () => import('../views/useCoupon.vue')
-  },
-  {
     path: '/intermediaryagency',
     name: 'intermediaryagency',
     meta: {
@@ -632,70 +486,6 @@ const routes = [
       bgBlue: true
     },
     component: () => import('../views/my/intermediaryagency.vue')
-  },
-  {
-    path: '/emptyrepayment',
-    name: 'emptyrepayment',
-    meta: {
-      title: '空卡还款',
-      left: true
-    },
-    component: () => import('../views/emptyrepayment.vue')
-  },
-  {
-    path: '/make',
-    name: 'make',
-    meta: {
-      title: '制定计划',
-      left: true,
-      keepAlive: true
-    },
-    component: () => import('../views/plan/make.vue')
-  },
-  {
-    path: '/fast',
-    name: 'fast',
-    meta: {
-      title: '制定计划',
-      left: true
-    },
-    component: () => import('../views/plan/fast.vue')
-  },
-  {
-    path: '/realname',
-    name: 'realname',
-    meta: {
-      title: '企业还款',
-      left: true
-    },
-    component: () => import('../views/real/realname.vue')
-  },
-  {
-    path: '/qyhkIntroduction',
-    name: 'qyhkIntroduction',
-    meta: {
-      title: '企业还款',
-      left: true
-    },
-    component: () => import('../views/real/qyhkIntroduction.vue')
-  },
-  {
-    path: '/agent',
-    name: 'agent',
-    meta: {
-      title: '中介卡包',
-      left: true
-    },
-    component: () => import('../views/real/agent.vue')
-  },
-  {
-    path: '/open',
-    name: 'open',
-    meta: {
-      title: '申请开通企业还款',
-      left: true
-    },
-    component: () => import('../views/real/open.vue')
   },
   {
     path: '/submit',
@@ -750,60 +540,6 @@ const routes = [
       bgLeft: true
     },
     component: () => import('../views/plan/cardinfo.vue')
-  },
-  {
-    path: '/adduser',
-    name: 'adduser',
-    meta: {
-      title: '添加用户',
-      left: true
-    },
-    component: () => import('../views/real/adduser.vue')
-  },
-  {
-    path: '/adduserreal',
-    name: 'adduserreal',
-    meta: {
-      title: '添加客户',
-      left: true
-    },
-    component: () => import('../views/real/adduserreal.vue')
-  },
-  {
-    path: '/makeplan',
-    name: 'makeplan',
-    meta: {
-      title: '制定计划',
-      left: true
-    },
-    component: () => import('../views/real/makeplan.vue')
-  },
-  {
-    path: '/checkplan',
-    name: 'checkplan',
-    meta: {
-      title: '查看计划',
-      left: true
-    },
-    component: () => import('../views/real/checkplan.vue')
-  },
-  {
-    path: '/lookPlan',
-    name: 'lookPlan',
-    meta: {
-      title: '查看计划',
-      left: true
-    },
-    component: () => import('../views/real/lookPlan.vue')
-  },
-  {
-    path: '/addposition',
-    name: 'addposition',
-    meta: {
-      title: '增加卡位',
-      addposition: true
-    },
-    component: () => import('../views/real/addposition.vue')
   },
   {
     path: '/tiedcard',
@@ -863,43 +599,6 @@ const routes = [
     ]
   },
   {
-    path: '/news',
-    name: 'news',
-    meta: {
-      title: '资讯列表',
-      noLeft: true,
-      navShow: true
-    },
-    component: () => import('../views/Information/news.vue')
-  },
-  {
-    path: '/realcard',
-    name: 'realcard',
-    meta: {
-      title: '实名认证',
-      bgBlue: true
-    },
-    component: () => import('../views/real/realcard.vue')
-  },
-  {
-    path: '/allwith',
-    name: 'allwith',
-    meta: {
-      title: '累计收益',
-      left: true
-    },
-    component: () => import('../views/my/allwith.vue')
-  },
-  {
-    path: '/strcont',
-    name: 'strcont',
-    meta: {
-      title: '我的直推',
-      left: true
-    },
-    component: () => import('../views/my/strcont.vue')
-  },
-  {
     path: '/cardlist',
     name: 'cardlist',
     meta: {
@@ -907,42 +606,6 @@ const routes = [
       bgLeft: true
     },
     component: () => import('../views/my/cardlist.vue')
-  },
-  {
-    path: '/systemnotice',
-    name: 'systemnotice',
-    meta: {
-      title: '详情',
-      left: true
-    },
-    component: () => import('../views/Information/systemnotice.vue')
-  },
-  {
-    path: '/notice',
-    name: 'notice',
-    meta: {
-      title: '消息通知',
-      left: true
-    },
-    component: () => import('../views/Information/notice.vue')
-  },
-  {
-    path: '/imgcode',
-    name: 'imgcode',
-    meta: {
-      title: '邀请',
-      left: true
-    },
-    component: () => import('../views/share/imgcode.vue')
-  },
-  {
-    path: '/info',
-    name: 'info',
-    meta: {
-      title: '更改资料',
-      left: true
-    },
-    component: () => import('../views/Information/info.vue')
   },
   {
     path: '/changepaw',
@@ -981,35 +644,6 @@ const routes = [
     component: () => import('../views/my/editPhone.vue')
   },
   {
-    path: '/credence',
-    name: 'credence',
-    meta: {
-      title: '大数据查询',
-      left: true,
-      credence: true
-    },
-    component: () => import('../views/measure/credence.vue')
-  },
-  {
-    path: '/credit',
-    name: 'credit',
-    meta: {
-      title: '卡测评',
-      bgBlue: true,
-      credit: true
-    },
-    component: () => import('../views/measure/credit.vue')
-  },
-  {
-    path: '/creditlist',
-    name: 'creditlist',
-    meta: {
-      title: '查询记录',
-      bgBlue: true
-    },
-    component: () => import('../views/measure/creditlist.vue')
-  },
-  {
     path: '/imgIframe',
     name: 'imgIframe',
     meta: {
@@ -1026,123 +660,6 @@ const routes = [
       left: true
     },
     component: () => import('../views/htmlIframe.vue')
-  },
-  {
-    path: '/credenlist',
-    name: 'credenlist',
-    meta: {
-      title: '查询记录',
-      left: true
-    },
-    component: () => import('../views/measure/credenlist.vue')
-  },
-  {
-    path: '/onlineshop',
-    name: 'onlineshop',
-    meta: {
-      title: '雲领商城',
-      bgBlue: true
-    },
-    component: () => import('../views/shop/onlineshop.vue')
-  },
-  {
-    path: '/myorder',
-    name: 'myorder',
-    meta: {
-      title: '我的订单',
-      bgBlue: true,
-    },
-    component: () => import('../views/shop/myorder.vue')
-  },
-  {
-    path: '/mydetail',
-    name: 'mydetail',
-    meta: {
-      title: '我的地址',
-      bgBlue: true,
-    },
-    component: () => import('../views/shop/mydetail.vue')
-  },
-  {
-    path: '/editadress',
-    name: 'editadress',
-    meta: {
-      title: '修改地址',
-      bgBlue: true,
-    },
-    component: () => import('../views/shop/editadress.vue')
-  },
-  {
-    path: '/shen',
-    name: 'shen',
-    meta: {
-      title: '选择省',
-      bgBlue: true,
-    },
-    component: () => import('../views/shop/shen.vue')
-  },
-  {
-    path: '/shi',
-    name: 'shi',
-    meta: {
-      title: '选择市',
-      bgBlue: true,
-    },
-    component: () => import('../views/shop/shi.vue')
-  },
-  {
-    path: '/qu',
-    name: 'qu',
-    meta: {
-      title: '选择地区',
-      bgBlue: true,
-    },
-    component: () => import('../views/shop/qu.vue')
-  },
-  {
-    path: '/addadress',
-    name: 'addadress',
-    meta: {
-      title: '新建地址',
-      bgBlue: true,
-    },
-    component: () => import('../views/shop/addadress.vue')
-  },
-  {
-    path: '/orderdetail',
-    name: 'orderdetail',
-    meta: {
-      title: '订单详情',
-      bgBlue: true,
-    },
-    component: () => import('../views/shop/orderdetail.vue')
-  },
-  {
-    path: '/paydetail',
-    name: 'paydetail',
-    meta: {
-      title: '付款详情',
-      bgBlue: true,
-    },
-    component: () => import('../views/shop/paydetail.vue')
-  },
-  {
-    path: '/shopdetail',
-    name: 'shopdetail',
-    meta: {
-      title: '商品详情',
-      bgBlue: true,
-    },
-    component: () => import('../views/shop/shopdetail.vue')
-  },
-  {
-    path: '/order',
-    name: 'order',
-    meta: {
-      title: '订单填写',
-      bgBlue: true,
-    },
-    component: () => import('../views/shop/order.vue')
   },
 ]
 
