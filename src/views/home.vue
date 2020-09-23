@@ -266,6 +266,21 @@
       <img src="../assets/home/hdzq-img.png" alt="">
     </div>
     <div class='bottomLong'></div>
+    <div v-if="xxtc && newsList[0].title" class="xxtc">
+      <div>
+        <img src="../assets/tct.png" alt="">
+        <p>消息提醒</p>
+        <div>
+          <img src="../assets/tcx.png" alt="">
+          <p>{{newsList[0].title}}</p>
+          <div>{{newsList[0].content}}</div>
+        </div>
+        <div>
+          <p @click="xxtc=false">我知道了</p>
+          <p @click="()=>{this.$router.push({name:'message'})}">查看详情</p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -273,6 +288,7 @@
 export default {
   data () {
     return {
+      xxtc: false,
       swiperOption:{
         slidesPerView: 1,
         spaceBetween: 0,
@@ -318,7 +334,6 @@ export default {
       version: '',
       hasRead: 1,
       hasWirte: false,
-      imgPop: false,
       merchantNo: '',
       popImg: '',
       newsList: [],
@@ -373,11 +388,11 @@ export default {
     this.userName = JSON.parse(this.$stact.state.token)[0].merchantCnName
     this.popImg = localStorage.getItem('homePopImg')
     
-    if (sessionStorage.getItem('imgPopShow')) {
+    if (sessionStorage.getItem('xxtc') || sessionStorage.getItem('xxtc')=='false') {
       
     }else{
-      this.imgPop=true
-      sessionStorage.setItem('imgPopShow',true)
+      this.xxtc=true
+      sessionStorage.setItem('xxtc',true)
     }
     clearInterval(window.dsq)
     this.banner()
@@ -879,6 +894,7 @@ export default {
                   this.hasRead=0
                 }
               })
+
             }
           } else {
             

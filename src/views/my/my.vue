@@ -69,48 +69,6 @@
         </ul>
       </div>
     </div>
-      <!-- <div class="headBgDiv"><span @click="$router.push({name: 'setting'})">设置</span></div>
-      <div class="contentDiv">
-        <div class="headDiv">
-          <el-upload
-            class="avatar-uploader"
-            :show-file-list="false"
-            action='#'
-            :before-upload="beforeAvatarUpload"
-            :http-request='none'
-            :on-change='handleChange'
-            :on-exceed='handleChangeMax'>
-            <img :src="imageUrl ? imageUrl : require('../../assets/head.png')" class="avatar">
-          </el-upload>
-          <div class="rightDiv">
-            <p>{{userName}}<span>{{levelObj[level]}}</span></p>
-            <span v-if="freezeStatus=='10B'">{{phone.substring(0,3)}}****{{phone.substring(phone.length-4,phone.length)}}</span>
-            <span v-else>{{phone}}</span>
-          </div>
-        </div>
-        <ul>
-          <li @click="()=>{this.$router.push({name:'transactionRecord'})}">
-            <img src="../../assets/my/jymx.png" alt="">
-            <p>交易明细 <i class="el-icon-arrow-right"></i></p>
-          </li>
-          <li @click="toReal">
-            <img src="../../assets/my/smrz.png" alt="">
-            <p>实名认证 <i class="el-icon-arrow-right"></i></p>
-          </li>
-          <li @click="()=>{this.$router.push({name:'cardlist'})}">
-            <img src="../../assets/my/yhkgl.png" alt="">
-            <p>银行卡管理 <i class="el-icon-arrow-right"></i></p>
-          </li>
-          <li @click="$router.push({name: 'team'})">
-            <img src="../../assets/my/wdtd.png" alt="">
-            <p>我的团队 <i class="el-icon-arrow-right"></i></p>
-          </li>
-          <li @click="$router.push({name: 'customer'})">
-            <img src="../../assets/my/wdkf.png" alt="">
-            <p>我的客服 <i class="el-icon-arrow-right"></i></p>
-          </li>
-        </ul>
-      </div> -->
   </div>
 </template>
 <script>

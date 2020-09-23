@@ -4182,3 +4182,83 @@ $big: 2rem;
         }
     }
 }
+.xxtc{
+    position: fixed;
+    z-index: 10;
+    background: rgba($color: #000000, $alpha: 0.4);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    >div{
+        width: 80%;
+        background: #fff;
+        position: relative;
+        border-radius: px2rem(70);
+        >img{
+            width: 100%;
+        }
+        >p{
+            position: absolute;
+            color: #fff;
+            top: px2rem(80);
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: $seven;
+        }
+        >div{
+            width: 80%;
+            &:nth-child(3){
+                margin: 0 auto;
+                margin-top: px2rem(-130);
+                position: relative;
+                z-index: 10;
+                background: #fff;
+                border-radius: px2rem(10);
+                padding: px2rem(100) px2rem(20) px2rem(20) px2rem(20);
+                box-sizing: border-box;
+                box-shadow: 0 0 2px 2px rgba($color: #aaa, $alpha: 0.2);
+                img{
+                    width: px2rem(180);
+                    position: absolute;
+                    top: px2rem(-90);
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+                p{
+                    text-align: center;
+                    font-size: $five;
+                    margin-bottom: px2rem(40);
+                }
+                div{
+                    color: #808080;
+                }
+            }
+            &:last-child{
+                margin: 0 auto;
+                display: flex;
+                margin-top: px2rem(40);
+                margin-bottom: px2rem(40);
+                justify-content: space-between;
+                p{
+                    width: 48%;
+                    box-sizing: border-box;
+                    padding: px2rem(20);
+                    border-radius: px2rem(40);
+                    text-align: center;
+                    &:first-child{
+                        border: 1px solid $themeColor;
+                        color: $themeColor;
+                    }
+                    &:last-child{
+                        color: #fff;
+                        background: $themeColor;
+                    }
+                }
+            }
+        }
+    }
+}
