@@ -178,7 +178,7 @@
       <img src="../assets/home/hdzq-img.png" alt="">
     </div>
     <div class='bottomLong'></div>
-    <div v-if="xxtc && newsList[0].title" class="xxtc">
+    <div v-if="xxtc && newsList.length > 0" class="xxtc">
       <div>
         <img src="../assets/tct.png" alt="">
         <p>消息提醒</p>
@@ -290,7 +290,8 @@ export default {
       isxuanran: 0,
       maxnum: '',//最大值
       nowcity: '定位中...',
-      baodan: ''
+      baodan: '',
+      target: ''
     }
   },
   components: {
@@ -322,20 +323,24 @@ export default {
     this.getLocation()
   },
   mounted () {
-    let that = this;
+    this.drawLine()
+    let that = this
+    this.$nextTick(()=> {
       let target = this.$refs.box; 
       let initLeft = 0;
-      this.setint = setInterval(function(){
+      that.setint = setInterval(function(){
           initLeft ++
           if(initLeft >= target.offsetWidth ){
               initLeft = 0
           }
           target.style = 'transform: translateX(-'+ initLeft +'px)'             
       },32)
+    })
+      
       // this.qrcode()
-      this.drawLine()
+      
   },
-    watch: {
+  watch: {
     frarrseven (n,o) {
       if(n.length > 0 && this.zhangdanqb == '0') {
         console.log(n);
@@ -349,7 +354,8 @@ export default {
       }else{
         this.drawLine()
       }
-    }
+    },
+    target() {}
   },
   methods: {
     //echarts图
