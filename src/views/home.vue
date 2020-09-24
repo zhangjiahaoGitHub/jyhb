@@ -904,12 +904,14 @@ export default {
     },
     // 通过IP获取当前位置
     getLngLatLocation () {
+      let vm = this
       AMap.plugin('AMap.CitySearch', function () {
         var citySearch = new AMap.CitySearch();
         citySearch.getLocalCity(function (status, result) {
           if (status === 'complete' && result.info === 'OK') {
             // 查询成功，result即为当前所在城市信息
             console.log('通过ip获取当前城市：', result);
+            vm.nowcity = result.city ? result.city : '定位失败'
             // 逆向地理编码
             AMap.plugin('AMap.Geocoder', function () {
               var geocoder = new AMap.Geocoder({
@@ -925,6 +927,8 @@ export default {
                 }
               });
             });
+          }else {
+            vm.nowcity = '定位失败'
           }
         });
       });
