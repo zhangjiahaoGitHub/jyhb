@@ -290,6 +290,15 @@ const routes = [
     component: () => import('../views/my/customer.vue')
   },
   {
+    path: '/onlineCustomer',
+    name: 'onlineCustomer',
+    meta: {
+      title: '在线客服',
+      bgLeft: true
+    },
+    component: () => import('../views/my/onlineCustomer.vue')
+  },
+  {
     path: '/czsp',
     name: 'czsp',
     meta: {

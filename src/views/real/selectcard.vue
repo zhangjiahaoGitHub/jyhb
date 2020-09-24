@@ -171,7 +171,7 @@ export default {
       })
     },
     jxhk(){
-      if (this.radio=='YK' || this.radio=='YJYK' || this.radio=='JYK') {
+      if (this.radio=='YK' || this.radio=='YJYK' || this.radio=='QYK') {
         this.selectype()
       }else if (this.radio=='DTD') {
         this.toMoreAisle()
