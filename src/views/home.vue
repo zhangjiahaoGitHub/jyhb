@@ -22,13 +22,13 @@
         </div>
         <div>智能还款</div>
       </div>
-      <div @click="()=>{this.$router.push({ name: 'collection'})}" class="return-box">
+      <div @click="()=>{this.$router.push({ name: 'collection', query:{aisle: 'WK'}})}" class="return-box">
         <div class="return-img">
           <img src="../assets/home/yj-return.png" alt="">
         </div>
         <div>一键收款</div>
       </div>
-      <div class="return-box"  @click.stop="zwkf">
+      <div @click="()=>{this.$router.push({ name: 'collection', query:{aisle: 'HB'}})}" class="return-box">
         <div class="return-img">
           <img src="../assets/home/hb-return.png" alt="">
         </div>

@@ -63,7 +63,7 @@
         </li>
       </ul>
     </div>
-    <div class="btn-style" @click="tocollection">
+    <div class="btn-style" @click="aisle=='WK' ? tocollection():toHb()">
       <img src="../assets/bank/white/yl.png" alt="">
       快捷支付
     </div>
@@ -119,6 +119,7 @@ export default {
       bankDetail: '',
       bankCode: '',
       bankAccount: '',
+      aisle: '',
     };
   },
   created() {
@@ -128,6 +129,7 @@ export default {
     this.bankDetail = JSON.parse(this.$stact.state.token)[0].bankDetail
     this.bankCode = JSON.parse(this.$stact.state.token)[0].bankCode
     this.bankAccount = JSON.parse(this.$stact.state.token)[0].bankAccount
+    this.aisle = this.$route.query.aisle
   },
   methods: {
     toShow(){
