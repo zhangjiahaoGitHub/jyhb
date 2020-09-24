@@ -508,7 +508,7 @@ export default {
           h = this.height,
           scale = w / h;
           //压缩图片
-          var b64 = vm.compressImg(100, 100 / scale, img);
+          var b64 = vm.compressImg(300, 300 / scale, img);
           b64 = b64.split(',')[1]
           let parmas = {
             '0': '0700',
