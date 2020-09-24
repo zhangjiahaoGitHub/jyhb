@@ -69,11 +69,11 @@
     </div>
     <div @click="popShow=false" v-if="popShow" class="czPopDiv">
       <ul @click.stop="">
-        <li>
+        <li @click="pay('z')">
           <img src="../../assets/member/zfb.png" alt="">
           支付宝支付
         </li>
-        <li>
+        <li @click="pay('w')">
           <img src="../../assets/member/wx.png" alt="">
           微信支付
         </li>
@@ -91,7 +91,6 @@ export default {
       level: 1,
       needToLevel: 1,
       itemArr: [],
-      radio: 'z',
       levelObj: {
         '1': '普通用户',
         '2': '经济人',
@@ -106,6 +105,7 @@ export default {
       money: 0,
       level: 1,
       itemObj: {},
+      code: '',
     }
   },
   created () {
@@ -122,24 +122,27 @@ export default {
       this.getData(this.needToLevel)
     },
     // 支付
-    pay () {
-      if (this.radio=='w') {
+    pay (type) {
+      if (type=='w') {
         this.$message({
-          message: '暂不支持',
+          message: '暂未开放',
+          center: true,
+          offset: 30,
+          duration: 2500,
           type: 'success'
-        });
+        })
         return
       }
       let vm = this
       let parmas = {
         '0': '0700',
         '3': '190111',
-        '5': this.money*100,
-        '8': this.radio,
+        '5': this.itemObj[15]*100,
+        '8': type,
         '13': this.needToLevel,
         '41': 'M',
         '42': vm.merchantNo,
-        '59': vm.version
+        // '59': vm.version
       }
       let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
       vm.fullscreenLoading = true
@@ -147,16 +150,15 @@ export default {
         .then(res => {
           vm.fullscreenLoading = false
           if (res.data[39] === '00') {
-            if (this.radio=='z') {
-              this.$router.push({
-                name: 'payForm',
-                query: {
-                  form: res.data[14]
-                }
-              })
-            }else if (this.radio=='w') {
-              window.location.href=JSON.parse(res.data[14]).mweb_url
-            }
+            console.log(res.data);
+            this.$router.push({
+              name: 'code',
+              query: {
+                radio: type,
+                money: this.itemObj[15],
+                code: res.data[57],
+              }
+            })
           }
         })
         .catch(err => {

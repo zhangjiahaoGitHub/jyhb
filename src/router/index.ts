@@ -563,10 +563,10 @@ const routes = [
     path: '/code',
     name: 'code',
     meta: {
-      title: '扫码支付',
-      left: true
+      title: '支付',
+      bgLeft: true
     },
-    component: () => import('../views/member/code.vue')
+    component: () => import('../views/code.vue')
   },
   {
     path: '/preview',

@@ -4329,3 +4329,45 @@ $big: 2rem;
     align-items: center;
     justify-content: center;
 }
+.code-layout{
+    background: #4880A1;
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 4rem px2rem(20);
+    .topDiv{
+        height: px2rem(90);
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: px2rem(6) px2rem(6) 0 0;
+        img{
+            width: 30%;
+        }
+    }
+    .contentDiv{
+        background: #efefef;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: px2rem(20);
+        p{
+            color: #FF7D30;
+            font-size: $eight;
+        }
+        div{
+            width: 190px;
+            height: 190px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+    .bottomDiv{
+        background: #fff;
+        border-radius: 0 0 px2rem(6) px2rem(6);
+        padding: px2rem(20);
+        text-align: center;
+    }
+}

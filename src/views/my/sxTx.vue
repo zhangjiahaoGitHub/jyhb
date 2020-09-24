@@ -31,11 +31,11 @@
     </el-tabs>
     <div @click="popShow=false" v-if="popShow" class="czPopDiv">
       <ul @click.stop="">
-        <li>
+        <li @click="pay('z')">
           <img src="../../assets/member/zfb.png" alt="">
           支付宝支付
         </li>
-        <li>
+        <li @click="pay('w')">
           <img src="../../assets/member/wx.png" alt="">
           微信支付
         </li>
@@ -93,6 +93,50 @@ export default {
     this.$inputLen.inputJs()
   },
   methods: {
+    // 支付
+    pay (type) {
+      if (type=='w') {
+        this.$message({
+          message: '暂未开放',
+          center: true,
+          offset: 30,
+          duration: 2500,
+          type: 'success'
+        })
+        return
+      }
+      let vm = this
+      let parmas = {
+        '0': '0700',
+        '3': '190111',
+        '5': this.czMoney*100,
+        '8': type,
+        '41': 'Q',
+        '42': vm.merchantNo,
+        // '59': vm.version
+      }
+      let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
+      vm.fullscreenLoading = true
+      vm.$http.get(`request.app${url}`)
+        .then(res => {
+          vm.fullscreenLoading = false
+          if (res.data[39] === '00') {
+            console.log(res.data);
+            this.$router.push({
+              name: 'code',
+              query: {
+                radio: type,
+                money: this.czMoney,
+                code: res.data[57],
+              }
+            })
+          }
+        })
+        .catch(err => {
+          vm.fullscreenLoading = false
+          console.log(err)
+        })
+    },
     handleClick(tab, event) {
       console.log(tab, event);
     },
