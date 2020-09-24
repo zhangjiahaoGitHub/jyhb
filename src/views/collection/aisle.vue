@@ -301,6 +301,9 @@ export default {
         this.$set(this,'dataPopShow',false)
         this.bank = JSON.parse(this.$route.query.item)
         this.aisle = this.$route.query.aisle
+        if (this.aisle=='YJYK') {
+          this.aisle = 'YK'
+        }
         this.list()
       }
     }
