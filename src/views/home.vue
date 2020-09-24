@@ -928,7 +928,24 @@ export default {
               });
             });
           }else {
-            vm.nowcity = '定位失败'
+            //判断是否微信登陆
+            function isWeiXin() {
+                var ua = window.navigator.userAgent.toLowerCase();
+                console.log(ua);//mozilla/5.0 (iphone; cpu iphone os 9_1 like mac os x) applewebkit/601.1.46 (khtml, like gecko)version/9.0 mobile/13b143 safari/601.1
+                if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            if (isWeiXin()) {
+                // alert(" 是来自微信内置浏览器")
+                vm.nowcity = '杭州市'
+            } else {
+                // alert("不是来自微信内置浏览器")
+                vm.nowcity = '定位失败'
+            }
+            
           }
         });
       });
