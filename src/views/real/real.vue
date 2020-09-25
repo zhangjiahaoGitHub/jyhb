@@ -115,7 +115,7 @@
             :auto-upload='true'
             :limit='5'
             list-type='picture-card'>
-            <img :src="urlThree?urlThree:require('../../assets/real/cxkzm.png')" class='iDcard'/>
+            <img :src="urlThree?urlThree:require('../../assets/real/scsfz.png')" class='iDcard'/>
         </el-upload>
         <p>手持身份证拍照(点击图片拍照)</p>
       </div>
