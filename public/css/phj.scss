@@ -175,10 +175,12 @@ $big: 2rem;
     margin: 0 px2rem(30);
     margin-top: px2rem(20);
     border-radius: px2rem(10);
+    -webkit-appearance:none;
     background-color: #fff;
     img {
         width: 100%;
         height: 100%;
+        vertical-align: bottom;
     }
     .imgBanner{
         width: 100%;

@@ -22,6 +22,12 @@
         </div>
         <div>智能还款</div>
       </div>
+      <div @click="zwkf" class="return-box">
+        <div class="return-img">
+          <img src="../assets/home/shualian.png" alt="">
+        </div>
+        <div>刷脸支付</div>
+      </div>
       <div @click="()=>{this.$router.push({ name: 'collection', query:{aisle: 'WK'}})}" class="return-box">
         <div class="return-img">
           <img src="../assets/home/yj-return.png" alt="">
