@@ -48,7 +48,7 @@ export default {
         center: true,
         offset: 30,
         duration: 2500,
-        type: 'success'
+        type: 'warning'
       })
     },
     loginOut () { // 退出 清除token

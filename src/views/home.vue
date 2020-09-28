@@ -371,7 +371,7 @@ export default {
           center: true,
           offset: 30,
           duration: 2500,
-          type: 'success'
+          type: 'warning'
         })
         return
       }
@@ -384,7 +384,7 @@ export default {
           center: true,
           offset: 30,
           duration: 2500,
-          type: 'success'
+          type: 'warning'
         })
         return
       }
@@ -830,7 +830,7 @@ export default {
         center: true,
         offset: 30,
         duration: 2500,
-        type: 'success'
+        type: 'warning'
       })
     },
     text () {
