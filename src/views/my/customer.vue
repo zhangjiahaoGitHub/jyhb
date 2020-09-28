@@ -1,6 +1,5 @@
 <template>
   <div class='hundred customer-layout' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock="fullscreenLoading">
-    <!-- <img @click="$router.push({name:'onlineCustomer'})" src="../../assets/my/kf_zx.png" alt=""> -->
     <img @click="problem('http://jyhbban.llyzf.cn/lly-posp-proxy/kf/', '在线客服')" src="../../assets/my/kf_zx.png" alt="">
     <img @click="type=1" src="../../assets/my/kf_rx.png" alt="">
     <img @click="type=2" src="../../assets/my/kf_wx.png" alt="">
@@ -71,15 +70,6 @@ export default {
         }).then(action => {
           
         });
-    },
-    notYetOpen () {
-      this.$message({
-        message: '暂未开放',
-        center: true,
-        offset: 30,
-        duration: 2500,
-        type: 'success'
-      })
     },
     message () {
       this.fullscreenLoading = true
