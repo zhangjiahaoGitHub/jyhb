@@ -25,7 +25,7 @@
       </li>
       <li>
         <img src="../assets/registerLogin/phoneIcon.png" alt />
-        <input v-model='invite' type="number" placeholder="请输入推荐人手机号(选填)">
+        <input v-model='invite' type="number" :placeholder='`请输入推荐人手机号(${xt==1 ? "必选":"选填"})`'>
       </li>
     </ul>
     <div class="btnDiv">
@@ -47,6 +47,7 @@ export default {
       password: '',
       newPassword: '',
       invite: '',
+      xt: '',
       checkedOne: true,
       checkedTwo: true,
       fullscreenLoading: false,
@@ -60,6 +61,7 @@ export default {
     } else {
       this.invite = ''
     }
+    this.getData()
   },
   watch: {
     $route(to, from) {
@@ -79,6 +81,28 @@ export default {
     this.$inputLen.inputJs()
   },
   methods: {
+    getData(){
+      let vm = this
+      let parmas = {
+        '0': '0700',
+        '3': '190917',
+        '59': vm.version
+      }
+      let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
+      vm.fullscreenLoading = true
+      vm.$http.get(`request.app${url}`)
+        .then(res => {
+          vm.fullscreenLoading = false
+          if (res.data[39] === '00') {
+            console.log(res.data);
+            this.xt = res.data[10]
+          }
+        })
+        .catch(err => {
+          console.log(err)
+          vm.fullscreenLoading = false
+        })
+    },
     getCode () { // 获取验证码
       let vm = this
       if (this.phone.match(/^[ ]*$/)) {
@@ -234,7 +258,7 @@ export default {
         })
         return
       }
-      if (this.invite) {
+      if (this.xt==1) {
         if (!(/^1[1-9]\d{9}$/.test(this.invite))) {
           this.$message({
             message: '邀请人手机号码有误，请重填',

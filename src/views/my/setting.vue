@@ -60,7 +60,7 @@ export default {
       }).then(() => {
         new Promise((resolve, reject) => {
           vm.$stact.dispatch('SetToken', '')
-          // window.localStorage.clear()
+          window.sessionStorage.clear()
           resolve()
         })
           .then(result => {

@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="return-three">
-      <div @click="$router.push({name: 'selectcard'})" class="return-box">
+      <div @click="znhk" class="return-box">
         <div class="return-img">
           <img src="../assets/home/zn-return.png" alt="">
         </div>
@@ -28,13 +28,13 @@
         </div>
         <div>刷脸支付</div>
       </div>
-      <div @click="()=>{this.$router.push({ name: 'collection', query:{aisle: 'WK'}})}" class="return-box">
+      <div @click="hk('WK')" class="return-box">
         <div class="return-img">
           <img src="../assets/home/yj-return.png" alt="">
         </div>
         <div>一键收款</div>
       </div>
-      <div @click="()=>{this.$router.push({ name: 'collection', query:{aisle: 'HB'}})}" class="return-box">
+      <div @click="hk('HB')" class="return-box">
         <div class="return-img">
           <img src="../assets/home/hb-return.png" alt="">
         </div>
@@ -364,6 +364,32 @@ export default {
     target() {}
   },
   methods: {
+    hk(type){
+      if (this.freezeStatus!='10B') {
+        this.$message({
+          message: '需先通过实名认证',
+          center: true,
+          offset: 30,
+          duration: 2500,
+          type: 'success'
+        })
+        return
+      }
+      this.$router.push({name:'collection',query: {aisle: type}})
+    },
+    znhk(){
+      if (this.freezeStatus!='10B') {
+        this.$message({
+          message: '需先通过实名认证',
+          center: true,
+          offset: 30,
+          duration: 2500,
+          type: 'success'
+        })
+        return
+      }
+      this.$router.push({name:'selectcard'})
+    },
     //echarts图
     drawLine(){
       let vm = this
@@ -836,46 +862,6 @@ export default {
         .catch(err => {
           console.log(err)
         })
-    },
-    useit (rou) {
-      let vm = this
-      if (vm.freezeStatus !== '10B') {
-        vm.$confirm('尚未实名请先实名？', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          vm.$router.push({ name: 'real' })
-        }).catch(() => {
-        })
-        return
-      }
-      this.$router.push({ name: rou })
-    },
-    toNext (rou) {
-      console.log(this.level)
-      let vm = this
-      if (Number(vm.level) === 0) {
-        vm.$message({
-          message: '普通用户无法使用全能还款',
-          center: true,
-          offset: 30,
-          duration: 2500,
-          type: 'success'
-        })
-      }
-      if (vm.freezeStatus !== '10B') {
-        vm.$confirm('尚未实名请先实名？', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          vm.$router.push({ name: 'real' })
-        }).catch(() => {
-        })
-        return
-      }
-      this.$router.push({ name: rou })
     },
     // 获取当前位置
     getLocation () {

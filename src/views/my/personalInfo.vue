@@ -15,7 +15,7 @@
         </el-upload>
         <div>
           <p>{{nc}} <img :src="require(`../../assets/my/level${dqdj}.png`)" alt=""></p>
-          <span>身份证号：{{idCardNumber.substring(0,6)}}********{{idCardNumber.substring(idCardNumber.length-4,idCardNumber.length)}}</span>
+          <span v-if="idCardNumber">身份证号：{{idCardNumber.substring(0,6)}}********{{idCardNumber.substring(idCardNumber.length-4,idCardNumber.length)}}</span>
           <span>手机号：{{phone.substring(0,3)}}****{{phone.substring(phone.length-4,phone.length)}}</span>
         </div>
       </div>

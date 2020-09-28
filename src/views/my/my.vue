@@ -32,13 +32,13 @@
         <p>鲸鹰专区</p>
         <ul>
           <li @click="toReal"><img src="../../assets/my/smrz.png" alt=""><p>实名认证</p></li>
-          <li @click="()=>{this.$router.push({name:'cardlist'})}"><img src="../../assets/my/wdkb.png" alt=""><p>我的卡包</p></li>
-          <li @click="$router.push({name:'emptyCardCredit'})"><img src="../../assets/my/wdxyf.png" alt=""><p>我的信用分</p></li>
+          <li @click="toWdkb"><img src="../../assets/my/wdkb.png" alt=""><p>我的卡包</p></li>
+          <li @click="toXyf"><img src="../../assets/my/wdxyf.png" alt=""><p>我的信用分</p></li>
           <li @click="$router.push({name:'hkjh'})"><img src="../../assets/my/hkjh.png" alt=""><p>还款计划</p></li>
           <li @click="$router.push({name:'transactionRecord'})"><img src="../../assets/my/jyjl.png" alt=""><p>交易记录</p></li>
-          <li @click="$router.push({name:'sqs'})"><img src="../../assets/my/sqs.png" alt=""><p>授权书</p></li>
+          <li @click="toSqs"><img src="../../assets/my/sqs.png" alt=""><p>授权书</p></li>
           <li @click="$router.push({name:'inComeList'})"><img src="../../assets/my/syjl.png" alt=""><p>收益记录</p></li>
-          <li @click="$router.push({name:'retreat'})"><img src="../../assets/my/wdqb.png" alt=""><p>我的钱包</p></li>
+          <li @click="toWdqb"><img src="../../assets/my/wdqb.png" alt=""><p>我的钱包</p></li>
         </ul>
       </div>
       <div class="itemDiv">
@@ -118,6 +118,58 @@ export default {
     this.message()
   },
   methods: {
+    toSqs(){
+      if (this.freezeStatus!='10B') {
+        this.$message({
+          message: '需先通过实名认证',
+          center: true,
+          offset: 30,
+          duration: 2500,
+          type: 'success'
+        })
+        return
+      }
+      this.$router.push({name:'sqs'})
+    },
+    toWdqb(){
+      if (this.freezeStatus!='10B') {
+        this.$message({
+          message: '需先通过实名认证',
+          center: true,
+          offset: 30,
+          duration: 2500,
+          type: 'success'
+        })
+        return
+      }
+      this.$router.push({name:'retreat'})
+    },
+    toXyf(){
+      if (this.freezeStatus!='10B') {
+        this.$message({
+          message: '需先通过实名认证',
+          center: true,
+          offset: 30,
+          duration: 2500,
+          type: 'success'
+        })
+        return
+      }
+      this.$router.push({name:'emptyCardCredit'})
+    },
+    toWdkb(){
+      if (this.freezeStatus!='10B') {
+        this.$message({
+          message: '需先通过实名认证',
+          center: true,
+          offset: 30,
+          duration: 2500,
+          type: 'success'
+        })
+        return
+      }
+      this.$router.push({name:'cardlist'})
+    },
     toCool () {
       this.$router.push({
         name: 'cool',
