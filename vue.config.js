@@ -7,6 +7,7 @@ module.exports = {
     //关闭esLint
     lintOnSave: false,
     indexPath:'index.html',
+    productionSourceMap: false,
     publicPath:process.env.NODE_ENV === 'production'? './': '/',
     configureWebpack: {
       externals: {

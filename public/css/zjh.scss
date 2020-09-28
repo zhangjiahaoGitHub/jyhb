@@ -112,6 +112,7 @@ $big: 2rem;
             position: absolute;
             right: px2rem(20);
             font-size: $three;
+            top: px2rem(24);
         }
     }
     >img{
@@ -201,6 +202,7 @@ $big: 2rem;
         position: relative;
         border-bottom: 1px solid #F9F9F9;
         span{
+            top: px2rem(24);
             font-weight: normal;
             position: absolute;
             right: px2rem(20);

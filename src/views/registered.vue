@@ -7,7 +7,7 @@
     <img src="../assets/loginLogo.png" alt srcset />
     <ul>
       <li>
-        <img src="../assets/registerLogin/phoneIcon.png" alt />
+        <img src="../assets/registerLogin/userIcon.png" alt />
         <input v-model='phone' type="number" placeholder="请输入您的手机号">
       </li>
       <li>
@@ -24,7 +24,7 @@
         <input v-model='newPassword' type="password" placeholder="请再次输入您的密码">
       </li>
       <li>
-        <img src="../assets/registerLogin/userIcon.png" alt />
+        <img src="../assets/registerLogin/phoneIcon.png" alt />
         <input v-model='invite' type="number" placeholder="请输入推荐人手机号(选填)">
       </li>
     </ul>
