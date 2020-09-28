@@ -2315,10 +2315,10 @@ $big: 2rem;
             div{
                 position: absolute;
                 bottom: px2rem(20);
-                right: px2rem(20);
+                right: px2rem(10);
                 img{
-                    width: 84px;
-                    height: 84px;
+                    width: 60px;
+                    height: 60px;
                 }
             }
         }
@@ -2663,9 +2663,6 @@ $big: 2rem;
             padding: px2rem(10) px2rem(20);
             background: #fff;
             border-radius: 0 0 px2rem(10) px2rem(10);
-            img{
-                width: px2rem(460);
-            }
         }
     }
 }

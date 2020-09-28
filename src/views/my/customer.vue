@@ -7,8 +7,8 @@
     <div @click="type=''" v-if="type" class="infoPop">
       <ul>
         <div v-if="type==1">
-          <li @click="callService(dataObj[10])">
-            <img src="../../assets/my/kfdh.png" alt="" srcset="">{{dataObj[10]}}
+          <li @click="callService(item)" v-for="(item,index) in dataObj[10].split(',')" :key="index">
+            <img src="../../assets/my/kfdh.png" alt="" srcset="">{{item}}
           </li>
         </div>
         <div v-if="type==2">

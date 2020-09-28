@@ -2,7 +2,7 @@
   <div class='hundred cool-layout' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock='fullscreenLoading'>
     <div class="head">
       <img :src="cardUrl" alt="">
-      <img :src="tx" alt="">
+      <img :src="tx ? tx:require('../../assets/head.png')" alt="">
     </div>
     <ul v-infinite-scroll='load' infinite-scroll-disabled='disabled' :infinite-scroll-delay='1000'>
       <li v-for='item in bannerList' :key='item.id'>
@@ -75,8 +75,8 @@ export default {
     let item = this.$refs.qrCodeUrl
     var qrcode = new QRCode(item, {
       text: `http://jyhbban.llyzf.cn:6442/lly-posp-proxy/toAPPRegister.app?phone=${vm.phone}&product=JYHB`,
-      width: 84,
-      height: 84,
+      width: 60,
+      height: 60,
       colorDark: '#000000',
       colorLight: '#ffffff',
       correctLevel: QRCode.CorrectLevel.L
