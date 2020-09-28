@@ -229,12 +229,15 @@ $big: 2rem;
     font-size: px2rem(32);
     color: #333;
   }
+  .padsix {
+    padding-top: px2rem(60);
+  }
   .echats-box-mes {
     margin: px2rem(20) px2rem(30);
     margin-top: px2rem(0);
     background-color: #fff;
     border-radius: px2rem(10);
-    height: px2rem(537);
+    height: px2rem(567);
     padding-bottom: px2rem(100);
     .echarts-type-select {
       display: flex;
@@ -282,6 +285,15 @@ $big: 2rem;
       .mar-right-fr {
         margin-right: px2rem(20);
       }
+    }
+    .nianiyue {
+      background-color: #fff;
+      text-align: center;
+      font-size: px2rem(26);
+      padding: px2rem(10) 0;
+      position: relative;
+      top: px2rem(-20);
+      padding-bottom: px2rem(20);
     }
     #myChart {
       padding-top: px2rem(20);

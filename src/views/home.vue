@@ -163,8 +163,9 @@
         <div>今日交易额：{{jrallprice}}</div>
       </div>
       <div id="myChart" :style="{width: '100%', height: '100%'}"></div>
+      <div class="nianiyue">{{yearnian}}年{{monyue}}月</div>
     </div>
-    <div class="shouyi-zhangdan">鲸鹰商城</div>
+    <div class="shouyi-zhangdan padsix">鲸鹰商城</div>
     <div class="shop-jy-list">
       <div class="list-li" @click.stop="zwkf">
         <div class="img-list">
@@ -297,7 +298,9 @@ export default {
       maxnum: '',//最大值
       nowcity: '定位中...',
       baodan: '',
-      target: ''
+      target: '',
+      yearnian: new Date().getFullYear(),
+      monyue: new Date().getMonth() + 1,
     }
   },
   components: {
