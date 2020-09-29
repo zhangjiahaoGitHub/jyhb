@@ -1,6 +1,6 @@
 <template>
   <div class='hundred selectcard-layout' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock='fullscreenLoading'>
-    <div v-if="cardList.length<0" class="zw">
+    <div v-if="cardList.length<=0" class="zw">
       <img src="../../assets/repay/zw.png" alt="" srcset="">
       <p>暂无可用信用卡！</p>
     </div>

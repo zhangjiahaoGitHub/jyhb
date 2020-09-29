@@ -218,9 +218,9 @@ export default {
       vm.fullscreenLoading = true
       vm.$http.get(`request.app${url}`)
         .then(res => {
+          vm.fullscreenLoading = false
           if (res.data[39] === '00') {
             this.level = JSON.parse(res.data[57])[0].level
-            vm.fullscreenLoading = false
             console.log(res.data);
             vm.$stact.dispatch('SetToken', res.data[57]) // 存token
             console.log(JSON.parse(res.data[57])[0]);
