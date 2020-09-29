@@ -1,6 +1,16 @@
 <template>
   <div class='hundred shareimg-layout' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock='fullscreenLoading'>
-    <ul>
+    <swiper :options="swiperOption" ref="mySwiper" v-if="img.length" >
+      <swiper-slide v-for="(item,index) in img" :key="index" class="swiper-slide">
+        <img class="bgImg" :src="item"/>
+        <img @click="showImg(item)" class="fd" src="../../assets/fd.png" alt="">
+      </swiper-slide>
+      <!-- 这是之后下方的小圆点 -->
+      <div class="swiper-pagination" slot="pagination"></div>
+    </swiper>
+    <div id="codeDiv" ref="qrCodeUrl"></div>
+    <img @click="popShow=false" v-if="popShow" class="popImg" :src="newImg" alt="">
+    <!-- <ul>
       <li @click="showImg(item)" v-for="(item,index) in img" :key="index">
         <img :src="item" alt="">
       </li>
@@ -12,7 +22,7 @@
       </div>
       <p>请截图或长按二维码分享</p>
       <div class="btnDiv" @click="popShow=false">关闭</div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -27,6 +37,26 @@ export default {
       newImgDom: '',
       popShow: false,
       fullscreenLoading: false,
+      swiperOption:{
+        slidesPerView: 1,
+        spaceBetween: 0,
+        centeredSlides: false,
+        slidesPerGroup: 1,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        },
+        pagination: {
+          el : '.swiper-pagination',
+          clickable: true
+        },
+//         autoplay: {
+//           stopOnLastSlide:false, // 这是让轮播图自动轮播
+// 　　　　　 /* 触摸滑动后是否继续轮播 */
+// 　　　　　 disableOnInteraction: false
+//         },
+        // loop: false, // 就是决定是不是无缝轮播 true是无缝轮播 false不是
+      },
     }
   },
   created () {

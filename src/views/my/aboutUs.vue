@@ -18,7 +18,7 @@
         <span>用户协议</span>
         <i class="el-icon-arrow-right"></i>
       </li>
-      <li @click="problem(gsjj, '用户协议')">
+      <li @click="problem(gsjj, '公司简介')">
         <span>公司简介</span>
         <i class="el-icon-arrow-right"></i>
       </li>
