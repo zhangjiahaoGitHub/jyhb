@@ -163,7 +163,7 @@
         <div>今日交易额：{{jrallprice}}</div>
       </div>
       <div id="myChart" :style="{width: '100%', height: '100%'}"></div>
-      <div class="nianiyue">{{yearnian}}年{{monyue}}月</div>
+      <div v-show="zhangdanqb == '1'" class="nianiyue">{{yearnian}}年{{monyue}}月</div>
     </div>
     <div class="shouyi-zhangdan padsix">鲸鹰商城</div>
     <div class="shop-jy-list">
