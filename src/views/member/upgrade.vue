@@ -30,7 +30,7 @@
           <img src="../../assets/member/hdsy.png" alt="" srcset="">
           <div>
             <span>活动收益</span>
-            <p>费率低至{{itemObj[12]}}%</p>
+            <p>最高获得{{itemObj[12]}}元</p>
           </div>
         </li>
         <li>
@@ -44,14 +44,14 @@
           <img src="../../assets/member/tjjl.png" alt="" srcset="">
           <div>
             <span>推荐奖励</span>
-            <p>费率低至{{itemObj[13]}}%</p>
+            <p>最高返佣{{itemObj[13]}}%</p>
           </div>
         </li>
         <li class="noBottom">
           <img src="../../assets/member/bksq.png" alt="" srcset="">
           <div>
             <span>办卡申请</span>
-            <p>费率低至{{itemObj[17]}}%</p>
+            <p>最高返佣{{itemObj[17]}}%</p>
           </div>
         </li>
         <li class="noBottom noRight">
