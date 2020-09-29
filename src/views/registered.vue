@@ -25,7 +25,7 @@
       </li>
       <li>
         <img src="../assets/registerLogin/phoneIcon.png" alt />
-        <input v-model='invite' type="number" :placeholder='`请输入推荐人手机号(${xt==1 ? "必选":"选填"})`'>
+        <input v-model='invite' type="number" :placeholder='`请输入推荐人手机号(${xt==1 ? "必填":"选填"})`'>
       </li>
     </ul>
     <div class="btnDiv">

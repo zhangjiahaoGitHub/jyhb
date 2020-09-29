@@ -4,7 +4,7 @@
       <li @click="toAisle(item)" v-for='item in cardList' :key='item.ID'>
         <div>
           <p><img :src="banks[item.BANK_NAME]?require(`../../assets/bank/${banks[item.BANK_NAME]}.png`):require('../../assets/bank/yl.png')" alt="">{{item.short_cn_name}}({{item.BANK_ACCOUNT.substring(item.BANK_ACCOUNT.length-4,item.BANK_ACCOUNT.length)}})</p>
-          <p>{{item.BANK_ACCOUNT_NAME.substring(0,1)}}<span v-for="(item,index) in item.BANK_ACCOUNT_NAME.substring(0,1)" :key="index">*</span></p>
+          <p>{{item.BANK_ACCOUNT_NAME.substring(0,1)}}<span v-for="(t,i) in item.BANK_ACCOUNT_NAME.substring(1,item.BANK_ACCOUNT_NAME.length)" :key="i">*</span></p>
         </div>
         <div>
           <span>{{item.day}}</span>

@@ -15,7 +15,7 @@
             <span>{{item.BANK_ACCOUNT_NAME.substring(0,1)}}<span v-for="(item,index) in item.BANK_ACCOUNT_NAME.length-1" :key="index">*</span></span>
           </div>
           <div>
-            <span>{{parseInt(item.day)+1}}</span>
+            <span>{{item.day}}</span>
             <div>
               <p>天到期<span>{{item.PLAN_AMT>0 ? '已制定计划':'未制定计划'}}</span></p>
               <span>{{item.repDate}}</span>
@@ -37,7 +37,7 @@
           </ol>
         </div>
         <div class="bottomDiv">
-          <span @click.stop="delCard(BANK_ACCOUNT)">解绑</span>
+          <span @click.stop="delCard(item.BANK_ACCOUNT)">解绑</span>
         </div>
       </li>
       <div class="btnDiv">
@@ -144,7 +144,7 @@ export default {
                 center: true,
                 offset: 30,
                 duration: 2000,
-                type: 'success'
+                type: 'warning'
               })
             }
           })

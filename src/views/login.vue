@@ -248,6 +248,7 @@ export default {
               duration: 2500,
               type: "success",
             });
+            
             localStorage.setItem('kfPhone',res.data[18])
             localStorage.setItem('sjMoney',res.data[21])
             localStorage.setItem('baodan',res.data[26])
@@ -282,12 +283,27 @@ export default {
             })
               .then((r) => {
                 if (/iPhone|mac|iPod|iPad/i.test(navigator.userAgent)) {
-                  vm.$router.push({ name: "home" }); // ios 调路由第一次无法跳转存在问题 该问题是vue脚手架问题无法解决 侧面解决多运行一次
-                  setTimeout(() => {
-                    vm.$router.push({ name: "home" });
-                  }, 1000);
+                  // 实名审核拒绝
+                  if (JSON.parse(res.data[42])[0].freezeStatus=='10C') {
+                    this.$router.push({name: 'real'})
+                    setTimeout(() => {
+                      vm.$router.push({ name: "real" });
+                    }, 1000);
+                  }else{
+                    vm.$router.push({ name: "home" }); // ios 调路由第一次无法跳转存在问题 该问题是vue脚手架问题无法解决 侧面解决多运行一次
+                    setTimeout(() => {
+                      vm.$router.push({ name: "home" });
+                    }, 1000);
+                  }
                 } else {
-                  vm.$router.push({ name: "home" });
+                  // 实名审核拒绝
+                  if (JSON.parse(res.data[42])[0].freezeStatus=='10C') {
+                    this.$router.push({
+                      name: 'real'
+                    })
+                  }else{
+                    vm.$router.push({ name: "home" });
+                  }
                 }
               })
               .catch((err) => console.log(err));

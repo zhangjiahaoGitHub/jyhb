@@ -210,7 +210,7 @@ export default {
             this.tjr = res.data[31]
             this.tjrPhone = res.data[32]
             this.createTime = res.data[47]
-            this.freezeStatus = res.data[47]
+            this.freezeStatus = res.data[46]
             this.idCardNumber = res.data[38]
             this.phone = res.data[50]
             this.nc = res.data[49]

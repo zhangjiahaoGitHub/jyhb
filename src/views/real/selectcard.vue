@@ -1,10 +1,14 @@
 <template>
   <div class='hundred selectcard-layout' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock='fullscreenLoading'>
-    <ul>
+    <div v-if="cardList.length<0" class="zw">
+      <img src="../../assets/repay/zw.png" alt="" srcset="">
+      <p>暂无可用信用卡！</p>
+    </div>
+    <ul v-else>
       <li v-for='item in cardList' :key='item.ID'>
         <div>
           <p><img :src="banks[item.BANK_NAME]?require(`../../assets/bank/${banks[item.BANK_NAME]}.png`):require('../../assets/bank/yl.png')" alt="">{{item.short_cn_name}}({{item.BANK_ACCOUNT.substring(item.BANK_ACCOUNT.length-4,item.BANK_ACCOUNT.length)}})</p>
-          <p>{{item.BANK_ACCOUNT_NAME.substring(0,1)}}<span v-for="(item,index) in item.BANK_ACCOUNT_NAME.substring(0,1)" :key="index">*</span></p>
+          <p>{{item.BANK_ACCOUNT_NAME.substring(0,1)}}<span v-for="(t,i) in item.BANK_ACCOUNT_NAME.substring(1,item.BANK_ACCOUNT_NAME.length)" :key="i">*</span></p>
         </div>
         <div>
           <span>{{item.day}}</span>
@@ -32,8 +36,8 @@
           <p @click.stop="ljhk(item)">立即还款</p>
         </div>
       </li>
-      <div @click="$router.push({name: 'addcard'})"><i class="el-icon-plus"></i>添加信用卡</div>
     </ul>
+    <div class="tjxyk" @click="$router.push({name: 'addcard'})"><i class="el-icon-plus"></i>添加信用卡</div>
     <div @click="planDiv=false" v-if="planDiv" class="planDiv">
       <div @click.stop="">
         <div class="titleDiv">智能还款方式<i @click.stop="planDiv=false" class="el-icon-close"></i></div>
@@ -211,7 +215,7 @@ export default {
                 center: true,
                 offset: 30,
                 duration: 2000,
-                type: 'success'
+                type: 'warning'
               })
             }
           })
@@ -254,54 +258,6 @@ export default {
           item: JSON.stringify(this.nowItem)
         }
       })
-    },
-    // 精养卡查询是否有通道
-    selectHaveAisle(id){
-      let vm = this
-      let parmas = {
-        '0': '0700',
-        '3': '390016',
-        '42': vm.merchantNo,
-        '43': 'YK',
-        '44': this.nowItem.ID,
-        '59': vm.version
-      }
-      this.fullscreenLoading = true
-      let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
-      vm.$http.get(`request.app${url}`)
-        .then(res => {
-          this.fullscreenLoading = false
-          if (res.data[39] === '00') {
-            vm.$router.push({ name: 'JYKAisle', query: { item: JSON.stringify(vm.nowItem), money: vm.$route.query.money, aisle: vm.$route.query.aisle } })
-          }else{
-            vm.$message({
-              type: 'success',
-              message: res.data[39],
-              center: true,
-              offset: 30,
-              duration: 2500
-            })
-          }
-        })
-        .catch(err => {
-          this.fullscreenLoading = false
-          console.log(err)
-        })
-    },
-    toJYKAisle () {
-      let vm = this
-      let item = this.nowItem
-      if (item.plancount > 0) {
-        vm.$message({
-          type: 'warning',
-          message: '该卡片已有执行中计划，请在该计划暂停或完成后再创建新计划',
-          center: true,
-          offset: 30,
-          duration: 2500
-        })
-        return
-      }
-      this.selectHaveAisle()
     },
     // 一卡多还
     toOneCardDh () {
