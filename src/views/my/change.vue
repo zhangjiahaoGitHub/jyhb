@@ -15,6 +15,7 @@
         <input v-model='phone' type="number" placeholder="请输入预留手机号">
       </li>
     </ul>
+    <p>注：请绑定实名用户本人储蓄卡</p>
     <div class="btnDiv">
       <div @click='card()'>确认修改</div>
     </div>

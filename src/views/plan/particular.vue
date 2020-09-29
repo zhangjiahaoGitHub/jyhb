@@ -99,10 +99,10 @@
                 <div>
                   <a v-if="itemList.TYPE == '10C'" class="partStatus" :class=" item.type == 'sale' ? 'partGreen':item.type == 'payment' ? 'partBlue':'partStatus'">{{item.type == 'sale' ? '手续费':item.type == 'payment' ? '消费':'还款'}}</a>
                   <a v-else class="partStatus" :class="item.type == 'sale' ? 'partStatus':'partBlue'">{{item.type == 'sale' ? '消费':'还款'}}</a>
-                     <span class='partFont'>{{$moment(item.planTime.time).format('YYYY-MM-DD')}}</span>
+                     <span class='gary'>{{$moment(item.planTime.time).format('YYYY-MM-DD HH:mm:ss')}}</span>
                 </div>
                 <div>
-                    <span class='partFont'>{{item.money}}</span>
+                    <span class='gary'>{{item.money}}</span>
                     <span class='repleni blueColor' v-if="item.status === '10B' || item.status === '10Y'">
                       <span  @click="item.status === '10Y' ? getrue() : get(item.id)" :class="item.status === '10Y' ? 'garyRep' : 'redRep'" v-if="item.type === 'sale' && listMore[index+1].type === 'sale'&& listMore[index+1].status === '10C'">
                         还款
@@ -110,8 +110,8 @@
                       <i class="el-icon-circle-check"></i>
                     </span>
                 </div>
-                <img v-if="item.status=='10B'" style="width:0.6rem;height:0.6rem" src="../../assets/repay/wc.png" alt="">
-                <img v-else-if="item.status=='10C'" style="width:0.6rem;height:0.6rem" src="../../assets/repay/cw.png" alt="">
+                <img v-if="item.status=='10B' && (itemList.STATUS!='10C' || itemList.STATUS!='10D')" style="width:0.6rem;height:0.6rem" src="../../assets/repay/wc.png" alt="">
+                <img v-else-if="item.status=='10C' || itemList.STATUS=='10C' || itemList.STATUS=='10D'" style="width:0.6rem;height:0.6rem" src="../../assets/repay/cw.png" alt="">
                 <img v-else style="width:0.6rem;height:0.6rem" src="../../assets/repay/dd.png" alt="">
             </li>
             <li class='flexPadding partExp' v-if="item.type == 'sale' || item.type=='pay'">
@@ -333,7 +333,7 @@ export default {
       let vm = this
       if (type === '10A') {
         vm.$message({
-          type: 'success',
+          type: 'warning',
           message: '请先暂停计划再删除!',
           center: true,
           offset: 30,
@@ -343,7 +343,7 @@ export default {
       }
       if (type === '10B') {
         vm.$message({
-          type: 'success',
+          type: 'warning',
           message: '请先暂停计划再删除!',
           center: true,
           offset: 30,

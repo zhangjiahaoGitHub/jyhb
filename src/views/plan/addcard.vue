@@ -52,7 +52,7 @@
       <div>
         <h3>信用卡认证注意事项</h3>
         <div class="contentDiv">
-          <p>一.一下卡种暂不支持代还</p>
+          <p>一.以下卡种暂不支持代还</p>
           <p>1.外汇卡，双币卡</p>
           <p>2.二合一卡(二合一卡指的是同时拥有储蓄，以及信用卡功能的卡)如中信二合一卡，这类卡不支持代还</p>
           <p>3.特殊卡种：指稀有卡，不在市面上大范围流通的卡种，如奋斗卡；</p>
@@ -240,6 +240,16 @@ export default {
       if (this.cvn.match(/^[ ]*$/)) {
         this.$message({
           message: '输入CVV2码',
+          center: true,
+          offset: 30,
+          duration: 2000,
+          type: 'warning'
+        })
+        return
+      }
+      if (this.cvn.length!=3) {
+        this.$message({
+          message: 'CVV2码应为3位',
           center: true,
           offset: 30,
           duration: 2000,

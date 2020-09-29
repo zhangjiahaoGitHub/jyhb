@@ -39,7 +39,8 @@ $big: 2rem;
     .rightCorner{
         position: absolute;
         right: px2rem(20);
-        font-size: $one;
+        font-size: $three;
+        top: px2rem(26);
     }
 }
 .hs{
@@ -440,7 +441,7 @@ $big: 2rem;
         div{
             background: url(../../src/assets/member/bg1.png) no-repeat;
             background-size: 100% 100%;
-            padding: px2rem(30) px2rem(40) px2rem(20) px2rem(40);
+            padding: px2rem(38) px2rem(40) px2rem(40) px2rem(40);
             p{
                 &:first-child{
                     color: $themeColor;
@@ -515,8 +516,8 @@ $big: 2rem;
                 border-right: 1px solid #f7f7f7;
                 border-bottom: 1px solid #f7f7f7;
                 img{
-                    width: px2rem(60);
-                    margin-right: px2rem(40);
+                    width: px2rem(80);
+                    margin-right: px2rem(20);
                 }
                 div{
                     span{
@@ -959,6 +960,10 @@ $big: 2rem;
                 margin-bottom: 0;
             }
         }
+    }
+    >p{
+        color: $promptColor;
+        padding-left: px2rem(40);
     }
     .btnDiv{
         padding: px2rem(20);
@@ -2817,6 +2822,7 @@ $big: 2rem;
                 }
                 img{
                     width: px2rem(100);
+                    height: px2rem(100);
                     border-radius: 50%;
                     margin-right: px2rem(20);
                 }
@@ -2910,6 +2916,17 @@ $big: 2rem;
 }
 .selectcard-layout{
     background: $themeColor;
+    .zw{
+        img{
+            display: block;
+            margin: px2rem(60) auto;
+            width: 30%;
+        }
+        p{
+            text-align: center;
+            color: #fff;
+        }
+    }
     >ul{
         padding: px2rem(20);
         >li{
@@ -2986,13 +3003,15 @@ $big: 2rem;
                 }
             }
         }
-        >div{
-            margin-top: px2rem(60);
-            background: #fff;
-            padding: px2rem(20);
-            text-align: center;
-            color: #878787;
-        }
+    }
+    .tjxyk{
+        margin-top: px2rem(60);
+        margin-left: px2rem(20);
+        margin-right: px2rem(20);
+        background: #fff;
+        padding: px2rem(20);
+        text-align: center;
+        color: #878787;
     }
     .planDiv{
         position: fixed;
@@ -3030,6 +3049,8 @@ $big: 2rem;
             }
             ol{
                 padding: px2rem(20);
+                overflow: auto;
+                height: 20rem;
                 li{
                     background: #fff;
                     display: flex;
@@ -3356,7 +3377,8 @@ $big: 2rem;
                         }
                         p{
                             height: 100%;
-                            background: #dcdcdc;
+                            background: $themeColor;
+                            color: #fff;
                             position: absolute;
                             right: 0;
                             top: 0;
@@ -3391,7 +3413,7 @@ $big: 2rem;
         top: 0;
         left: 0;
         background: rgba($color: #000000, $alpha: 0.6);
-        z-index: 10;
+        z-index: 202;
         ul{
             background: #fff;
             padding: 0 px2rem(20);
@@ -4264,13 +4286,13 @@ $big: 2rem;
     }
 }
 .shareimg-layout{
-    overflow: hidden;
+    overflow: auto;
     min-height: 1rem;
     height: 22.8rem;
     position: relative;
     #codeDiv{
         position: absolute;
-        z-index: 1000;
+        z-index: 998;
         bottom: px2rem(100);
         left: 50%;
         transform: translateX(-50%);
@@ -4278,7 +4300,7 @@ $big: 2rem;
     .fd{
         position: absolute;
         width: px2rem(60);
-        bottom: px2rem(40);
+        bottom: px2rem(120);
         right: px2rem(40);
         z-index: 20;
     }

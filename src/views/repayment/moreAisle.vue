@@ -42,7 +42,7 @@
               <span>{{item.rate}}</span>
               <div>
                 <p>单笔限额：{{item.limit}}</p>
-                <p>交易时间：{{item.T0date}}，{{item.remark}}</p>
+                <p>交易时间：{{item.T0date}}</p>
               </div>
             </div>
             <span @click="bindCard(item)" v-if="item.status!='开通'">立即报备</span>
@@ -54,7 +54,7 @@
     </div>
     <div @click="popShow=false" v-if="popShow" class="popDiv">
       <div @click.stop="">
-        <p>计划概况</p>
+        <p>计划概览</p>
         <ul>
           <li>
             <span>还款金额</span>

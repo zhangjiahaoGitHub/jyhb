@@ -133,7 +133,7 @@ export default {
                 center: true,
                 offset: 30,
                 duration: 2000,
-                type: 'success'
+                type: 'warning'
               })
             }
           })

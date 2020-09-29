@@ -25,7 +25,7 @@
             <span>我的权益</span>
             <p>{{levelObj[level]}}</p>
           </div>
-          <p @click="$router.push({name:'upgrade',query:{level:1}})">立即升级</p>
+          <p @click="$router.push({name:'upgrade',query:{level:level}})">立即升级</p>
         </div>
       </div>
       <div class="itemDiv">

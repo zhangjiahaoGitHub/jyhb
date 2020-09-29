@@ -338,7 +338,7 @@ const routes = [
     path: '/collection',
     name: 'collection',
     meta: {
-      title: '收款',
+      title: '',
       bgLeft: true
     },
     component: () => import('../views/collection.vue')
@@ -527,7 +527,7 @@ const routes = [
     path: '/matter',
     name: 'matter',
     meta: {
-      title: '银行卡详情',
+      title: '查看资料',
       bgLeft: true
     },
     component: () => import('../views/plan/matter.vue')

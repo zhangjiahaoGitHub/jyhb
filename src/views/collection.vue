@@ -159,7 +159,7 @@ export default {
       this.$router.push({name: 'select', query: {money: parseInt(this.priceall)}})
     },
     toHb() {
-      this.$router.push({name: 'selectChannel', query: {money: parseInt(this.priceall)}})
+      this.$router.push({name: 'selectChannel', query: {money: parseInt(this.priceall), aisle: 'HB'}})
     },
     chooseNum(num) {
       if (num != "delete" && num != '.' && this.floorflag) {
