@@ -697,6 +697,7 @@ export default {
           vm.fullscreenLoading = false
           console.log(err)
         })
+        vm.fullscreenLoading = false
     },
     topage(page) {
       this.$router.push({name: page})
@@ -803,6 +804,7 @@ export default {
           vm.fullscreenLoading = false
           console.log(err)
         })
+        vm.fullscreenLoading = false
     },
     banner () {
       let vm = this
