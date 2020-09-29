@@ -110,7 +110,7 @@ export default {
       vm.$http.post(`request.app`,url)
         .then(res => {
           if (res.data[39] === '00') {
-            vm.$router.push({ name: 'ifarme', query: { url: res.data[30], title: '无卡支付' } })
+            vm.$router.push({ name: 'ifarme', query: { url: res.data[30], title: '无卡支付', aisle: vm.aisle } })
             
           } else {
               vm.$message({
@@ -169,7 +169,7 @@ export default {
       vm.$http.get(`request.app${url}`)
         .then(res => {
           if (res.data[39] === '00') {
-            vm.$router.push({ name: 'ifarme', query: { url: res.data[30], title: '无卡支付' } })
+            vm.$router.push({ name: 'ifarme', query: { url: res.data[30], title: '无卡支付', wkzf:true , aisle: vm.aisle} })
           } else {
               vm.$message({
                 message: res.data[39],

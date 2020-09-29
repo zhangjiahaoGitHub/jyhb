@@ -5,6 +5,7 @@
         {{$route.meta.title}}
         <span @click="$router.push({name:'czjl'})" class="rightCorner" v-if="$route.meta.sxTx">充值记录</span>
         <span @click="$router.push({name:'withdrawRecord'})" class="rightCorner" v-if="$route.meta.retreat">提现记录</span>
+        <span @click="$router.push({name:'home'})" class="rightCorner" v-if="$route.query.wkzf">首页</span>
       </div>
       <div v-else-if="$route.meta.left" class="pageTitle">
         <i @click="goTop" class="el-icon-arrow-left hs"></i>
@@ -88,10 +89,17 @@ export default Vue.extend({
           to.meta.title = '智能还款'
           document.title = '智能还款'
           document.body.title = '智能还款'
-        }else if(vm.$route.query.aisle=='JYK'){
-          to.meta.title = '精养卡'
-          document.title = '精养卡'
-          document.body.title = '精养卡'
+        }
+      }
+      if (to.name == 'collection') {
+        if (to.query.aisle=='HB') {
+          to.meta.title = '花呗收款'
+          document.title = '花呗收款'
+          document.body.title = '花呗收款'
+        }else{
+          to.meta.title = '收款'
+          document.title = '收款'
+          document.body.title = '收款'
         }
       }
       if (to.name == 'teamItem') {
@@ -194,7 +202,11 @@ export default Vue.extend({
         return
       }
       if (this.$route.meta.title === '无卡支付' && this.$route.name === 'ifarme') {
-        this.$router.push({ name: 'collection' })
+        if (this.$route.query.aisle=='HB') {
+          this.$router.go(-2)
+        }else{
+          this.$router.go(-3)
+        }
         return
       }
       if (this.$route.name === 'notice') {

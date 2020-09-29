@@ -338,7 +338,7 @@ const routes = [
     path: '/collection',
     name: 'collection',
     meta: {
-      title: '收款',
+      title: '',
       bgLeft: true
     },
     component: () => import('../views/collection.vue')

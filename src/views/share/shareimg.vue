@@ -9,7 +9,7 @@
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
     <div id="codeDiv" ref="qrCodeUrl"></div>
-    <img @click="popShow=false" v-if="popShow" class="popImg" :src="newImg" alt="">
+    <img @click="sx" v-if="popShow" class="popImg" :src="newImg" alt="">
     <!-- <ul>
       <li @click="showImg(item)" v-for="(item,index) in img" :key="index">
         <img :src="item" alt="">
@@ -70,9 +70,14 @@ export default {
     // this.creatQrCode()
   },
   methods: {
+    sx(){
+      this.popShow = false
+      document.querySelector('#codeDiv').style='z-index:998'
+    },
     showImg(item){
       this.newImg = item
       this.popShow = true
+      document.querySelector('#codeDiv').style='z-index:1000'
     },
     creatQrCode() {
       let vm = this
