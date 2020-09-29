@@ -99,6 +99,11 @@ export default Vue.extend({
           document.title = vm.$route.query.title
           document.body.title = vm.$route.query.title
       }
+      if (to.name == 'partnerpage') {
+          to.meta.title = ''
+          document.title = ''
+          document.body.title = ''
+      }
       if (to.name == 'helpCenterInfo') {
           to.meta.title = vm.$route.query.title
           document.title = vm.$route.query.title

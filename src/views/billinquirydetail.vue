@@ -13,7 +13,7 @@
           <div class="xinxi-con">{{listarr.smsBillTip}}</div>
           <div class="xinxi-con">{{listarr.smsBillExample}}</div>
         </div>
-        <a :href="'sms:'+ listarr.smsMobileReceiver + '?body=' + listarr.smsBill" class="duanxin-img">
+        <a :href="'sms:'+ listarr.smsMobileReceiver + (ifiosad == '1' ? '?body=' : '&body=') + listarr.smsBill" class="duanxin-img">
           <img src="../assets/xinjian.png" alt="">
         </a>
       </div>
@@ -23,7 +23,7 @@
           <div class="xinxi-con">{{listarr.smseduTip}}</div>
           <div class="xinxi-con">{{listarr.smsEduExample}}</div>
         </div>
-        <a :href="'sms:'+ listarr.smsMobileReceiver + '?body=' + listarr.smsEdu" class="duanxin-img">
+        <a :href="'sms:'+ listarr.smsMobileReceiver + (ifiosad == '1' ? '?body=' : '&body=') + listarr.smsEdu" class="duanxin-img">
           <img src="../assets/xinjian.png" alt="">
         </a>
       </div>
@@ -41,7 +41,7 @@
           <div class="xinxi-con">{{listarr.smsBillTip}}</div>
           <div class="xinxi-con">{{listarr.smsBillExample}}</div>
         </div>
-        <a :href="'sms:'+ listarr.smsMobileReceiver + '?body=' + listarr.smsBill" class="duanxin-img">
+        <a :href="'sms:'+ listarr.smsMobileReceiver + (ifiosad == '1' ? '?body=' : '&body=') + listarr.smsBill" class="duanxin-img">
           <img src="../assets/xinjian.png" alt="">
         </a>
       </div>
@@ -59,7 +59,7 @@
           <div class="xinxi-con">{{listarr.smsBillTip}}</div>
           <div class="xinxi-con">{{listarr.smsBillExample}}</div>
         </div>
-        <a :href="'sms:'+ listarr.smsMobileReceiver + '?body=' + listarr.smsBill" class="duanxin-img">
+        <a :href="'sms:'+ listarr.smsMobileReceiver + (ifiosad == '1' ? '?body=' : '&body=') + listarr.smsBill" class="duanxin-img">
           <img src="../assets/xinjian.png" alt="">
         </a>
       </div>
@@ -69,7 +69,7 @@
           <div class="xinxi-con">{{listarr.smseduTip}}</div>
           <div class="xinxi-con">{{listarr.smsEduExample}}</div>
         </div>
-        <a :href="'sms:'+ listarr.smsMobileReceiver + '?body=' + listarr.smsEdu" class="duanxin-img">
+        <a :href="'sms:'+ listarr.smsMobileReceiver + (ifiosad == '1' ? '?body=' : '&body=') + listarr.smsEdu" class="duanxin-img">
           <img src="../assets/xinjian.png" alt="">
         </a>
       </div>
@@ -87,7 +87,7 @@
           <div class="xinxi-con">{{listarr.smsBillTip}}</div>
           <div class="xinxi-con">{{listarr.smsBillExample}}</div>
         </div>
-        <a :href="'sms:'+ listarr.smsMobileReceiver + '?body=' + listarr.smsBill" class="duanxin-img">
+        <a :href="'sms:'+ listarr.smsMobileReceiver + (ifiosad == '1' ? '?body=' : '&body=') + listarr.smsBill" class="duanxin-img">
           <img src="../assets/xinjian.png" alt="">
         </a>
       </div>
@@ -97,7 +97,7 @@
           <div class="xinxi-con">{{listarr.smseduTip}}</div>
           <div class="xinxi-con">{{listarr.smsEduExample}}</div>
         </div>
-        <a :href="'sms:'+ listarr.smsMobileReceiver + '?body=' + listarr.smsEdu" class="duanxin-img">
+        <a :href="'sms:'+ listarr.smsMobileReceiver + (ifiosad == '1' ? '?body=' : '&body=') + listarr.smsEdu" class="duanxin-img">
           <img src="../assets/xinjian.png" alt="">
         </a>
       </div>
@@ -115,7 +115,7 @@
           <div class="xinxi-con">{{listarr.smsBillTip}}</div>
           <div class="xinxi-con">{{listarr.smsBillExample}}</div>
         </div>
-        <a :href="'sms:'+ listarr.smsMobileReceiver + '?body=' + listarr.smsBill" class="duanxin-img">
+        <a :href="'sms:'+ listarr.smsMobileReceiver + (ifiosad == '1' ? '?body=' : '&body=') + listarr.smsBill" class="duanxin-img">
           <img src="../assets/xinjian.png" alt="">
         </a>
       </div>
@@ -133,7 +133,7 @@
           <div class="xinxi-con">{{listarr.smsBillTip}}</div>
           <div class="xinxi-con">{{listarr.smsBillExample}}</div>
         </div>
-        <a :href="'sms:'+ listarr.smsMobileReceiver + '?body=' + listarr.smsBill" class="duanxin-img">
+        <a :href="'sms:'+ listarr.smsMobileReceiver + (ifiosad == '1' ? '?body=' : '&body=') + listarr.smsBill" class="duanxin-img">
           <img src="../assets/xinjian.png" alt="">
         </a>
       </div>
@@ -142,7 +142,7 @@
           <div class="title">查询账单( 联通、电信用户 )</div>
           <div class="xinxi-con">发送#ZD到{{listarr.smsUnicomReceiver}}</div>
         </div>
-        <a :href="'sms:'+ listarr.smsUnicomReceiver + '?body=' + listarr.smsBill" class="duanxin-img">
+        <a :href="'sms:'+ listarr.smsUnicomReceiver + (ifiosad == '1' ? '?body=' : '&body=') + listarr.smsBill" class="duanxin-img">
           <img src="../assets/xinjian.png" alt="">
         </a>
       </div>
@@ -151,7 +151,7 @@
           <div class="title">查询积分( 联通、电信用户 )</div>
           <div class="xinxi-con">发送#JF到{{listarr.smsUnicomReceiver}}</div>
         </div>
-        <a :href="'sms:'+ listarr.smsUnicomReceiver + '?body=' + listarr.smsJifen" class="duanxin-img">
+        <a :href="'sms:'+ listarr.smsUnicomReceiver + (ifiosad == '1' ? '?body=' : '&body=') + listarr.smsJifen" class="duanxin-img">
           <img src="../assets/xinjian.png" alt="">
         </a>
       </div>
@@ -161,7 +161,7 @@
           <div class="xinxi-con">{{listarr.smseduTip}}</div>
           <div class="xinxi-con">{{listarr.smsEduExample}}</div>
         </div>
-        <a :href="'sms:'+ listarr.smsMobileReceiver + '?body=' + listarr.smsEdu" class="duanxin-img">
+        <a :href="'sms:'+ listarr.smsMobileReceiver + (ifiosad == '1' ? '?body=' : '&body=') + listarr.smsEdu" class="duanxin-img">
           <img src="../assets/xinjian.png" alt="">
         </a>
       </div>
@@ -170,7 +170,7 @@
           <div class="title">查询可用额度( 联通、电信用户 )</div>
           <div class="xinxi-con">发送#ED到{{listarr.smsUnicomReceiver}}</div>
         </div>
-        <a :href="'sms:'+ listarr.smsUnicomReceiver + '?body=' + listarr.smsEdu" class="duanxin-img">
+        <a :href="'sms:'+ listarr.smsUnicomReceiver + (ifiosad == '1' ? '?body=' : '&body=') + listarr.smsEdu" class="duanxin-img">
           <img src="../assets/xinjian.png" alt="">
         </a>
       </div>
@@ -188,7 +188,7 @@
           <div class="xinxi-con">{{listarr.smsBillTip}}</div>
           <div class="xinxi-con">{{listarr.smsBillExample}}</div>
         </div>
-        <a :href="'sms:'+ listarr.smsMobileReceiver + '?body=' + listarr.smsBill" class="duanxin-img">
+        <a :href="'sms:'+ listarr.smsMobileReceiver + (ifiosad == '1' ? '?body=' : '&body=') + listarr.smsBill" class="duanxin-img">
           <img src="../assets/xinjian.png" alt="">
         </a>
       </div>
@@ -198,7 +198,7 @@
           <div class="xinxi-con">{{listarr.smseduTip}}</div>
           <div class="xinxi-con">{{listarr.smsEduExample}}</div>
         </div>
-        <a :href="'sms:'+ listarr.smsMobileReceiver + '?body=' + listarr.smsEdu" class="duanxin-img">
+        <a :href="'sms:'+ listarr.smsMobileReceiver + (ifiosad == '1' ? '?body=' : '&body=') + listarr.smsEdu" class="duanxin-img">
           <img src="../assets/xinjian.png" alt="">
         </a>
       </div>
@@ -210,7 +210,7 @@
           <div class="xinxi-con">{{listarr.smsBillTip}}</div>
           <div class="xinxi-con">{{listarr.smsBillExample}}</div>
         </div>
-        <a :href="'sms:'+ listarr.smsMobileReceiver + '?body=' + listarr.smsBill" class="duanxin-img">
+        <a :href="'sms:'+ listarr.smsMobileReceiver + (ifiosad == '1' ? '?body=' : '&body=') + listarr.smsBill" class="duanxin-img">
           <img src="../assets/xinjian.png" alt="">
         </a>
       </div>
@@ -228,7 +228,7 @@
           <div class="xinxi-con">{{listarr.smsBillTip}}</div>
           <div class="xinxi-con">{{listarr.smsBillExample}}</div>
         </div>
-        <a :href="'sms:'+ listarr.smsMobileReceiver + '?body=' + listarr.smsBill" class="duanxin-img">
+        <a :href="'sms:'+ listarr.smsMobileReceiver + (ifiosad == '1' ? '?body=' : '&body=') + listarr.smsBill" class="duanxin-img">
           <img src="../assets/xinjian.png" alt="">
         </a>
       </div>
@@ -238,7 +238,7 @@
           <div class="xinxi-con">{{listarr.smseduTip}}</div>
           <div class="xinxi-con">{{listarr.smsEduExample}}</div>
         </div>
-        <a :href="'sms:'+ listarr.smsMobileReceiver + '?body=' + listarr.smsEdu" class="duanxin-img">
+        <a :href="'sms:'+ listarr.smsMobileReceiver + (ifiosad == '1' ? '?body=' : '&body=') + listarr.smsEdu" class="duanxin-img">
           <img src="../assets/xinjian.png" alt="">
         </a>
       </div>
@@ -256,7 +256,7 @@
           <div class="xinxi-con">{{listarr.smseduTip}}</div>
           <div class="xinxi-con">{{listarr.smsEduExample}}</div>
         </div>
-        <a :href="'sms:'+ listarr.smsMobileReceiver + '?body=' + listarr.smsEdu" class="duanxin-img">
+        <a :href="'sms:'+ listarr.smsMobileReceiver + (ifiosad == '1' ? '?body=' : '&body=') + listarr.smsEdu" class="duanxin-img">
           <img src="../assets/xinjian.png" alt="">
         </a>
       </div>
@@ -274,7 +274,7 @@
           <div class="xinxi-con">{{listarr.smsBillTip}}</div>
           <div class="xinxi-con">{{listarr.smsBillExample}}</div>
         </div>
-        <a :href="'sms:'+ listarr.smsMobileReceiver + '?body=' + listarr.smsBill" class="duanxin-img">
+        <a :href="'sms:'+ listarr.smsMobileReceiver + (ifiosad == '1' ? '?body=' : '&body=') + listarr.smsBill" class="duanxin-img">
           <img src="../assets/xinjian.png" alt="">
         </a>
       </div>
@@ -292,7 +292,7 @@
           <div class="xinxi-con">{{listarr.smseduTip}}</div>
           <div class="xinxi-con">{{listarr.smsEduExample}}</div>
         </div>
-        <a :href="'sms:'+ listarr.smsMobileReceiver + '?body=' + listarr.smsEdu" class="duanxin-img">
+        <a :href="'sms:'+ listarr.smsMobileReceiver + (ifiosad == '1' ? '?body=' : '&body=') + listarr.smsEdu" class="duanxin-img">
           <img src="../assets/xinjian.png" alt="">
         </a>
       </div>
@@ -318,7 +318,7 @@
           <div class="xinxi-con">{{listarr.smseduTip}}</div>
           <div class="xinxi-con">{{listarr.smsEduExample}}</div>
         </div>
-        <a :href="'sms:'+ listarr.smsMobileReceiver + '?body=' + listarr.smsEdu" class="duanxin-img">
+        <a :href="'sms:'+ listarr.smsMobileReceiver + (ifiosad == '1' ? '?body=' : '&body=') + listarr.smsEdu" class="duanxin-img">
           <img src="../assets/xinjian.png" alt="">
         </a>
       </div>
@@ -336,7 +336,7 @@
           <div class="xinxi-con">{{listarr.smsBillTip}}</div>
           <div class="xinxi-con">{{listarr.smsBillExample}}</div>
         </div>
-        <a :href="'sms:'+ listarr.smsMobileReceiver + '?body=' + listarr.smsBill" class="duanxin-img">
+        <a :href="'sms:'+ listarr.smsMobileReceiver + (ifiosad == '1' ? '?body=' : '&body=') + listarr.smsBill" class="duanxin-img">
           <img src="../assets/xinjian.png" alt="">
         </a>
       </div>
@@ -346,7 +346,7 @@
           <div class="xinxi-con">{{listarr.smseduTip}}</div>
           <div class="xinxi-con">{{listarr.smsEduExample}}</div>
         </div>
-        <a :href="'sms:'+ listarr.smsMobileReceiver + '?body=' + listarr.smsEdu" class="duanxin-img">
+        <a :href="'sms:'+ listarr.smsMobileReceiver + (ifiosad == '1' ? '?body=' : '&body=') + listarr.smsEdu" class="duanxin-img">
           <img src="../assets/xinjian.png" alt="">
         </a>
       </div>
@@ -373,14 +373,29 @@ export default {
       merchantNo: '',
       listarr: {},
       phone: '',
-      flag: false
+      flag: false,
+      ifiosad: '1'
     }
   },
   created () {
+    let vm = this
     this.version = this.$stact.state.version
     this.agentNo = this.$stact.state.agentNo
     this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
     this.listarr = JSON.parse(this.$route.query.item)
+    let equipmentType = "";
+    let agent = navigator.userAgent.toLowerCase();
+    let android = agent.indexOf("android");
+    let iphone = agent.indexOf("iphone");
+    let ipad = agent.indexOf("ipad");
+    if(android != -1){
+      equipmentType = "android";
+      vm.ifiosad = '1'
+    }
+    if(iphone != -1 || ipad != -1){
+      equipmentType = "ios"
+      vm.ifiosad = '2'
+    }
     console.log(this.listarr)
   },
   mounted () {
