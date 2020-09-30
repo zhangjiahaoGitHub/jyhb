@@ -241,6 +241,8 @@ export default {
     },
     toReal () {
       let vm = this
+      let bankAccount = JSON.parse(this.$stact.state.token)[0].bankAccount
+      let idCardNumber = JSON.parse(this.$stact.state.token)[0].idCardNumber
       if (vm.freezeStatus == '10B') {
         vm.$message({
           message: '已实名',
@@ -253,7 +255,17 @@ export default {
       }
       if (vm.freezeStatus == '10F') {
         vm.$message({
-          message: '审核中',
+          message: '实名审核中',
+          center: true,
+          offset: 30,
+          duration: 2500,
+          type: 'success'
+        })
+        return
+      }
+      if (vm.freezeStatus == '10A' && bankAccount.length>0 && idCardNumber.length>0) {
+        vm.$message({
+          message: '实名审核中',
           center: true,
           offset: 30,
           duration: 2500,

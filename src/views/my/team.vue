@@ -12,8 +12,8 @@
         <ol>
           <li>
             <img src="../../assets/my/myTeam/tjr.png" alt="">
-            <p v-if="sjtgName">{{sjtgName}}</p>
-            <p v-if="sjtgName">{{sjtgPhone.substring(0,3)}}****{{sjtgPhone.substring(sjtgPhone.length-4,sjtgPhone.length)}}</p>
+            <p v-if="sjtgName!='无'">{{sjtgName}}</p>
+            <p v-if="sjtgName!='无'">{{sjtgPhone.substring(0,3)}}****{{sjtgPhone.substring(sjtgPhone.length-4,sjtgPhone.length)}}</p>
             <p v-else>鲸鹰伙伴</p>
           </li>
           <li>

@@ -114,13 +114,13 @@ const routes = [
     component: () => import('../views/partnerpage.vue')
   },
   {
-    path: '/incomeList',
-    name: 'incomeList',
+    path: '/incomeListnb',
+    name: 'incomeListnb',
     meta: {
       title: '',
       incomeList: true,
     },
-    component: () => import('../views/income/incomeList.vue')
+    component: () => import('../views/income/incomeListnb.vue')
   },
   {
     path: '/my',

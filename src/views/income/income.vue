@@ -98,7 +98,7 @@ export default {
   },
   methods: {
     toincomeList(type,title) {
-      this.$router.push({name: 'incomeList',query: {type: type,title: title}})
+      this.$router.push({name: 'incomeListnb',query: {type: type,title: title}})
     },
     getData () {
       let vm = this

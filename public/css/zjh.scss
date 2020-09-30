@@ -2125,6 +2125,11 @@ $big: 2rem;
             align-items: flex-end;
             display: flex;
             justify-content: space-between;
+            div{
+                &:last-child{
+                    text-align: right;
+                }
+            }
         }
         >p{
             text-align: center;
@@ -2446,11 +2451,13 @@ $big: 2rem;
     }
 }
 .teamItem-layout{
+    padding-bottom: 2rem;
     position: fixed;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
+    overflow: auto;
     .head{
         background: $themeColor;
         height: px2rem(300);

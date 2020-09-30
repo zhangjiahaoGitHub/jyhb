@@ -46,6 +46,7 @@
         <p v-if="loading">加载中...</p>
         <p v-if="noMore">没有更多了</p>
       </ul>
+      <div style="height:2rem;"></div>
     </div>
 </template>
 <script>

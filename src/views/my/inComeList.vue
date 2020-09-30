@@ -66,7 +66,7 @@
           </div>
           <div>
             <p>来源:{{item.merchantCnName}}</p>
-            <p>返佣:{{item.trxAmt}}</p>
+            <p>{{moneyType[item.moneyType]}}:{{item.trxAmt}}</p>
           </div>
         </li>
         <p style="text-align:center;" v-if="loading">加载中...</p>
@@ -85,6 +85,26 @@ export default {
       month: '',
       day: '0',
       type: 1,
+      // 金额类型
+      moneyType:{
+        '10A': '快捷分润',
+        '10B': '自主提现',
+        '10C': '升级返佣',
+        '10D': '贷款分润',
+        '10E': '积分分润',
+        '10F': '实名返佣',
+        '10G': '激活返佣',
+        '10L': '领主分润',
+        '10T': '领主退款',
+        '20A': '商城收益',
+        '20B': '平级收益',
+        '20C': '薪资收益',
+        '20D': '办卡收益',
+        '20E': '管理收益',
+        '30A': '代还收益',
+        '40A': '空卡收益',
+        '50A': '花呗收益',
+      },
       monthOptions: [
         {
           label: '无',
