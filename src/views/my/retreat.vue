@@ -12,7 +12,7 @@
       <p>账户余额：{{team[43]}}<span @click="money=team[43]">全部提现</span></p>
     </div>
     <p>提现手续费：{{team[25]}}元/笔，{{team[26]}}元起提</p>
-    <div @click="getMoney" class="btnDiv">信用分提现</div>
+    <div @click="getMoney" class="btnDiv">确认提现</div>
   </div>
 </template>
 <script>

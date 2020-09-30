@@ -156,13 +156,7 @@ export default {
               })
           })
       }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消删除',
-          center: true,
-          offset: 30,
-          duration: 2000,
-        });          
+        
       });
     },
     list () {

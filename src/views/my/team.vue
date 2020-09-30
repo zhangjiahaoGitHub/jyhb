@@ -7,116 +7,61 @@
       <div class="content">
         <div>
           <p><img src="../../assets/my/myTeam/wdtd.png" alt=""></p>
-          <span>客户数量：{{dataObj[19]}}</span>
+          <span>客户数量：{{dataObj[14]}}</span>
         </div>
         <ol>
           <li>
             <img src="../../assets/my/myTeam/tjr.png" alt="">
-            <p v-if="sjtgName!='无'">{{sjtgName}}</p>
-            <p v-if="sjtgName!='无'">{{sjtgPhone.substring(0,3)}}****{{sjtgPhone.substring(sjtgPhone.length-4,sjtgPhone.length)}}</p>
+            <p v-if="dataObj[10]">{{dataObj[10]}}</p>
+            <p v-if="dataObj[11]">{{dataObj[11]}}</p>
             <p v-else>鲸鹰伙伴</p>
           </li>
           <li>
             <img src="../../assets/my/myTeam/gfpt.png" alt="">
-            <p>{{sjdlName}}</p>
-            <p>{{sjdlPhone.substring(0,3)}}****{{sjdlPhone.substring(sjdlPhone.length-4,sjdlPhone.length)}}</p>
+            <p v-if="dataObj[12]">{{dataObj[12]}}</p>
+            <p v-if="dataObj[13]">{{dataObj[13]}}</p>
+            <p v-else>鲸鹰伙伴</p>
           </li>
         </ol>
         <ul>
           <div v-if="activeName==1">
-            <li @click="$router.push({name: 'teamItem',query: {title: '普通会员',level: 1,}})" v-if="dataObj[31]>0">
+            <li v-for="(item,index) in listArr" :key="index" @click="$router.push({name: 'teamItem',query: {title: item.levelName,level: 1,}})" v-if="item.count>0">
               <div>
                 <p>
-                  <img src="../../assets/my/myTeam/l1.png" alt="">
+                  <img :src="item.iUrl" alt="">
                 </p>
                 <div>
-                  <p>{{dataObj[31]}}</p>
-                  <span>普通会员</span>
+                  <p>{{item.count}}</p>
+                  <span>{{item.levelName}}</span>
                 </div>
               </div>
-              <p>今日新增<span>{{dataObj[34]}}</span></p>
-            </li>
-            <li @click="$router.push({name: 'teamItem',query: {title: '经纪人',level: 2,}})" v-if="dataObj[32]>0">
-              <div>
-                <p>
-                  <img src="../../assets/my/myTeam/l2.png" alt="">
-                </p>
-                <div>
-                  <p>{{dataObj[32]}}</p>
-                  <span>经纪人</span>
-                </div>
-              </div>
-              <p>今日新增<span>{{dataObj[35]}}</span></p>
-            </li>
-            <li @click="$router.push({name: 'teamItem',query: {title: '城市服务商',level: 3,}})" v-if="dataObj[33]>0">
-              <div>
-                <p>
-                  <img src="../../assets/my/myTeam/l3.png" alt="">
-                </p>
-                <div>
-                  <p>{{dataObj[33]}}</p>
-                  <span>城市服务商</span>
-                </div>
-              </div>
-            </li>
-            <li @click="$router.push({name: 'teamItem',query: {title: '城市运营商',level: 4,}})" v-if="dataObj[36]>0">
-              <div>
-                <p>
-                  <img src="../../assets/my/myTeam/l4.png" alt="">
-                </p>
-                <div>
-                  <p>{{dataObj[36]}}</p>
-                  <span>城市运营商</span>
-                </div>
-              </div>
-            </li>
-            <li @click="$router.push({name: 'teamItem',query: {title: '高级合伙人',level: 5,}})" v-if="dataObj[37]>0">
-              <div>
-                <p>
-                  <img src="../../assets/my/myTeam/l5.png" alt="">
-                </p>
-                <div>
-                  <p>{{dataObj[37]}}</p>
-                  <span>高级合伙人</span>
-                </div>
-              </div>
-            </li>
-            <li @click="$router.push({name: 'teamItem',query: {title: '经纪人',level: 6,}})" v-if="dataObj[38]>0">
-              <div>
-                <p>
-                  <img src="../../assets/my/myTeam/l6.png" alt="">
-                </p>
-                <div>
-                  <p>{{dataObj[38]}}</p>
-                  <span>达标团队长</span>
-                </div>
-              </div>
+              <p v-if="item.tCount || item.tCount==0">今日新增<span>{{item.tCount}}</span></p>
             </li>
           </div>
           <div v-else>
-            <li @click="$router.push({name: 'teamItem',query: {title: '直推会员',level: 10,}})" v-if="dataObj[21]>0">
+            <li @click="$router.push({name: 'teamItem',query: {title: '直推会员',level: 10,}})" v-if="dataObj[23]>0">
               <div>
                 <p>
                   <img src="../../assets/my/myTeam/l10.png" alt="">
                 </p>
                 <div>
-                  <p>{{dataObj[21]}}</p>
+                  <p>{{dataObj[23]}}</p>
                   <span>直推会员</span>
                 </div>
               </div>
-              <p>今日新增<span>{{dataObj[22]}}</span></p>
+              <p>今日新增<span>{{dataObj[24]}}</span></p>
             </li>
-            <li @click="$router.push({name: 'teamItem',query: {title: '间推会员',level: 11,}})" v-if="dataObj[23]>0">
+            <li @click="$router.push({name: 'teamItem',query: {title: '间推会员',level: 11,}})" v-if="dataObj[25]>0">
               <div>
                 <p>
                   <img src="../../assets/my/myTeam/l11.png" alt="">
                 </p>
                 <div>
-                  <p>{{dataObj[23]}}</p>
+                  <p>{{dataObj[25]}}</p>
                   <span>间推会员</span>
                 </div>
               </div>
-              <p>今日新增<span>{{dataObj[24]}}</span></p>
+              <p>今日新增<span>{{dataObj[26]}}</span></p>
             </li>
           </div>
         </ul>
@@ -134,10 +79,7 @@ Vue.use(VCalendar, {
 export default {
   data () {
     return {
-      sjtgName: '',
-      sjtgPhone: '',
-      sjdlName: '',
-      sjdlPhone: '',
+      listArr: [],
       dataObj: {},
       activeName: '1',
       fullscreenLoading: false,
@@ -164,8 +106,8 @@ export default {
       let vm = this
       let parmas = {
         '0': '0700',
-        '3': '999200',
-        '43': JSON.parse(this.$stact.state.token)[0].phone,
+        '1': JSON.parse(this.$stact.state.token)[0].phone,
+        '3': '190114',
         '59': vm.version
       }
       this.fullscreenLoading = true
@@ -174,11 +116,9 @@ export default {
         .then(res => {
           this.fullscreenLoading = false
           if (res.data[39] === '00') {
-            this.sjtgName = res.data[18].split(',')[0]
-            this.sjtgPhone = res.data[18].split(',')[1]
-            this.sjdlName = res.data[25].split(',')[0]
-            this.sjdlPhone = res.data[25].split(',')[1]
             this.dataObj = res.data
+            this.listArr = JSON.parse(this.dataObj[15])
+            console.log(this.listArr);
           }
         })
         .catch(err => {
@@ -186,46 +126,6 @@ export default {
           console.log(err)
         })
     },
-    list () {
-      let vm = this
-      let parmas = {
-        '0': '0700',
-        '3': '190114',
-        '42': vm.merchantNo,
-        '43': vm.pageCount,
-        '59': vm.version
-      }
-      vm.fullscreenLoading = true
-      let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
-      vm.$http.get(`request.app${url}`)
-        .then(res => {
-          this.loading=false
-          vm.fullscreenLoading = false
-          if (res.data[39] === '00') {
-            console.log(res.data);
-            this.teamCount = res.data[23]
-            this.vipCount = res.data[24]
-            this.realCount = res.data[25]
-            this.sjName = res.data[21]
-            this.sjLevel = res.data[20]
-            this.sjUrl = res.data[19]
-            this.sjPhone = res.data[22]
-            vm.count = JSON.parse(res.data[57]).length
-            let getList = JSON.parse(res.data[57])
-            getList.forEach(item => {
-              item.formatTime=this.$moment(item.CREATE_TIME.time).format('YYYY-MM-DD HH:mm')
-              this.listArr.push(item)
-            });
-            console.log(this.listArr);
-            
-            this.pageCount++
-          }
-        })
-        .catch(err => {
-          vm.fullscreenLoading = false
-          console.log(err)
-        })
-    }
   }
 }
 </script>
