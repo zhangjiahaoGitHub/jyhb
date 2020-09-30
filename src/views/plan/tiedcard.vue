@@ -121,7 +121,7 @@ export default {
               center: true,
               offset: 30,
               duration: 2500,
-              type: 'success'
+              type: 'warning'
             })
           }
         })
@@ -244,7 +244,7 @@ export default {
               center: true,
               offset: 30,
               duration: 2000,
-              type: 'success'
+              type: 'warning'
             })
             if (res.data[39] === '签约成功,重复签约') {
               sessionStorage.setItem('tdkt',true)
