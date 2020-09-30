@@ -24,9 +24,9 @@
                 </div>
                 <div class='borpaLine half'>
                 <span class='gary'>
-                  ￥已还金额：
+                  已还金额：
                 </span>
-                {{itemList.payed}}
+                ￥{{itemList.payed}}
                 </div>
             </li>
             <li class='allFlex  flexPadding'>
@@ -107,9 +107,9 @@
                       <span  @click="item.status === '10Y' ? getrue() : get(item.id)" :class="item.status === '10Y' ? 'garyRep' : 'redRep'" v-if="item.type === 'sale' && listMore[index+1].type === 'sale'&& listMore[index+1].status === '10C'">
                         还款
                       </span>
-                      <i class="el-icon-circle-check"></i>
                     </span>
                 </div>
+                <span v-if="item.status=='10C'" style="color:red;">失败</span>
                 <img v-if="item.status=='10B' && (itemList.STATUS!='10C' || itemList.STATUS!='10D')" style="width:0.6rem;height:0.6rem" src="../../assets/repay/wc.png" alt="">
                 <img v-else-if="item.status=='10C' || itemList.STATUS=='10C' || itemList.STATUS=='10D'" style="width:0.6rem;height:0.6rem" src="../../assets/repay/cw.png" alt="">
                 <img v-else style="width:0.6rem;height:0.6rem" src="../../assets/repay/dd.png" alt="">

@@ -73,7 +73,7 @@
         <p>我已经确保卡内可用余额大于</p>
         <span>{{(parseFloat(calcList[40])+parseFloat(calcList[7])+parseFloat(calcList[9])).toFixed(2)}}</span>
         <div>
-          <p @click.stop="$router.back()">修改计划</p>
+          <p @click.stop="$router.go(-2)">修改计划</p>
           <p @click.stop="(tong == 'YK' || tong=='JYK') ? toYK():toQYK()">提交计划</p>
         </div>
       </div>

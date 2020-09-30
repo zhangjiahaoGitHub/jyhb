@@ -285,7 +285,7 @@ export default {
   },
   watch: {
     '$route' (to, from) {
-      if (to.name=='aisle' && from.name!='submit') {
+      if (to.name=='aisle' && !(from.name=='submit' || from.name=='preview')) {
         this.$set(this,'dates',[])
         this.$set(this,'xhms','1')
         this.$set(this,'hkbs','1')

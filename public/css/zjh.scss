@@ -3739,6 +3739,9 @@ $big: 2rem;
                 }
                 &:last-child{
                     margin-top: 0;
+                    .el-select{
+                        width: 80%;
+                    }
                 }
                 input{
                     padding-left: 0;

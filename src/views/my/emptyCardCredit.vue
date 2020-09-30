@@ -35,7 +35,7 @@
             <p>去向：{{item.MERCHANT_CN_NAME}} {{item.LINK_PHONE}}</p>
             <div>
               <span>授信额度：{{item.QYK_SORE}}</span>
-              <p v-if="item.SUB_STATUS=='10B'">
+              <p v-if="(item.SUB_STATUS=='10A' && item.LINK_PHONE!=phone) || (item.SUB_STATUS=='10B' && item.LINK_PHONE==phone)">
                 <span @click="jj(index)">拒绝</span>
                 <span @click="ty(index)">同意</span>
                 <span @click="edit(item,index)">修改</span>
@@ -258,7 +258,7 @@ export default {
               center: true,
               offset: 30,
               duration: 2500,
-              type: 'success'
+              type: 'warning'
             })
           }
         })
@@ -312,7 +312,7 @@ export default {
         }else{
           this.$message({
             message: res.data[39],
-            type: 'success'
+            type: 'warning'
           });
         }
       })
@@ -351,7 +351,7 @@ export default {
           }else{
             this.$message({
               message: res.data[39],
-              type: 'success'
+              type: 'warning'
             });
           }
         })
@@ -396,7 +396,7 @@ export default {
           }else{
             this.$message({
               message: res.data[39],
-              type: 'success'
+              type: 'warning'
             });
           }
         })
@@ -489,7 +489,7 @@ export default {
           }else{
             this.$message({
               message: res.data[39],
-              type: 'success'
+              type: 'warning'
             });
           }
         })
@@ -530,7 +530,7 @@ export default {
           }else{
             this.$message({
               message: res.data[39],
-              type: 'success'
+              type: 'warning'
             });
           }
         })
@@ -573,7 +573,7 @@ export default {
           }else{
             this.$message({
               message: res.data[39],
-              type: 'success'
+              type: 'warning'
             });
           }
         })

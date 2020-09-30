@@ -65,7 +65,7 @@
     </div>
     <div class="btnDiv">
       <span>{{itemObj[15] || '自动升级'}}</span>
-      <img @click="(itemObj[15] && level<needToLevel) ? popShow=true: ''" :src="itemObj[15] ? require('../../assets/member/ljkt.png') : level<needToLevel ? require('../../assets/member/ljkth.png'):require('../../assets/member/ysj.png')" alt="">
+      <img @click="(itemObj[15] && level<needToLevel) ? popShow=true: ''" :src="itemObj[15] ? (level<needToLevel ? require('../../assets/member/ljkt.png'):require('../../assets/member/ysj.png')) : (level<needToLevel ? require('../../assets/member/ljkth.png'):require('../../assets/member/ysj.png'))" alt="">
     </div>
     <div @click="popShow=false" v-if="popShow" class="czPopDiv">
       <ul @click.stop="">
