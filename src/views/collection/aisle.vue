@@ -27,7 +27,7 @@
       <ul>
         <li v-for="(item,index) in aisleList" :key="index">
           <div class="headDiv">
-            <p><img src="../../assets/bank/yl.png" alt="">{{item.channelName}}</p>
+            <p><img src="../../assets/bank/yl.png" alt=""><span>{{item.channelName}}({{item.acqcode}})</span></p>
             <span @click="toiframimg (item)">限额说明</span>
           </div>
           <div class="contentDiv">
@@ -417,6 +417,19 @@ export default {
         })
         return
       }
+      
+      if (this.$route.query.aisle=='YJYK') {
+        if (vm.dates.length<2) {
+          vm.$message({
+            message: '应急还款最少选择2个日期',
+            center: true,
+            offset: 30,
+            duration: 2500,
+            type: 'warning'
+          })
+          return
+        }
+      }
       if (vm.children.length<1) {
         vm.$message({
           message: '请选择城市地区',
@@ -469,7 +482,7 @@ export default {
               center: true,
               offset: 30,
               duration: 2500,
-              type: 'success'
+              type: 'warning'
             })
           }
         })
@@ -551,7 +564,7 @@ export default {
               center: true,
               offset: 30,
               duration: 2500,
-              type: 'success'
+              type: 'warning'
             })
           }
         })

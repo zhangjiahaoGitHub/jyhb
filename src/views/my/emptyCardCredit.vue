@@ -2,7 +2,7 @@
     <div class='hundred emptyCardCredit-layout' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock="fullscreenLoading">
       <div class="headDiv">
         <div>
-          <img :src="dataObj[31]" alt="">
+          <img :src="dataObj[31] ? dataObj[31]:require('../../assets/head.png')" alt="">
           <div>
             <p>{{dataObj[33]}}<span>{{dataObj[32]}}</span></p>
             <span>{{dataObj[34]}}</span>

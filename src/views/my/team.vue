@@ -12,8 +12,9 @@
         <ol>
           <li>
             <img src="../../assets/my/myTeam/tjr.png" alt="">
-            <p>{{sjtgName}}</p>
-            <p>{{sjtgPhone.substring(0,3)}}****{{sjtgPhone.substring(sjtgPhone.length-4,sjtgPhone.length)}}</p>
+            <p v-if="sjtgName">{{sjtgName}}</p>
+            <p v-if="sjtgName">{{sjtgPhone.substring(0,3)}}****{{sjtgPhone.substring(sjtgPhone.length-4,sjtgPhone.length)}}</p>
+            <p v-else>鲸鹰伙伴</p>
           </li>
           <li>
             <img src="../../assets/my/myTeam/gfpt.png" alt="">

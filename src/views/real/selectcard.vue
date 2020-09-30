@@ -165,6 +165,45 @@ export default {
     this.list()
   },
   methods: {
+    // 多通道查询，报备通道是否小于2条，小于跳转页面至通道报备页面
+    dtdbb(){
+      let vm = this
+      let parmas = {
+        '0': '0700',
+        '3': '390022',
+        '42': vm.merchantNo,
+        '45': this.nowItem.BANK_ACCOUNT,
+        '59': vm.version
+      }
+      let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
+      vm.$http.get(`request.app${url}`)
+      .then(res => {
+        if (res.data[39] === '00') {
+          if (res.data[35]<2) {
+            this.$router.push({name:'tdbb',query:{item:JSON.stringify(this.nowItem)}})
+          }else{
+            this.toMoreAisle()
+          }
+        }else{
+          vm.$message({
+            message: res.data[39],
+            center: true,
+            offset: 30,
+            duration: 2000,
+            type: 'warning'
+          })
+        }
+      })
+      .catch(err => {
+        console.log(err)
+        vm.$message.error({
+            message: '解绑失败',
+            center: true,
+            offset: 30,
+            duration: 2000,
+          })
+      })
+    },
     notYetOpen () {
       this.$message({
         message: '暂未开放',
@@ -178,7 +217,7 @@ export default {
       if (this.radio=='YK' || this.radio=='YJYK' || this.radio=='QYK') {
         this.selectype()
       }else if (this.radio=='DTD') {
-        this.toMoreAisle()
+        this.dtdbb()
       }else{
         this.toOneCardDh()
       }

@@ -102,7 +102,7 @@
                      <span class='gary'>{{$moment(item.planTime.time).format('YYYY-MM-DD HH:mm:ss')}}</span>
                 </div>
                 <div>
-                    <span class='gary'>{{item.money}}</span>
+                    <span class='gary'>{{item.money.toFixed(2)}}</span>
                     <span class='repleni blueColor' v-if="item.status === '10B' || item.status === '10Y'">
                       <span  @click="item.status === '10Y' ? getrue() : get(item.id)" :class="item.status === '10Y' ? 'garyRep' : 'redRep'" v-if="item.type === 'sale' && listMore[index+1].type === 'sale'&& listMore[index+1].status === '10C'">
                         还款
@@ -127,7 +127,7 @@
                 </div>
             </li>
         </ul>
-        <div @click="gdan=!gdan" class="gdan"><i :class="gdan ? 'el-icon-top':'el-icon-bottom'"></i>{{gdan ? '收起更多':'查看更多'}}</div>
+        <div v-if="listMore.length>5" @click="gdan=!gdan" class="gdan"><i :class="gdan ? 'el-icon-top':'el-icon-bottom'"></i>{{gdan ? '收起更多':'查看更多'}}</div>
     </div>
     <div v-if="itemList.TYPE!='10C'" class='partSubmit'>
         <div class='allFlex justifyBetween planMargin'>

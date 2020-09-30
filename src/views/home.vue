@@ -196,7 +196,7 @@
         </div>
         <div>
           <p @click="xxtc=false">我知道了</p>
-          <p @click="()=>{this.$router.push({name:'message'})}">查看详情</p>
+          <p @click="toMessageInfo(newsList[0])">查看详情</p>
         </div>
       </div>
     </div>
@@ -367,6 +367,39 @@ export default {
     target() {}
   },
   methods: {
+    toMessageInfo(item){
+      this.$router.push({
+        name: 'messageInfo',
+        query: {
+          item: JSON.stringify(item)
+        }
+      })
+      if (item.hasRead==0) {
+        this.read(item.id)
+      }
+    },
+    read(id){
+      let vm = this
+      let parmas = {
+        '0': '0700',
+        '3': '190103',
+        '21': id,
+        '42': vm.merchantNo,
+        '59': vm.version
+      }
+      let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
+      vm.$http.get(`request.app${url}`)
+        .then(res => {
+          if (res.data[39] === '00') {
+            this.text()
+          } else {
+            
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
     hk(type){
       if (this.freezeStatus!='10B') {
         this.$message({

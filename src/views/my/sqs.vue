@@ -35,45 +35,41 @@ export default {
       let img = document.querySelector('img')
       
       img.onload = ()=>{
-        canvas.width = 220;
-        canvas.height = 330;
+        canvas.width = 290;
+        canvas.height = 435;
         let context = canvas.getContext('2d')
-        context.drawImage(img,0,0,220,330)
+        context.drawImage(img,0,0,290,435)
         context.font = '12px "微软雅黑"'
         context.fillStyle = "#3b3b3b"
-        context.fillText("兹授权", 20, 150)
+        context.fillText("兹授权", 30, 210)
     
         context.font = '15px "微软雅黑"'
         context.fillStyle = "#45CA7C"
-        context.fillText(me.merchantCnName, 61, 150)
+        context.fillText(me.merchantCnName, 70, 210)
     
         context.font = '12px "微软雅黑"'
         context.fillStyle = "#3b3b3b"
-        context.fillText("为“鲸鹰伙伴”", 110, 150)
+        context.fillText("为“鲸鹰伙伴”产品渠道", 120, 210)
     
         context.font = '12px "微软雅黑"'
         context.fillStyle = "#3b3b3b"
-        context.fillText("产品渠道合作伙伴，具体授权内", 20, 170)
+        context.fillText("合，作伙伴具体授权内容应以合作协议为准", 30, 230)
     
         context.font = '12px "微软雅黑"'
         context.fillStyle = "#3b3b3b"
-        context.fillText("容应以合作协议为准。本授权书", 20, 190)
+        context.fillText("。本授权书有效期同被授权人的鲸鹰伙伴", 30, 250)
     
         context.font = '12px "微软雅黑"'
         context.fillStyle = "#3b3b3b"
-        context.fillText("有效期同被授权人的鲸鹰伙伴APP", 20, 210)
+        context.fillText("APP账户使用期限，特此授权！", 30, 270)
     
         context.font = '12px "微软雅黑"'
         context.fillStyle = "#3b3b3b"
-        context.fillText("账户使用期限，特此授权！", 20, 230)
+        context.fillText("贵州首融信息科技有限公司", 100, 310)
     
         context.font = '12px "微软雅黑"'
         context.fillStyle = "#3b3b3b"
-        context.fillText("贵州首融信息科技有限公司", 50, 260)
-    
-        context.font = '12px "微软雅黑"'
-        context.fillStyle = "#3b3b3b"
-        context.fillText(me.createTime, 100, 280)
+        context.fillText(me.createTime, 130, 330)
         console.log(canvas);
 
         let newImgDom = this.convertCanvasToImage(canvas)

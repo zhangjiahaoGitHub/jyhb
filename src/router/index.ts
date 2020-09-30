@@ -588,6 +588,15 @@ const routes = [
     component: () => import('../views/hdzq.vue')
   },
   {
+    path: '/tdbb',
+    name: 'tdbb',
+    meta: {
+      title: '通道报备',
+      bgLeft: true,
+    },
+    component: () => import('../views/collection/tdbb.vue')
+  },
+  {
     path: '/message',
     name: 'message',
     meta: {
