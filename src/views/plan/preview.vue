@@ -32,7 +32,7 @@
         <div>
           <p v-if="tong=='YK' || tong=='JYK'"><span :class="item.type=='sale' ? 'hSpan':''">{{item.type=='sale' ? '消费':'还款'}}</span>{{item.time}}</p>
           <p v-if="tong=='QYK'"><span :class="item.type=='sale' ? 'lSpan':item.type=='pay' ? '':'hSpan'">{{item.type=='sale' ? '手续费':item.type=='pay' ? '消费':'还款'}}</span>{{item.time}}</p>
-          <span>{{item.money}}</span>
+          <span>{{(item.money.toFixed(2))}}</span>
         </div>
         <p v-if="item.type=='sale' && (tong=='YK' || tong=='JYK')">地区：{{item.customizecity}}</p>
         <p v-if="tong=='QYK' && item.type!='payment'">地区：
