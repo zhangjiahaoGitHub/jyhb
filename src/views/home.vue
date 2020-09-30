@@ -46,7 +46,7 @@
       <img class="img-laba" src="../assets/gonggao-laba.png" alt="">
       <div class="closetext" @click="()=>{this.$router.push({name:'message'})}">
         <div class="inner-shadow" ref="box">
-          <span v-if="hasRead == 0">{{newsList[0].content}}</span>
+          <span v-if="newsList.length > 0">{{newsList[0].content}}</span>
           <span v-else>暂无公告</span>
           <!-- <span v-if="hasread == 0" class="hongyuanyuan"></span> -->
         </div>
