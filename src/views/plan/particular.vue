@@ -97,9 +97,10 @@
         <ul v-if="index<5 || gdan" class='partHeight' :class="item.type === 'sale' ? '' : 'partMin'" v-for='(item, index) in listMore' :key='item.id'>
             <li class='allFlex justifyBetween flexPadding'>
                 <div>
-                  <a v-if="itemList.TYPE == '10C'" class="partStatus" :class=" item.type == 'sale' ? 'partGreen':item.type == 'payment' ? 'partBlue':'partStatus'">{{item.type == 'sale' ? '手续费':item.type == 'payment' ? '消费':'还款'}}</a>
+                  <a v-if="itemList.TYPE == '10C'" class="partStatus" :class=" item.type == 'sale' ? 'partGreen':item.type == 'payment' ? 'partBlue':'partStatus'">{{item.type == 'sale' ? '手续费':item.type == 'payment' ? '还款':'消费'}}</a>
                   <a v-else class="partStatus" :class="item.type == 'sale' ? 'partStatus':'partBlue'">{{item.type == 'sale' ? '消费':'还款'}}</a>
-                     <span class='gary'>{{$moment(item.planTime.time).format('YYYY-MM-DD HH:mm:ss')}}</span>
+                     <span v-if="itemList.TYPE=='10C'" class='gary'>{{$moment(item.planTime.time).format('YYYY-MM-DD')}}</span>
+                     <span v-else class='gary'>{{$moment(item.planTime.time).format('YYYY-MM-DD HH:mm:ss')}}</span>
                 </div>
                 <div>
                     <span class='gary'>{{item.money.toFixed(2)}}</span>

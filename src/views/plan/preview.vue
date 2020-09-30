@@ -22,7 +22,7 @@
           </div>
           <div>
             <p :style="tong=='QYK' ? 'visibility:hidden;':''"><span>周转金总额：</span>{{(parseFloat(calcList[40])+parseFloat(calcList[7])+parseFloat(calcList[9])).toFixed(2)}}</p>
-            <p><span>手续费小计：</span>{{(parseFloat(calcList[7])+parseFloat(calcList[9])).toFixed(2)}}<i @click="dataPopShow=true" class="el-icon-warning-outline"></i></p>
+            <p><span>手续费小计：</span>{{(planItem[0].money).toFixed(2)}}<i @click="dataPopShow=true" class="el-icon-warning-outline"></i></p>
           </div>
         </div>
       </div>
@@ -31,7 +31,7 @@
       <li v-for='(item, index) in planItem' :key="index">
         <div>
           <p v-if="tong=='YK' || tong=='JYK'"><span :class="item.type=='sale' ? 'hSpan':''">{{item.type=='sale' ? '消费':'还款'}}</span>{{item.time}}</p>
-          <p v-if="tong=='QYK'"><span :class="item.type=='sale' ? 'lSpan':item.type=='pay' ? '':'hSpan'">{{item.type=='sale' ? '手续费':item.type=='pay' ? '消费':'还款'}}</span>{{item.time}}</p>
+          <p v-if="tong=='QYK'"><span :class="item.type=='sale' ? 'lSpan':item.type=='pay' ? 'hSpan':''">{{item.type=='sale' ? '手续费':item.type=='pay' ? '消费':'还款'}}</span>{{item.time.substring(0,10)}}</p>
           <span>{{(item.money.toFixed(2))}}</span>
         </div>
         <p v-if="item.type=='sale' && (tong=='YK' || tong=='JYK')">地区：{{item.customizecity}}</p>
@@ -71,7 +71,8 @@
       <div>
         <div>温馨提示</div>
         <p>我已经确保卡内可用余额大于</p>
-        <span>{{(parseFloat(calcList[40])+parseFloat(calcList[7])+parseFloat(calcList[9])).toFixed(2)}}</span>
+        <span v-if="tong!='QYK'">{{(parseFloat(calcList[40])+parseFloat(calcList[7])+parseFloat(calcList[9])).toFixed(2)}}</span>
+        <span v-else>{{(planItem[0].money).toFixed(2)}}</span>
         <div>
           <p @click.stop="$router.go(-2)">修改计划</p>
           <p @click.stop="(tong == 'YK' || tong=='JYK') ? toYK():toQYK()">提交计划</p>

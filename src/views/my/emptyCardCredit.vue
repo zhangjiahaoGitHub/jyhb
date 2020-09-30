@@ -286,6 +286,16 @@ export default {
       this.nowIndex = index
     },
     xg () {
+      if (this.nowItemEd>this.listArr[this.nowIndex].QYK_SORE) {
+        this.$message({
+          message: '修改的额度不能大于原额度',
+          center: true,
+          offset: 30,
+          duration: 2500,
+          type: 'warning'
+        })
+        return
+      }
       let vm = this
       let parmas = {
         '0': '0700',
@@ -360,10 +370,7 @@ export default {
           console.log(err)
         })
       }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消'
-        });          
+               
       });
     },
     jj (index) {
@@ -405,10 +412,7 @@ export default {
           console.log(err)
         })
       }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消'
-        });          
+              
       });
     },
     kjsx () {

@@ -284,7 +284,7 @@ const routes = [
     path: '/customer',
     name: 'customer',
     meta: {
-      title: '客服',
+      title: '我的客服',
       bgLeft: true
     },
     component: () => import('../views/my/customer.vue')

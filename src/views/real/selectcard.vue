@@ -91,7 +91,7 @@
                 <p>一张卡内存够周转金，可以还其他二张副卡包括主卡的3张卡的月账单。</p>
               </div>
             </div>
-            <el-radio v-model="radio" label="YKD"></el-radio>
+            <el-radio disabled v-model="radio" label="YKD"></el-radio>
           </li>
           <li @click="toExhaustive">
             <div>
