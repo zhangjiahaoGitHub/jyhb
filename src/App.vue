@@ -6,6 +6,7 @@
         <span @click="$router.push({name:'czjl'})" class="rightCorner" v-if="$route.meta.sxTx">充值记录</span>
         <span @click="$router.push({name:'withdrawRecord'})" class="rightCorner" v-if="$route.meta.retreat">提现记录</span>
         <span @click="$router.push({name:'home'})" class="rightCorner" v-if="$route.query.wkzf">首页</span>
+        <span @click="$router.go(-2)" class="rightCorner" v-if="$route.query.title=='通道绑卡'">返回卡包</span>
       </div>
       <div v-else-if="$route.meta.left" class="pageTitle">
         <i @click="goTop" class="el-icon-arrow-left hs"></i>
