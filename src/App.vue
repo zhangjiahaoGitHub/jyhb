@@ -103,6 +103,22 @@ export default Vue.extend({
           document.body.title = '收款'
         }
       }
+      if (to.name == 'addAddress') {
+        if (to.query.type=='edit') {
+          to.meta.title = '修改地址'
+          document.title = '修改地址'
+          document.body.title = '修改地址'
+        }else{
+          to.meta.title = '新增地址'
+          document.title = '新增地址'
+          document.body.title = '新增地址'
+        }
+      }
+      if (to.name == 'store') {
+          to.meta.title = JSON.parse(vm.$route.query.item).brandBusinessName
+          document.title = JSON.parse(vm.$route.query.item).brandBusinessName
+          document.body.title = JSON.parse(vm.$route.query.item).brandBusinessName
+      }
       if (to.name == 'teamItem') {
           to.meta.title = vm.$route.query.title
           document.title = vm.$route.query.title

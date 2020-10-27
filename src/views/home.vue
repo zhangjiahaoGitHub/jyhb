@@ -109,7 +109,7 @@
               </div>
               <div>积分兑换</div>
             </div>
-            <div class="icon-img-box mar-top-img" @click.stop="zwkf">
+            <div class="icon-img-box mar-top-img" @click.stop="$router.push({name: 'mall'})">
               <div class="icon-img-img">
                 <img src="../assets/home/jfsc.png" alt="">
               </div>

@@ -272,6 +272,87 @@ const routes = [
     component: () => import('../views/my/inComeList.vue'),
   },
   {
+    path: '/myAddress',
+    name: 'myAddress',
+    meta: {
+      title: '我的地址',
+      bgLeft: true
+    },
+    component: () => import('../views/mall/myAddress.vue'),
+  },
+  {
+    path: '/addAddress',
+    name: 'addAddress',
+    meta: {
+      title: '新增地址',
+      bgLeft: true
+    },
+    component: () => import('../views/mall/addAddress.vue'),
+  },
+  {
+    path: '/myScores',
+    name: 'myScores',
+    meta: {
+      title: '我的积分',
+      bgLeft: true
+    },
+    component: () => import('../views/mall/myScores.vue'),
+  },
+  {
+    path: '/mall',
+    name: 'mall',
+    meta: {
+      title: '商城',
+      bgLeft: true
+    },
+    component: () => import('../views/mall/mall.vue'),
+  },
+  {
+    path: '/brandPavilion',
+    name: 'brandPavilion',
+    meta: {
+      title: '品牌馆',
+      bgLeft: true
+    },
+    component: () => import('../views/mall/brandPavilion.vue'),
+  },
+  {
+    path: '/store',
+    name: 'store',
+    meta: {
+      title: '',
+      bgLeft: true
+    },
+    component: () => import('../views/mall/store.vue'),
+  },
+  {
+    path: '/productDetails',
+    name: 'productDetails',
+    meta: {
+      title: '产品详情',
+      bgLeft: true
+    },
+    component: () => import('../views/mall/productDetails.vue'),
+  },
+  {
+    path: '/orderFilling',
+    name: 'orderFilling',
+    meta: {
+      title: '订单填写',
+      bgLeft: true
+    },
+    component: () => import('../views/mall/orderFilling.vue'),
+  },
+  {
+    path: '/payInfo',
+    name: 'payInfo',
+    meta: {
+      title: '付款详情',
+      bgLeft: true
+    },
+    component: () => import('../views/mall/payInfo.vue'),
+  },
+  {
     path: '/emptyCardCredit',
     name: 'emptyCardCredit',
     meta: {

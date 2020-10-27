@@ -54,9 +54,9 @@
         <p>商城专区</p>
         <ul>
           <li @click="notYetOpen"><img src="../../assets/my/scdd.png" alt=""><p>商城订单</p></li>
-          <li @click="notYetOpen"><img src="../../assets/my/shdz.png" alt=""><p>收货地址</p></li>
+          <li @click="$router.push({name:'myAddress'})"><img src="../../assets/my/shdz.png" alt=""><p>收货地址</p></li>
           <li @click="notYetOpen"><img src="../../assets/my/spsc.png" alt=""><p>商品收藏</p></li>
-          <li @click="notYetOpen"><img src="../../assets/my/spjf.png" alt=""><p>商品积分</p></li>
+          <li @click="$router.push({name:'myScores'})"><img src="../../assets/my/spjf.png" alt=""><p>商品积分</p></li>
         </ul>
       </div>
       <div class="itemDiv">
