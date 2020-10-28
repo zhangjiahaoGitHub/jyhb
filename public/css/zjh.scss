@@ -4983,6 +4983,7 @@ $big: 2rem;
                 border-radius: px2rem(10);
                 font-size: $six;
                 box-sizing: border-box;
+                margin-bottom: px2rem(10);
             }
         }
         .numDiv{
@@ -5194,5 +5195,164 @@ $big: 2rem;
         text-align: center;
         border-radius: px2rem(10);
         padding: px2rem(20);
+    }
+}
+.myOrder-layout{
+    >ul{
+        overflow: auto;
+        height: 24.9rem;
+        color: #858585;
+        li{
+            margin-top: px2rem(20);
+            background: #fff;
+            >p{
+                display: flex;
+                padding: px2rem(20);
+                justify-content: space-between;
+                span{
+                    color: $themeColor;
+                }
+            }
+            .spDiv{
+                padding: px2rem(20);
+                display: flex;
+                align-items: center;
+                border-top: 1px solid #F5F5F5;
+                border-bottom: 1px solid #F5F5F5;
+                img{
+                    width: px2rem(180);
+                    height: px2rem(180);
+                    margin-right: px2rem(20);
+                }
+                >div{
+                    font-size: $five;
+                    >span{
+                        font-size: $four;
+                    }
+                    >div{
+                        display: flex;
+                        justify-content: space-between;
+                        width: px2rem(500);
+                        margin-top: px2rem(10);
+                    }
+                    >p{
+                        margin-bottom: px2rem(10);
+                    }
+                }
+            }
+            .hjDiv{
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                font-size: $five;
+                p{
+                    margin-left: px2rem(60);
+                    margin-right: px2rem(20);
+                }
+            }
+            .btnDiv{
+                display: flex;
+                justify-content: flex-end;
+                margin-top: px2rem(10);
+                padding-right: px2rem(20);
+                padding-bottom: px2rem(20);
+                p{
+                    margin-left: px2rem(40);
+                    border: 1px solid #F6F6F6;
+                    width: px2rem(136);
+                    text-align: center;
+                    padding: px2rem(10) 0;
+                    box-sizing: border-box;
+                    border-radius: px2rem(10);
+                }
+                .aP{
+                    border-color: $themeColor;
+                    color: $themeColor;
+                }
+            }
+        }
+        >p{
+            text-align: center;
+        }
+    }
+    .wlDiv{
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 202;
+        background: rgba($color: #000000, $alpha: 0.4);
+        >div{
+            background: #fff;
+            border-radius: px2rem(20);
+            overflow: hidden;
+            width: 80%;
+            p{
+                padding: px2rem(20);
+                text-align: center;
+                font-size: $five;
+            }
+            ol{
+                padding-left: px2rem(40);
+                li{
+                    margin-bottom: px2rem(20);
+                }
+            }
+            div{
+                padding: px2rem(20);
+                text-align: center;
+                font-size: $four;
+                border-top: 1px solid #F9F9F9;
+            }
+        }
+    }
+}
+.search-layout{
+    >input{
+        padding: px2rem(10) px2rem(30);
+        border-radius: px2rem(40);
+        position: fixed;
+        z-index: 202;
+        top: px2rem(15);
+        width: px2rem(500);
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    >img{
+        position: fixed;
+        z-index: 202;
+        top: px2rem(20);
+        width: px2rem(50);
+        right: px2rem(20);
+    }
+    >ul{
+        height: 24.9rem;
+        overflow: auto;
+        display: flex;
+        flex-wrap: wrap;
+        li{ 
+            padding: 0 px2rem(10);
+            width: 50%;
+            background: #fff;
+            height: px2rem(470);
+            img{
+                width: 100%;
+                height: px2rem(350);
+            }
+            p{
+                margin: px2rem(10);
+                margin-top: 0;
+                color: #929292;
+            }
+            div{
+                margin: px2rem(10);
+                margin-top: px2rem(20);
+                color: $promptColor;
+            }
+        }
     }
 }

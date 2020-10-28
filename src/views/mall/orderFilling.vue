@@ -1,7 +1,7 @@
 <template>
   <div class='hundred orderFilling-layout' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock="fullscreenLoading">
     <p v-if="!addressObj.id" class="dzP" @click="$router.push({name: 'addAddress'})"><i class="el-icon-plus">新建地址</i></p>
-    <div class="dzDiv" v-else>
+    <div @click="$router.push({name:'myAddress',query: {type: 'chose'}})" class="dzDiv" v-else>
       <div>
         <i class="el-icon-map-location"></i>
         <div>
@@ -72,7 +72,12 @@ export default {
     this.gg = this.$route.query.gg
     this.num = this.$route.query.num
     console.log(this.item);
-    this.list()
+    if (window.sessionStorage.getItem('addressObj')!='null') {
+      this.addressObj = JSON.parse(window.sessionStorage.getItem('addressObj'))
+      window.sessionStorage.setItem('addressObj',null)
+    }else{
+      this.list()
+    }
   },
   methods: {
     pay () {

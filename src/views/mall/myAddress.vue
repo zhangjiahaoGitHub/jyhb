@@ -1,12 +1,12 @@
 <template>
   <div class='hundred myAddress-layout' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock="fullscreenLoading">
     <ul>
-      <li v-for="item in listArr" :key="item.id">
+      <li @click="type=='chose'?choseIt(item):''" v-for="item in listArr" :key="item.id">
         <p><span>{{item.name}}</span>{{item.phone}}<span v-if="item.status==1" class="aspan">默认</span></p>
         <p>{{item.address}}</p>
         <div>
-          <i @click="edit(item)" class="el-icon-edit-outline">编辑</i>
-          <i @click="del(item)" class="el-icon-delete">删除</i>
+          <i @click.stop="edit(item)" class="el-icon-edit-outline">编辑</i>
+          <i @click.stop="del(item)" class="el-icon-delete">删除</i>
         </div>
       </li>
     </ul>
@@ -21,6 +21,7 @@ export default {
       agentNo: '',
       merchantNo: '',
       fullscreenLoading: false,
+      type: '',
       listArr: [],
     }
   },
@@ -28,9 +29,14 @@ export default {
     this.version = this.$stact.state.version
     this.agentNo = this.$stact.state.agentNo
     this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
+    this.type = this.$route.query.type
     this.list()
   },
   methods: {
+    choseIt(item){
+      window.sessionStorage.setItem('addressObj',JSON.stringify(item))
+      this.$router.back()
+    },
     del(item){
       this.$confirm('是否删除?', '提示', {
         confirmButtonText: '确定',

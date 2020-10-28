@@ -8,7 +8,7 @@
           <i class="el-icon-location-outline">{{dq.substring(dq.indexOf('省')+1,dq.length)}}</i>
         </div>
       </div>
-      <i class="el-icon-search">搜索</i>
+      <i @click="$router.push({name: 'search'})" class="el-icon-search">搜索</i>
     </div>
     <div class="bannerDiv">
       <img :src="bannerUrl" alt="">
@@ -18,7 +18,7 @@
         <img src="../../assets/mall/ppg.png" alt="">
         <p>品牌馆</p>
       </li>
-      <li>
+      <li @click="$router.push({name:'myOrder'})">
         <img src="../../assets/mall/ddgl.png" alt="">
         <p>订单管理</p>
       </li>
@@ -26,7 +26,7 @@
         <img src="../../assets/mall/dzgl.png" alt="">
         <p>地址管理</p>
       </li>
-      <li>
+      <li @click="$router.push({name: 'merchantSettled'})"">
         <img src="../../assets/mall/sjrz.png" alt="">
         <p>商家入驻</p>
       </li>

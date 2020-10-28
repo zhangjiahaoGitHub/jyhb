@@ -68,6 +68,24 @@ const routes = [
     component: () => import('../views/member/upgrade.vue')
   },
   {
+    path: '/search',
+    name: 'search',
+    meta: {
+      title: '搜索',
+      bgLeft: true
+    },
+    component: () => import('../views/mall/search.vue')
+  },
+  {
+    path: '/merchantSettled',
+    name: 'merchantSettled',
+    meta: {
+      title: '商家入驻',
+      bgLeft: true
+    },
+    component: () => import('../views/mall/merchantSettled.vue')
+  },
+  {
     path: '/shareimg',
     name: 'shareimg',
     meta: {
@@ -351,6 +369,15 @@ const routes = [
       bgLeft: true
     },
     component: () => import('../views/mall/payInfo.vue'),
+  },
+  {
+    path: '/myOrder',
+    name: 'myOrder',
+    meta: {
+      title: '我的订单',
+      bgLeft: true
+    },
+    component: () => import('../views/mall/myOrder.vue'),
   },
   {
     path: '/emptyCardCredit',

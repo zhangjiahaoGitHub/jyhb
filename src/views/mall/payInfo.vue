@@ -11,7 +11,7 @@
         <span v-if="item.goodsPrice>0 && item.goodsPoint>0">+</span>
         <span v-if="item.goodsPoint>0">{{item.goodsPoint*item.goodsCount}}积分</span>
       </p>
-      <p>订单编号：{{item.goodsId.substring(0,16)}}</p>
+      <p>订单编号：{{item.goodsId?item.goodsId.substring(0,16):item.id.substring(0,16)}}</p>
     </div>
     <p>选择支付方式:</p>
     <ul>
@@ -67,10 +67,20 @@ export default {
   methods: {
     list () {
       let vm = this
+      if (this.type=='wxpay' || this.type=='alipay') {
+        this.$message({
+          message: 'H5暂未开放，微信及支付宝支付',
+          center: true,
+          offset: 30,
+          duration: 2500,
+          type: 'warning'
+        })
+        return
+      }
       let parmas = {
         '0': '0700',
         '3': '790104',
-        '21': this.item.goodsId,
+        '21': this.item.id,
         '22': JSON.parse(this.$stact.state.token)[0].id,
         '23': this.type,
         '59': vm.version
@@ -81,7 +91,14 @@ export default {
         .then(res => {
           vm.fullscreenLoading = false
           if (res.data[39] === '00') {
-            debugger
+            vm.$message({
+              message: '支付成功',
+              center: true,
+              offset: 30,
+              duration: 2000,
+              type: 'success'
+            })
+            this.$router.go(-3)
           }else{
             vm.$message({
               message: res.data[39],
