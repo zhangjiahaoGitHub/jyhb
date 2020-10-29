@@ -60,7 +60,7 @@ export default {
       num: '',
       bz: '',
       fullscreenLoading: false,
-      addressObj: {},
+      addressObj: {id:''},
       item: {},
     }
   },

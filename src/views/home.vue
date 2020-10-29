@@ -67,7 +67,7 @@
       <swiper :options="swiperOption" ref="mySwiper">
         <swiper-slide class="swiper-slide">
           <div class="icon-tager-box">
-            <div class="icon-img-box" @click.stop="zwkf">
+            <div @click="$router.push({name: 'surrender'})" class="icon-img-box" @click.stop="$router.push({name:'surrender'})">
               <div class="icon-img-img">
                 <img src="../assets/home/zjdh.png" alt="">
               </div>

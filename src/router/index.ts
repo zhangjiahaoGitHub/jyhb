@@ -45,9 +45,18 @@ const routes = [
     name: 'surrender',
     meta: {
       title: '中介代还',
-      left: true
+      bgLeft: true
     },
-    component: () => import('../views/surrender/surrender.vue')
+    component: () => import('../views/verified/surrender.vue')
+  },
+  {
+    path: '/userManagement',
+    name: 'userManagement',
+    meta: {
+      title: '实名认证',
+      bgLeft: true
+    },
+    component: () => import('../views/verified/userManagement.vue')
   },
   {
     path: '/payForm',
@@ -75,6 +84,15 @@ const routes = [
       bgLeft: true
     },
     component: () => import('../views/mall/search.vue')
+  },
+  {
+    path: '/orderInfo',
+    name: 'orderInfo',
+    meta: {
+      title: '订单详情',
+      bgLeft: true
+    },
+    component: () => import('../views/mall/orderInfo.vue')
   },
   {
     path: '/merchantSettled',
@@ -594,15 +612,6 @@ const routes = [
       bgLeft: true
     },
     component: () => import('../views/ifarme.vue')
-  },
-  {
-    path: '/intermediaryagency',
-    name: 'intermediaryagency',
-    meta: {
-      title: '中介代还',
-      bgBlue: true
-    },
-    component: () => import('../views/my/intermediaryagency.vue')
   },
   {
     path: '/submit',

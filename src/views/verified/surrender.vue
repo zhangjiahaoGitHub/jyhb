@@ -1,6 +1,6 @@
 <template>
   <div class='hundred'>
-    <div class='surrender'>
+    <div @click="$router.push({name:'userManagement'})" class='surrender'>
         <img src='../../assets/realname.png' />
     </div>
     <div class='surrender'>

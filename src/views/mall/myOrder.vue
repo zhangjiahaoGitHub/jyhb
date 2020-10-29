@@ -5,7 +5,7 @@
       infinite-scroll-disabled="disabled"
       infinite-scroll-distance='20'>
       <li v-for="item in listArr" :key="item.id">
-        <p>{{item.formatTime}}
+        <p @click="toOrderInfo(item)">{{item.formatTime}}
           <span v-if="item.status=='10J'||item.status=='10A'">待支付</span>
           <span v-if="item.status=='10B'">待发货</span>
           <span v-if="item.status=='10C'">已发货</span>
@@ -13,7 +13,7 @@
           <span v-if="item.status=='10F'">已取消</span>
           <span v-if="item.status=='70A'">支付失败</span>
         </p>
-        <div class="spDiv">
+        <div @click="toOrderInfo(item)" class="spDiv">
           <img :src="item.goodsImage" alt="">
           <div>
             <p>{{item.goodsName}}</p>
@@ -36,8 +36,8 @@
             <span v-if="item.goodsPoint>0">{{item.goodsPoint}}积分</span>
           </p>
         </div>
-        <div class="btnDiv">
-          <p>联系客服</p>
+        <div @click.stop="" class="btnDiv">
+          <p @click="$router.push({name: 'customer'})">联系客服</p>
           <p @click="pay(item)" v-if="item.status=='10J'||item.status=='10A'" class="aP">付款</p>
           <p @click="lookWl(item)" v-if="item.status=='10C'" class="aP">查看物流</p>
         </div>
@@ -87,6 +87,14 @@ export default {
     this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
   },
   methods: {
+    toOrderInfo(item){
+      this.$router.push({
+        name: 'orderInfo',
+        query:{
+          item: JSON.stringify(item)
+        }
+      })
+    },
     pay(item){
       this.$router.push({
         name: 'payInfo',
