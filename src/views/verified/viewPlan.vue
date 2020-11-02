@@ -28,7 +28,7 @@
           </div>
           <div><span>还款周期：{{$moment(item.START_TIME.time).format('YYYY-MM-DD')}}-{{$moment(item.END_TIME.time).format('YYYY-MM-DD')}}</span></div>
           <p><span>账单日：{{item.BILL_DAY}}</span><span>还款日：{{item.REPAYMENT_DAY}}</span></p>
-          <p><span>本期应还：{{item.PLAN_AMT}}</span><span>本期已还：{{item.RETURN_MONEY}}</span></p>
+          <p><span>本期应还：{{item.PLAN_AMT}}</span><span>本期已还：{{item.payed}}</span></p>
           <div>
             <span>通道名称：{{item.acqName}}</span>
             <span>结算费率：{{item.rate}}</span>
