@@ -37,7 +37,7 @@
       <li v-if="tong=='QYK'"><span>手续费小计：</span><p>{{calcList[41]}}</p></li>
       <li><span>消费地区：</span><p>{{area}}</p></li>
       <div>
-        <p @click="$router.push({name: 'preview', query: { acqcodeObj: $route.query.acqcodeObj,acqcodeArr: $route.query.acqcodeArr, children: $route.query.children, money: money, searchTime: searchTime, endTime: endTime, hkbs: hkbs, tong: tong, area: $route.query.area }})">预览计划</p>
+        <p @click="$router.push({name: 'preview', query: { acqcodeObj: $route.query.acqcodeObj,acqcodeArr: $route.query.acqcodeArr, children: $route.query.children, money: money, searchTime: searchTime, endTime: endTime, hkbs: hkbs, tong: tong, area: $route.query.area,merchantNo: $route.query.merchantNo }})">预览计划</p>
         <p @click="$router.back()">修改计划</p>
       </div>
     </ul>
@@ -64,7 +64,6 @@ export default {
       version: '',
       agentNo: '',
       merchantNo: '',
-      usermerchantNo: '',
       cardList: [],
       acqcodeObj: {},
       acqcodeArr: [],
@@ -107,7 +106,11 @@ export default {
   created () {
     this.version = this.$stact.state.version
     this.agentNo = this.$stact.state.agentNo
-    this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
+    if (this.$route.query.merchantNo) {
+      this.merchantNo = this.$route.query.merchantNo
+    }else{
+      this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
+    }
     this.searchTime = this.$route.query.searchTime
     this.endTime = this.$route.query.endTime
     this.calcList = this.$stact.state.allSb.calcList

@@ -26,7 +26,7 @@
         <img src="../../assets/mall/dzgl.png" alt="">
         <p>地址管理</p>
       </li>
-      <li @click="$router.push({name: 'merchantSettled'})"">
+      <li @click="$router.push({name: 'merchantSettled'})">
         <img src="../../assets/mall/sjrz.png" alt="">
         <p>商家入驻</p>
       </li>

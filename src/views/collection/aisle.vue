@@ -241,6 +241,7 @@ export default {
       version: '',
       agentNo: '',
       merchantNo: '',
+      merchantId: '',
       aisleList: [],
       // 创建计划后生成的数值
       planItem: [],
@@ -286,6 +287,13 @@ export default {
   watch: {
     '$route' (to, from) {
       if (to.name=='aisle' && !(from.name=='submit' || from.name=='preview')) {
+        if (this.$route.query.merchantNo) {
+          this.merchantNo = this.$route.query.merchantNo
+          this.merchantId = this.$route.query.merchantId
+        }else{
+          this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
+          this.merchantId = JSON.parse(this.$stact.state.token)[0].id
+        }
         this.$set(this,'dates',[])
         this.$set(this,'xhms','1')
         this.$set(this,'hkbs','1')
@@ -312,7 +320,13 @@ export default {
   created () {
     this.version = this.$stact.state.version
     this.agentNo = this.$stact.state.agentNo
-    this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
+    if (this.$route.query.merchantNo) {
+      this.merchantNo = this.$route.query.merchantNo
+      this.merchantId = this.$route.query.merchantId
+    }else{
+      this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
+      this.merchantId = JSON.parse(this.$stact.state.token)[0].id
+    }
     this.bank = JSON.parse(this.$route.query.item)
     console.log(this.bank);
 
@@ -366,7 +380,7 @@ export default {
         console.log(this.planItem);
         vm.$stact.commit('SET_PLAN', vm.planItem)
         vm.$stact.commit('SET_SB', { calcList: vm.calcList, cardList: vm.bank })
-        vm.$router.push({ name: 'submit', query: { children: vm.children, hkbs: vm.hkbs, xhms: vm.xhms, acqcodeObj: JSON.stringify(this.aisleList[this.nowIndex]), area: document.querySelector('.el-cascader .el-input__inner').value.replace(/\s*/g, ''), searchTime: vm.searchTime, endTime: vm.endTime, money: vm.money, tong: vm.aisle } })
+        vm.$router.push({ name: 'submit', query: { children: vm.children, hkbs: vm.hkbs, xhms: vm.xhms, acqcodeObj: JSON.stringify(this.aisleList[this.nowIndex]), area: document.querySelector('.el-cascader .el-input__inner').value.replace(/\s*/g, ''), searchTime: vm.searchTime, endTime: vm.endTime, money: vm.money, tong: vm.aisle,merchantNo: vm.merchantNo,merchantId: vm.merchantId } })
       }
     },
     // 查询填补planItem数据
@@ -674,7 +688,7 @@ export default {
         })
     },
     bindCard(item){
-      this.$router.push({ name: 'tiedcard', query: { item: this.$route.query.item, acqcode: item.acqcode } })
+      this.$router.push({ name: 'tiedcard', query: { item: this.$route.query.item, acqcode: item.acqcode,merchantNo: this.merchantNo,merchantId: this.merchantId} })
     },
     toiframimg (item) {
       this.$router.push({ name: 'imgIframe', query: { url: `http://120.78.81.147/icon/icon_channel_${item.acqcode}.png`, title: item.channelName } })

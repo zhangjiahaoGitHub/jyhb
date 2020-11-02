@@ -50,13 +50,78 @@ const routes = [
     component: () => import('../views/verified/surrender.vue')
   },
   {
+    path: '/adduser',
+    name: 'adduser',
+    meta: {
+      title: '添加用户',
+      bgLeft: true
+    },
+    component: () => import('../views/verified/adduser.vue')
+  },
+  {
+    path: '/adduserreal',
+    name: 'adduserreal',
+    meta: {
+      title: '照片上传',
+      bgLeft: true
+    },
+    component: () => import('../views/verified/adduserreal.vue')
+  },
+  {
     path: '/userManagement',
     name: 'userManagement',
     meta: {
       title: '实名认证',
-      bgLeft: true
+      bgLeft: true,
+      userManagement: true,
     },
     component: () => import('../views/verified/userManagement.vue')
+  },
+  {
+    path: '/friendsManagement',
+    name: 'friendsManagement',
+    meta: {
+      title: '好友管理',
+      bgLeft: true,
+      userManagement: true,
+    },
+    component: () => import('../views/verified/friendsManagement.vue')
+  },
+  {
+    path: '/cardManagement',
+    name: 'cardManagement',
+    meta: {
+      title: '',
+      bgLeft: true,
+    },
+    component: () => import('../views/verified/cardManagement.vue')
+  },
+  {
+    path: '/makingPlans',
+    name: 'makingPlans',
+    meta: {
+      title: '制定计划',
+      bgLeft: true,
+    },
+    component: () => import('../views/verified/makingPlans.vue')
+  },
+  {
+    path: '/viewPlan',
+    name: 'viewPlan',
+    meta: {
+      title: '查看计划',
+      bgLeft: true,
+    },
+    component: () => import('../views/verified/viewPlan.vue')
+  },
+  {
+    path: '/modifyRate',
+    name: 'modifyRate',
+    meta: {
+      title: '修改费率',
+      bgLeft: true,
+    },
+    component: () => import('../views/verified/modifyRate.vue')
   },
   {
     path: '/payForm',

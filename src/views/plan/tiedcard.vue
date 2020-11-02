@@ -55,8 +55,13 @@ export default {
   created () {
     this.version = this.$stact.state.version
     this.agentNo = this.$stact.state.agentNo
-    this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
-    this.merchantId = JSON.parse(this.$stact.state.token)[0].id
+    if (this.$route.query.merchantNo) {
+      this.merchantNo = this.$route.query.merchantNo
+      this.merchantId = this.$route.query.merchantId
+    }else{
+      this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
+      this.merchantId = JSON.parse(this.$stact.state.token)[0].id
+    }
     this.card = JSON.parse(this.$route.query.item)
     this.cardNum = this.card.BANK_ACCOUNT
     this.name = this.card.BANK_ACCOUNT_NAME

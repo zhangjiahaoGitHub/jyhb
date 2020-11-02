@@ -153,7 +153,6 @@ export default {
       tdName: [],
       tdCode: [],
       zhou: 0,
-      usermerchantNo: '',
       first: 0
     }
   },
@@ -168,7 +167,11 @@ export default {
     let vm = this
     this.version = this.$stact.state.version
     this.agentNo = this.$stact.state.agentNo
-    this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
+    if (this.$route.query.merchantNo) {
+      this.merchantNo = this.$route.query.merchantNo
+    }else{
+      this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
+    }
     this.number = Date.parse(new Date())
     this.searchTime = this.$route.query.searchTime
     this.endTime = this.$route.query.endTime

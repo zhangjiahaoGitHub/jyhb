@@ -52,7 +52,7 @@
           </p>
         </div>
       </div>
-      <div class="ordercj">
+      <div v-if="maxObj.id" class="ordercj">
         <p><span>订单编号</span><span>{{maxObj.id.substring(0,16)}}</span></p>
         <p><span>下单时间</span><span>{{$moment(maxObj.createTime.time).format('YYYY-MM-DD HH:mm:ss')}}</span></p>
       </div>

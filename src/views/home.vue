@@ -167,17 +167,11 @@
     </div>
     <div class="shouyi-zhangdan padsix">鲸鹰商城</div>
     <div class="shop-jy-list">
-      <div class="list-li" @click.stop="zwkf">
+      <div @click="toStore(item)" v-for="item in storeArr" :key="item.id" class="list-li">
         <div class="img-list">
-          <img src="../assets/home/shopimg.png" alt="">
+          <img :src="item.bannerUrl" alt="">
         </div>
-        <div class="title-con">蒙娜丽莎瓷砖店</div>
-      </div>
-      <div class="list-li" @click.stop="zwkf">
-        <div class="img-list">
-          <img src="../assets/home/shopimg.png" alt="">
-        </div>
-        <div class="title-con">蒙娜丽莎瓷砖店</div>
+        <div class="title-con">{{item.brandBusinessName}}</div>
       </div>
     </div>
     <div class="shouyi-zhangdan">活动专区</div>
@@ -259,6 +253,7 @@ export default {
       merchantNo: '',
       popImg: '',
       newsList: [],
+      storeArr: [],
       bannerList: [],
       cardUrl: '',
       textList: '',
@@ -330,6 +325,7 @@ export default {
     this.setseven()
     this.getshouyizd()
     this.getLocation()
+    this.getStore()
   },
   mounted () {
     this.drawLine()
@@ -367,6 +363,51 @@ export default {
     target() {}
   },
   methods: {
+    toStore(item){
+      this.$router.push({
+        name: 'store',
+        query: {
+          item: JSON.stringify(item)
+        }
+      })
+    },
+    getStore () {
+      let vm = this
+      let parmas = {
+        '0': '0700',
+        '3': '792009',
+        '42': this.merchantNo,
+        '59': vm.version
+      }
+      this.fullscreenLoading = true
+      let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
+      vm.$http.get(`request.app${url}`)
+        .then(res => {
+          vm.fullscreenLoading = false
+          if (res.data[39] === '00') {
+            let dataArr = JSON.parse(res.data[57])
+            for (let i = 0; i < dataArr.length; i++) {
+              this.storeArr.push(dataArr[i])
+              if (i==1) {
+                console.log(this.storeArr);
+                return
+              }
+            }
+          }else{
+            vm.$message({
+              message: res.data[39],
+              center: true,
+              offset: 30,
+              duration: 2000,
+              type: 'success'
+            })
+          }
+        })
+        .catch(err => {
+          this.fullscreenLoading = false
+          console.log(err)
+        })
+    },
     toMessageInfo(item){
       this.$router.push({
         name: 'messageInfo',

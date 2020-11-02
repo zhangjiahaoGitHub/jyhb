@@ -4,7 +4,8 @@
     <div class='planInfo-layout' style='padding: 0.6rem 0.6rem 0 0.6rem'>
       <div class="cardDiv">
             <div>
-              <p><img :src="banks[cardList.BANK_NAME]?require(`../../assets/bank/${banks[cardList.BANK_NAME]}.png`):require('../../assets/bank/yl.png')" alt="">{{cardList.short_cn_name}}</p>
+              <p v-if="zj"><img :src="banks[cardList.bank_code]?require(`../../assets/bank/${banks[cardList.bank_code]}.png`):require('../../assets/bank/yl.png')" alt="">{{cardList.short_cn_name}}</p>
+              <p v-else><img :src="banks[cardList.BANK_NAME]?require(`../../assets/bank/${banks[cardList.BANK_NAME]}.png`):require('../../assets/bank/yl.png')" alt="">{{cardList.short_cn_name}}</p>
               <span>{{cardList.BANK_ACCOUNT.substring(0,4)}} **** **** {{cardList.BANK_ACCOUNT.substring(cardList.BANK_ACCOUNT.length-4,cardList.BANK_ACCOUNT.length)}}</span>
             </div>
             <div style='padding-right: 0.6rem'>
@@ -58,7 +59,7 @@
                         {{itemList.EVERY_NUM}}笔/日
                 </div>
             </li>
-            <li class='allFlex flexPadding'>
+            <li v-if="listMore.length>0" class='allFlex flexPadding'>
                 <div class='half'>
                     <span class='gary'>
                         {{itemList.TYPE === '10C' ? '手续费小计:' : '周转金总额:'}}
@@ -89,7 +90,7 @@
             <li></li>
         </ul>
         <div class='widthExhaustive widthParticular'></div>
-        <div class='allFlex flexPadding'>
+        <div v-if="!zj" class='allFlex flexPadding'>
             您当前为<span class='redColor'>{{levelObj[itemList.LEVEL]}}</span>，自用<span class='redColor'>可省</span>手续费￥{{itemList.DISCOUNTS_MONEY}}
         </div>
     </div>
@@ -148,6 +149,7 @@ export default {
       merchantNo: '',
       cardList: [],
       gdan: false,
+      zj: false,
       number: '',
       status: {
         '10A': '未执行',
@@ -204,6 +206,7 @@ export default {
     }else{
       this.cardList = JSON.parse(this.$route.query.item)
     }
+    this.zj = this.$route.query.zj
     console.log(this.cardList);
     this.itemList = JSON.parse(this.$route.query.item)
     this.intermediary = this.$route.query.intermediary

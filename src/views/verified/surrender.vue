@@ -3,13 +3,13 @@
     <div @click="$router.push({name:'userManagement'})" class='surrender'>
         <img src='../../assets/realname.png' />
     </div>
-    <div class='surrender'>
+    <div @click="$router.push({name: 'friendsManagement'})" class='surrender'>
         <img src='../../assets/makeplan.png' />
     </div>
-    <div class='surrender'>
+    <div @click="$router.push({name: 'makingPlans'})" class='surrender'>
         <img src='../../assets/management.png' />
     </div>
-    <div class='surrender'>
+    <div @click="$router.push({name: 'viewPlan'})" class='surrender'>
         <img src='../../assets/viewplan.png' />
     </div>
   </div>

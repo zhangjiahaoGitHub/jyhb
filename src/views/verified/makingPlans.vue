@@ -1,5 +1,5 @@
 <template>
-  <div class='hundred userManagement-layout' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock="fullscreenLoading">
+  <div class='hundred friendsManagement-layout' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock="fullscreenLoading">
     <div class="search">
       <i class="el-icon-search"></i>
       <input v-model="name" placeholder="请输入姓名" type="text" name="" id="">
@@ -9,12 +9,12 @@
     v-infinite-scroll="load"
     infinite-scroll-disabled="disabled"
     infinite-scroll-distance='20'>
-      <li @click="edit(item)" v-for="(item,index) in listArr" :key="item.ID">
+      <li v-for="(item,index) in listArr" :key="item.ID">
         <div>
           {{index+1}}
           <p>{{item.BANK_ACCOUNT_NAME}}</p>
         </div>
-        <p :class="item.FREEZE_STATUS=='10B'?'aP':''">{{stateObj[item.FREEZE_STATUS]}}</p>
+        <p><span @click="toCardManage(item)" class="aSpan">制定计划</span><span @click="addCard(item)" class="aSpan">添加卡片</span></p>
       </li>
       <p v-if="loading">加载中...</p>
       <p v-if="noMore">没有更多了</p>
@@ -56,21 +56,48 @@ export default {
     this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
   },
   methods: {
+    toCardManage(item){
+      if (item.FREEZE_STATUS!='10B') {
+        this.$message({
+          message: '还未通过认证',
+          center: true,
+          offset: 30,
+          duration: 2500,
+          type: 'warning'
+        })
+        return
+      }
+      this.$router.push({
+        name: 'cardManagement',
+        query: {
+          item: JSON.stringify(item),
+          title: '制定计划'
+        }
+      })
+    },
+    addCard(item){
+      if (item.FREEZE_STATUS!='10B') {
+        this.$message({
+          message: '还未通过认证',
+          center: true,
+          offset: 30,
+          duration: 2500,
+          type: 'warning'
+        })
+        return
+      }
+      this.$router.push({
+        name: 'addcard',
+        query:{
+          item: JSON.stringify(item)
+        }
+      })
+    },
     search(){
       this.listArr=[]
       this.pageCount=1
       this.count=20
       this.load()
-    },
-    edit(item){
-      if (item.FREEZE_STATUS!='10B' || item.FREEZE_STATUS!='10F' || item.FREEZE_STATUS!='10D') {
-        this.$router.push({
-          name: 'adduser',
-          query: {
-            item: JSON.stringify(item)
-          }
-        })
-      }
     },
     load () {
       this.loading = true

@@ -312,9 +312,11 @@ $big: 2rem;
       background-color: #fff;
       .img-list {
         width: 100%;
+        height: px2rem(260);
+        overflow: hidden;
         img {
           width: 100%;
-          vertical-align: bottom;
+          min-height: 100%;
         }
       }
       .title-con {

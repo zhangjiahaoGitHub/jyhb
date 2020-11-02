@@ -1,6 +1,6 @@
 <template>
   <div class='hundred store-layout' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock="fullscreenLoading">
-    <ul>
+    <ul v-if="listArr>0">
       <li v-for="item in listArr" :key="item.id">
         <img :src="item.bannerUrl" alt="">
         <ol>
@@ -16,6 +16,10 @@
         </ol>
       </li>
     </ul>
+    <div>
+      <img src="../../assets/empty.png" alt="">
+      <p>暂无数据</p>
+    </div>
   </div>
 </template>
 <script>

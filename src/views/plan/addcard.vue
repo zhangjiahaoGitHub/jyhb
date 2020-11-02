@@ -113,10 +113,23 @@ export default {
       repDay: '',
       expiration: '',
       phone: '',
+      item: {},
+      shIdCard: '',
+      shId: '',
     }
   },
   created () {
-    this.name = JSON.parse(this.$stact.state.token)[0].bankAccountName
+    if (this.$route.query.item) {
+      this.item = JSON.parse(this.$route.query.item)
+      this.name = this.item.BANK_ACCOUNT_NAME
+      this.shId = this.item.ID
+      this.shIdCard = this.item.ID_CARD_NUMBER
+      console.log(this.item);
+    }else{
+      this.name = JSON.parse(this.$stact.state.token)[0].bankAccountName
+      this.shId = JSON.parse(this.$stact.state.token)[0].id
+      this.shIdCard = JSON.parse(this.$stact.state.token)[0].idCardNumber
+    }
     // this.cardNum = this.$route.query.cardNum
     // this.bankId = this.$route.query.bankId
     // this.bankCode = this.$route.query.bankCode
@@ -284,8 +297,8 @@ export default {
         '6': Number(vm.billDay),
         '7': Number(vm.repDay),
         '37': 0,
-        '42': JSON.parse(this.$stact.state.token)[0].idCardNumber,
-        '43': JSON.parse(this.$stact.state.token)[0].id,
+        '42': this.shIdCard,
+        '43': this.shId,
         '45': vm.cardNum,
         '46': vm.phone,
         '47': vm.expiration,

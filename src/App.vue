@@ -6,6 +6,7 @@
         <span @click="$router.push({name:'czjl'})" class="rightCorner" v-if="$route.meta.sxTx">充值记录</span>
         <span @click="$router.push({name:'withdrawRecord'})" class="rightCorner" v-if="$route.meta.retreat">提现记录</span>
         <span @click="$router.push({name:'home'})" class="rightCorner" v-if="$route.query.wkzf">首页</span>
+        <span @click="$router.push({name:'adduser'})" class="rightCorner" v-if="$route.meta.userManagement">添加用户</span>
         <span @click="$router.go(-2)" class="rightCorner" v-if="$route.query.title=='通道绑卡'">返回卡包</span>
       </div>
       <div v-else-if="$route.meta.left" class="pageTitle">
@@ -76,7 +77,7 @@ export default Vue.extend({
         document.title = vm.$route.query.title
         document.body.title = vm.$route.query.title
       }
-      if (to.name === 'myshopdetail' || to.name === 'incomeList' || to.name==='imgIframe') {
+      if (to.name === 'myshopdetail' || to.name === 'incomeList' || to.name==='imgIframe' || to.name=='cardManagement') {
         to.meta.title = vm.$route.query.title
         document.title = vm.$route.query.title
         document.body.title = vm.$route.query.title
