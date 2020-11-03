@@ -53,10 +53,10 @@
       <div class="itemDiv">
         <p>商城专区</p>
         <ul>
-          <li @click="notYetOpen"><img src="../../assets/my/scdd.png" alt=""><p>商城订单</p></li>
+          <li @click="toMyOrder"><img src="../../assets/my/scdd.png" alt=""><p>商城订单</p></li>
           <li @click="$router.push({name:'myAddress'})"><img src="../../assets/my/shdz.png" alt=""><p>收货地址</p></li>
           <li @click="notYetOpen"><img src="../../assets/my/spsc.png" alt=""><p>商品收藏</p></li>
-          <li @click="$router.push({name:'myScores'})"><img src="../../assets/my/spjf.png" alt=""><p>商品积分</p></li>
+          <li @click="toSpjf"><img src="../../assets/my/spjf.png" alt=""><p>商品积分</p></li>
         </ul>
       </div>
       <div class="itemDiv">
@@ -118,6 +118,25 @@ export default {
     this.message()
   },
   methods: {
+    toMyOrder(){
+      window.sessionStorage.setItem('from','my')
+      this.$router.push({
+        name: 'myOrder'
+      })
+    },
+    toSpjf(){
+      if (this.freezeStatus!='10B') {
+        this.$message({
+          message: '需先通过实名认证',
+          center: true,
+          offset: 30,
+          duration: 2500,
+          type: 'warning'
+        })
+        return
+      }
+      this.$router.push({name:'myScores'})
+    },
     toSqs(){
       if (this.freezeStatus!='10B') {
         this.$message({

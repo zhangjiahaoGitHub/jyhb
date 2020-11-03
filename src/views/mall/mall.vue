@@ -26,7 +26,7 @@
         <img src="../../assets/mall/dzgl.png" alt="">
         <p>地址管理</p>
       </li>
-      <li @click="$router.push({name: 'merchantSettled'})">
+      <li @click="toShrz">
         <img src="../../assets/mall/sjrz.png" alt="">
         <p>商家入驻</p>
       </li>
@@ -36,6 +36,7 @@
       <swiper v-if="newsList.length>0" class="swiper" :options="swiperOption">
         <swiper-slide v-for="item in newsList" :key="item.id">{{item.content}}</swiper-slide>
       </swiper>
+      <p style="margin-left:0.4rem" v-else>暂无公告</p>
     </div>
     <div class="contentDiv">
       <div @click="$router.push({name:'brandPavilion'})" class="titleDiv"><p>鲸鹰优选</p><span>查看更多</span></div>
@@ -123,6 +124,45 @@ export default {
           item: JSON.stringify(item)
         }
       })
+    },
+    toShrz () {
+      let vm = this
+      let parmas = {
+        '0': '0700',
+        '3': '792012',
+        '42': this.merchantNo,
+        '59': vm.version
+      }
+      this.fullscreenLoading = true
+      let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
+      vm.$http.get(`request.app${url}`)
+        .then(res => {
+          vm.fullscreenLoading = false
+          if (res.data[39] === '00') {
+            this.$router.push({name: 'merchantSettled'})
+          }else if (res.data[39] === '01') {
+            vm.$message({
+              message: '审核拒绝，请重新提交',
+              center: true,
+              offset: 30,
+              duration: 2000,
+              type: 'success'
+            })
+            this.$router.push({name: 'merchantSettled'})
+          }else{
+            vm.$message({
+              message: res.data[39],
+              center: true,
+              offset: 30,
+              duration: 2000,
+              type: 'success'
+            })
+          }
+        })
+        .catch(err => {
+          this.fullscreenLoading = false
+          console.log(err)
+        })
     },
     list () {
       let vm = this

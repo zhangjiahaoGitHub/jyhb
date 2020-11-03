@@ -3324,7 +3324,7 @@ $big: 2rem;
             }
         }
     }
-    .popDiv{
+    .aislePop{
         position: fixed;
         width: 100%;
         height: 100%;
@@ -4952,6 +4952,7 @@ $big: 2rem;
             display: flex;
             >img{
                 width: px2rem(180);
+                height: px2rem(180);
                 margin: 0 px2rem(20);
             }
             >div{
@@ -5271,7 +5272,7 @@ $big: 2rem;
                 padding-bottom: px2rem(20);
                 p{
                     margin-left: px2rem(40);
-                    border: 1px solid #F6F6F6;
+                    border: 1px solid #ccc;
                     width: px2rem(136);
                     text-align: center;
                     padding: px2rem(10) 0;
@@ -5345,13 +5346,13 @@ $big: 2rem;
     >ul{
         height: 24.9rem;
         overflow: auto;
-        display: flex;
-        flex-wrap: wrap;
         li{ 
+            float: left;
             padding: 0 px2rem(10);
             width: 50%;
             background: #fff;
             height: px2rem(470);
+            box-sizing: border-box;
             img{
                 width: 100%;
                 height: px2rem(350);
@@ -5397,6 +5398,8 @@ $big: 2rem;
     }
     .el-upload--picture-card{
         border: none;
+        height: auto;
+        line-height: normal;
     }
     .el-upload{
         margin-top: px2rem(20);
@@ -5404,7 +5407,6 @@ $big: 2rem;
         width: 100%;
         img{
             width: 100%;
-            height: 100%;
         }
     }
     .btnDiv{
@@ -5539,6 +5541,10 @@ $big: 2rem;
     }
 }
 .orderInfo-layout{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
     .headDiv{
         background: $themeColor;
         height: px2rem(220);
@@ -5699,6 +5705,9 @@ $big: 2rem;
             width: 100%;
             height: 100%;
         }
+    }
+    .el-upload--picture-card:hover, .el-upload:focus{
+        color: #333;
     }
     .btnDiv{
         background: $themeColor;
@@ -5987,7 +5996,6 @@ $big: 2rem;
                     height: px2rem(40);
                 }
                 li{
-                    width: 25%;
                     text-align: center;
                     color: #8F8F8F;
                     span{

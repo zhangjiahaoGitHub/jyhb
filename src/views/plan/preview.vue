@@ -22,7 +22,8 @@
           </div>
           <div>
             <p :style="tong=='QYK' ? 'visibility:hidden;':''"><span>周转金总额：</span>{{(parseFloat(calcList[40])+parseFloat(calcList[7])+parseFloat(calcList[9])).toFixed(2)}}</p>
-            <p><span>手续费小计：</span>{{(planItem[0].money).toFixed(2)}}<i @click="dataPopShow=true" class="el-icon-warning-outline"></i></p>
+            <p><span>手续费小计：</span>{{(parseFloat(calcList[7])+parseFloat(calcList[9])).toFixed(2)}}<i @click="dataPopShow=true" class="el-icon-warning-outline"></i></p>
+            <!-- <p><span>手续费小计：</span>{{(planItem[0].money).toFixed(2)}}<i @click="dataPopShow=true" class="el-icon-warning-outline"></i></p> -->
           </div>
         </div>
       </div>
@@ -454,10 +455,14 @@ export default {
               duration: 2500,
               type: 'success'
             })
-            if (vm.$route.query.tong == 'YK') {
-              vm.$router.push({ name: 'selectcard',query:{aisle: 'YK'} })
-            }else if (vm.$route.query.tong == 'QYK') {
-              vm.$router.push({ name: 'selectcard',query:{aisle: 'QYK'} })
+            if (this.$route.query.merchantNo) {
+              this.$router.push({name: 'viewPlan'})
+            }else{
+              if (vm.$route.query.tong == 'YK') {
+                vm.$router.push({ name: 'selectcard',query:{aisle: 'YK'} })
+              }else if (vm.$route.query.tong == 'QYK') {
+                vm.$router.push({ name: 'selectcard',query:{aisle: 'QYK'} })
+              }
             }
           } else {
             vm.$message({
@@ -537,7 +542,11 @@ export default {
                 duration: 2500,
                 type: 'success'
               })
-              vm.$router.push({ name: 'selectcard',query:~{aisle: 'QYK'} })
+              if (this.$route.query.merchantNo) {
+                this.$router.push({name: 'viewPlan'})
+              }else{
+                vm.$router.push({ name: 'selectcard',query:~{aisle: 'QYK'} })
+              }
             } else {
               vm.$message({
                 message: res.data.msg,

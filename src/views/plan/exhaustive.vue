@@ -107,7 +107,6 @@ export default {
       let parmas = {
         '0': '0700',
         '3': '190212',
-        '37': this.$route.query.type,
         '42': vm.merchantNo,
         '43': vm.cardList.BANK_ACCOUNT,
         '59': vm.version

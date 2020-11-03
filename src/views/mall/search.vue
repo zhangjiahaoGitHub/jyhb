@@ -1,7 +1,7 @@
 <template>
   <div class='hundred search-layout' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock="fullscreenLoading">
     <input type="text" v-model="name" name="" id="">
-    <img @click="load" src="../../assets/mall/search.png" alt="">
+    <img @click="search" src="../../assets/mall/search.png" alt="">
     <ul
       v-infinite-scroll="load"
       infinite-scroll-disabled="disabled"
@@ -27,7 +27,6 @@ export default {
       merchantNo: '',
       fullscreenLoading: false,
       name: '',
-      nowItem: {},
       count: 20,
       loading: true,
       listArr: [],
@@ -47,6 +46,16 @@ export default {
     this.agentNo = this.$stact.state.agentNo
     this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
   },
+  watch: {
+    '$route' (to, from) {
+      if (!(to.name=='productDetails' || to.name=='search' || to.name=='orderFilling' || to.name=='payInfo')) {
+        this.$set(this,'count',20)
+        this.$set(this,'listArr',[])
+        this.$set(this,'pageCount',1)
+        this.$set(this,'name','')
+      }
+    }
+  },
   methods: {
     toInfo(item){
       this.$router.push({
@@ -56,17 +65,11 @@ export default {
         }
       })
     },
-    pay(item){
-      this.$router.push({
-        name: 'payInfo',
-        query: {
-          item: JSON.stringify(item)
-        }
-      })
-    },
-    lookWl(item){
-      this.nowItem = item
-      this.wlDiv = true
+    search(){
+      this.count =20
+      this.listArr=[]
+      this.pageCount=1
+      this.load()
     },
     load () {
       this.loading = true

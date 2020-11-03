@@ -8,7 +8,7 @@
         <p @click="toOrderInfo(item)">{{item.formatTime}}
           <span v-if="item.status=='10J'||item.status=='10A'">待支付</span>
           <span v-if="item.status=='10B'">待发货</span>
-          <span v-if="item.status=='10C'">已发货</span>
+          <span v-if="item.status=='10C'">待签收</span>
           <span v-if="item.status=='10D'">已收货</span>
           <span v-if="item.status=='10F'">已取消</span>
           <span v-if="item.status=='70A'">支付失败</span>
@@ -17,7 +17,7 @@
           <img :src="item.goodsImage" alt="">
           <div>
             <p>{{item.goodsName}}</p>
-            <span>规格{{item.goodsSpecification}}</span>
+            <span>规格：{{item.goodsSpecification}}</span>
             <div>
               <p>
                 <span v-if="item.pay>0">￥{{item.goodsPrice}}</span>
@@ -33,7 +33,7 @@
           <p>
             合计:<span v-if="item.pay>0">￥{{item.pay}}</span>
             <span v-if="item.pay>0 && item.goodsPoint>0">+</span>
-            <span v-if="item.goodsPoint>0">{{item.goodsPoint}}积分</span>
+            <span v-if="item.goodsPoint>0">{{item.goodsPoint*item.goodsCount}}积分</span>
           </p>
         </div>
         <div @click.stop="" class="btnDiv">
@@ -45,6 +45,7 @@
       <p v-if="loading">加载中...</p>
       <p v-if="noMore">没有更多了</p>
     </ul>
+    <router-view></router-view>
     <div v-if="wlDiv" class="wlDiv">
       <div>
         <p>查看物流</p>
@@ -64,6 +65,7 @@ export default {
       version: '',
       agentNo: '',
       merchantNo: '',
+      scroll: '',
       fullscreenLoading: false,
       wlDiv: false,
       nowItem: {},
@@ -99,7 +101,7 @@ export default {
       this.$router.push({
         name: 'payInfo',
         query: {
-          item: JSON.stringify(item)
+          item: JSON.stringify(item),
         }
       })
     },

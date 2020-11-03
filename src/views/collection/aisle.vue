@@ -45,7 +45,7 @@
       </ul>
       <div class="btnDiv"><div @click="finishChoseAisle">提交计划预览</div></div>
     </div>
-    <div @click="popShow=false" v-if="popShow" class="popDiv">
+    <div @click="popShow=false" v-if="popShow" class="aislePop">
       <div @click.stop="">
         <p>计划概览</p>
         <ul>

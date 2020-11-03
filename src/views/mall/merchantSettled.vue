@@ -203,6 +203,7 @@ export default {
         '15': vm.urlTwo,
         '16': vm.urlFour,
         '17': vm.urlThree,
+        '42': vm.merchantNo,
         '59': vm.version
       }
       vm.fullscreenLoading = true

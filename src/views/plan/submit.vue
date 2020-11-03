@@ -230,7 +230,11 @@ export default {
               duration: 2500,
               type: 'success'
             })
-            vm.$router.push({ name: 'selectcard',query:{aisle: 'YK'} })
+            if (this.$route.query.merchantNo) {
+              this.$router.push({name: 'viewPlan'})
+            }else{
+              vm.$router.push({ name: 'selectcard',query:{aisle: 'YK'} })
+            }
           } else {
             vm.$message({
               message: res.data[39],
@@ -287,7 +291,11 @@ export default {
                 duration: 2500,
                 type: 'success'
               })
-              vm.$router.push({ name: 'selectcard',query:~{aisle: 'QYK'} })
+              if (this.$route.query.merchantNo) {
+                this.$router.push({name: 'viewPlan'})
+              }else{
+                vm.$router.push({ name: 'selectcard',query:~{aisle: 'QYK'} })
+              }
             } else {
               vm.$message({
                 message: res.data.msg,

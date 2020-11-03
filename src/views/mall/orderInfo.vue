@@ -8,8 +8,8 @@
       <span v-if="item.status=='10F'">已取消</span>
       <span v-if="item.status=='70A'">支付失败</span>
       <img v-if="item.status=='10F' || item.status=='70A'" src="../../assets/mall/cha.png" alt="">
-      <img v-if="item.status=='10B' || item.status=='10C' || item.status=='10D'" src="../../assets/mall/gou.png" alt="">
-      <img v-if="item.status=='10J'||item.status=='10A'" src="../../assets/mall/shijian.png" alt="">
+      <img v-if="item.status=='10C' || item.status=='10D'" src="../../assets/mall/gou.png" alt="">
+      <img v-if="item.status=='10B' || item.status=='10J'||item.status=='10A'" src="../../assets/mall/shijian.png" alt="">
     </div>
     <div class="contentDiv">
       <div class="addressDiv">
@@ -40,7 +40,7 @@
           <p>
             <span v-if="maxObj.pay>0">￥{{maxObj.goodsPrice*maxObj.goodsCount}}</span>
             <span v-if="maxObj.pay>0 && maxObj.goodsPoint>0">+</span>
-            <span v-if="maxObj.goodsPoint>0">{{maxObj.goodsPoint}}积分</span>
+            <span v-if="maxObj.goodsPoint>0">{{maxObj.goodsPoint*maxObj.goodsCount}}积分</span>
           </p>
         </div>
         <div class="item">
@@ -48,13 +48,15 @@
           <p>
             <span v-if="maxObj.pay>0">￥{{maxObj.goodsPrice*maxObj.goodsCount}}</span>
             <span v-if="maxObj.pay>0 && maxObj.goodsPoint>0">+</span>
-            <span v-if="maxObj.goodsPoint>0">{{maxObj.goodsPoint}}积分</span>
+            <span v-if="maxObj.goodsPoint>0">{{maxObj.goodsPoint*maxObj.goodsCount}}积分</span>
           </p>
         </div>
       </div>
       <div v-if="maxObj.id" class="ordercj">
         <p><span>订单编号</span><span>{{maxObj.id.substring(0,16)}}</span></p>
         <p><span>下单时间</span><span>{{$moment(maxObj.createTime.time).format('YYYY-MM-DD HH:mm:ss')}}</span></p>
+        <p v-if="item.status=='10C' || item.status=='10D'"><span>物流单号</span><span>{{maxObj.postNumber}}</span></p>
+        <p v-if="item.status=='10C' || item.status=='10D'"><span>物流公司</span><span>{{maxObj.postName}}</span></p>
       </div>
     </div>
     <div v-if="item.status=='10J'||item.status=='10A'" class="btnDiv">

@@ -36,7 +36,7 @@
           </li>
         </ol>
         <div>
-          <p @click.stop="delCard(item.BANK_ACCOUNT)">解绑</p>
+          <p @click.stop="delCard(item.BANK_ACCOUNT,index)">解绑</p>
           <p @click.stop="ljhk(item)">立即还款</p>
         </div>
       </li>
@@ -206,7 +206,7 @@ export default {
         this.toOneCardDh()
       }
     },
-    delCard (BANK_ACCOUNT) {
+    delCard (BANK_ACCOUNT,index) {
       let vm = this
       this.$confirm('解绑信用卡?', '提示', {
         confirmButtonText: '确定',
@@ -224,7 +224,8 @@ export default {
         vm.$http.get(`request.app${url}`)
           .then(res => {
             if (res.data[39] === '00') {
-              this.list()
+              // this.list()
+              this.cardList.splice(index,1)
               vm.$message({
                 message: '解绑成功',
                 center: true,
@@ -335,6 +336,7 @@ export default {
             vm.count = JSON.parse(res.data[57]).length
             let getList = JSON.parse(res.data[57])
             getList.forEach(item => {
+              item.repDate = `${vm.$moment().format('MM')}-${item.REPAYMENT_DAY}`
               this.cardList.push(item)
             });
             console.log(this.cardList);

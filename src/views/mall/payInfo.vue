@@ -15,16 +15,20 @@
     </div>
     <p>选择支付方式:</p>
     <ul>
-      <li @click="type='wxpay'">
+      <li v-if="item.goodsPrice>0" @click="type='wxpay'">
         <p><img src="../../assets/mall/wx.png" alt="">微信支付</p>
         <img :src="type=='wxpay'?require('../../assets/mall/check.png'):require('../../assets/mall/nocheck.png')" alt="">
       </li>
-      <li @click="type='alipay'">
+      <li v-if="item.goodsPrice>0" @click="type='alipay'">
         <p><img src="../../assets/mall/zfb.png" alt="">支付宝支付</p>
         <img :src="type=='alipay'?require('../../assets/mall/check.png'):require('../../assets/mall/nocheck.png')" alt="">
       </li>
-      <li @click="type='ye'">
+      <li v-if="item.goodsPrice>0" @click="type='ye'">
         <p><img src="../../assets/mall/ye.png" alt="">余额支付</p>
+        <img :src="type=='ye'?require('../../assets/mall/check.png'):require('../../assets/mall/nocheck.png')" alt="">
+      </li>
+      <li v-else @click="type='ye'">
+        <p><img src="../../assets/mall/ye.png" alt="">积分支付</p>
         <img :src="type=='ye'?require('../../assets/mall/check.png'):require('../../assets/mall/nocheck.png')" alt="">
       </li>
     </ul>
@@ -44,7 +48,7 @@ export default {
       djs: 0,
       mm: 0,
       ss: 0,
-      type: 'wxpay'
+      type: 'ye'
     }
   },
   created () {
@@ -98,14 +102,20 @@ export default {
               duration: 2000,
               type: 'success'
             })
-            this.$router.go(-3)
+            this.item.status='10B'
+            this.$router.push({
+              name: 'orderInfo',
+              query:{
+                item: JSON.stringify(this.item)
+              }
+            })
           }else{
             vm.$message({
               message: res.data[39],
               center: true,
               offset: 30,
               duration: 2000,
-              type: 'success'
+              type: 'warning'
             })
           }
         })

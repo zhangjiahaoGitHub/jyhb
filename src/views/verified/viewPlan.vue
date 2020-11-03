@@ -20,7 +20,7 @@
           <div>
             <span>{{item.short_cn_name}} 尾号：{{item.BANK_ACCOUNT.substring(item.BANK_ACCOUNT.length-4,item.BANK_ACCOUNT.length)}}</span>
             <span>{{item.MERCHANT_CN_NAME}}</span>
-            <span>{{stateObj[item.STATUS]}}</span>
+            <span>状态：{{stateObj[item.STATUS]}}</span>
           </div>
           <div>
             <span>类型：{{item.TYPE=='10C'?'全额还':'预留还'}}</span>
@@ -34,23 +34,39 @@
             <span>结算费率：{{item.rate}}</span>
           </div>
         </div>
-        <ol>
-          <li>
-            <p>卡内周转金</p>
-            <span>{{item.CB_AMT}}</span>
-          </li>
-          <p></p>
-          <li>
+        <ol v-if="item.TYPE=='10C'">
+          <li style="width:33.3333%">
             <p>进度</p>
             <p>{{item.progress}}</p>
           </li>
           <p></p>
-          <li>
+          <li style="width:33.3333%">
             <p>预计手续费</p>
             <p>{{(item.PAY_FREE+item.SALE_FREE).toFixed(2)}}</p>
           </li>
           <p></p>
-          <li>
+          <li style="width:33.3333%">
+            <p>已付手续费</p>
+            <p>{{Number(item.fred).toFixed(2)}}</p>
+          </li>
+        </ol>
+        <ol v-else>
+          <li style="width:25%">
+            <p>卡内周转金</p>
+            <span>{{(item.CB_AMT+item.PAY_FREE+item.SALE_FREE).toFixed(2)}}</span>
+          </li>
+          <p></p>
+          <li style="width:25%">
+            <p>进度</p>
+            <p>{{item.progress}}</p>
+          </li>
+          <p></p>
+          <li style="width:25%">
+            <p>预计手续费</p>
+            <p>{{(item.PAY_FREE+item.SALE_FREE).toFixed(2)}}</p>
+          </li>
+          <p></p>
+          <li style="width:25%">
             <p>已付手续费</p>
             <p>{{Number(item.fred).toFixed(2)}}</p>
           </li>
@@ -100,7 +116,7 @@ export default {
   },
   methods: {
     toInfo(item){
-      this.$router.push({name: 'particular', query: { item: JSON.stringify(item), zj: true }})
+      this.$router.push({name: 'particular', query: { item: JSON.stringify(item), zj: true,merchantNo: item.MERCHANT_NO }})
     },
     changeNav(nav){
       this.nav = nav

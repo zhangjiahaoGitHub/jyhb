@@ -67,7 +67,7 @@
       <swiper :options="swiperOption" ref="mySwiper">
         <swiper-slide class="swiper-slide">
           <div class="icon-tager-box">
-            <div @click="$router.push({name: 'surrender'})" class="icon-img-box" @click.stop="$router.push({name:'surrender'})">
+            <div @click.stop="toZj" class="icon-img-box">
               <div class="icon-img-img">
                 <img src="../assets/home/zjdh.png" alt="">
               </div>
@@ -103,13 +103,13 @@
               </div>
               <div>保单</div>
             </div>
-            <div class="icon-img-box mar-top-img" @click.stop="zwkf">
+            <div class="icon-img-box mar-top-img" @click.stop="jfdh">
               <div class="icon-img-img">
                 <img src="../assets/home/jfdh.png" alt="">
               </div>
               <div>积分兑换</div>
             </div>
-            <div class="icon-img-box mar-top-img" @click.stop="$router.push({name: 'mall'})">
+            <div class="icon-img-box mar-top-img" @click.stop="toMall">
               <div class="icon-img-img">
                 <img src="../assets/home/jfsc.png" alt="">
               </div>
@@ -169,7 +169,7 @@
     <div class="shop-jy-list">
       <div @click="toStore(item)" v-for="item in storeArr" :key="item.id" class="list-li">
         <div class="img-list">
-          <img :src="item.bannerUrl" alt="">
+          <img :src="item.logoUrl" alt="">
         </div>
         <div class="title-con">{{item.brandBusinessName}}</div>
       </div>
@@ -364,12 +364,54 @@ export default {
   },
   methods: {
     toStore(item){
+      if (this.freezeStatus!='10B') {
+        this.$message({
+          message: '需先通过实名认证',
+          center: true,
+          offset: 30,
+          duration: 2500,
+          type: 'warning'
+        })
+        return
+      }
       this.$router.push({
         name: 'store',
         query: {
           item: JSON.stringify(item)
         }
       })
+    },
+    jfdh () {
+      let vm = this
+      let parmas = {
+        '0': '0700',
+        '3': '690034',
+        '41': JSON.parse(this.$stact.state.token)[0].id,
+        '59': vm.version
+      }
+      this.fullscreenLoading = true
+      let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
+      vm.$http.get(`request.app${url}`)
+        .then(res => {
+          vm.fullscreenLoading = false
+          if (res.data[39] === '00') {
+            // 42域返回JF为积分兑换，43域为征信链接
+            console.log(JSON.parse(res.data[42]));
+            this.toIframe(JSON.parse(res.data[42]).JF,'积分兑换')
+          }else{
+            vm.$message({
+              message: res.data[39],
+              center: true,
+              offset: 30,
+              duration: 2000,
+              type: 'success'
+            })
+          }
+        })
+        .catch(err => {
+          this.fullscreenLoading = false
+          console.log(err)
+        })
     },
     getStore () {
       let vm = this
@@ -440,6 +482,42 @@ export default {
         .catch(err => {
           console.log(err)
         })
+    },
+    toMall(){
+      if (this.freezeStatus!='10B') {
+        this.$message({
+          message: '需先通过实名认证',
+          center: true,
+          offset: 30,
+          duration: 2500,
+          type: 'warning'
+        })
+        return
+      }
+      this.$router.push({name: 'mall'})
+    },
+    toZj(){
+      if (this.freezeStatus!='10B') {
+        this.$message({
+          message: '需先通过实名认证',
+          center: true,
+          offset: 30,
+          duration: 2500,
+          type: 'warning'
+        })
+        return
+      }
+      if (this.level<2) {
+        this.$message({
+          message: '中介代还不对普通用户开放',
+          center: true,
+          offset: 30,
+          duration: 2500,
+          type: 'warning'
+        })
+        return
+      }
+      this.$router.push({name: 'surrender'})
     },
     hk(type){
       if (this.freezeStatus!='10B') {

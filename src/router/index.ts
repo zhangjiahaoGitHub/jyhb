@@ -146,18 +146,10 @@ const routes = [
     name: 'search',
     meta: {
       title: '搜索',
-      bgLeft: true
+      bgLeft: true,
+      keepAlive: true,
     },
     component: () => import('../views/mall/search.vue')
-  },
-  {
-    path: '/orderInfo',
-    name: 'orderInfo',
-    meta: {
-      title: '订单详情',
-      bgLeft: true
-    },
-    component: () => import('../views/mall/orderInfo.vue')
   },
   {
     path: '/merchantSettled',
@@ -430,7 +422,7 @@ const routes = [
     path: '/productDetails',
     name: 'productDetails',
     meta: {
-      title: '产品详情',
+      title: '商品详情',
       bgLeft: true
     },
     component: () => import('../views/mall/productDetails.vue'),
@@ -458,9 +450,20 @@ const routes = [
     name: 'myOrder',
     meta: {
       title: '我的订单',
-      bgLeft: true
+      bgLeft: true,
     },
     component: () => import('../views/mall/myOrder.vue'),
+    children: [
+      {
+        path: '/orderInfo',
+        name: 'orderInfo',
+        meta: {
+          title: '订单详情',
+          bgLeft: true
+        },
+        component: () => import('../views/mall/orderInfo.vue')
+      },
+    ]
   },
   {
     path: '/emptyCardCredit',

@@ -210,7 +210,7 @@ export default {
       }
       if (this.qeMax<1.15 || this.qeMax>2) {
         this.$message({
-          message: '全额还款小额费率限制范围1.15-2',
+          message: '全额还款大额费率限制范围1.15-2',
           center: true,
           offset: 30,
           duration: 2000,

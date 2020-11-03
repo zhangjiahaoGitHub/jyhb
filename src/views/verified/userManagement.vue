@@ -63,7 +63,7 @@ export default {
       this.load()
     },
     edit(item){
-      if (item.FREEZE_STATUS!='10B' || item.FREEZE_STATUS!='10F' || item.FREEZE_STATUS!='10D') {
+      if (!(item.FREEZE_STATUS=='10B' || item.FREEZE_STATUS=='10F' || item.FREEZE_STATUS=='10D')) {
         this.$router.push({
           name: 'adduser',
           query: {

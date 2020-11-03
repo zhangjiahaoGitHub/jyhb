@@ -204,8 +204,31 @@ export default Vue.extend({
   },
   methods: {
     goTop () {
-      if (this.$route.name === 'myorder') {
-        this.$router.push({ name: 'onlineshop' })
+      if (this.$route.name === 'myOrder') {
+        if (window.sessionStorage.getItem('from')=='my') {
+          window.sessionStorage.setItem('from','null')
+          this.$router.push({name: 'my'})
+        }else{
+          this.$router.push({
+            name: 'mall'
+          })
+        }
+        return
+      }
+      if (this.$route.name === 'orderInfo') {
+        this.$router.push({ name: 'myOrder' })
+        return
+      }
+      if (this.$route.name === 'viewPlan') {
+        this.$router.push({ name: 'surrender' })
+        return
+      }
+      if (this.$route.name === 'surrender') {
+        this.$router.push({ name: 'home' })
+        return
+      }
+      if (this.$route.name === 'mall') {
+        this.$router.push({ name: 'home' })
         return
       }
       if (this.$route.name === 'onlineshop') {
