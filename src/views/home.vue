@@ -79,13 +79,13 @@
               </div>
               <div>云闪付</div>
             </div>
-            <div class="icon-img-box" @click.stop="zwkf">
+            <div class="icon-img-box" @click.stop="bkdk('bk')">
               <div class="icon-img-img">
                 <img src="../assets/home/xyksq.png" alt="">
               </div>
               <div>信用卡申请</div>
             </div>
-            <div class="icon-img-box" @click.stop="zwkf">
+            <div class="icon-img-box" @click.stop="bkdk('dk')">
               <div class="icon-img-img">
                 <img src="../assets/home/dksq.png" alt="">
               </div>
@@ -363,6 +363,14 @@ export default {
     target() {}
   },
   methods: {
+    // 办卡，贷款
+    bkdk(type){
+      if (type=='bk') {
+        this.toIframe(`http://jyhbban.llyzf.cn/lly-posp-proxy/applicationCard.html?merchantidNo=${this.merchantNo}&version=${this.version}`,'信用卡申请')
+      }else if (type=='dk') {
+        this.toIframe(`http://jyhbban.llyzf.cn/lly-posp-proxy/apploan.html?merchantidNo=${this.merchantNo}&version=${this.version}`,'贷款申请')
+      }
+    },
     toStore(item){
       if (this.freezeStatus!='10B') {
         this.$message({
