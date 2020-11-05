@@ -4,7 +4,7 @@
       <span v-if="item.status=='10J'||item.status=='10A'">待支付</span>
       <span v-if="item.status=='10B'">待发货</span>
       <span v-if="item.status=='10C'">已发货</span>
-      <span v-if="item.status=='10D'">已收货</span>
+      <span v-if="item.status=='10D'">已完成</span>
       <span v-if="item.status=='10F'">已取消</span>
       <span v-if="item.status=='70A'">支付失败</span>
       <img v-if="item.status=='10F' || item.status=='70A'" src="../../assets/mall/cha.png" alt="">
@@ -24,7 +24,7 @@
           <img :src="item.goodsImage" alt="" srcset="">
           <div>
             <p>{{maxObj.goodsName}}</p>
-            <span>已选规格：{{maxObj.goodsType}}</span>
+            <span>规格：{{maxObj.goodsSpecification}}</span>
             <div>
               <p>
                 <span v-if="maxObj.pay>0">￥{{maxObj.goodsPrice}}</span>

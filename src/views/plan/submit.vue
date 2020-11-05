@@ -230,7 +230,7 @@ export default {
               duration: 2500,
               type: 'success'
             })
-            if (this.$route.query.merchantNo) {
+            if (this.$route.query.merchantNo!=JSON.parse(this.$stact.state.token)[0].merchantNo) {
               this.$router.push({name: 'viewPlan'})
             }else{
               vm.$router.push({ name: 'selectcard',query:{aisle: 'YK'} })
@@ -291,10 +291,10 @@ export default {
                 duration: 2500,
                 type: 'success'
               })
-              if (this.$route.query.merchantNo) {
+              if (this.$route.query.merchantNo!=JSON.parse(this.$stact.state.token)[0].merchantNo) {
                 this.$router.push({name: 'viewPlan'})
               }else{
-                vm.$router.push({ name: 'selectcard',query:~{aisle: 'QYK'} })
+                vm.$router.push({ name: 'selectcard',query: {aisle: 'QYK'} })
               }
             } else {
               vm.$message({

@@ -73,7 +73,7 @@ export default {
       let vm = this
       if (this.type=='wxpay' || this.type=='alipay') {
         this.$message({
-          message: 'H5暂未开放，微信及支付宝支付',
+          message: 'H5暂未开放微信及支付宝支付',
           center: true,
           offset: 30,
           duration: 2500,

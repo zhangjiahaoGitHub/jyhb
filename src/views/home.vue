@@ -509,7 +509,7 @@ export default {
       }
       if (this.level<2) {
         this.$message({
-          message: '中介代还不对普通用户开放',
+          message: '中介功能只对经纪人及以上等级开放',
           center: true,
           offset: 30,
           duration: 2500,

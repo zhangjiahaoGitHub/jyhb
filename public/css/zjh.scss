@@ -5058,14 +5058,16 @@ $big: 2rem;
             >div{
                 font-size: $six;
                 p{
-                    display: flex;
+                    &:first-child{
+                        display: flex;
+                        span{
+                            margin-left: px2rem(20);
+                        }
+                    }
                     width: px2rem(600);
                     white-space:nowrap;
                     overflow:hidden;
                     text-overflow:ellipsis;
-                    span{
-                        margin-left: px2rem(20);
-                    }
                 }
             }
         }

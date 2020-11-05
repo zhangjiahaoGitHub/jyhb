@@ -9,7 +9,7 @@
           <span v-if="item.status=='10J'||item.status=='10A'">待支付</span>
           <span v-if="item.status=='10B'">待发货</span>
           <span v-if="item.status=='10C'">待签收</span>
-          <span v-if="item.status=='10D'">已收货</span>
+          <span v-if="item.status=='10D'">已完成</span>
           <span v-if="item.status=='10F'">已取消</span>
           <span v-if="item.status=='70A'">支付失败</span>
         </p>
