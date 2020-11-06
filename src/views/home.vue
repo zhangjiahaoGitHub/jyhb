@@ -73,7 +73,7 @@
               </div>
               <div>中介代还</div>
             </div>
-            <div class="icon-img-box" @click.stop="zwkf">
+            <div class="icon-img-box" @click.stop="toIframe(`https://wallet.95516.com/s/wl/webV3/activity/elevenctoc/html/snsIndex.html?r=782877ea34f7e3b656181c1bc149de2e&code=ctoc00000011480&channel=3`,'云闪付')">
               <div class="icon-img-img">
                 <img src="../assets/home/ysf.png" alt="">
               </div>
@@ -103,7 +103,7 @@
               </div>
               <div>保单</div>
             </div>
-            <div class="icon-img-box mar-top-img" @click.stop="jfdh">
+            <div class="icon-img-box mar-top-img" @click.stop="jfdh('jfdh')">
               <div class="icon-img-img">
                 <img src="../assets/home/jfdh.png" alt="">
               </div>
@@ -131,7 +131,7 @@
               </div>
               <div>碰一碰</div>
             </div>
-            <div class="icon-img-box" @click.stop="zwkf">
+            <div class="icon-img-box" @click.stop="jfdh('dsj')">
               <div class="icon-img-img">
                 <img src="../assets/home/dsjcx.png" alt="">
               </div>
@@ -365,9 +365,41 @@ export default {
   methods: {
     // 办卡，贷款
     bkdk(type){
+      // this.zwkf()
+      // return
+      if (this.freezeStatus!='10B') {
+        this.$message({
+          message: '需先通过实名认证',
+          center: true,
+          offset: 30,
+          duration: 2500,
+          type: 'warning'
+        })
+        return
+      }
       if (type=='bk') {
+        if (JSON.parse(localStorage.getItem('switch')).bk!='1') {
+          this.$message({
+            message: '状态关闭，请后台开启后重新登录',
+            center: true,
+            offset: 30,
+            duration: 2500,
+            type: 'warning'
+          })
+          return
+        }
         this.toIframe(`http://jyhbban.llyzf.cn/lly-posp-proxy/applicationCard.html?merchantidNo=${this.merchantNo}&version=${this.version}`,'信用卡申请')
       }else if (type=='dk') {
+        if (JSON.parse(localStorage.getItem('switch')).dk!='1') {
+          this.$message({
+            message: '状态关闭，请后台开启后重新登录',
+            center: true,
+            offset: 30,
+            duration: 2500,
+            type: 'warning'
+          })
+          return
+        }
         this.toIframe(`http://jyhbban.llyzf.cn/lly-posp-proxy/apploan.html?merchantidNo=${this.merchantNo}&version=${this.version}`,'贷款申请')
       }
     },
@@ -389,7 +421,7 @@ export default {
         }
       })
     },
-    jfdh () {
+    jfdh (type) {
       let vm = this
       let parmas = {
         '0': '0700',
@@ -404,8 +436,12 @@ export default {
           vm.fullscreenLoading = false
           if (res.data[39] === '00') {
             // 42域返回JF为积分兑换，43域为征信链接
-            console.log(JSON.parse(res.data[42]));
-            this.toIframe(JSON.parse(res.data[42]).JF,'积分兑换')
+            console.log(res.data[43]);
+            if (type=='jfdh'){
+              this.toIframe(JSON.parse(res.data[42]).JF,'积分兑换')
+            }else{
+              this.toIframe(res.data[43],'大数据查询')
+            }
           }else{
             vm.$message({
               message: res.data[39],
@@ -902,42 +938,6 @@ export default {
     },
     toIframe (url,title) {
       this.$router.push({ name: 'ifarme', query: { url: url, title: title } })
-    },
-    // 办卡贷款 1：贷款，2：办卡
-    dkbk (type) {
-      let vm = this
-      let parmas = {
-        '0': '0700',
-        '3': '690034',
-        '42': vm.merchantNo,
-        '43': type,
-        '59': vm.version
-      }
-      let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
-      vm.$http.get(`request.app${url}`)
-        .then(res => {
-          if (res.data[39] === '00') {
-            window.location.href = res.data[38]
-            // if (type=='BK') {
-            //   this.toIframe(res.data[38],'信用卡办理')
-            // }else if (type=='DK') {
-            //   this.toIframe(res.data[38],'贷款办理')
-            // }else if (type=='JF') {
-            //   this.toIframe(res.data[38],'积分兑换')
-            // }
-          } else {
-            this.$message({
-              message: res.data[39],
-              center: true,
-              offset: 30,
-              duration: 2500,
-              type: 'success'
-            })
-          }
-        })
-        .catch(err => {
-          console.log(err)
-        })
     },
     handleClose () {
       this.dialogVisible = false

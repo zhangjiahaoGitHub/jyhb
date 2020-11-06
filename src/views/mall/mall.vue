@@ -5,7 +5,8 @@
         <img :src="headUrl ? headUrl:require('../../assets/head.png')" alt="">
         <div>
           <p>{{merchantCnName}}</p>
-          <i class="el-icon-location-outline">{{dq.substring(dq.indexOf('省')+1,dq.length)}}</i>
+          <i class="el-icon-location-outline">{{nowcity}}</i>
+          <!-- <i class="el-icon-location-outline">{{dq.substring(dq.indexOf('省')+1,dq.length)}}</i> -->
         </div>
       </div>
       <i @click="$router.push({name: 'search'})" class="el-icon-search">搜索</i>
@@ -55,7 +56,7 @@
         </ol>
       </div>
     </div>
-    <remote-js src="http://pv.sohu.com/cityjson?ie=utf-8"></remote-js>
+    <!-- <remote-js src="http://pv.sohu.com/cityjson?ie=utf-8"></remote-js> -->
   </div>
 </template>
 <script>
@@ -69,6 +70,7 @@ export default {
       bannerUrl: '',
       dq: '',
       newsList: [],
+      nowcity: '定位中...',
       headUrl: '',
       merchantCnName: '',
       listArr: [],
@@ -83,16 +85,16 @@ export default {
       },
     }
   },
-  components: {
-    'remote-js': {
-      render(createElement) {
-      return createElement('script', { attrs: { type: 'text/javascript', src: this.src }});
-      },
-      props: {
-      src: { type: String, required: true },
-      },
-    },
-  },
+  // components: {
+  //   'remote-js': {
+  //     render(createElement) {
+  //     return createElement('script', { attrs: { type: 'text/javascript', src: this.src }});
+  //     },
+  //     props: {
+  //     src: { type: String, required: true },
+  //     },
+  //   },
+  // },
   created () {
     this.version = this.$stact.state.version
     this.agentNo = this.$stact.state.agentNo
@@ -102,13 +104,94 @@ export default {
     this.list()
     this.getData()
     this.getImg()
+    this.getLocation()
   },
   mounted () {
-    setTimeout(() => {
-      this.dq = window.returnCitySN.cname
-    }, 500);
+    // setTimeout(() => {
+    //   this.dq = window.returnCitySN.cname
+    //   console.log(this.dq);
+    // }, 500);
   },
   methods: {
+    // 获取当前位置
+    getLocation () {
+      let vm = this
+      const self = this;
+      AMap.plugin('AMap.Geolocation', function () {
+        var geolocation = new AMap.Geolocation({
+          // 是否使用高精度定位，默认：true
+          enableHighAccuracy: true,
+          // 设置定位超时时间，默认：无穷大
+          timeout: 10000
+        })
+ 
+        geolocation.getCurrentPosition()
+        AMap.event.addListener(geolocation, 'complete', onComplete)
+        AMap.event.addListener(geolocation, 'error', onError)
+ 
+        function onComplete (data) {
+          // data是具体的定位信息
+          console.log('定位成功信息：', data.addressComponent.city)
+          self.city = data.addressComponent.city
+          vm.nowcity = data.addressComponent.city
+        }
+ 
+        function onError (data) {
+          // 定位出错
+          console.log('定位失败错误：', data)
+          // 调用IP定位
+          self.getLngLatLocation();
+        }
+      });
+    },
+    // 通过IP获取当前位置
+    getLngLatLocation () {
+      let vm = this
+      AMap.plugin('AMap.CitySearch', function () {
+        var citySearch = new AMap.CitySearch();
+        citySearch.getLocalCity(function (status, result) {
+          if (status === 'complete' && result.info === 'OK') {
+            // 查询成功，result即为当前所在城市信息
+            console.log('通过ip获取当前城市：', result);
+            vm.nowcity = result.city ? result.city : '定位失败'
+            // 逆向地理编码
+            AMap.plugin('AMap.Geocoder', function () {
+              var geocoder = new AMap.Geocoder({
+                // city 指定进行编码查询的城市，支持传入城市名、adcode 和 citycode
+                city: result.adcode
+              });
+ 
+              var lnglat = result.rectangle.split(';')[0].split(',');
+              geocoder.getAddress(lnglat, function (status, data) {
+                if (status === 'complete' && data.info === 'OK') {
+                  // result为对应的地理位置详细信息
+                  console.log(data);
+                }
+              });
+            });
+          }else {
+            //判断是否微信登陆
+            function isWeiXin() {
+                var ua = window.navigator.userAgent.toLowerCase();
+                console.log(ua);//mozilla/5.0 (iphone; cpu iphone os 9_1 like mac os x) applewebkit/601.1.46 (khtml, like gecko)version/9.0 mobile/13b143 safari/601.1
+                if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            if (isWeiXin()) {
+                // alert(" 是来自微信内置浏览器")
+                vm.nowcity = '杭州市'
+            } else {
+                // alert("不是来自微信内置浏览器")
+                vm.nowcity = '定位失败'
+            }
+            
+          }
+        });
+      });
+    },
     toInfo(itemSon){
       this.$router.push({
         name: 'productDetails',

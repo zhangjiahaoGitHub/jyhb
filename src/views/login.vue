@@ -252,6 +252,7 @@ export default {
             localStorage.setItem('kfPhone',res.data[18])
             localStorage.setItem('sjMoney',res.data[21])
             localStorage.setItem('baodan',res.data[26])
+            localStorage.setItem('switch',res.data[23])
             
             // 多用户
             let userList = JSON.parse(localStorage.getItem('userList')) || []

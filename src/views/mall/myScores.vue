@@ -65,6 +65,7 @@ export default {
     this.version = this.$stact.state.version
     this.agentNo = this.$stact.state.agentNo
     this.merchantNo = JSON.parse(this.$stact.state.token)[0].merchantNo
+    this.list()
   },
   methods: {
     jfmx(){
