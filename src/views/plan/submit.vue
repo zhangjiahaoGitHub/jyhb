@@ -37,7 +37,7 @@
       <li v-if="tong=='QYK'"><span>手续费小计：</span><p>{{calcList[41]}}</p></li>
       <li><span>消费地区：</span><p>{{area}}</p></li>
       <div>
-        <p @click="$router.push({name: 'preview', query: { acqcodeObj: $route.query.acqcodeObj,acqcodeArr: $route.query.acqcodeArr, children: $route.query.children, money: money, searchTime: searchTime, endTime: endTime, hkbs: hkbs, tong: tong, area: $route.query.area,merchantNo: $route.query.merchantNo }})">预览计划</p>
+        <p @click="$router.push({name: 'preview', query: { acqcodeObj: $route.query.acqcodeObj,acqcodeArr: $route.query.acqcodeArr, children: $route.query.children, money: money, searchTime: searchTime, endTime: endTime, hkbs: hkbs, tong: tong, jxType: jxType, area: $route.query.area,merchantNo: $route.query.merchantNo }})">预览计划</p>
         <p @click="$router.back()">修改计划</p>
       </div>
     </ul>
@@ -92,6 +92,8 @@ export default {
       endTime: '',
       hkbs: '',
       xhms: '',
+      tong: '',
+      jxType: '',
       money: 0,
       planItem: '',
       fullscreenLoading: false,
@@ -124,6 +126,7 @@ export default {
     this.cardList = this.$stact.state.allSb.cardList
     this.area = this.$route.query.area
     this.tong = this.$route.query.tong
+    this.jxType = this.$route.query.jxType
     this.children = this.$route.query.children
     // arr为多通道YK
     if (this.$route.query.acqcodeObj) {
@@ -276,6 +279,9 @@ export default {
           '44': vm.acqcodeObj.channelName,
           '57': `[${planArr.toString()}]`,
           '59': vm.version
+        }
+        if (this.jxType=='bfj') {
+          parmas[14]="Q"
         }
         vm.$route.query.couponId ? parmas : delete parmas['15']
         let url = vm.$mdata.mdGet(parmas)

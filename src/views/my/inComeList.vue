@@ -62,7 +62,7 @@
         <li v-for="(item,index) in listArr" :key="index">
           <div>
             <p>日期:{{item.createTime}}</p>
-            <p>消费:{{item.money}}</p>
+            <p>消费:{{item.money || '0.00'}}</p>
           </div>
           <div>
             <p>来源:{{item.merchantCnName}}</p>

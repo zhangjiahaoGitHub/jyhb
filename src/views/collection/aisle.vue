@@ -95,6 +95,17 @@
               </el-option>
             </el-select>
           </li>
+          <li v-if="jxType=='bfj'">
+            <span>还款笔数</span>
+            <el-select @change="planItem=[]" size="mini" v-model="hkbs" placeholder="请选择还款笔数">
+              <el-option
+                  v-for="item in bfj"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+              </el-option>
+            </el-select>
+          </li>
           <li>
             <span>城市地区</span>
             <el-cascader
@@ -233,6 +244,28 @@ export default {
           label: '10次/日'
         },
       ],
+      bfj: [
+        {
+          value: '1',
+          label: '1次/日'
+        },
+        {
+          value: '2',
+          label: '2次/日'
+        },
+        {
+          value: '3',
+          label: '3次/日'
+        },
+        {
+          value: '4',
+          label: '4次/日'
+        },
+        {
+          value: '5',
+          label: '5次/日'
+        },
+      ],
       children: [],
       cityList: [],
       dateList: [],
@@ -312,6 +345,8 @@ export default {
         this.aisle = this.$route.query.aisle
         if (this.aisle=='YJYK') {
           this.aisle = 'YK'
+        }else if (this.aisle=='bfj') {
+          this.aisle = 'QYK'
         }
         this.list()
       }
@@ -336,6 +371,8 @@ export default {
     this.aisle = this.$route.query.aisle
     if (this.aisle=='YJYK') {
       this.aisle = 'YK'
+    }else if (this.aisle=='bfj') {
+      this.aisle = 'QYK'
     }
     this.list()
     this.city(0)
@@ -380,7 +417,7 @@ export default {
         console.log(this.planItem);
         vm.$stact.commit('SET_PLAN', vm.planItem)
         vm.$stact.commit('SET_SB', { calcList: vm.calcList, cardList: vm.bank })
-        vm.$router.push({ name: 'submit', query: { children: vm.children, hkbs: vm.hkbs, xhms: vm.xhms, acqcodeObj: JSON.stringify(this.aisleList[this.nowIndex]), area: document.querySelector('.el-cascader .el-input__inner').value.replace(/\s*/g, ''), searchTime: vm.searchTime, endTime: vm.endTime, money: vm.money, tong: vm.aisle,merchantNo: vm.merchantNo,merchantId: vm.merchantId } })
+        vm.$router.push({ name: 'submit', query: { children: vm.children, hkbs: vm.hkbs, xhms: vm.xhms, acqcodeObj: JSON.stringify(this.aisleList[this.nowIndex]), area: document.querySelector('.el-cascader .el-input__inner').value.replace(/\s*/g, ''), searchTime: vm.searchTime, endTime: vm.endTime, money: vm.money, tong: vm.aisle,merchantNo: vm.merchantNo,merchantId: vm.merchantId,jxType: vm.jxType } })
       }
     },
     // 查询填补planItem数据
@@ -551,7 +588,7 @@ export default {
       let parmas = {
         '0': '0700',
         '3': '390048',
-        '7': '1',
+        '7': vm.hkbs,
         '8': vm.money,
         '10': vm.dateList.join(','),
         '11': vm.bank.BANK_ACCOUNT,
@@ -559,6 +596,9 @@ export default {
         '42': vm.merchantNo,
         '43': vm.aisleList[vm.nowIndex].acqcode,
         '59': vm.version
+      }
+      if (this.jxType=='bfj') {
+        parmas[13]="Q"
       }
       vm.fullscreenLoading = true
       let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))
@@ -671,6 +711,9 @@ export default {
         '43': vm.aisle,
         '44': vm.bank.ID,
         '59': vm.version
+      }
+      if (this.jxType=='bfj') {
+        parmas[14]="Q"
       }
       this.fullscreenLoading = true
       let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas))

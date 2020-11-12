@@ -72,6 +72,16 @@
             </div>
             <el-radio v-model="radio" label="QYK"></el-radio>
           </li>
+          <li @click="radio='bfj'">
+            <div>
+              <img src="../../assets/repay/bfj.png" alt="">
+              <div>
+                <span>备付金多卡还款</span>
+                <p>充值信用分大于500元，卡内保留手续费，可以同时还多张卡</p>
+              </div>
+            </div>
+            <el-radio v-model="radio" label="bfj"></el-radio>
+          </li>
           <li @click="radio='DTD'">
             <div>
               <img src="../../assets/repay/dtdhk.png" alt="">
@@ -214,7 +224,7 @@ export default {
       })
     },
     jxhk(){
-      if (this.radio=='YK' || this.radio=='YJYK' || this.radio=='QYK') {
+      if (this.radio=='YK' || this.radio=='YJYK' || this.radio=='QYK' || this.radio=='bfj') {
         this.selectype()
       }else if (this.radio=='DTD') {
         this.dtdbb()

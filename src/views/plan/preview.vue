@@ -136,6 +136,8 @@ export default {
       agentNo: '',
       merchantNo: '',
       hkbs: '',
+      tong: '',
+      jxType: '',
       acqcodeObj: {},
       dataPopShow: false,
       zhqr: false,
@@ -187,6 +189,7 @@ export default {
     this.cardList = this.$stact.state.allSb.cardList
     this.children = this.$route.query.children
     this.tong = this.$route.query.tong
+    this.jxType = this.$route.query.jxType
     // arr为多通道YK
     if (this.$route.query.acqcodeObj) {
       this.$set(this,'acqcodeObj',JSON.parse(this.$route.query.acqcodeObj))
@@ -527,6 +530,9 @@ export default {
           '44': vm.acqcodeObj.channelName,
           '57': `[${planArr.toString()}]`,
           '59': vm.version
+        }
+        if (this.jxType=='bfj') {
+          parmas[14]="Q"
         }
         vm.$route.query.couponId ? parmas : delete parmas['15']
         let url = vm.$mdata.mdGet(parmas)

@@ -61,6 +61,7 @@ export default {
       time: 0,
       text: "获取验证码",
       checked: false,
+      appid: 'wxfcba8287aa1d3316',
       phone: "",
       version: "",
       password: "",
@@ -74,11 +75,42 @@ export default {
   created() {
     this.version = this.$stact.state.version;
     this.agentNo = this.$stact.state.agentNo;
+
+    // // 微信授权获取code
+    // let ua = navigator.userAgent.toLowerCase();
+    // if(ua.match(/MicroMessenger/i)=="micromessenger") {
+    //   this.isApprove()
+    // } else {
+      
+    // }
   },
   mounted() {
     this.$inputLen.inputJs();
   },
   methods: {
+    isApprove () {
+      let vm = this
+      let href = window.location.href
+      if (href.includes('&state=#/')) { // url包括 com/?code 证明为从微信跳转回来的
+        this.code = href.split('&')[0].split('?code=')[1]
+      } else {
+        vm.getTure()
+      }
+    },
+    getTure () { // 获取微信授权 建议history模式
+      let vm = this
+      if (!vm.$route.query.code) {
+        let url = encodeURIComponent(window.location.href)
+        if (sessionStorage.getItem('setOne') === '1') {
+          return
+        }
+        sessionStorage.setItem('setOne', '1')
+        window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${vm.appid}&redirect_uri=${url}&response_type=code&scope=snsapi_base#wechat_redirect`
+      } else {
+        // 最后一步
+        this.code = this.$route.query.code
+      }
+    },
     getCode() {
       // 获取验证码
       let vm = this;
