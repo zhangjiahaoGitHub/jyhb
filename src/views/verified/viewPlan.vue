@@ -30,7 +30,7 @@
           <p><span>账单日：{{item.BILL_DAY}}</span><span>还款日：{{item.REPAYMENT_DAY}}</span></p>
           <p><span>本期应还：{{item.PLAN_AMT}}</span><span>本期已还：{{item.payed}}</span></p>
           <div>
-            <span>通道名称：{{item.acqName}}</span>
+            <span>通道名称：{{item.ACQ_NAME}}</span>
             <span>结算费率：{{item.rate}}</span>
           </div>
         </div>

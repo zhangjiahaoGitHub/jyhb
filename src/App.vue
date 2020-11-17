@@ -82,17 +82,6 @@ export default Vue.extend({
         document.title = vm.$route.query.title
         document.body.title = vm.$route.query.title
       }
-      if (to.name == 'selectcard') {
-        if (vm.$route.query.aisle=='QYK') {
-          to.meta.title = '空卡还款'
-          document.title = '空卡还款'
-          document.body.title = '空卡还款'
-        }else if(vm.$route.query.aisle=='YK'){
-          to.meta.title = '智能还款'
-          document.title = '智能还款'
-          document.body.title = '智能还款'
-        }
-      }
       if (to.name == 'collection') {
         if (to.query.aisle=='HB') {
           to.meta.title = '花呗收款'

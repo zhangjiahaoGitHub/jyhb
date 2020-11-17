@@ -1,6 +1,7 @@
 <template>
   <div class='hundred customer-layout' element-loading-background="rgba(0, 0, 0, 0.7)" v-loading.fullscreen.lock="fullscreenLoading">
-    <img @click="problem('http://jyhbban.llyzf.cn/lly-posp-proxy/kf/', '在线客服')" src="../../assets/my/kf_zx.png" alt="">
+    <!-- <img @click="problem('http://jyhbban.llyzf.cn/lly-posp-proxy/kf/', '在线客服')" src="../../assets/my/kf_zx.png" alt=""> -->
+    <img @click="toKf" src="../../assets/my/kf_zx.png" alt="">
     <img @click="type=1" src="../../assets/my/kf_rx.png" alt="">
     <img @click="type=2" src="../../assets/my/kf_wx.png" alt="">
     <img @click="type=3" src="../../assets/my/kf_wxgzh.png" alt="">
@@ -45,6 +46,14 @@ export default {
       this.message()
   },
   methods: {
+    toKf(){
+      // window.location.href=`http://jyhbban.llyzf.cn/lly-posp-proxy/kf/?id=${JSON.parse(this.$stact.state.token)[0].merchantNo}&phone=${JSON.parse(this.$stact.state.token)[0].phone}&name=${JSON.parse(this.$stact.state.token)[0].merchantCnName}`
+      var params = {};
+      params['name'] = JSON.parse(this.$stact.state.token)[0].merchantCnName;
+      params['phone'] = JSON.parse(this.$stact.state.token)[0].phone;
+      params['id'] = JSON.parse(this.$stact.state.token)[0].merchantNo;
+      window.location.href = "http://jyhbban.llyzf.cn/lly-posp-proxy/kf/?" + new URLSearchParams(params)
+    },
     problem (url, title) {
       this.$router.push({ name: 'ifarme', query: { url: url, title: title } })
     },

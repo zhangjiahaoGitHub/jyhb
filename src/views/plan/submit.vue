@@ -267,6 +267,7 @@ export default {
         let parmas = {
           '0': '0700',
           '3': '390049',
+          '7': vm.hkbs,
           '8': vm.money,
           '9': '0',
           '10': this.$moment(this.searchTime).valueOf(),

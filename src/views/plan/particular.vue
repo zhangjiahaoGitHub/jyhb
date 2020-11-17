@@ -62,9 +62,9 @@
             <li v-if="listMore.length>0" class='allFlex flexPadding'>
                 <div class='half'>
                     <span class='gary'>
-                        {{itemList.TYPE === '10C' ? '手续费小计:' : '周转金总额:'}}
+                        {{(itemList.TYPE === '10C' || itemList.TYPE === '10Q') ? '手续费小计:' : '周转金总额:'}}
                     </span>
-                        {{itemList.TYPE === '10C' ? listMore[0].money : parseInt(itemList.CB_AMT * 100 + itemList.SALE_FREE * 100 + itemList.PAY_FREE * 100) / 100 }}
+                        {{(itemList.TYPE === '10C' || itemList.TYPE === '10Q') ? itemList.THAW_TRX : parseInt(itemList.CB_AMT * 100 + itemList.SALE_FREE * 100 + itemList.PAY_FREE * 100) / 100 }}
                 </div>
                 <div class='half'>
                     <span class='gary'>
@@ -98,9 +98,9 @@
         <ul v-if="index<5 || gdan" class='partHeight' :class="item.type === 'sale' ? '' : 'partMin'" v-for='(item, index) in listMore' :key='item.id'>
             <li class='allFlex justifyBetween flexPadding'>
                 <div>
-                  <a v-if="itemList.TYPE == '10C'" class="partStatus" :class=" item.type == 'sale' ? 'partGreen':item.type == 'payment' ? 'partBlue':'partStatus'">{{item.type == 'sale' ? '手续费':item.type == 'payment' ? '还款':'消费'}}</a>
+                  <a v-if="itemList.TYPE == '10C' || itemList.TYPE=='10Q'" class="partStatus" :class=" item.type == 'sale' ? 'partGreen':item.type == 'payment' ? 'partBlue':'partStatus'">{{item.type == 'sale' ? '手续费':item.type == 'payment' ? '还款':'消费'}}</a>
                   <a v-else class="partStatus" :class="item.type == 'sale' ? 'partStatus':'partBlue'">{{item.type == 'sale' ? '消费':'还款'}}</a>
-                     <span v-if="itemList.TYPE=='10C'" class='gary'>{{$moment(item.planTime.time).format('YYYY-MM-DD')}}</span>
+                     <span v-if="itemList.TYPE=='10C' || itemList.TYPE=='10Q'" class='gary'>{{$moment(item.planTime.time).format('YYYY-MM-DD')}}</span>
                      <span v-else class='gary'>{{$moment(item.planTime.time).format('YYYY-MM-DD HH:mm:ss')}}</span>
                 </div>
                 <div>
@@ -131,7 +131,7 @@
         </ul>
         <div v-if="listMore.length>5" @click="gdan=!gdan" class="gdan"><i :class="gdan ? 'el-icon-top':'el-icon-bottom'"></i>{{gdan ? '收起更多':'查看更多'}}</div>
     </div>
-    <div v-if="itemList.TYPE!='10C'" class='partSubmit'>
+    <div v-if="!(itemList.TYPE=='10C' || itemList.TYPE=='10Q')" class='partSubmit'>
         <div class='allFlex justifyBetween planMargin'>
             <div :style="itemList.STATUS=='10D' ? 'background: #B0B0B0;':''" class='submitPlan' @click="itemList.STATUS === '10E' || stop(itemList.STATUS)">{{itemList.STATUS !== '10D' ? itemList.STATUS === '10E'? '完成计划' : '停止计划': '启用计划'}}</div>
             <div class='submitPlan' @click='de(itemList.STATUS)'>删除</div>

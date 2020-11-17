@@ -61,7 +61,7 @@ export default {
       time: 0,
       text: "获取验证码",
       checked: false,
-      appid: 'wxfcba8287aa1d3316',
+      appid: 'wx7320f8766450fc96',
       phone: "",
       version: "",
       password: "",
@@ -69,6 +69,7 @@ export default {
       fullscreenLoading: false,
       openId: "",
       code: "",
+      wxcode: "",
       loginType: 1,
     };
   },
@@ -76,13 +77,13 @@ export default {
     this.version = this.$stact.state.version;
     this.agentNo = this.$stact.state.agentNo;
 
-    // // 微信授权获取code
-    // let ua = navigator.userAgent.toLowerCase();
-    // if(ua.match(/MicroMessenger/i)=="micromessenger") {
-    //   this.isApprove()
-    // } else {
+    // 微信授权获取code
+    let ua = navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i)=="micromessenger") {
+      this.isApprove()
+    } else {
       
-    // }
+    }
   },
   mounted() {
     this.$inputLen.inputJs();
@@ -92,7 +93,7 @@ export default {
       let vm = this
       let href = window.location.href
       if (href.includes('&state=#/')) { // url包括 com/?code 证明为从微信跳转回来的
-        this.code = href.split('&')[0].split('?code=')[1]
+        this.wxcode = href.split('&')[0].split('?code=')[1]
       } else {
         vm.getTure()
       }
@@ -108,7 +109,7 @@ export default {
         window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${vm.appid}&redirect_uri=${url}&response_type=code&scope=snsapi_base#wechat_redirect`
       } else {
         // 最后一步
-        this.code = this.$route.query.code
+        this.wxcode = this.$route.query.code
       }
     },
     getCode() {
@@ -224,6 +225,7 @@ export default {
           1: vm.phone,
           3: "190928",
           8: vm.$md5(vm.password),
+          11: vm.wxcode,
           59: vm.version,
         };
       }else if (this.loginType==2) {
@@ -261,6 +263,7 @@ export default {
           0: "0700",
           1: vm.phone,
           3: "190928",
+          11: vm.wxcode,
           13: 1,
           21: vm.code,
           59: vm.version,

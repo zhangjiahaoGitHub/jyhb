@@ -376,10 +376,10 @@ export default {
     toYK () {
       let vm = this
       let have = false
-      document.querySelectorAll('.indexDom').forEach(function (item, index) {
-        if (document.querySelectorAll('.indexDom .el-input__inner')[index].value) {
-          vm.planItem[item.dataset.myindex].customizecity = document.querySelectorAll('.indexDom .el-input__inner')[index].value.replace(/\s*/g, '')
-        }
+      document.querySelectorAll('.companySel').forEach(function (item, index) {
+        // if (document.querySelectorAll('.indexDom .el-input__inner')[index].value) {
+        //   vm.planItem[item.dataset.myindex].customizecity = document.querySelectorAll('.indexDom .el-input__inner')[index].value.replace(/\s*/g, '')
+        // }
         if (document.querySelectorAll('.companySel .el-input__inner')[index].value) {
           vm.planItem[item.dataset.myindex].cityindustryName = document.querySelectorAll('.companySel .el-input__inner')[index].value
           vm.planItem[item.dataset.myindex].cityindustry = vm.company[index].no
@@ -485,7 +485,7 @@ export default {
     toQYK () {
       let vm = this
       let have = false
-      document.querySelectorAll('.indexDom').forEach(function (item, index) {
+      document.querySelectorAll('.companySel').forEach(function (item, index) {
         if (document.querySelectorAll('.indexDom .el-input__inner')[index].value) {
           vm.planItem[item.dataset.myindex].customizecity = document.querySelectorAll('.indexDom .el-input__inner')[index].value.replace(/\s*/g, '')
         }
@@ -518,6 +518,7 @@ export default {
         let parmas = {
           '0': '0700',
           '3': '390049',
+          '7': vm.hkbs,
           '8': vm.money,
           '9': '0',
           '10': this.$moment(this.searchTime).valueOf(),
@@ -551,7 +552,7 @@ export default {
               if (this.$route.query.merchantNo!=JSON.parse(this.$stact.state.token)[0].merchantNo) {
                 this.$router.push({name: 'viewPlan'})
               }else{
-                vm.$router.push({ name: 'selectcard',query:~{aisle: 'QYK'} })
+                vm.$router.push({ name: 'selectcard',query: {aisle: 'QYK'} })
               }
             } else {
               vm.$message({
