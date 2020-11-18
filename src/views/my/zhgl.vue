@@ -48,6 +48,7 @@ export default {
         1: item.phone,
         3: "190928",
         8: item.passWord,
+        12: window.localStorage.getItem('openId'),
         59: vm.version,
       };
       let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas));
@@ -65,7 +66,7 @@ export default {
               type: "success",
             });
 
-            window.sessionStorage.removeItem('xxtc')
+            window.sessionStorage.clear()
 
             localStorage.setItem('kfPhone',res.data[18])
             localStorage.setItem('sjMoney',res.data[21])

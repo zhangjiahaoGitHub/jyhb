@@ -67,7 +67,15 @@
           </li>
           <li v-if="aisle=='YK'">
             <span>消还模式</span>
-            <el-select @change="planItem=[]" size="mini" v-model="xhms" placeholder="请选择消还模式">
+            <el-select v-if="jxType=='YJYK'" @change="planItem=[]" size="mini" v-model="xhms" placeholder="请选择消还模式">
+              <el-option
+                  v-for="item in yjhkoptions"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+              </el-option>
+            </el-select>
+            <el-select v-else @change="planItem=[]" size="mini" v-model="xhms" placeholder="请选择消还模式">
               <el-option
                   v-for="item in xhmsoptions"
                   :key="item.value"
@@ -185,6 +193,12 @@ export default {
         {
           value: '2',
           label: '消二还一'
+        },
+      ],
+      yjhkoptions: [
+        {
+          value: '1',
+          label: '消一还一'
         },
       ],
       hkbs: '1',

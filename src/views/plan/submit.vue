@@ -196,9 +196,8 @@ export default {
           '57': `[${planArr.toString()}]`,
           '59': vm.version
         }
-        if (this.tong=='JYK') {
-          parmas[29] = 'JYK'
-          parmas[37] = '10C'
+        if (this.jxType=='YJYK') {
+          parmas[15] = 'Q'
         }
       }else{
         parmas = {

@@ -64,7 +64,7 @@
                     <span class='gary'>
                         {{(itemList.TYPE === '10C' || itemList.TYPE === '10Q') ? '手续费小计:' : '周转金总额:'}}
                     </span>
-                        {{(itemList.TYPE === '10C' || itemList.TYPE === '10Q') ? itemList.THAW_TRX : parseInt(itemList.CB_AMT * 100 + itemList.SALE_FREE * 100 + itemList.PAY_FREE * 100) / 100 }}
+                        {{(itemList.TYPE === '10C' || itemList.TYPE === '10Q') ? listMore[0].money : parseInt(itemList.CB_AMT * 100 + itemList.SALE_FREE * 100 + itemList.PAY_FREE * 100) / 100 }}
                 </div>
                 <div class='half'>
                     <span class='gary'>

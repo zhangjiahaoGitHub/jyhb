@@ -23,7 +23,10 @@
             <span>状态：{{stateObj[item.STATUS]}}</span>
           </div>
           <div>
-            <span>类型：{{item.TYPE=='10C'?'全额还':'预留还'}}</span>
+            <span v-if="item.TYPE=='10C'">类型：空卡</span>
+            <span v-if="item.TYPE=='10Q'">类型：备付金</span>
+            <span v-if="item.TYPE=='10J'">类型：应急</span>
+            <span v-if="item.TYPE=='10B'">类型：预留还</span>
             <span>订单编号：{{item.ID.substring(item.ID.length-15,item.ID.length)}}</span>
           </div>
           <div><span>还款周期：{{$moment(item.START_TIME.time).format('YYYY-MM-DD')}}-{{$moment(item.END_TIME.time).format('YYYY-MM-DD')}}</span></div>
@@ -34,7 +37,7 @@
             <span>结算费率：{{item.rate}}</span>
           </div>
         </div>
-        <ol v-if="item.TYPE=='10C'">
+        <ol v-if="item.TYPE=='10C' || item.TYPE=='10Q'">
           <li style="width:33.3333%">
             <p>进度</p>
             <p>{{item.progress}}</p>

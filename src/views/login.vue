@@ -284,6 +284,7 @@ export default {
               type: "success",
             });
             
+            localStorage.setItem('openId',res.data[12])
             localStorage.setItem('kfPhone',res.data[18])
             localStorage.setItem('sjMoney',res.data[21])
             localStorage.setItem('baodan',res.data[26])

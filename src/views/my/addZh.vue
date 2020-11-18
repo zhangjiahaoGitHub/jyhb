@@ -70,6 +70,7 @@ export default {
         1: vm.phone,
         3: "190928",
         8: vm.$md5(vm.password),
+        12: window.localStorage.getItem('openId'),
         59: vm.version,
       };
       
@@ -88,7 +89,7 @@ export default {
               type: "success",
             });
 
-            window.sessionStorage.removeItem('xxtc')
+            window.sessionStorage.clear()
 
             localStorage.setItem('kfPhone',res.data[18])
             localStorage.setItem('sjMoney',res.data[21])
