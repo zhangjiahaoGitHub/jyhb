@@ -123,6 +123,7 @@ export default {
     this.xhms = this.$route.query.xhms
     this.money = this.$route.query.money
     this.planItem = this.$stact.state.planItem
+    console.log(this.planItem);
     this.cardList = this.$stact.state.allSb.cardList
     this.area = this.$route.query.area
     this.tong = this.$route.query.tong

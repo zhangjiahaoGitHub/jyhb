@@ -425,8 +425,9 @@ export default {
           item.toMoney = item.money
           item.payFee = null
           item.customizecity = document.querySelector('.el-cascader .el-input__inner').value.replace(/\s*/g, '')
-          item.cityindustry = vm.tradeList[0].acqMerchantNo
-          item.cityindustryName = vm.tradeList[0].acqMerchantName
+          let sj = Math.floor(Math.random()*vm.tradeList.length-1)
+          item.cityindustry = vm.tradeList[sj].acqMerchantNo
+          item.cityindustryName = vm.tradeList[sj].acqMerchantName
         });
         console.log(this.planItem);
         vm.$stact.commit('SET_PLAN', vm.planItem)

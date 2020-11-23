@@ -48,9 +48,11 @@ export default {
         1: item.phone,
         3: "190928",
         8: item.passWord,
-        12: window.localStorage.getItem('openId'),
         59: vm.version,
       };
+      if (window.localStorage.getItem('openId')) {
+        parmas[12] = window.localStorage.getItem('openId')
+      }
       let url = vm.$utils.queryParams(vm.$mdata.mdGet(parmas));
       vm.fullscreenLoading = true;
       vm.$http
