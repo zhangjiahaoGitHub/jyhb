@@ -212,6 +212,10 @@ export default Vue.extend({
         this.$router.push({ name: 'surrender' })
         return
       }
+      if (this.$route.name === 'customer') {
+        this.$router.push({ name: 'my' })
+        return
+      }
       if (this.$route.name === 'surrender') {
         this.$router.push({ name: 'home' })
         return
