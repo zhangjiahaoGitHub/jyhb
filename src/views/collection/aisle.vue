@@ -425,7 +425,7 @@ export default {
           item.toMoney = item.money
           item.payFee = null
           item.customizecity = document.querySelector('.el-cascader .el-input__inner').value.replace(/\s*/g, '')
-          let sj = Math.floor(Math.random()*vm.tradeList.length-1)
+          let sj = Math.floor(Math.random()*vm.tradeList.length)
           item.cityindustry = vm.tradeList[sj].acqMerchantNo
           item.cityindustryName = vm.tradeList[sj].acqMerchantName
         });
