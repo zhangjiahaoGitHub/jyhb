@@ -76,6 +76,10 @@
                     <div>管理收益</div>
                     <div>{{item['20E']}}</div>
                   </div>
+                  <div class="list-row" v-show="item['20F'] != '0.00'">
+                    <div>推广激活返佣</div>
+                    <div>{{item['20F']}}</div>
+                  </div>
                 </div>
               </div>
             </div>
