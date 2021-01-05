@@ -244,7 +244,7 @@ export default {
             vm.$stact.dispatch('SetToken', res.data[57]) // 存token
             console.log(JSON.parse(res.data[57])[0]);
             this.userName = JSON.parse(res.data[57])[0].merchantCnName
-            this.phone = JSON.parse(res.data[57])[0].phone
+            this.phone = JSON.parse(res.data[57])[0].loginPhone
             vm.imageUrl = res.data[48]
             vm.freezeStatus = JSON.parse(this.$stact.state.token)[0].freezeStatus
             this.zhye = res.data[43]
