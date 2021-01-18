@@ -61,6 +61,7 @@ export default {
         new Promise((resolve, reject) => {
           vm.$stact.dispatch('SetToken', '')
           window.sessionStorage.clear()
+          window.localStorage.removeItem('userList')
           resolve()
         })
           .then(result => {
