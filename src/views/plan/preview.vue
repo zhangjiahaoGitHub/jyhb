@@ -23,7 +23,7 @@
           <div>
             <p :style="tong=='QYK' ? 'visibility:hidden;':''"><span>周转金总额：</span>{{(parseFloat(calcList[40])+parseFloat(calcList[7])+parseFloat(calcList[9])).toFixed(2)}}</p>
             <!-- <p><span>手续费小计：</span>{{(parseFloat(calcList[7])+parseFloat(calcList[9])).toFixed(2)}}<i @click="dataPopShow=true" class="el-icon-warning-outline"></i></p> -->
-            <p><span>手续费小计：</span>{{(planItem[0].money).toFixed(2)}}<i @click="dataPopShow=true" class="el-icon-warning-outline"></i></p>
+            <p><span>手续费小计：</span>{{jxType=='bfj' ? (planItem[0].money).toFixed(2) : calcList[9]}}<i @click="dataPopShow=true" class="el-icon-warning-outline"></i></p>
           </div>
         </div>
       </div>
